@@ -147,7 +147,7 @@
 				<div class="card shadow-sm border-0 h-100" style="background-color:#f8f9fa;">
 				  <div class="card-body">
 					<div class="d-flex align-items-center gap-3 mb-3">
-					  <img src="{{ asset('assets/images/shivananda.jpeg') }}"
+					  <img src="{{ asset('Frontend-Assets/images/profile_img.png') }}"
 						   alt="সভাপতি"
 						   class="profile-img img-fluid"
 						   style="width:110px; height:110px; object-fit:cover;">
