@@ -73,16 +73,16 @@
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr class="text-center">
+                                <th>ক্রমিক</th>
                                 <th>শিরোনাম</th>
-                                <th>ধরন</th>
                                 <th>তারিখ</th>
                                 <th>দেখুন</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-center">
+                                <td data-label="ক্রমিক">1</td>
                                 <td data-label="শিরোনাম">সভা সংক্রান্ত জরুরি নোটিশ</td>
-                                <td data-label="ধরন"><span class="badge type">জরুরি</span></td>
                                 <td data-label="তারিখ">১২-১২-২০২৪</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
@@ -93,8 +93,8 @@
                                 </td>
                             </tr>
                             <tr class="text-center">
+                                <td data-label="ক্রমিক">2</td>
                                 <td data-label="শিরোনাম">বার্ষিক সাধারণ সভা</td>
-                                <td data-label="ধরন"><span class="badge type">সাধারণ</span></td>
                                 <td data-label="তারিখ">১০-১২-২০২৪</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
@@ -106,6 +106,12 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="bg-white text-center m-4">
+                        <a href="{{ route('notice.index') }}" class="btn btn-primary btn-sm px-4">
+                        সব নোটিশ
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
