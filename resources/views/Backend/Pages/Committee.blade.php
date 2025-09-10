@@ -20,7 +20,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <form action="" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="সদস্যের নাম দিয়ে অনুসন্ধান করুন…">
+                        <input type="text" class="form-control" placeholder="সদস্যের নাম দিন">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>

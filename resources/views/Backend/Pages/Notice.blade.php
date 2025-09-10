@@ -51,7 +51,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <form action="" method="get">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="নোটিশের শিরোনাম দিয়ে অনুসন্ধান করুন…">
+                        <input class="form-control" type="text" placeholder="নোটিশের শিরোনাম দিন">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>

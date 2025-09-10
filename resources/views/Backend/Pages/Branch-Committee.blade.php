@@ -45,7 +45,7 @@
                             <option value="gram2">গ্রাম ২</option>
                             <option value="gram3">গ্রাম ৩</option>
                         </select>
-                        <input type="text" class="form-control" placeholder="সদস্যের নাম দিয়ে অনুসন্ধান করুন…">
+                        <input type="text" class="form-control" placeholder="সদস্যের নাম দিন">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>
