@@ -1,5 +1,5 @@
     <!-- Footer -->
-	<footer class="bg-dark text-white py-5">
+	<footer class="bg-dark text-white py-4">
 	  <div class="container">
 		<div class="row g-4 text-center text-md-start">
 		  
@@ -14,7 +14,7 @@
 			  <i  class="fas fa-phone text-accent me-2"></i>
 			  <span>+৮৮০-২-৯৫৫৫৫৫৫</span>
 			</div>
-			<div class="mb-2">
+			<div class="">
 			  <i class="fas fa-envelope text-accent me-2"></i>
 			  <span>info@gov.bd</span>
 			</div>
@@ -52,10 +52,7 @@
 
 		</div>
 
-		<hr class="my-4">
-		<div class="text-center">
-		  <p class="mb-0 text-muted">&copy; ২০২৪ বাংলাদেশ সরকার। সর্বস্বত্ব সংরক্ষিত।</p>
-		</div>
+
 	  </div>
 	</footer>
 
