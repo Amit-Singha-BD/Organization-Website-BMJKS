@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SettingController;
@@ -35,7 +36,7 @@ Route::post('/Login', [AuthenticationController::class, 'login'])->name('login.s
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
 
 
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 
 Route::get('/central.committee', [AdminController::class, 'centralCommittee'])->name('central.committee');

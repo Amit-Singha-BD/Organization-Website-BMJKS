@@ -120,6 +120,9 @@
                                     </div>
                                     <div class="modal-body">
                                         <h5>{{$notice->title}}</h5>
+                                        <p class="text-muted">
+                                            <span>তারিখ: {{ $notice->date }}</span>
+                                        </p>
                                         <hr>
                                         <p>{{$notice->description}}</p>
                                     </div>
