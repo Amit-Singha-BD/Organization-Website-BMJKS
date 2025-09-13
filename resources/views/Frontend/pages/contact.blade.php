@@ -85,19 +85,7 @@
 						  <textarea class="form-control form-control-lg" rows="6" placeholder="আপনার বার্তা লিখুন"></textarea>
 						</div>
 						
-						<!-- CAPTCHA block -->
-						<div class="mb-3">
-						  <label class="form-label d-block">CAPTCHA যাচাইকরণ</label>
-
-						  <div class="input-group">
-							<span class="input-group-text bg-white" id="captchaText" style="min-width:120px; font-weight:600;"></span>
-							<input type="number" class="form-control" id="captchaInput" placeholder="উত্তর লিখুন" required>
-							<button class="btn btn-outline-secondary" type="button" id="refreshBtn" title="নতুন ক্যাপচা">
-							  <i class="bi bi-arrow-clockwise"></i> রিফ্রেশ
-							</button>
-						  </div>
-
-						</div>
+						
 
 						<!-- বাটন -->
 						<div>

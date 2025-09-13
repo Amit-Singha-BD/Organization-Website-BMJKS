@@ -284,7 +284,6 @@ header {
 
 .dropdown-menu {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 249, 250, 0.98) 100%);
-    backdrop-filter: blur(15px);
     border: 1px solid rgba(42, 110, 63, 0.1);
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
@@ -292,6 +291,8 @@ header {
     margin-top: 0.5rem;
     min-width: 220px;
     animation: dropdownFadeIn 0.3s ease;
+    overflow: hidden;
+    
 }
 
 .dropdown-menu-animated {
@@ -302,7 +303,7 @@ header {
 .dropdown-item {
     color: #333333;
     font-weight: 500;
-    padding: 0.50rem 1.5rem;
+    padding: 0.23rem 1.5rem;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -328,6 +329,7 @@ header {
     background: linear-gradient(135deg, rgba(42, 110, 63, 0.1) 0%, rgba(26, 155, 159, 0.1) 100%);
     transform: translateX(10px);
     padding-left: 2rem;
+    
 }
 
 .dropdown-item.active {
