@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SettingController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\CommitteeActivitieController;
+use App\Http\Controllers\CommitteeManageController;
 
 
 // Frontend Routes Start -->
@@ -35,13 +37,17 @@ Route::post('/Login', [AuthenticationController::class, 'login'])->name('login.s
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
 
 
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 
 Route::get('/central.committee', [AdminController::class, 'centralCommittee'])->name('central.committee');
 Route::get('/branch/committee', [AdminController::class, 'branchCommittee'])->name('branch.committee');
 Route::get('/branch/committee/list', [AdminController::class, 'branchCommitteeList'])->name('branch.committee.list');
-Route::get('/committee/create', [AdminController::class, 'committeeCreate'])->name('committee.create');
+
+
+Route::get('/committee/create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
+
+
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
 Route::get('/life/time/person', [AdminController::class, 'lifeTimePerson'])->name('life.time.person');
 Route::get('/general/person', [AdminController::class, 'generalPerson'])->name('general.person');

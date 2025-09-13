@@ -80,30 +80,54 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            @foreach($notices as $notice)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক">1</td>
-                                <td data-label="শিরোনাম">সভা সংক্রান্ত জরুরি নোটিশ</td>
-                                <td data-label="তারিখ">১২-১২-২০২৪</td>
+                                <td data-label="ক্রমিক">{{ $notice->id }}</td>
+                                <td data-label="শিরোনাম">{{ $notice->title }}</td>
+                                <td data-label="তারিখ">{{ $notice->date }}</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
-                                        <button type="button" class="action-btn-info" title="view" data-bs-toggle="modal" data-bs-target="#noticeViewModal">
+                                        <button type="button" class="action-btn-info"
+                                            title="view" data-bs-toggle="modal" 
+                                            data-bs-target="#noticeViewModal{{ $notice->id }}" data-id="{{ $notice->id }}">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="text-center">
-                                <td data-label="ক্রমিক">2</td>
-                                <td data-label="শিরোনাম">বার্ষিক সাধারণ সভা</td>
-                                <td data-label="তারিখ">১০-১২-২০২৪</td>
-                                <td data-label="অ্যাকশন">
-                                    <div class="d-flex flex-row justify-content-center gap-2">
-                                        <button type="button" class="action-btn-info" title="view" data-bs-toggle="modal" data-bs-target="#noticeViewModal">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
+
+                            <!-- নোটিশ ভিউ মডাল শুরু -->
+                            <div class="modal fade" id="noticeViewModal{{ $notice->id }}" tabindex="-1" aria-labelledby="noticeViewModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-md modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-info text-white">
+                                            <h5 class="modal-title" id="noticeViewModalLabel">নোটিশের বিস্তারিত</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="notice-details">
+                                                <h4 id="noticeTitle">{{ $notice->title }}</h4>
+                                                <p class="text-muted">
+                                                    <span>তারিখ: {{ $notice->date }}</span>
+                                                </p>
+                                                <hr>
+                                                <div id="noticeContent">
+                                                    <p>
+                                                        {{ $notice->description }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                            <!-- নোটিশ ভিউ মডাল শেষ -->
+                            @endforeach
+
                         </tbody>
                     </table>
 
@@ -117,51 +141,5 @@
         </div>
     </div>
     <!-- সাম্প্রতিক নোটিশ টেবিল শেষ -->
-
-    <!-- নোটিশ ভিউ মডাল শুরু -->
-    <div class="modal fade" id="noticeViewModal" tabindex="-1" aria-labelledby="noticeViewModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-info text-white">
-                    <h5 class="modal-title" id="noticeViewModalLabel">নোটিশের বিস্তারিত</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="notice-details">
-                        <h4 id="noticeTitle">সভা সংক্রান্ত জরুরি নোটিশ</h4>
-                        <p class="text-muted">
-                            <span class="badge bg-primary">জরুরি</span>
-                            <span>তারিখ: ১২-১২-২০২৪</span>
-                        </p>
-                        <hr>
-                        <div id="noticeContent">
-                            <p>
-                                সম্মানিত সদস্যবৃন্দ,
-                                <br><br>
-                                আগামী ১৫ই ডিসেম্বর ২০২৪, রবিবার, বিকাল ৪:০০ ঘটিকায় আমাদের বার্ষিক সাধারণ সভা অনুষ্ঠিত হবে। উক্ত সভায় সকলের উপস্থিতি একান্তভাবে কাম্য। সভার এজেন্ডা নিম্নরূপ:
-                            </p>
-                            <ul>
-                                <li>গত সভার কার্যবিবরণী অনুমোদন।</li>
-                                <li>বার্ষিক প্রতিবেদন ও নিরীক্ষিত হিসাব পেশ।</li>
-                                <li>নতুন কার্যনির্বাহী কমিটি গঠন।</li>
-                                <li>বিবিধ আলোচনা।</li>
-                            </ul>
-                            <p>
-                                সকলকে নির্ধারিত সময়ে উপস্থিত থাকার জন্য অনুরোধ করা হলো।
-                                <br><br>
-                                ধন্যবাদান্তে,
-                                <br>
-                                সাধারণ সম্পাদক
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- নোটিশ ভিউ মডাল শেষ -->
 
 @endsection

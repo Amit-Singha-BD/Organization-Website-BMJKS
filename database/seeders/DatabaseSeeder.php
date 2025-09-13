@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SettingSeeder::class,
             ContactSeeder::class,
+            CommitteeNameSeeder::class,
         ]);
     }
 }
