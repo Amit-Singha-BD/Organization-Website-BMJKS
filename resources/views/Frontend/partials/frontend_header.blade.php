@@ -56,26 +56,31 @@
             <!-- ডান 5/4 কলাম: ছবি -->
             <div class="col-5 col-md-4 col-lg-4 p-0 d-flex justify-content-end position-relative" >
                 <!-- ডেস্কটপ/ট্যাবলেট ইমেজ -->
-                <img src="{{asset('Frontend-Assets/images/object.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/objectpc.png')}}" 
                      alt="সংস্কৃতি" 
-                     class="img-fluid d-none d-md-block pt-3 position-absolute" 
+                     class="img-fluid d-none d-md-block pt-3 " 
                      style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px;  ">
                 
-                <img src="{{asset('Frontend-Assets/images/subject.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/subjectpc1.png')}}" 
                     alt="সংস্কৃতি" 
-                    class="img-fluid d-none d-md-block pt-3 animate" 
+                    class="img-fluid d-none d-md-block pt-3 position-absolute animate" 
+                    style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
+                
+                <img src="{{asset('Frontend-Assets/images/subjectpc.png')}}" 
+                    alt="সংস্কৃতি" 
+                    class="img-fluid d-none d-md-block pt-3 position-absolute animate1" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
                      
                 <!-- মোবাইল ইমেজ -->
-                <img src="{{asset('Frontend-Assets/images/object.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/objectmobile.png')}}" 
                      alt="সংস্কৃতি" 
                      class="img-fluid d-md-none position-absolute" 
                      style="width: auto; max-height: 50px; margin-bottom: -40px;">
 
-                <img src="{{asset('Frontend-Assets/images/subject.png')}}" 
-                alt="সংস্কৃতি" 
-                class="img-fluid d-md-none animate" 
-                style="width: auto; max-height: 50px; margin-bottom: -40px;">
+                <img src="{{asset('Frontend-Assets/images/subjectmobile.png')}}" 
+                    alt="সংস্কৃতি" 
+                    class="img-fluid d-md-none animate" 
+                    style="width: auto; max-height: 50px; margin-bottom: -40px;">
             </div>
 
         </div>
