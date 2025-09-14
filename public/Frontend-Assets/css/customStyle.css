@@ -91,23 +91,49 @@ header {
 @keyframes header {
 
     0% {
-        transform: rotateZ(8deg);
+        transform: rotateZ(4.5deg);
     }
 
     25% {
-        transform: rotateZ(00deg);
+        transform: rotateZ(2deg);
     }
 
     50% {
-        transform: rotateZ(5deg);
+        transform: rotateZ(-1.9deg);
     }
 
     75% {
-        transform: rotateZ(00deg);
+        transform: rotateZ(2deg);
     }
 
     100% {
-        transform: rotateZ(-1.5deg);
+        transform: rotateZ(4.5deg);
+    }
+}
+.animate1 {
+    animation: header1 5s linear 0s infinite alternate;
+}
+
+@keyframes header1 {
+
+    0% {
+        top: 0px;
+    }
+
+    25% {
+        top: -5px;
+    }
+
+    50% {
+        top: -9px;
+    }
+
+    75% {
+        top: -5px;
+    }
+
+    100% {
+        top: 0px;
     }
 }
 /* ==============================================
