@@ -49,6 +49,7 @@ Route::get('/branch/committee/list', [AdminController::class, 'branchCommitteeLi
 Route::get('/committee/create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
 //committee year
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
+Route::get('/branch/committee', [CommitteeManageController::class, 'branchCommittee'])->name('branch.committee');
 
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
 Route::get('/life/time/person', [AdminController::class, 'lifeTimePerson'])->name('life.time.person');
