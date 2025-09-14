@@ -62,17 +62,7 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="col-12 col-lg-3">
-                <div class="d-flex gap-2">
-                    <button type="button" class="btn btn-success w-50" data-bs-toggle="modal"
-                        data-bs-target="#newCommitteeModal">
-                        <i class="fa-solid fa-plus me-1"></i>নতুন কমিটি
-                    </button>
-                    <button type="button" class="btn btn-success w-50" data-bs-toggle="modal" data-bs-target="#modalBranch">
-                        <i class="fa-solid fa-plus me-1"></i>নতুন শাখা
-                    </button>
-                </div>
-            </div>
+            <div class="col-12 col-lg-3"></div>
 
         </div>
     </div>
@@ -88,21 +78,20 @@
                         <thead>
                             <tr class="text-center">
                                 <th>শাখা নাম</th>
-                                <th>ঠিকানা</th>
                                 <th>সদস্য সংখ্যা</th>
                                 <th>অবস্থা</th>
                                 <th>অ্যাকশন</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($committees as $committee)
                             <tr class="text-center">
                                 <td data-label="শাখা নাম">
                                     <div class="d-flex align-items-center gap-2">
                                         <i class="fa-solid fa-sitemap text-primary"></i>
-                                        <strong>ঢাকা মহানগর</strong>
+                                        <strong>{{ $committee->committee_name }}</strong>
                                     </div>
                                 </td>
-                                <td data-label="ঠিকানা">মিরপুর-১০, ঢাকা</td>
                                 <td data-label="সদস্য সংখ্যা">25</td>
                                 <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
                                 <td data-label="অ্যাকশন">
@@ -114,44 +103,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="text-center">
-                                <td data-label="শাখা নাম">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i class="fa-solid fa-sitemap text-primary"></i>
-                                        <strong>চট্টগ্রাম</strong>
-                                    </div>
-                                </td>
-                                <td data-label="ঠিকানা">আগ্রাবাদ, চট্টগ্রাম</td>
-                                <td data-label="সদস্য সংখ্যা">18</td>
-                                <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
-                                <td data-label="অ্যাকশন">
-                                    <div class="btn-group">
-                                        <a href="{{ route('branch.committee.list') }}" class="btn btn-outline-success"
-                                            title="View">
-                                            <i class="fa-solid fa-hand-point-right"></i> দেখুন
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td data-label="শাখা নাম">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i class="fa-solid fa-sitemap text-primary"></i>
-                                        <strong>সিলেট</strong>
-                                    </div>
-                                </td>
-                                <td data-label="ঠিকানা">জিন্দাবাজার, সিলেট</td>
-                                <td data-label="সদস্য সংখ্যা">15</td>
-                                <td data-label="অবস্থা"><span class="badge type">অস্থায়ী</span></td>
-                                <td data-label="অ্যাকশন">
-                                    <div class="btn-group gap-2">
-                                        <a href="{{ route('branch.committee.list') }}" class="btn btn-outline-success"
-                                            title="View">
-                                            <i class="fa-solid fa-hand-point-right"></i> দেখুন
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -42,7 +42,6 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 
 
 Route::get('/central.committee', [AdminController::class, 'centralCommittee'])->name('central.committee');
-Route::get('/branch/committee', [AdminController::class, 'branchCommittee'])->name('branch.committee');
 Route::get('/branch/committee/list', [AdminController::class, 'branchCommitteeList'])->name('branch.committee.list');
 
 //comittee manage
