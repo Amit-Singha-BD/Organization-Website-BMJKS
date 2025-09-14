@@ -13,6 +13,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\CommitteeActivitieController;
 use App\Http\Controllers\CommitteeManageController;
+use App\Http\Controllers\CommitteeYearController;
 
 
 // Frontend Routes Start -->
@@ -43,11 +44,11 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 Route::get('/central.committee', [AdminController::class, 'centralCommittee'])->name('central.committee');
 Route::get('/branch/committee/list', [AdminController::class, 'branchCommitteeList'])->name('branch.committee.list');
 
-
+//comittee manage
 Route::get('/committee/create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
-Route::get('/branch/committee', [CommitteeManageController::class, 'branchCommittee'])->name('branch.committee');
+//committee year
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
-
+Route::get('/branch/committee', [CommitteeManageController::class, 'branchCommittee'])->name('branch.committee');
 
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
 Route::get('/life/time/person', [AdminController::class, 'lifeTimePerson'])->name('life.time.person');
