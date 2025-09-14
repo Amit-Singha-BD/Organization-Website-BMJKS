@@ -14,6 +14,7 @@ use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\CommitteeActivitieController;
 use App\Http\Controllers\CommitteeManageController;
 use App\Http\Controllers\CommitteeYearController;
+use App\Http\Controllers\CommitteeMemberController;
 
 
 // Frontend Routes Start -->
@@ -42,13 +43,17 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 
 
 Route::get('/central.committee', [AdminController::class, 'centralCommittee'])->name('central.committee');
-Route::get('/branch/committee/list', [AdminController::class, 'branchCommitteeList'])->name('branch.committee.list');
 
 //comittee manage
 Route::get('/committee/create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
 //committee year
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
-Route::get('/branch/committee', [CommitteeManageController::class, 'branchCommittee'])->name('branch.committee');
+Route::get('/committee/list', [CommitteeManageController::class, 'committeeListView'])->name('committee.list.view');
+Route::resource('committeeMember', CommitteeMemberController::class);
+
+// এক্টিভ কমিটির সাল ও নাম
+Route::get('active/committee/{slug}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
+
 
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
 Route::get('/life/time/person', [AdminController::class, 'lifeTimePerson'])->name('life.time.person');
@@ -69,9 +74,6 @@ Route::resource('notice', NoticeController::class);
 Route::resource('committeeActivities', CommitteeActivitieController::class);
 // Activities Routes End <--
 
-//Route::get('/notice', [AdminController::class, 'notice'])->name('notice');
-
-//Route::get('/activities', [AdminController::class, 'activities'])->name('activities');
 
 
 

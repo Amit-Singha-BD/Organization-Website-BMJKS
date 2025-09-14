@@ -96,7 +96,7 @@
                                 <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
-                                        <a href="{{ route('branch.committee.list') }}" class="btn btn-outline-success"
+                                        <a href="{{ route('active.committee',$committee->committee_slug) }}" class="btn btn-outline-success"
                                             title="View">
                                             <i class="fa-solid fa-hand-point-right"></i> দেখুন
                                         </a>

@@ -7,15 +7,15 @@
         <a class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
         <a class="sidebar-link {{ request()->routeIs('notice.index') ? 'active' : '' }}" href="{{ route('notice.index') }}"><i class="fa-solid fa-bullhorn"></i><span class="sidebar-text">নোটিশ</span></a>
 
-        <div class="sidebar-dropdown {{ request()->routeIs('central.committee') || request()->routeIs('branch.committee') || request()->routeIs('branch.committee.list') || request()->routeIs('committee.create') ? 'open' : '' }}">
+        <div class="sidebar-dropdown {{ request()->routeIs('central.committee') || request()->routeIs('committee.list.view') || request()->routeIs('branch.committee.list') || request()->routeIs('committee.create') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle"><i class="fa-solid fa-sitemap"></i><span
                     class="sidebar-text">কমিটি ম্যানেজমেন্ট</span><i class="fa-solid fa-chevron-down ms-auto"></i></a>
             <div class="sidebar-submenu">
                 <a class="sidebar-sublink {{ request()->routeIs('central.committee') ? 'active' : '' }}"
                     href="{{ route('central.committee') }}"><i class="fa-solid fa-users-gear"></i><span
                         class="sidebar-text">কেন্দ্রীয় কমিটি</span></a>
-                <a class="sidebar-sublink {{ request()->routeIs('branch.committee') || request()->routeIs('branch.committee.list') ? 'active' : '' }}"
-                    href="{{ route('branch.committee') }}"><i class="fa-solid fa-diagram-project"></i><span
+                <a class="sidebar-sublink {{ request()->routeIs('committee.list.view') || request()->routeIs('branch.committee.list') ? 'active' : '' }}"
+                    href="{{ route('committee.list.view') }}"><i class="fa-solid fa-diagram-project"></i><span
                         class="sidebar-text">শাখা কমিটি</span></a>
                 <a class="sidebar-sublink" href="{{ route('committee.create') }}"><i class="fa-solid fa-plus"></i><span class="sidebar-text">কমিটি
                         তৈরি</span></a>

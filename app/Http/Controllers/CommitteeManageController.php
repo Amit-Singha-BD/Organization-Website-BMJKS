@@ -11,8 +11,8 @@ class CommitteeManageController extends Controller {
         return view('Backend.Pages.CommitteeCreate', compact('committees'));
     }
 
-    public function branchCommittee(){
+    public function committeeListView(){
         $committees = CommitteeName::all();
-        return view('Backend.Pages.Branch-Committee', compact('committees'));
+        return view('Backend.Pages.Committee-List', compact('committees'));
     }
 }

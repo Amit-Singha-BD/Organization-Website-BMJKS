@@ -11,57 +11,57 @@ class CommitteeNameSeeder extends Seeder {
     public function run(): void {
         CommitteeName::insert([
             [
-                "committee_name" => "A",
+                "committee_name" => "কেন্দ্রীয় কমিটি",
+                "committee_slug" => "M",
+            ],
+            [
+                "committee_name" => "বালিগাঁও শাখা",
                 "committee_slug" => "A",
             ],
             [
-                "committee_name" => "B",
+                "committee_name" => "মাধবপুর শাখা",
                 "committee_slug" => "B",
             ],
             [
-                "committee_name" => "C",
+                "committee_name" => "ঘোরামারা শাখা",
                 "committee_slug" => "C",
             ],
             [
-                "committee_name" => "D",
+                "committee_name" => "তিলকপুর শাখা",
                 "committee_slug" => "D",
             ],
             [
-                "committee_name" => "E",
+                "committee_name" => "ভানুবিল শাখা",
                 "committee_slug" => "E",
             ],
             [
-                "committee_name" => "F",
+                "committee_name" => "তেতইগাও শাখা",
                 "committee_slug" => "F",
             ],
             [
-                "committee_name" => "G",
+                "committee_name" => "ঢালুয়া শাখা",
                 "committee_slug" => "G",
             ],
             [
-                "committee_name" => "H",
+                "committee_name" => "গোলেরহাওর শাখা",
                 "committee_slug" => "H",
             ],
             [
-                "committee_name" => "I",
+                "committee_name" => "মাছিমপুর শাখা",
                 "committee_slug" => "I",
             ],
             [
-                "committee_name" => "J",
+                "committee_name" => "ধনিটিলা শাখা",
                 "committee_slug" => "J",
             ],
             [
-                "committee_name" => "K",
+                "committee_name" => "মাঝেরগাও শাখা",
                 "committee_slug" => "K",
             ],
             [
-                "committee_name" => "L",
+                "committee_name" => "বিশগাও শাখা",
                 "committee_slug" => "L",
-            ],
-            [
-                "committee_name" => "M",
-                "committee_slug" => "M",
-            ],
+            ]
         ]);
     }
 }

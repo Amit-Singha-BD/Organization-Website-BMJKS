@@ -37,6 +37,15 @@
 
         </div>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <!-- Members Table -->
     <div class="row g-3 mt-3">
@@ -119,6 +128,7 @@
         </div>
     </div>
 
+
     <!-- Member Create Modal -->
     <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered">
@@ -129,15 +139,17 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('committeeMember.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $activeCommitteeId }}" name="CommitteeYear_id">
                         <div class="mb-3">
                             <label for="name" class="form-label">নাম</label>
-                            <input type="text" class="form-control" id="name" placeholder="সদস্যের নাম লিখুন" required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="সদস্যের নাম লিখুন" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="photo" class="form-label">ছবি</label>
-                            <input type="file" class="form-control" id="photo" accept="image/*"
+                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
                                 onchange="previewImage(event)">
                         </div>
 
@@ -147,37 +159,58 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="role" class="form-label">ভূমিকা</label>
-                            <select class="form-select" id="role" required>
-                                <option value="">ভূমিকা নির্বাচন করুন</option>
-                                <option value="president">সভাপতি</option>
-                                <option value="secretary">সম্পাদক</option>
+                            <label for="role" class="form-label">পদবী</label>
+                            <select class="form-select" id="role" name="role">
+                                <option value="">পদবী নির্বাচন করুন</option>
+                                <option value="1">সভাপতি</option>
+                                <option value="2">সহ-সভাপতি</option>
+                                <option value="Female Vice President">সহ-সভাপতি মহিলা</option>
+                                <option value="General Secretary">সাধারণ সম্পাদক</option>
+                                <option value="Assistant General Secretary">সহ-সাধারণ সম্পাদক</option>
+                                <option value="Treasurer">অর্থ সম্পাদক</option>
+                                <option value="Publicity and Publication Secretary">প্রচার ও প্রকাশনী সম্পাদক</option>
+                                <option value="Literature and Cultural Secretary">সাহিত্য ও সাংস্কৃতিক সম্পাদক</option>
+                                <option value="Office Secretary">দপ্তর সম্পাদক</option>
+                                <option value="Sports Secretary">ক্রীড়া সম্পাদক</option>
+                                <option value="Organizing Secretary">সাংগঠনিক সম্পাদক</option>
+                                <option value="Social Welfare Secretary">সমাজকল্যান সম্পাদক</option>
+                                <option value="Education Secretary">শিক্ষা সম্পাদক</option>
+                                <option value="Information and Technology Development Secretary">তথ্য ও প্রযুক্তি উন্নয়ন সম্পাদক</option>
+                                <option value="Women Affairs Secretary">মহিলা বিষয়ক সম্পাদক</option>
+                                <option value="Executive Member">সাধারণ কার্যকরী সদস্য</option>
                             </select>
                         </div>
 
                         <div class="mb-3">
+                            <label for="address" class="form-label">ঠিকানা</label>
+                            <textarea class="form-control" id="address" name="address" rows="2" placeholder="ঠিকানা লিখুন"></textarea>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="mobile" class="form-label">মোবাইল নম্বর</label>
-                            <input type="text" class="form-control" id="mobile" placeholder="মোবাইল নম্বর লিখুন" required>
+                            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="মোবাইল নম্বর লিখুন" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">ইমেইল</label>
-                            <input type="email" class="form-control" id="email" placeholder="ইমেইল লিখুন">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="ইমেইল লিখুন">
                         </div>
 
                         <div class="mb-3">
                             <label for="facebook" class="form-label">ফেসবুক লিঙ্ক</label>
-                            <input type="url" class="form-control" id="facebook" placeholder="ফেসবুক প্রোফাইল লিঙ্ক দিন">
+                            <input type="url" class="form-control" id="facebook" name="facebook" placeholder="ফেসবুক প্রোফাইল লিঙ্ক দিন">
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
-                    <button type="submit" class="btn btn-success">সংরক্ষণ করুন</button>
+                    <button type="submit" name="submit" class="btn btn-success">সংরক্ষণ করুন</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+
 
     <!-- View Member Modal -->
     <div class="modal fade" id="modalViewMember" tabindex="-1" aria-labelledby="modalViewMemberLabel" aria-hidden="true">
