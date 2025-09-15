@@ -33,7 +33,7 @@ class CommitteeMemberController extends Controller
         // ছবি আপলোড (যদি থাকে)
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/members'), $imageName);
             $validateData['photo'] = 'uploads/members/' . $imageName;
         }
@@ -65,16 +65,37 @@ class CommitteeMemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CommitteeMember $committeeMember)
-    {
-        //
+    public function update(CommitteeMemberValidate $request, CommitteeMember $committeeMember) {
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+
+            if ($committeeMember->photo && file_exists(public_path($committeeMember->photo))) {
+                unlink(public_path($committeeMember->photo));
+            }
+
+            $image = $request->file('photo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/members'), $imageName);
+
+            $data['photo'] = 'uploads/members/' . $imageName;
+        }
+
+        if ($committeeMember->update($data)) {
+            return redirect()->back()
+                            ->with('success', 'সদস্যের তথ্য সফলভাবে আপডেট হয়েছে');
+        }
+
+        return redirect()->back()
+                        ->with('error', 'আপডেট ব্যর্থ হয়েছে।');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CommitteeMember $committeeMember)
-    {
-        //
+    public function destroy(CommitteeMember $committeeMember) {
+        if (!$committeeMember) {
+            return redirect()->back()->with("error", "অনুরোধকৃত তথ্য খুঁজে পাওয়া যায়নি।");
+        }
+
+        $committeeMember->delete();
+        return redirect()->back()->with("success", "সদস্য সফলভাবে মুছে ফেলা হয়েছে।");
     }
 }

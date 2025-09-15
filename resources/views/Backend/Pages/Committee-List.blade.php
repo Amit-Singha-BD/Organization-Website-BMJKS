@@ -33,25 +33,7 @@
 
     <!-- Page Action Buttons -->
     <div class="page-action-buttons mt-3">
-        <div class="row g-2 d-flex justify-content-between align-items-center">
-
-            <!-- Search Form -->
-            <div class="col-12 col-md-8 col-lg-5">
-                <form action="" method="get">
-                    <div class="input-group">
-                        <select class="form-select" name="village">
-                            <option value="">গ্রাম নির্বাচন করুন</option>
-                            <option value="gram1">গ্রাম ১</option>
-                            <option value="gram2">গ্রাম ২</option>
-                            <option value="gram3">গ্রাম ৩</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="সদস্যের নাম দিন">
-                        <button class="btn btn-outline-success" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div class="row g-2 d-flex justify-content-center align-items-center">
 
             <!-- Active/Inactive Buttons -->
             <div class="col-12 col-lg-3">
@@ -60,9 +42,6 @@
                     <button class="btn btn-outline-success" id="inactiveBtn">নিষ্ক্রিয়</button>
                 </div>
             </div>
-
-            <!-- Action Buttons -->
-            <div class="col-12 col-lg-3"></div>
 
         </div>
     </div>
