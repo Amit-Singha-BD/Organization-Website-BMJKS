@@ -63,12 +63,22 @@
                 
                 <img src="{{asset('Frontend-Assets/images/subjectpc1.png')}}" 
                     alt="সংস্কৃতি" 
-                    class="img-fluid d-none d-md-block pt-3 position-absolute animate" 
+                    class="img-fluid d-none d-md-block pt-3 position-absolute dakhulaleft" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
                 
                 <img src="{{asset('Frontend-Assets/images/subjectpc.png')}}" 
                     alt="সংস্কৃতি" 
-                    class="img-fluid d-none d-md-block pt-3 position-absolute animate1" 
+                    class="img-fluid d-none d-md-block pt-3 position-absolute dakhularight" 
+                    style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
+                
+                <img src="{{asset('Frontend-Assets/images/gopileft.png')}}" 
+                    alt="সংস্কৃতি" 
+                    class="img-fluid d-none d-md-block pt-3 position-absolute gopileft" 
+                    style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
+
+                <img src="{{asset('Frontend-Assets/images/gopiright.png')}}" 
+                    alt="সংস্কৃতি" 
+                    class="img-fluid d-none d-md-block pt-3 position-absolute gopiright" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
                      
                 <!-- মোবাইল ইমেজ -->

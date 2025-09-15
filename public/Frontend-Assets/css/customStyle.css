@@ -84,11 +84,11 @@ header {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.animate {
-    animation: header 5s linear 0s infinite alternate;
+.dakhulaleft {
+    animation: dakhulaleft 5s linear 0s infinite alternate;
 }
 
-@keyframes header {
+@keyframes dakhulaleft {
 
     0% {
         transform: rotateZ(4.5deg);
@@ -110,11 +110,12 @@ header {
         transform: rotateZ(4.5deg);
     }
 }
-.animate1 {
-    animation: header1 5s linear 0s infinite alternate;
+
+.dakhularight {
+    animation: dakhularight 5s linear 0s infinite alternate;
 }
 
-@keyframes header1 {
+@keyframes dakhularight {
 
     0% {
         top: 0px;
@@ -134,6 +135,81 @@ header {
 
     100% {
         top: 0px;
+    }
+}
+
+.gopileft {
+    animation: gopileft 10s linear 0s infinite ;
+}
+
+@keyframes gopileft {
+
+    0% {
+        right: 0px;
+        opacity: 1;
+    }
+
+    40% {
+        right: 10px;
+        opacity: 1;
+    }
+
+    53% {
+        right: 10px;
+        opacity: 1;
+    }
+
+    54% {
+        right: 15px;
+        opacity: 0;
+    }
+
+    75% {
+        right: 20px;
+        opacity: 0;
+    }
+
+    100% {
+        right: 25px;
+        opacity: 0;
+    }
+}
+.gopiright {
+    animation: gopiright 10s linear 0s infinite ;
+}
+
+@keyframes gopiright {
+
+    0% {
+        right: 25px;
+        opacity: 0;
+        
+    }
+
+    25% {
+        right: 25px;
+        opacity: 0;
+        
+    }
+
+    53% {
+        right: 25px;
+        opacity: 0;
+    }
+
+    54% {
+        right: 20px;
+        opacity: 1;
+    }
+
+    90% {
+        right: 10px;
+        opacity: 1;
+    }
+
+    100% {
+        right: 10px;
+        opacity: 1;
     }
 }
 /* ==============================================
