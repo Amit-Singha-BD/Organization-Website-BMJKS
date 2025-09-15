@@ -15,6 +15,7 @@ use App\Http\Controllers\CommitteeActivitieController;
 use App\Http\Controllers\CommitteeManageController;
 use App\Http\Controllers\CommitteeYearController;
 use App\Http\Controllers\CommitteeMemberController;
+use App\Http\Controllers\PersonController;
 
 
 // Frontend Routes Start -->
@@ -49,14 +50,18 @@ Route::get('/committee/create', [CommitteeManageController::class, 'committeeCre
 //committee year
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
 Route::get('/committee/list', [CommitteeManageController::class, 'committeeListView'])->name('committee.list.view');
+
+//কমিটি মেম্বার
 Route::resource('committeeMember', CommitteeMemberController::class);
+//সদস্য 
+Route::resource('person', PersonController::class);
+Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
 
 // এক্টিভ কমিটির সাল ও নাম
 Route::get('active/committee/{slug}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 
 
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
-Route::get('/life/time/person', [AdminController::class, 'lifeTimePerson'])->name('life.time.person');
 Route::get('/general/person', [AdminController::class, 'generalPerson'])->name('general.person');
 Route::get('/person/create', [AdminController::class, 'personCreate'])->name('person.create');
 
