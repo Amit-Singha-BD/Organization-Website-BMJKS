@@ -89,35 +89,7 @@ header {
 }
 
 @keyframes dakhulaleft {
-
-    0% {
-        transform: rotateZ(4.5deg);
-    }
-
-    25% {
-        transform: rotateZ(2deg);
-    }
-
-    50% {
-        transform: rotateZ(-1.9deg);
-    }
-
-    75% {
-        transform: rotateZ(2deg);
-    }
-
-    100% {
-        transform: rotateZ(4.5deg);
-    }
-}
-
-.dakhularight {
-    animation: dakhularight 5s linear 0s infinite alternate;
-}
-
-@keyframes dakhularight {
-
-    0% {
+     0% {
         top: 0px;
     }
 
@@ -136,6 +108,34 @@ header {
     100% {
         top: 0px;
     }
+
+}
+
+.dakhularight {
+    animation: dakhularight 5s linear 0s infinite alternate;
+}
+
+@keyframes dakhularight {
+     0% {
+        transform: rotateZ(4.5deg);
+    }
+
+    25% {
+        transform: rotateZ(2deg);
+    }
+
+    50% {
+        transform: rotateZ(-1.9deg);
+    }
+
+    75% {
+        transform: rotateZ(2deg);
+    }
+
+    100% {
+        transform: rotateZ(4.5deg);
+    }
+
 }
 
 .gopileft {

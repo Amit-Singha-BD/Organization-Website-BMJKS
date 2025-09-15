@@ -56,40 +56,40 @@
             <!-- ডান 5/4 কলাম: ছবি -->
             <div class="col-5 col-md-4 col-lg-4 p-0 d-flex justify-content-end position-relative" >
                 <!-- ডেস্কটপ/ট্যাবলেট ইমেজ -->
-                <img src="{{asset('Frontend-Assets/images/objectpc.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/objectpc.png')}}" 
                      alt="সংস্কৃতি" 
                      class="img-fluid d-none d-md-block pt-3 " 
                      style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px;  ">
                 
-                <img src="{{asset('Frontend-Assets/images/subjectpc1.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/dakhulaleft.png')}}" 
                     alt="সংস্কৃতি" 
                     class="img-fluid d-none d-md-block pt-3 position-absolute dakhulaleft" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
                 
-                <img src="{{asset('Frontend-Assets/images/subjectpc.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/dakhularight.png')}}" 
                     alt="সংস্কৃতি" 
                     class="img-fluid d-none d-md-block pt-3 position-absolute dakhularight" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
                 
-                <img src="{{asset('Frontend-Assets/images/gopileft.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/gopileft.png')}}" 
                     alt="সংস্কৃতি" 
                     class="img-fluid d-none d-md-block pt-3 position-absolute gopileft" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
 
-                <img src="{{asset('Frontend-Assets/images/gopiright.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/gopiright.png')}}" 
                     alt="সংস্কৃতি" 
                     class="img-fluid d-none d-md-block pt-3 position-absolute gopiright" 
                     style="width: auto; max-height: 80px; margin-bottom: -20px; margin-right: -50px; ">
                      
                 <!-- মোবাইল ইমেজ -->
-                <img src="{{asset('Frontend-Assets/images/objectmobile.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/objectmobile.png')}}" 
                      alt="সংস্কৃতি" 
                      class="img-fluid d-md-none position-absolute" 
                      style="width: auto; max-height: 50px; margin-bottom: -40px;">
 
-                <img src="{{asset('Frontend-Assets/images/subjectmobile.png')}}" 
+                <img src="{{asset('Frontend-Assets/images/header/subjectmobile.png')}}" 
                     alt="সংস্কৃতি" 
-                    class="img-fluid d-md-none animate" 
+                    class="img-fluid d-md-none dakhularight" 
                     style="width: auto; max-height: 50px; margin-bottom: -40px;">
             </div>
 
