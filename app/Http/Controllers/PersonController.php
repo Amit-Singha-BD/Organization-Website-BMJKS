@@ -23,7 +23,7 @@ class PersonController extends Controller
         // Step 3: Person গুলো নাও
         $persons = Person::whereIn('id', $personIds)->get();
 
-        //return view('Backend.Pages.Special-Person');
+        return view('Backend.Pages.Special-Person');
     }
 
     /**
@@ -73,4 +73,38 @@ class PersonController extends Controller
     {
         //
     }
+
+    public function tag(){
+        $tags = PersonType::get();
+        foreach($tags as $tag){
+            $tag->persons_count = PersonTag::where('persontype_id', $tag->id)->count();
+        }
+        return view('Backend.Pages.Person-Tag-Create',compact('tags'));
+    }
+
+    public function tagcreate(Request $request){
+            // ভ্যালিডেশন
+        $request->validate([
+            'tag_create' => 'required|string|max:255|unique:person_types,person_type_name',
+        ], [
+            'tag_create.required' => 'ক্যাটাগরির নাম অবশ্যই দিতে হবে।',
+            'tag_create.string'   => 'ক্যাটাগরির নাম অবশ্যই টেক্সট হতে হবে।',
+            'tag_create.max'      => 'ক্যাটাগরির নাম সর্বোচ্চ ২৫৫ অক্ষরের হতে পারবে।',
+            'tag_create.unique'   => 'এই ক্যাটাগরি আগেই তৈরি করা হয়েছে।',
+        ]);
+
+        // ডাটা সংরক্ষণ
+        PersonType::create([
+            'person_type_name' => $request->tag_create,
+        ]);
+
+        // সফল হলে রিডাইরেক্ট + মেসেজ
+        return redirect()->back()->with('success', 'নতুন ক্যাটাগরি সফলভাবে যোগ করা হয়েছে!');
+    }
+    public function tagdelete($id){
+        $tag = PersonType::findOrFail($id); // ID অনুযায়ী ট্যাগ খুঁজে বের করা
+        $tag->delete();
+        return redirect()->back()->with('success', 'ক্যাটাগরি সফলভাবে ডিলিট করা হয়েছে!');
+    }
+    
 }

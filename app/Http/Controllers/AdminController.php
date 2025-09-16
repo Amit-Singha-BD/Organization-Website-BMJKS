@@ -61,4 +61,5 @@ class AdminController extends Controller
     public function changePassword(){
         return view('Backend.Pages.Change-Password');
     }
+
 }

@@ -25,6 +25,12 @@ class PersonTypeSeeder extends Seeder
             ],
             [
                 "person_type_name"         => "vandari",
+            ],
+            [
+                "person_type_name"         => "lifeTime",
+            ],
+            [
+                "person_type_name"         => "general",
             ]
             
         ]);
