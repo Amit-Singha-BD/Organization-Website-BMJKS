@@ -4,33 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\CommitteeMember;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommitteeMemberValidate;
+use App\Http\Requests\CommitteeMemberCreateValidate;
+use App\Http\Requests\CommitteeMemberUpdateValidate;
 
-class CommitteeMemberController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+class CommitteeMemberController extends Controller {
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create() {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(CommitteeMemberValidate $request) {
-        // ভ্যালিডেটেড ডেটা
+    public function store(CommitteeMemberCreateValidate $request) {
         $validateData = $request->validated();
 
-        // ছবি আপলোড (যদি থাকে)
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -42,30 +32,20 @@ class CommitteeMemberController extends Controller
             return redirect()->back()->with('success', 'সদস্য সফলভাবে সংরক্ষণ করা হয়েছে!');
         }
 
-        // রিডাইরেক্ট বা মেসেজ
         return redirect()->back()->with('error', 'সদস্য সংরক্ষণ করতে ব্যর্থ হয়েছে।');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(CommitteeMember $committeeMember)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(CommitteeMember $committeeMember)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(CommitteeMemberValidate $request, CommitteeMember $committeeMember) {
+    public function update(CommitteeMemberUpdateValidate $request, CommitteeMember $committeeMember) {
         $data = $request->validated();
 
         if ($request->hasFile('photo')) {

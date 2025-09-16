@@ -7,14 +7,14 @@
         <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
         <a class="sidebar-link {{ Route::is('notice.index') ? 'active' : '' }}" href="{{ route('notice.index') }}"><i class="fa-solid fa-bullhorn"></i><span class="sidebar-text">নোটিশ</span></a>
 
-        <div class="sidebar-dropdown {{ Route::is('committee.list.view') || Route::is('branch.committee.list') || Route::is('committee.create') ? 'open' : '' }}">
+        <div class="sidebar-dropdown {{ Route::is('active.committee.list') || Route::is('deactive.committee.list') || Route::is('branch.committee.list') || Route::is('committee.create') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-sitemap"></i>
                 <span class="sidebar-text">কমিটি ম্যানেজমেন্ট</span>
                 <i class="fa-solid fa-chevron-down ms-auto"></i>
             </a>
             <div class="sidebar-submenu">
-                <a class="sidebar-sublink {{ Route::is('committee.list.view') || Route::is('branch.committee.list') ? 'active' : '' }}" href="{{ route('committee.list.view') }}">
+                <a class="sidebar-sublink {{ Route::is('active.committee.list') || Route::is('deactive.committee.list') || Route::is('branch.committee.list') ? 'active' : '' }}" href="{{ route('active.committee.list') }}">
                     <i class="fa-solid fa-diagram-project"></i>
                     <span class="sidebar-text">কমিটি তালিকা</span>
                 </a>
@@ -37,7 +37,7 @@
                     <i class="fa-solid fa-user-group"></i>
                     <span class="sidebar-text">গুণীমান্য ব্যাক্তিবর্গ</span>
                 </a>
-                <a class="sidebar-sublink {{ Route::is('life.time.person') ? 'active' : '' }}" href="{{ route('life.time.person') }}">
+                <a class="sidebar-sublink {{ Route::is('life.time.person', 'lifeTime') ? 'active' : '' }}" href="{{ route('life.time.person', 'lifeTime') }}">
                     <i class="fa-solid fa-crown"></i>
                     <span class="sidebar-text">আজীবন সদস্য</span>
                 </a>
