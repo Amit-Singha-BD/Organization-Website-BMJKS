@@ -1,7 +1,9 @@
 <aside class="admin-sidebar">
     <div class="admin-brand">
-        <img src="{{ asset('Assets/img/backend-logo.png') }}" alt="বামযুকস লোগো" class="brand-logo">
-        <span class="sidebar-text">বামযুকস</span>
+        <img src="{{asset('Frontend-Assets/images/header/logo.png')}}" alt="বামযুকস লোগো" class="brand-logo">
+        <a href="{{ route('home') }}" target="_blank">
+            <span class="text-white">বামযুকস</span>
+        </a>
     </div>
     <nav class="admin-nav">
         <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
