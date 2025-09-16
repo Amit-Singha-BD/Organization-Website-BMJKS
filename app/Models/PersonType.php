@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PersonType extends Model
 {
+    protected $table = 'person_types';
+    
         protected $fillable = [
             'person_type_name',
         ];

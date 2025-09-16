@@ -57,8 +57,16 @@ Route::get('deactive/committee/list', [CommitteeManageController::class, 'commit
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
 Route::get('active/committee/{id}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 Route::resource('committeeMember', CommitteeMemberController::class);
-// Committee Route End <--
 
+Route::resource('person', PersonController::class);
+Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
+Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
+Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
+Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
+
+
+// এক্টিভ কমিটির সাল ও নাম
+Route::get('active/committee/{slug}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 
 // Person Route Start -->
 Route::resource('person', PersonController::class);

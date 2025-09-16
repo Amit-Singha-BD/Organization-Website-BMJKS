@@ -26,7 +26,7 @@
         </div>
 
         <div
-            class="sidebar-dropdown {{ Route::is('special.person') || Route::is('life.time.person') || Route::is('general.person') || Route::is('person.create') ? 'open' : '' }}">
+            class="sidebar-dropdown {{ Route::is('special.person') || Route::is('life.time.person') || Route::is('general.person') || Route::is('person.create') ||Route::is('tag') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
@@ -37,7 +37,8 @@
                     <i class="fa-solid fa-user-group"></i>
                     <span class="sidebar-text">গুণীমান্য ব্যাক্তিবর্গ</span>
                 </a>
-                <a class="sidebar-sublink {{ Route::is('life.time.person', 'lifeTime') ? 'active' : '' }}" href="{{ route('life.time.person', 'lifeTime') }}">
+
+                <a class="sidebar-sublink {{ Route::is('life.time.person','lifeTime') ? 'active' : '' }}" href="{{ route('life.time.person','lifeTime') }}">
                     <i class="fa-solid fa-crown"></i>
                     <span class="sidebar-text">আজীবন সদস্য</span>
                 </a>
@@ -48,6 +49,10 @@
                 <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">
                     <i class="fa-solid fa-user-plus"></i>
                     <span class="sidebar-text">সদস্য তৈরি</span>
+                </a>
+                <a class="sidebar-sublink {{ Route::is('tag') ? 'active' : '' }}" href="{{ route('tag') }}">
+                    <i class="fa-solid fa-user-tie"></i> 
+                    <span class="sidebar-text">সদস্য ক্যাটাগরি তৈরি</span>
                 </a>
             </div>
         </div>
