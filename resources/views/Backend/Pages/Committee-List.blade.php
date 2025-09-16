@@ -38,8 +38,13 @@
             <!-- Active/Inactive Buttons -->
             <div class="col-12 col-lg-3">
                 <div class="btn-group w-100">
-                    <button class="btn btn-success active" id="activeBtn">সক্রিয়</button>
-                    <button class="btn btn-outline-success" id="inactiveBtn">নিষ্ক্রিয়</button>
+                    <a class="btn btn-outline-success {{ Route::is('active.committee.list') ? 'active' : '' }}" href="{{ route('active.committee.list') }}">
+                        সক্রিয়
+                    </a>
+
+                    <a class="btn btn-outline-success {{ Route::is('deactive.committee.list') ? 'active' : '' }}" href="{{ route('deactive.committee.list') }}">
+                        নিষ্ক্রিয়
+                    </a>
                 </div>
             </div>
 
@@ -50,7 +55,8 @@
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
                 <div class="card-header text-white text-center">
-                    <i class="fa-solid fa-sitemap"></i> শাখা কমিটি তালিকা
+                    <i class="fa-solid fa-sitemap"></i>
+                    {{ Route::is('active.committee.list') ? 'সক্রিয় কমিটি তালিকা' : 'নিষ্ক্রিয় কমিটি তালিকা' }}
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
@@ -68,15 +74,14 @@
                                 <td data-label="শাখা নাম">
                                     <div class="d-flex align-items-center gap-2">
                                         <i class="fa-solid fa-sitemap text-primary"></i>
-                                        <strong>{{ $committee->committee_name }}</strong>
+                                        <strong>{{ $committee->committee_id }}</strong>
                                     </div>
                                 </td>
                                 <td data-label="সদস্য সংখ্যা">25</td>
                                 <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
-                                        <a href="{{ route('active.committee',$committee->committee_slug) }}" class="btn btn-outline-success"
-                                            title="View">
+                                        <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">
                                             <i class="fa-solid fa-hand-point-right"></i> দেখুন
                                         </a>
                                     </div>

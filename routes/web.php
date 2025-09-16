@@ -33,27 +33,31 @@ route::get('comitee-activities',[FrontendController::class,'comitee_activities']
 // Frontend Routes End <--
 
 
-
-
+// Authentication Route Start -->
 Route::get('/Login', [AuthenticationController::class, 'showLoginFrom'])->name('login');
 Route::post('/Login', [AuthenticationController::class, 'login'])->name('login.submit');
 Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
+// Authentication Route End <--
 
 
+// Dashboard Route Start -->
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+// Authentication Route End <--
 
 
-Route::get('/central.committee', [AdminController::class, 'centralCommittee'])->name('central.committee');
+// Notice Routes Start -->
+Route::resource('notice', NoticeController::class);
+// Notice Routes End <--
 
-//comittee manage
+
+// Committee Route Start -->
 Route::get('/committee/create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
-//committee year
+Route::get('/active/committee/list', [CommitteeManageController::class, 'committeeActiveListView'])->name('active.committee.list');
+Route::get('deactive/committee/list', [CommitteeManageController::class, 'committeeDeactiveListView'])->name('deactive.committee.list');
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
-Route::get('/committee/list', [CommitteeManageController::class, 'committeeListView'])->name('committee.list.view');
-
-//কমিটি মেম্বার
+Route::get('active/committee/{id}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 Route::resource('committeeMember', CommitteeMemberController::class);
-//সদস্য 
+
 Route::resource('person', PersonController::class);
 Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
 Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
@@ -64,10 +68,14 @@ Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name(
 // এক্টিভ কমিটির সাল ও নাম
 Route::get('active/committee/{slug}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 
-
+// Person Route Start -->
+Route::resource('person', PersonController::class);
+Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
 Route::get('/general/person', [AdminController::class, 'generalPerson'])->name('general.person');
 Route::get('/person/create', [AdminController::class, 'personCreate'])->name('person.create');
+// Person Route End <--
+
 
 // Account Routes Start -->
 Route::get('/users/manage', [AccountController::class, 'users'])->name('users.manage');
@@ -75,15 +83,10 @@ Route::post('/users/create', [AccountController::class, 'userStore'])->name('use
 Route::put('/users/password/update/{id}', [AccountController::class, 'passwordUpdate'])->name('password.update');
 // Account Routes End <--
 
-// Notice Routes Start -->
-Route::resource('notice', NoticeController::class);
-// Notice Routes End <--
 
 // Activities Routes Start -->
 Route::resource('committeeActivities', CommitteeActivitieController::class);
 // Activities Routes End <--
-
-
 
 
 // Finance Routes Start -->
@@ -94,6 +97,7 @@ Route::put('/finance/sheet/update/{id}', [FinanceController::class, 'sheetUpdate
 Route::delete('/finance/sheet/destroy/{id}', [FinanceController::class, 'sheetDestroy'])->name('finance.sheet.destroy');
 // Finance Routes End <--
 
+
 //Contact Routes Start -->
 Route::get('/contact/unread', [ContactController::class, 'contactUnread'])->name('contact.unread');
 Route::get('/contact/read', [ContactController::class, 'contactRead'])->name('contact.read');
@@ -101,12 +105,14 @@ Route::patch('/contact/read/confirm/{id}', [ContactController::class, 'readConfi
 Route::patch('/contact/unread/confirm/{id}', [ContactController::class, 'unreadConfirm'])->name('contact.unread.confirm');
 //Contact Routes End <--
 
+
 // Services Routes Start
 Route::get('/services', [ServiceController::class, 'services'])->name('services');
 Route::post('/service/store', [ServiceController::class, 'serviceStore'])->name('service.store');
 Route::post('/service/update/{id}', [ServiceController::class, 'serviceUpdate'])->name('service.update');
 Route::delete('/service/destroy/{id}', [ServiceController::class, 'serviceDestroy'])->name('service.destroy');
 // Services Routes End
+
 
 // Settings Routes Start
 Route::get('/site/settings', [SettingController::class, 'siteSettings'])->name('site.settings');

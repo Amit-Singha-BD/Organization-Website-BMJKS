@@ -134,7 +134,6 @@
                                             @method('PUT')
                                             <div class="modal-body">
                                                 <div class="row g-3">
-                                                    <input type="hidden" value="{{ $activeCommitteeId }}" name="CommitteeYear_id">
                                                     <div class="col-12">
                                                         <label class="form-label @error('name') text-danger @enderror">
                                                             @error('name')
@@ -290,8 +289,8 @@
                 <div class="modal-body">
                     <form action="{{ route('committeeMember.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" value="{{ $activeCommitteeId }}" name="CommitteeYear_id">
                         <div class="mb-3">
+                            <input type="hidden" value="{{ $id }}" name="CommitteeYear_id">
                             <label for="name" class="form-label @error('name') text-danger @enderror">
                                 @error('name')
                                     {{ $message }}
