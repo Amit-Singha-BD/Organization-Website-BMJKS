@@ -26,7 +26,7 @@
             <!-- বাম 8 কলাম: লোগো + টাইটেল -->
             <div class="col-7 col-md-8 col-lg-8 d-flex align-items-center py-2  py-md-3 py-lg-3">
                 <div class="me-2 me-md-3">
-                    <img src="{{asset('Frontend-Assets/images/logo.png')}}" 
+                    <img src="{{asset('Frontend-Assets/images/header/logo.png')}}" 
                         alt="প্রতীক" 
                         class="img-fluid floating float-pulse" 
                         style="width: 80px; max-height: 80px;">

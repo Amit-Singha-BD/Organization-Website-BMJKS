@@ -56,6 +56,10 @@ Route::resource('committeeMember', CommitteeMemberController::class);
 //সদস্য 
 Route::resource('person', PersonController::class);
 Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
+Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
+Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
+Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
+
 
 // এক্টিভ কমিটির সাল ও নাম
 Route::get('active/committee/{slug}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
