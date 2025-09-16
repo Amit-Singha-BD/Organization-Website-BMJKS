@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CommitteeYear;
 use App\Models\CommitteeName;
+use App\Models\CommitteeMember;
 use App\Http\Requests\CommitteeYearValidation;
 
 class CommitteeYearController extends Controller
@@ -32,6 +33,7 @@ class CommitteeYearController extends Controller
         $committeeId = CommitteeName::where('committee_slug', $slug)->select('id')->first();
         $activeCommittee = CommitteeYear::where('status','active')->where('committee_id', $committeeId->id)->first();
         $activeCommitteeId = $activeCommittee->id;
-        return view('Backend.Pages.Committee-Member-List', compact('activeCommitteeId'));
+        $committeeMember = CommitteeMember::where('CommitteeYear_id', $activeCommitteeId)->orderBy('role', 'asc')->get();
+        return view('Backend.Pages.Committee-Member-List', compact('activeCommitteeId', 'committeeMember'));
     }
 }
