@@ -5,7 +5,7 @@
     <!-- Page Action Buttons -->
     <div class="container mt-4">
         <div class="row g-3 d-flex justify-content-end align-items-center">
-
+            @if($committeeName->status == 'active')
             <!-- New Member -->
             <div class="col-12 col-md-6 col-lg-2">
                 <button type="button" class="btn btn-success w-100" 
@@ -13,26 +13,17 @@
                     <i class="fa-solid fa-user-plus me-1"></i> নতুন সদস্য
                 </button>
             </div>
+            @endif
 
         </div>
     </div>
-
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
     <!-- Members Table -->
     <div class="row g-3 mt-3">
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
                 <div class="card-header text-white text-center">
-                    <i class="fa-solid fa-sitemap"></i> কমিটি সদস্য তালিকা
+                    <i class="fa-solid fa-sitemap"></i> {{ $committeeName->committee_name }} সদস্য তালিকা
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
@@ -65,6 +56,7 @@
                                             <i class="fas fa-eye"></i>
                                         </button>
 
+                                        @if($committeeName->status == 'active')
                                         <button class="action-btn-success" 
                                             data-bs-toggle="modal"
                                             data-bs-target="#modalMember{{ $member->id }}"
@@ -78,6 +70,7 @@
                                             data-id="{{ $member->id }}">
                                             <i class="fas fa-trash"></i>
                                         </button>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -282,8 +275,7 @@
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="memberModalLabel"><i class="fa-solid fa-users me-2"></i> নতুন সদস্য যোগ করুন
-                    </h5>
+                    <h5 class="modal-title" id="memberModalLabel"><i class="fa-solid fa-users me-2"></i> নতুন সদস্য যোগ করুন</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
@@ -298,7 +290,8 @@
                                     নাম
                                 @enderror
                             </label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="সদস্যের নাম লিখুন" required>
+                            <input type="text" class="form-control" id="name" name="name" 
+                                value="{{ old('name') }}" placeholder="সদস্যের নাম লিখুন" required>
                         </div>
 
                         <div class="mb-3">
@@ -306,11 +299,10 @@
                                 @error('photo')
                                     {{ $message }}
                                 @else
-                                    ছবি
+                                    ছবি (২ মেগাবাইটের কম)
                                 @enderror    
                             </label>
-                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
-                                onchange="previewImage(event)">
+                            <input type="file" class="form-control" id="photo" name="photo" onchange="previewImage(event)">
                         </div>
 
                         <div class="mb-3 text-center">
@@ -328,22 +320,22 @@
                             </label>
                             <select class="form-select" id="role" name="role">
                                 <option value="">পদবী নির্বাচন করুন</option>
-                                <option value="1">সভাপতি</option>
-                                <option value="2">সহ-সভাপতি</option>
-                                <option value="3">সহ-সভাপতি মহিলা</option>
-                                <option value="4">সাধারণ সম্পাদক</option>
-                                <option value="5">সহ-সাধারণ সম্পাদক</option>
-                                <option value="6">অর্থ সম্পাদক</option>
-                                <option value="7">প্রচার ও প্রকাশনী সম্পাদক</option>
-                                <option value="8">সাহিত্য ও সাংস্কৃতিক সম্পাদক</option>
-                                <option value="9">দপ্তর সম্পাদক</option>
-                                <option value="10">ক্রীড়া সম্পাদক</option>
-                                <option value="11">সাংগঠনিক সম্পাদক</option>
-                                <option value="12">সমাজকল্যান সম্পাদক</option>
-                                <option value="13">শিক্ষা সম্পাদক</option>
-                                <option value="14">তথ্য ও প্রযুক্তি উন্নয়ন সম্পাদক</option>
-                                <option value="15">মহিলা বিষয়ক সম্পাদক</option>
-                                <option value="16">সাধারণ কার্যকরী সদস্য</option>
+                                <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>সভাপতি</option>
+                                <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>সহ-সভাপতি</option>
+                                <option value="3" {{ old('role') == 3 ? 'selected' : '' }}>সহ-সভাপতি মহিলা</option>
+                                <option value="4" {{ old('role') == 4 ? 'selected' : '' }}>সাধারণ সম্পাদক</option>
+                                <option value="5" {{ old('role') == 5 ? 'selected' : '' }}>সহ-সাধারণ সম্পাদক</option>
+                                <option value="6" {{ old('role') == 6 ? 'selected' : '' }}>অর্থ সম্পাদক</option>
+                                <option value="7" {{ old('role') == 7 ? 'selected' : '' }}>প্রচার ও প্রকাশনী সম্পাদক</option>
+                                <option value="8" {{ old('role') == 8 ? 'selected' : '' }}>সাহিত্য ও সাংস্কৃতিক সম্পাদক</option>
+                                <option value="9" {{ old('role') == 9 ? 'selected' : '' }}>দপ্তর সম্পাদক</option>
+                                <option value="10" {{ old('role') == 10 ? 'selected' : '' }}>ক্রীড়া সম্পাদক</option>
+                                <option value="11" {{ old('role') == 11 ? 'selected' : '' }}>সাংগঠনিক সম্পাদক</option>
+                                <option value="12" {{ old('role') == 12 ? 'selected' : '' }}>সমাজকল্যান সম্পাদক</option>
+                                <option value="13" {{ old('role') == 13 ? 'selected' : '' }}>শিক্ষা সম্পাদক</option>
+                                <option value="14" {{ old('role') == 14 ? 'selected' : '' }}>তথ্য ও প্রযুক্তি উন্নয়ন সম্পাদক</option>
+                                <option value="15" {{ old('role') == 15 ? 'selected' : '' }}>মহিলা বিষয়ক সম্পাদক</option>
+                                <option value="16" {{ old('role') == 16 ? 'selected' : '' }}>সাধারণ কার্যকরী সদস্য</option>
                             </select>
                         </div>
 
@@ -355,7 +347,7 @@
                                     ঠিকানা
                                 @enderror
                             </label>
-                            <textarea class="form-control" id="address" name="address" rows="2" placeholder="ঠিকানা লিখুন"></textarea>
+                            <textarea class="form-control" id="address" name="address" rows="2" placeholder="ঠিকানা লিখুন">{{ old('address') }}</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -363,10 +355,11 @@
                                 @error('mobile')
                                     {{ $message }}
                                 @else
-                                    মোবাইল নম্বর
+                                    মোবাইল নম্বর (ইংরেজি)
                                 @enderror
                             </label>
-                            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="মোবাইল নম্বর লিখুন" required>
+                            <input type="text" class="form-control" id="mobile" name="mobile" 
+                                value="{{ old('mobile') }}" placeholder="মোবাইল নম্বর লিখুন" required>
                         </div>
 
                         <div class="mb-3">
@@ -377,7 +370,8 @@
                                     ইমেইল
                                 @enderror
                             </label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="ইমেইল লিখুন">
+                            <input type="email" class="form-control" id="email" name="email" 
+                                value="{{ old('email') }}" placeholder="ইমেইল লিখুন">
                         </div>
 
                         <div class="mb-3">
@@ -388,9 +382,9 @@
                                     ফেসবুক লিঙ্ক
                                 @enderror
                             </label>
-                            <input type="url" class="form-control" id="facebook" name="facebook" placeholder="ফেসবুক প্রোফাইল লিঙ্ক দিন">
+                            <input type="url" class="form-control" id="facebook" name="facebook" 
+                                value="{{ old('facebook') }}" placeholder="ফেসবুক প্রোফাইল লিঙ্ক দিন">
                         </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
