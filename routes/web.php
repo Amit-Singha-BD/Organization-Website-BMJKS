@@ -58,8 +58,7 @@ Route::post('/committee/year/create', [CommitteeYearController::class, 'committe
 Route::get('active/committee/{id}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 Route::resource('committeeMember', CommitteeMemberController::class);
 
-Route::resource('person', PersonController::class);
-Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
+
 Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
 Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
 Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
@@ -73,7 +72,6 @@ Route::resource('person', PersonController::class);
 Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
 Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
 Route::get('/general/person', [AdminController::class, 'generalPerson'])->name('general.person');
-Route::get('/person/create', [AdminController::class, 'personCreate'])->name('person.create');
 // Person Route End <--
 
 

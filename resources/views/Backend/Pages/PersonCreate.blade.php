@@ -7,110 +7,155 @@
             <div class="card-header bg-success text-white">
                 <h5 class="mb-0">সদস্য তৈরি করুন</h5>
             </div>
-            <form action="member_save.php" method="post" enctype="multipart/form-data">
+            <form action="{{route('person.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="card-body">
                     <div class="row g-3">
-
-                        <div class="col-12">
-                            <label for="member_type" class="form-label">সদস্য বাছাই করুন</label>
-                            <select name="member_type" id="member_type" class="form-select" required>
-                                <option value="" selected disabled>একটি নির্বাচন করুন</option>
-                                <option value="honorable">গুণীমান্য ব্যক্তিবর্গ</option>
-                                <option value="lifetime">আজীবন সদস্য</option>
-                                <option value="general">সাধারণ সদস্য</option>
-                            </select>
-                        </div>
-
                         <div class="col-md-6">
+                            @error('name')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">নাম</label>
+                            @enderror
                             <input name="name" class="form-control" required>
                         </div>
 
                         <div class="col-md-6">
+                            @error('father_husband_name')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">পিতার নাম / স্বামী</label>
-                            <input name="father_husband" class="form-control">
+                            @enderror
+                            <input name="father_husband_name" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('mother_name')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">মাতার নাম</label>
-                            <input name="mother" class="form-control">
+                            @enderror
+                            <input name="mother_name" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('photo')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">ছবি</label>
+                            @enderror
                             <input type="file" name="photo" class="form-control" onchange="previewMemberPhoto(event)">
                             <img id="previewPhoto" src="" alt="Preview" class="mt-2 rounded"
                                 style="max-height:120px; display:none;">
                         </div>
 
                         <div class="col-md-6">
+                            @error('date_of_birth')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">জন্ম তারিখ</label>
-                            <input type="date" name="dob" class="form-control">
+                            @enderror
+                            <input type="date" name="date_of_birth" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('gender')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">লিঙ্গ</label>
+                            @enderror
                             <select name="gender" class="form-select">
                                 <option value="">নির্বাচন করুন</option>
-                                <option>পুরুষ</option>
-                                <option>মহিলা</option>
-                                <option>অন্যান্য</option>
+                                <option value="male">পুরুষ</option>
+                                <option value="female">মহিলা</option>
+                                <option value="other">অন্যান্য</option>
                             </select>
                         </div>
 
                         <div class="col-md-6">
+                            @error('caste')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">গোত্র</label>
-                            <input name="gotra" class="form-control">
+                            @enderror
+                            <input name="caste" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('marital_status')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">বৈবাহিক অবস্থা</label>
+                            @enderror
                             <select name="marital_status" class="form-select">
                                 <option value="">নির্বাচন করুন</option>
-                                <option>অবিবাহিত</option>
-                                <option>বিবাহিত</option>
-                                <option>বিধবা</option>
-                                <option>তালাকপ্রাপ্ত</option>
+                                <option value="single">অবিবাহিত</option>
+                                <option value="married">বিবাহিত</option>
+                                <option value="widowed">বিধবা</option>
+                                <option value="divorced">তালাকপ্রাপ্ত</option>
                             </select>
                         </div>
 
                         <div class="col-md-6">
+                            @error('mobile_number')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">মোবাইল নম্বর</label>
-                            <input name="mobile" class="form-control" placeholder="01XXXXXXXXX">
+                            @enderror
+                            <input name="mobile_number" class="form-control" placeholder="01XXXXXXXXX">
                         </div>
 
                         <div class="col-md-6">
+                            @error('village')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">গ্রাম</label>
+                            @enderror
                             <input name="village" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('post_office')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">পোস্ট অফিস</label>
+                            @enderror
                             <input name="post_office" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('thana')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">থানা</label>
+                            @enderror
                             <input name="thana" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('district')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">জেলা</label>
+                            @enderror
                             <input name="district" class="form-control">
                         </div>
 
                         <div class="col-md-6">
+                            @error('profession')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">পেশা</label>
-                            <input name="occupation" class="form-control">
+                            @enderror
+                            <input name="profession" class="form-control">
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">সামাজিক পদ</label>
-                            <input name="social_position" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
+                            @error('blood_group')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
                             <label class="form-label">রক্তের গ্রুপ</label>
+                            @enderror
                             <select name="blood_group" class="form-select">
                                 <option value="">নির্বাচন করুন</option>
                                 <option>A+</option>
@@ -124,6 +169,18 @@
                             </select>
                         </div>
 
+                        <div class="col-md-12">
+                            
+                            <label class="form-label d-block mb-2">সদস্যের ক্যাটাগরি</label>
+                            
+                            @foreach($tags as $tag)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="person_tag[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}">
+                                    <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->person_type_name }}</label>
+                                </div>
+                            @endforeach
+
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">

@@ -47,14 +47,33 @@
                                         <td>{{ $tag->person_type_name }}</td>
                                         <td>{{ $tag->persons_count ?? 0 }}</td>
                                         <td>
-                                            <form action="{{ route('tag.destroy', $tag->id) }}" method="POST" onsubmit="return confirm('আপনি কি সত্যিই এই ট্যাগটি মুছতে চান?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                            </form>
+                                            <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{$tag->id}}">Delete</button>
                                         </td>
-
                                     </tr>
+                                    <!-- tag Delete Modal -->
+                                    <div class="modal fade" id="deleteModal{{$tag->id}}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-danger text-white">
+                                                    <h6 class="modal-title">ক্যাটাগরি মুছে ফেলুন</h6>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <p>আপনি কি নিশ্চিতভাবে এই ক্যাটাগরিটি মুছে ফেলতে চান?</p>
+                                                    <p class="text-danger">এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</p>
+                                                </div>
+                                                <div class="modal-footer justify-content-center">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                                                    <!-- Delete Form -->
+                                                    <form action="{{ route('tag.destroy', $tag->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">মুছে ফেলুন</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -66,4 +85,7 @@
         </div>
 
     </div>
+
+          
+
 @endsection
