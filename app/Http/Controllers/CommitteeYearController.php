@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CommitteeYear;
 use App\Models\CommitteeName;
+use App\Models\CommitteeMember;
 use App\Http\Requests\CommitteeYearValidation;
 
-class CommitteeYearController extends Controller
-{
+class CommitteeYearController extends Controller {
     public function committeeYearCreate(CommitteeYearValidation $request){
         $validateData = $request->validated();    
         $committeeData = new CommitteeYear();
@@ -28,10 +28,9 @@ class CommitteeYearController extends Controller
                          ->with('error','কমিটি তৈরি ব্যার্থ হয়েছে');
     }
 
-    public function activeCommittee($slug){
-        $committeeId = CommitteeName::where('committee_slug', $slug)->select('id')->first();
-        $activeCommittee = CommitteeYear::where('status','active')->where('committee_id', $committeeId->id)->first();
-        $activeCommitteeId = $activeCommittee->id;
-        return view('Backend.Pages.Committee-Member-List', compact('activeCommitteeId'));
+    public function activeCommittee($id){
+        $committeeMember = CommitteeMember::where('CommitteeYear_id', $id)->orderBy('role', 'asc')->get();
+        $committeeName = CommitteeYear::where('id', $id)->first();
+        return view('Backend.Pages.Committee-Member-List', compact('committeeMember', 'committeeName', 'id'));
     }
 }

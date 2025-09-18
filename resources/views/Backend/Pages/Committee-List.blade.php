@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট শাখা</small>
+                            <small class="text-dark">মোট সক্রিয় কমিটি</small>
                             <h4 class="mb-0">12</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
@@ -16,12 +16,13 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-lg-3">
             <div class="card stat-card shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট শাখা সদস্য</small>
+                            <small class="text-dark">মোট সক্রিয় কমিটি সদস্য</small>
                             <h4 class="mb-0">156</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-users"></i></div>
@@ -29,40 +30,53 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-dark">মোট নিষ্ক্রিয় কমিটি</small>
+                            <h4 class="mb-0">12</h4>
+                        </div>
+                        <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-dark">মোট নিষ্ক্রিয় কমিটি সদস্য</small>
+                            <h4 class="mb-0">156</h4>
+                        </div>
+                        <div class="display-6 social-color"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Page Action Buttons -->
     <div class="page-action-buttons mt-3">
-        <div class="row g-2 d-flex justify-content-between align-items-center">
-
-            <!-- Search Form -->
-            <div class="col-12 col-md-8 col-lg-5">
-                <form action="" method="get">
-                    <div class="input-group">
-                        <select class="form-select" name="village">
-                            <option value="">গ্রাম নির্বাচন করুন</option>
-                            <option value="gram1">গ্রাম ১</option>
-                            <option value="gram2">গ্রাম ২</option>
-                            <option value="gram3">গ্রাম ৩</option>
-                        </select>
-                        <input type="text" class="form-control" placeholder="সদস্যের নাম দিন">
-                        <button class="btn btn-outline-success" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div class="row g-2 d-flex justify-content-center align-items-center">
 
             <!-- Active/Inactive Buttons -->
             <div class="col-12 col-lg-3">
                 <div class="btn-group w-100">
-                    <button class="btn btn-success active" id="activeBtn">সক্রিয়</button>
-                    <button class="btn btn-outline-success" id="inactiveBtn">নিষ্ক্রিয়</button>
+                    <a class="btn btn-outline-success {{ Route::is('active.committee.list') ? 'active' : '' }}" href="{{ route('active.committee.list') }}">
+                        সক্রিয়
+                    </a>
+
+                    <a class="btn btn-outline-success {{ Route::is('deactive.committee.list') ? 'active' : '' }}" href="{{ route('deactive.committee.list') }}">
+                        নিষ্ক্রিয়
+                    </a>
                 </div>
             </div>
-
-            <!-- Action Buttons -->
-            <div class="col-12 col-lg-3"></div>
 
         </div>
     </div>
@@ -71,13 +85,14 @@
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
                 <div class="card-header text-white text-center">
-                    <i class="fa-solid fa-sitemap"></i> শাখা কমিটি তালিকা
+                    <i class="fa-solid fa-sitemap"></i>
+                    {{ Route::is('active.committee.list') ? 'সক্রিয় কমিটি তালিকা' : 'নিষ্ক্রিয় কমিটি তালিকা' }}
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr class="text-center">
-                                <th>শাখা নাম</th>
+                                <th>কমিটি নাম</th>
                                 <th>সদস্য সংখ্যা</th>
                                 <th>অবস্থা</th>
                                 <th>অ্যাকশন</th>
@@ -92,12 +107,11 @@
                                         <strong>{{ $committee->committee_name }}</strong>
                                     </div>
                                 </td>
-                                <td data-label="সদস্য সংখ্যা">25</td>
-                                <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
+                                <td data-label="সদস্য সংখ্যা">{{ $committee->persons_count }}</td>
+                                <td data-label="অবস্থা"><span class="badge type">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
-                                        <a href="{{ route('active.committee',$committee->committee_slug) }}" class="btn btn-outline-success"
-                                            title="View">
+                                        <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">
                                             <i class="fa-solid fa-hand-point-right"></i> দেখুন
                                         </a>
                                     </div>

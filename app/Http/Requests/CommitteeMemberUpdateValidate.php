@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommitteeMemberValidate extends FormRequest {
+class CommitteeMemberUpdateValidate extends FormRequest {
 
     public function authorize(): bool {
         return true;
@@ -12,22 +12,18 @@ class CommitteeMemberValidate extends FormRequest {
 
     public function rules(): array {
         return [
-            'CommitteeYear_id' => 'required|integer', // Hidden input
-            'name'         => 'required|string|max:255',
-            'photo'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'role'         => 'required|string',
-            'address'      => 'required|string|max:500',
-            'mobile'       => 'required|regex:/^01[0-9]{9}$/',
-            'email'        => 'required|email|max:255',
-            'facebook'     => 'required|url|max:255',
+            'name'             => 'required|string|max:255',
+            'photo'            => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'role'             => 'required|integer|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16',
+            'address'          => 'required|string|max:500',
+            'mobile'           => 'required|regex:/^01[0-9]{9}$/',
+            'email'            => 'required|email|max:255',
+            'facebook'         => 'required|url|max:255',
         ];
     }
 
     public function messages(): array {
         return [
-            'CommitteeYear_id.required' => 'কমিটি আইডি অবশ্যই দিতে হবে।',
-            'CommitteeYear_id.integer'  => 'কমিটি আইডি অবশ্যই একটি সংখ্যা হতে হবে।',
-
             'name.required' => 'সদস্যের নাম অবশ্যই দিতে হবে।',
             'name.string'   => 'নামের ফরম্যাট সঠিক নয়।',
             'name.max'      => 'নামের দৈর্ঘ্য সর্বোচ্চ ২৫৫ অক্ষর হতে পারবে।',
@@ -37,7 +33,7 @@ class CommitteeMemberValidate extends FormRequest {
             'photo.max'     => 'ছবির সাইজ সর্বোচ্চ ২ মেগাবাইট হতে পারবে।',
 
             'role.required' => 'পদবী অবশ্যই নির্বাচন করতে হবে।',
-            'role.string'   => 'পদবী সঠিক ফরম্যাটে দিতে হবে।',
+            'role.integer'   => 'পদবী সঠিক ফরম্যাটে দিতে হবে।',
 
             'address.required' => 'ঠিকানা অবশ্যই দিতে হবে।',
             'address.string'   => 'ঠিকানার ফরম্যাট সঠিক নয়।',
