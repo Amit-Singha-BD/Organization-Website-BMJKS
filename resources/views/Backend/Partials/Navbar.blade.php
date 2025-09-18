@@ -14,7 +14,7 @@
         <div class="user-profile-dropdown">
             <div class="user-profile-toggle" data-toggle="user-dropdown">
                 <div class="user-avatar">
-                    <img src="Assets/img/Hero1.png" alt="User Avatar" class="user-avatar-img">
+                    <img src="{{ asset('Frontend-Assets/images/profile_img.png') }}" alt="User Avatar" class="user-avatar-img">
                 </div>
                 <div class="user-info">
                     <span class="user-name">আদমিন ইউজার</span>

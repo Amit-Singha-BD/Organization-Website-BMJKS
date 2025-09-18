@@ -78,6 +78,7 @@ Route::get('/general/person', [AdminController::class, 'generalPerson'])->name('
 Route::get('/users/manage', [AccountController::class, 'users'])->name('users.manage');
 Route::post('/users/create', [AccountController::class, 'userStore'])->name('users.store');
 Route::put('/users/password/update/{id}', [AccountController::class, 'passwordUpdate'])->name('password.update');
+Route::delete('/users/delete/{id}', [AccountController::class, 'userDestroy'])->name('account.destroy');
 // Account Routes End <--
 
 

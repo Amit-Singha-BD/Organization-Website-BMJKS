@@ -29,7 +29,8 @@ class AuthenticationController extends Controller{
                             ->with("success", "আপনি সফলভাবে লগইন করেছেন।");
         }
 
-        return redirect()->back()->with("error", "প্রদত্ত তথ্য সঠিক নয়। অনুগ্রহ করে আবার চেষ্টা করুন।");
+        return redirect()->back()
+                         ->with("error", "প্রদত্ত তথ্য সঠিক নয়। অনুগ্রহ করে আবার চেষ্টা করুন।");
     }
 
     public function logout(Request $request){
