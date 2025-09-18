@@ -139,7 +139,7 @@
                         <tbody>
                             @foreach($tags as $tag)
                                 <tr>
-                                    <td class="text-center fw-bold">{{ $tag->id }}</td>
+                                    <td class="text-center fw-bold">{{ $loop->iteration }}</td>
                                     <td>{{ $tag->person_type_name }}</td>
                                     <td class="text-center">
                                         <span class="badge bg-primary">{{ $tag->persons_count ?? 0 }}</span>
@@ -191,7 +191,7 @@
 
                             @foreach($notices as $notice)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক">{{ $notice->id }}</td>
+                                <td data-label="ক্রমিক">{{ $loop->iteration }}</td>
                                 <td data-label="শিরোনাম">{{ $notice->title }}</td>
                                 <td data-label="তারিখ">{{ $notice->date }}</td>
                                 <td data-label="অ্যাকশন">

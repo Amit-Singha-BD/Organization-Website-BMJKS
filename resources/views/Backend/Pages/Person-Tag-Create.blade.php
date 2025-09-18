@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach($tags as $tag)
                                     <tr>
-                                        <th scope="row">{{ $tag->id }}</th>
+                                        <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $tag->person_type_name }}</td>
                                         <td>{{ $tag->persons_count ?? 0 }}</td>
                                         <td>

@@ -88,7 +88,7 @@
                     <tbody>
                         @foreach($notice_data as $notice)
                         <tr class="text-center">
-                            <td data-label="ক্রমিক">{{$notice->id}}</td>
+                            <td data-label="ক্রমিক">{{$loop->iteration}}</td>
                             <td data-label="শিরোনাম">{{$notice->title}}</td>
                             <td data-label="তারিখ">{{$notice->date}}</td>
                             <td data-label="অ্যাকশন">

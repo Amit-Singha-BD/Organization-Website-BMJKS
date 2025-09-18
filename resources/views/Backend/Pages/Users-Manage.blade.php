@@ -30,7 +30,7 @@
 
                         @foreach ($users as $user)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক নং">{{ $user->id }}</td>
+                                <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
                                 <td data-label="ছবি"><img src="{{ asset('Assets/img/backend-logo.png') }}" alt="প্রোফাইল ছবি" class="rounded-circle" width="45" height="45"></td>
                                 <td data-label="নাম">{{ $user->name }}</td>
                                 <td data-label="মোবাইল">{{ $user->phone_no }}</td>

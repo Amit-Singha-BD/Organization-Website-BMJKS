@@ -41,7 +41,7 @@
 
                             @foreach($committeeMember as $member)
                             <tr class="text-center">
-                                <td>{{ $member->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td data-label="ছবি"><img src="{{ $member->photo ? asset($member->photo) : asset('Frontend-Assets/images/profile_img.png') }}" alt="" width="42" height="42"
                                         class="rounded-circle object-fit-cover"></td>
                                 <td data-label="নাম">{{ $member->name }}</td>

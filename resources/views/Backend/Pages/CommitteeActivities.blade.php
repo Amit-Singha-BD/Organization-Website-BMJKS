@@ -48,7 +48,7 @@
                     <tbody>
                         @foreach($activities_data as $activities)
                         <tr class="text-center">
-                            <td data-label="ক্রমিক নং">{{$activities->id}}</td>
+                            <td data-label="ক্রমিক নং">{{$loop->iteration}}</td>
                             <td data-label="কার্যক্রমের নাম">{{$activities->title}}</td>
                             <td data-label="বিবরণ">{{$activities->description}}</td>
                             <td data-label="তারিখ">{{$activities->activities_date}}</td>
