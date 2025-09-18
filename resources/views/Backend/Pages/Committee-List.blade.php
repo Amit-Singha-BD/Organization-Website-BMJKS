@@ -108,7 +108,7 @@
                                     </div>
                                 </td>
                                 <td data-label="সদস্য সংখ্যা">{{ $committee->persons_count }}</td>
-                                <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
+                                <td data-label="অবস্থা"><span class="badge type">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
                                         <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">

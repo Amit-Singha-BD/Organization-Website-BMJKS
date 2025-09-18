@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Person;
 use App\Models\PersonType;
 use App\Models\PersonTag;
+use App\Http\Requests\PersonValidation;
 use Illuminate\Http\Request;
 
 class PersonController extends Controller
@@ -30,16 +31,30 @@ class PersonController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    {   
+        $tags = PersonType::get();
+        return view('Backend.Pages.PersonCreate',compact('tags'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PersonValidation $request)
     {
-        //
+        // Person তৈরি করা
+        $validdata = $request->validated();
+        $person = Person::create($validdata);
+
+        // Selected tags
+        $selectedTags = $request->input('person_tag', []); // array of tag IDs
+        //প্রতিটি tag attach করা
+        foreach ($selectedTags as $tagId) {
+            PersonTag::create([
+                'person_id'     => $person->id,
+                'persontype_id' => $tagId
+            ]);
+        }
+        return redirect()->back()->with('success', 'সফলভাবে সংরক্ষণ করা হয়েছে!');
     }
 
     /**
