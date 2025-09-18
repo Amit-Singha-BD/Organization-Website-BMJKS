@@ -15,24 +15,33 @@ class PersonTypeSeeder extends Seeder
     {
         PersonType::insert([
             [
-                "person_type_name"         => "dakhula",
+                "person_type_name" => "dakhula",
+                "status"           => "active"          
             ],
             [
-                "person_type_name"         => "esalpa",
+                "person_type_name" => "esalpa",
+                "status"           => "active"
             ],
             [
-                "person_type_name"         => "sebari",
+                "person_type_name" => "sebari",
+                "status"           => "active"
             ],
             [
-                "person_type_name"         => "vandari",
+                "person_type_name" => "vandari",
+                "status"           => "active"
             ],
             [
-                "person_type_name"         => "lifeTime",
+                "person_type_name" => "lifeTime",
+                "status"           => "active"
             ],
             [
-                "person_type_name"         => "general",
+               "person_type_name" => "general",
+                "status"           => "active"
+            ],
+            [
+               "person_type_name" => "bekar",
+                "status"           => "deactive"
             ]
-            
         ]);
     }
 }

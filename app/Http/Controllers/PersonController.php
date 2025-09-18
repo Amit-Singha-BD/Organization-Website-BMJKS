@@ -117,9 +117,30 @@ class PersonController extends Controller
         return redirect()->back()->with('success', 'নতুন ক্যাটাগরি সফলভাবে যোগ করা হয়েছে!');
     }
     public function tagdelete($id){
-        $tag = PersonType::findOrFail($id); // ID অনুযায়ী ট্যাগ খুঁজে বের করা
-        $tag->delete();
-        return redirect()->back()->with('success', 'ক্যাটাগরি সফলভাবে ডিলিট করা হয়েছে!');
+        $person_tag = PersonTag::where('persontype_id',$id)->count();
+        if($person_tag == 0){
+            $tag = PersonType::findOrFail($id); // ID অনুযায়ী ট্যাগ খুঁজে বের করা
+            $tag->delete();
+            return redirect()->back()->with('success', 'ক্যাটাগরি সফলভাবে ডিলিট করা হয়েছে!');
+        }
+        else{
+            return redirect()->back()->with('error', ' এই ক্যাটাগরির মানুষ ইতোমধ্যে রয়েছে');
+        }
+        
+    }
+    public function tagstatus($id){
+        $tagStatus = PersonType::find($id);
+        
+        if($tagStatus->status=='active'){
+            $tagStatus->status='deactive';
+            $mgs = 'ক্যাটাগরিটি নিস্ক্রিয় করা হয়েছে';
+        }
+        else{
+            $tagStatus->status='active';
+            $mgs = 'ক্যাটাগরিটি সক্রিয় করা হয়েছে';
+        }
+        $tagStatus->update();
+        return redirect()->back()->with('success',$mgs);
     }
     
 }

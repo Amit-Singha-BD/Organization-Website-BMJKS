@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('person_types', function (Blueprint $table) {
             $table->id();
             $table->string('person_type_name');
+            $table->enum('status', ['active', 'deactive'])->default('active');
             $table->timestamps();
         });
     }
