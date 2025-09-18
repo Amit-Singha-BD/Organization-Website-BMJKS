@@ -20,8 +20,9 @@
                     <thead>
                         <tr class="text-center">
                             <th>ক্রমিক নং</th>
-                            <th>ছবি</th>
+                            <th>একাউন্টের ধরন</th>
                             <th>নাম</th>
+                            <th>শাখা</th>
                             <th>মোবাইল</th>
                             <th>অ্যাকশন</th>
                         </tr>
@@ -31,8 +32,9 @@
                         @foreach ($users as $user)
                             <tr class="text-center">
                                 <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
-                                <td data-label="ছবি"><img src="{{ asset('Assets/img/backend-logo.png') }}" alt="প্রোফাইল ছবি" class="rounded-circle" width="45" height="45"></td>
+                                <td data-label="একাউন্টের ধরন">{{ $user->account_type }}</td>
                                 <td data-label="নাম">{{ $user->name }}</td>
+                                <td data-label="শাখা">{{ $user->branch }}</td>
                                 <td data-label="মোবাইল">{{ $user->phone_no }}</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
@@ -61,10 +63,11 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <img src="{{ asset('Assets/img/backend-logo.png')}}" alt="প্রোফাইল ছবি" class="rounded-circle mb-3"
+                                            <img src="{{ asset('Frontend-Assets/images/profile_img.png') }}" alt="প্রোফাইল ছবি" class="rounded-circle mb-3"
                                                 width="100" height="100">
                                             <p><strong>নাম:</strong> {{ $user->name }}</p>
                                             <p><strong>ইউজারনেম:</strong> {{ $user->username }}</p>
+                                            <p><strong>শাখা:</strong> {{ $user->branch }}</p>
                                             <p><strong>মোবাইল:</strong> {{ $user->phone_no }}</p>
                                             <p><strong>অ্যাকাউন্ট ধরন:</strong> {{ $user->account_type }}</p>
                                         </div>
@@ -90,13 +93,19 @@
                                             <div class="modal-body">
                                                 <div class="row g-3">
                                                     <div class="col-12 text-center">
-                                                        <img src="{{ asset('Assets/img/user.png') }}" alt="প্রোফাইল ছবি" class="rounded-circle mb-3"
+                                                        <img src="{{ asset('Frontend-Assets/images/profile_img.png') }}" alt="প্রোফাইল ছবি" class="rounded-circle mb-3"
                                                             width="100" height="100" id="previewImage">
                                                         <h5 class="text-center">{{ $user->name }}</h5>
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <label class="form-label">পাসওয়ার্ড</label>
+                                                        <label class="form-label @error('password') text-danger @enderror">
+                                                            @error('password')
+                                                                {{ $message }}
+                                                            @else
+                                                                পাসওয়ার্ড (৮+ অক্ষর, বড়+ছোট অক্ষর, সংখ্যা)
+                                                            @enderror
+                                                        </label>
                                                         <input type="password" name="password" class="form-control">
                                                     </div>
                                                     <div class="col-12">
@@ -115,7 +124,7 @@
                             </div>
 
                             <!-- Delete User Modal -->
-                            <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal fade" id="deleteUserModal{{ $user->id }}" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header bg-danger text-white">
@@ -123,13 +132,20 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <p>আপনি কি নিশ্চিত যে আপনি এই ইউজারটি মুছে ফেলতে চান?</p>
-                                            <p class="text-danger">এই কাজটি পূর্বাবস্থায় ফেরানো সম্ভব নয়।</p>
                                         </div>
-                                        <div class="modal-footer justify-content-center">
-                                            <button class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-                                            <button class="btn btn-danger">মুছে ফেলুন</button>
-                                        </div>
+                                        <form action="{{ route('account.destroy', $user->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="id" id="{{ $user->id }}">
+                                            <div class="modal-body text-center">
+                                                <p>আপনি কি নিশ্চিত যে আপনি এই ইউজারটি মুছে ফেলতে চান?</p>
+                                                <p class="text-danger">এই কাজটি পূর্বাবস্থায় ফেরানো সম্ভব নয়।</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                                                <button type="submit" name="submit" class="btn btn-danger">মুছে ফেলুন</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -154,35 +170,82 @@
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-12">
-                                <label class="form-label">নাম</label>
+                                <label class="form-label @error('name') text-danger @enderror">
+                                    @error('name')
+                                        {{ $message }}
+                                    @else
+                                        নাম
+                                    @enderror
+                                </label>
                                 <input type="text" name="name" class="form-control">
                             </div>
                             <div class="col-12">
-                                <label class="form-label">ইউজারনেম</label>
+                                <label class="form-label @error('username') text-danger @enderror">
+                                    @error('username')
+                                        {{ $message }}
+                                    @else
+                                        ইউজারনেম
+                                    @enderror    
+                                </label>
                                 <input type="text" name="username" class="form-control">
                             </div>
                             <div class="col-12">
-                                <label class="form-label">প্রোফাইল ছবি</label>
-                                <input type="file" name="image" class="form-control" accept="image/*">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">মোবাইল নম্বর</label>
+                                <label class="form-label @error('phone_no') text-danger @enderror">
+                                    @error('phone_no')
+                                        {{ $message }}
+                                    @else
+                                        মোবাইল নম্বর
+                                    @enderror
+                                </label>
                                 <input type="text" name="phone_no" class="form-control">
                             </div>
                             <div class="col-12">
-                                <label for="account_type" class="form-label">অ্যাকাউন্ট ধরন নির্বাচন করুন</label>
+                                <label for="account_type" class="form-label @error('account_type') text-danger @enderror">
+                                    @error('account_type')
+                                        {{ $message }}
+                                    @else
+                                        অ্যাকাউন্ট ধরন নির্বাচন করুন
+                                    @enderror
+                                </label>
                                 <select name="account_type" id="account_type" class="form-select">
                                     <option value="" selected disabled>একটি নির্বাচন করুন</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Editor">Editor</option>
+                                    <option value="Admin">অ্যাডমিন</option>
+                                    <option value="Editor">এডিটর</option>
                                 </select>
                             </div>
-                            <div class="col-6">
-                                <label class="form-label">পাসওয়ার্ড</label>
+                            <div class="col-12">
+                                <label for="branch" class="form-label @error('branch') text-danger @enderror">
+                                    @error('branch')
+                                        {{ $message }}
+                                    @else
+                                        কমিটি নির্বাচন করুন
+                                    @enderror
+                                </label>
+                                <select name="branch" id="branch" class="form-select">
+                                    <option value="" selected disabled>একটি নির্বাচন করুন</option>
+                                    @foreach($committeeName as $committee)
+                                    <option value="{{ $committee->id }}">{{ $committee->committee_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label @error('password') text-danger @enderror">
+                                    @error('password')
+                                        {{ $message }}
+                                    @else
+                                        পাসওয়ার্ড (৮+ অক্ষর, বড়+ছোট অক্ষর, সংখ্যা)
+                                    @enderror
+                                </label>
                                 <input type="password" name="password" class="form-control">
                             </div>
-                            <div class="col-6">
-                                <label class="form-label">নিশ্চিত পাসওয়ার্ড</label>
+                            <div class="col-12">
+                                <label class="form-label @error('password_confirmation') text-danger @enderror">
+                                    @error('password_confirmation')
+                                        {{ $message }}
+                                    @else
+                                        নিশ্চিত পাসওয়ার্ড
+                                    @enderror
+                                </label>
                                 <input type="password" name="password_confirmation" class="form-control">
                             </div>
                         </div>

@@ -16,8 +16,9 @@ class AccountValidate extends FormRequest {
             "name"         => "required|string|min:4|max:50|unique:users,name",
             "username"     => "required|string|min:10|max:50|unique:users,username",
             "phone_no"     => "required|digits:11|unique:users,phone_no",
+            "branch"       => "required|integer|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,",
             "account_type" => "required|string|min:5|max:50",
-            "password"     => "required|min:8|max:20|confirmed",
+            "password"     => "required|min:8|max:20|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed",
         ];
     }
 
@@ -39,6 +40,10 @@ class AccountValidate extends FormRequest {
             "phone_no.digits"   => "মোবাইল নম্বর অবশ্যই ১১ সংখ্যার হতে হবে।",
             "phone_no.unique"   => "এই মোবাইল নম্বর ইতিমধ্যে ব্যবহৃত হয়েছে।",
 
+            'branch.required' => 'শাখা অবশ্যই নির্বাচন করতে হবে।',
+            'branch.integer'  => 'শাখা অবশ্যই একটি পূর্ণসংখ্যা হতে হবে।',
+            'branch.in'       => 'শাখা সঠিকভাবে নির্বাচন করুন (১ থেকে ১৪ এর মধ্যে)।',
+
             "account_type.required" => "ব্রাঞ্চের নাম অবশ্যই দিতে হবে।",
             "account_type.string"   => "ব্রাঞ্চের নাম অবশ্যই স্ট্রিং আকারে হতে হবে।",
             "account_type.min"      => "ব্রাঞ্চের নাম অন্তত ৫ অক্ষরের হতে হবে।",
@@ -48,6 +53,7 @@ class AccountValidate extends FormRequest {
             "password.min"       => "পাসওয়ার্ড অন্তত ৮ অক্ষরের হতে হবে।",
             "password.max"       => "পাসওয়ার্ড সর্বাধিক ২০ অক্ষরের হতে পারবে।",
             "password.confirmed" => "পাসওয়ার্ড এবং নিশ্চিত পাসওয়ার্ড মিলছে না।",
+            'password.regex'     => 'পাসওয়ার্ডে অন্তত একটি বড় হাতের অক্ষর, একটি ছোট হাতের অক্ষর এবং একটি সংখ্যা থাকতে হবে।',
         ];
     }
 }
