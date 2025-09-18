@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('CommitteeYear_id'); //ফরেইন কী
             $table->string('name'); // নাম
             $table->string('photo')->nullable(); // ছবি (optional)
-            $table->integer('role'); // পদবী
+            $table->integer('role')->unique(); // পদবী
             $table->text('address')->nullable(); // ঠিকানা
             $table->string('mobile'); // মোবাইল নম্বর
             $table->string('email')->nullable(); // ইমেইল

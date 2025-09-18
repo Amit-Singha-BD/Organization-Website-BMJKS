@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট শাখা</small>
+                            <small class="text-dark">মোট সক্রিয় কমিটি</small>
                             <h4 class="mb-0">12</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
@@ -16,12 +16,13 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6 col-lg-3">
             <div class="card stat-card shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট শাখা সদস্য</small>
+                            <small class="text-dark">মোট সক্রিয় কমিটি সদস্য</small>
                             <h4 class="mb-0">156</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-users"></i></div>
@@ -29,6 +30,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-dark">মোট নিষ্ক্রিয় কমিটি</small>
+                            <h4 class="mb-0">12</h4>
+                        </div>
+                        <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-dark">মোট নিষ্ক্রিয় কমিটি সদস্য</small>
+                            <h4 class="mb-0">156</h4>
+                        </div>
+                        <div class="display-6 social-color"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Page Action Buttons -->
@@ -62,7 +92,7 @@
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr class="text-center">
-                                <th>শাখা নাম</th>
+                                <th>কমিটি নাম</th>
                                 <th>সদস্য সংখ্যা</th>
                                 <th>অবস্থা</th>
                                 <th>অ্যাকশন</th>
@@ -74,11 +104,11 @@
                                 <td data-label="শাখা নাম">
                                     <div class="d-flex align-items-center gap-2">
                                         <i class="fa-solid fa-sitemap text-primary"></i>
-                                        <strong>{{ $committee->committee_id }}</strong>
+                                        <strong>{{ $committee->committee_name }}</strong>
                                     </div>
                                 </td>
-                                <td data-label="সদস্য সংখ্যা">25</td>
-                                <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
+                                <td data-label="সদস্য সংখ্যা">{{ $committee->persons_count }}</td>
+                                <td data-label="অবস্থা"><span class="badge type">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
                                         <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">

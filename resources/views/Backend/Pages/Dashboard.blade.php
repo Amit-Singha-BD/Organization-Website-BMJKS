@@ -3,13 +3,14 @@
 @section('Content')
 
     <div class="row g-3">
-        <!-- মোট নোটিশ -->
+        
+        <!-- আজীবন সদস্য -->
         <div class="col-sm-6 col-lg-3">
             <div class="card stat-card shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট নোটিশ</small>
+                            <small class="text-dark">আজীবন সদস্য</small>
                             <h4 class="mb-0">128</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-bullhorn"></i></div>
@@ -17,27 +18,14 @@
                 </div>
             </div>
         </div>
-        <!-- সদস্য -->
-        <div class="col-sm-6 col-lg-3">
-            <div class="card stat-card shadow-sm">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <small class="text-dark">সদস্য</small>
-                            <h4 class="mb-0">642</h4>
-                        </div>
-                        <div class="display-6 social-color"><i class="fa-solid fa-user-group"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- কমিটি -->
         <div class="col-sm-6 col-lg-3">
             <div class="card stat-card shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">কমিটি</small>
+                            <small class="text-dark">মোট সক্রিয় কমিটি</small>
                             <h4 class="mb-0">7</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-users-gear"></i></div>
@@ -45,13 +33,29 @@
                 </div>
             </div>
         </div>
+
+        <!-- সদস্য -->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card stat-card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <small class="text-dark">সক্রিয় কমিটি সদস্য</small>
+                            <h4 class="mb-0">642</h4>
+                        </div>
+                        <div class="display-6 social-color"><i class="fa-solid fa-user-group"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- আজকের ভিজিট -->
         <div class="col-sm-6 col-lg-3">
             <div class="card stat-card shadow-sm">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">আজকের ভিজিট</small>
+                            <small class="text-dark">ওয়েবসাইট ভিজিট</small>
                             <h4 class="mb-0">1,203</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-chart-line"></i></div>
@@ -62,12 +66,116 @@
     </div>
     <!-- স্ট্যাট কার্ডস শেষ -->
 
+
+    <div class="row g-3 mt-1">
+        <div class="col-lg-12">
+            <div class="card table-card shadow-sm">
+                <div class="card-header text-white">
+                    <h5 class="mb-0">
+                        <i class="fa-solid fa-sitemap"></i>
+                        সক্রিয় কমিটি তালিকা
+                    </h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead>
+                            <tr class="text-center">
+                                <th>কমিটি নাম</th>
+                                <th>সদস্য সংখ্যা</th>
+                                <th>অবস্থা</th>
+                                <th>অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($committees as $committee)
+                            <tr class="text-center">
+                                <td data-label="শাখা নাম">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-sitemap text-primary"></i>
+                                        <strong>{{ $committee->committee_name }}</strong>
+                                    </div>
+                                </td>
+                                <td data-label="সদস্য সংখ্যা">{{ $committee->persons_count }}</td>
+                                <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
+                                <td data-label="অ্যাকশন">
+                                    <div class="btn-group">
+                                        <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">
+                                            <i class="fa-solid fa-hand-point-right"></i> দেখুন
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- পূর্বে তৈরি ট্যাগগুলোর তালিকা --}}
+    <div class="card shadow-sm mx-auto mt-4" style="max-width: 70rem;">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+                <i class="fas fa-database"></i>
+                বাসযুক ডেটাবেজ বিন্যাস
+            </h5>
+            <span class="badge bg-light text-dark">মোট: {{ $tags->count() }}</span>
+        </div>
+
+        <div class="card-body">
+            @if($tags->count() > 0)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle mb-0">
+                        <thead class="table-success text-center">
+                            <tr>
+                                <th scope="col" style="width: 70px;">#ID</th>
+                                <th scope="col">ক্যাটাগরির নাম</th>
+                                <th scope="col" style="width: 120px;">লোকজন</th>
+                                <th scope="col" style="width: 150px;">দেখুন</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($tags as $tag)
+                                <tr>
+                                    <td class="text-center fw-bold">{{ $tag->id }}</td>
+                                    <td>{{ $tag->person_type_name }}</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-primary">{{ $tag->persons_count ?? 0 }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="d-flex flex-row justify-content-center gap-2">
+                                            <a href="" 
+                                            class="btn btn-sm action-btn-info" 
+                                            title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="alert alert-info mb-0 text-center">
+                    <i class="fas fa-info-circle"></i> কোনো ট্যাগ এখনো যোগ করা হয়নি।
+                </div>
+            @endif
+        </div>
+    </div>
+
+
     <!-- সাম্প্রতিক নোটিশ টেবিল শুরু -->
     <div class="row g-3 mt-1">
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
-                <div class="card-header text-white text-center">
-                    <i class="fa-solid fa-bullhorn"></i> সাম্প্রতিক নোটিশ
+                <div class="card-header text-white">
+                    <h5 class="mb-0">
+                        <i class="fa-solid fa-bullhorn"></i> 
+                        সাম্প্রতিক নোটিশ
+                    </h5>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
@@ -75,7 +183,7 @@
                             <tr class="text-center">
                                 <th>ক্রমিক</th>
                                 <th>শিরোনাম</th>
-                                <th>তারিখ</th>
+                                <th>ইস্যু তারিখ</th>
                                 <th>দেখুন</th>
                             </tr>
                         </thead>
