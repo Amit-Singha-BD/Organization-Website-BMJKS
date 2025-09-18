@@ -54,7 +54,7 @@
 
                             @foreach ($contacts as $contact)
                                 <tr class="text-center">
-                                    <td data-label="ক্রমিক নং">{{ $contact->id }}</td>
+                                    <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
                                     <td data-label="নাম">{{ $contact->name }}</td>
                                     <td data-label="মোবাইল">{{ $contact->phone_no }}</td>
                                     <td data-label="মেসেজ টাইটেল">{{ Str::limit($contact->message_title, 15, '....') }}</td>

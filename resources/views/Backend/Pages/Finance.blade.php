@@ -56,7 +56,7 @@
 
                         @foreach ($finances as $finance)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক নং">{{ $finance->id }}</td>
+                                <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
                                 <td data-label="হিসাবের ধরন">{{ $finance->title }}</td>
                                 <td data-label="তারিখ">{{ $finance->date }}</td>
                                 <td data-label="অ্যাকশন">

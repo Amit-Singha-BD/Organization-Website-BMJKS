@@ -1,7 +1,7 @@
 <aside class="admin-sidebar">
     <div class="admin-brand">
         <img src="{{asset('Frontend-Assets/images/header/logo.png')}}" alt="বামযুকস লোগো" class="brand-logo">
-        <a href="{{ route('home') }}" target="_blank">
+        <a href="{{ route('home') }}" target="_blank" style="text-decoration:none;">
             <span class="text-white">বামযুকস</span>
         </a>
     </div>
