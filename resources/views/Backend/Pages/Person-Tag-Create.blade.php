@@ -5,15 +5,19 @@
     <div class="container my-4">
         <div class="card shadow-sm mx-auto" style="max-width: 70rem;">
             <div class="card-header bg-success text-white">
-                <h5 class="mb-0">সদস্যদের ক্যাটাগরি তৈরি করুন</h5>
+                <h5 class="mb-0">সদস্যদের ক্যাটাগরি তৈরি করুন </h5>
             </div>
             <form action="{{route('tag.create')}}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="row g-3">
                         <div class="col-md-12">
-                            <label class="form-label">সদস্যদের নতুন ক্যাটাগরি তৈরি করুন</label>
-                            <input name="tag_create" class="form-control" required>
+                            @error('tag_create')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
+                            <label class="form-label" >সদস্যদের নতুন ক্যাটাগরির নাম (বাংলা)</label>
+                            @enderror
+                            <input name="tag_create" placeholder="নতুন ক্যাটাগরির নাম লিখুন (বাংলায়)" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -48,6 +52,55 @@
                                         <td>{{ $tag->persons_count ?? 0 }}</td>
                                         <td>
                                             <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{$tag->id}}">Delete</button>
+                                            
+                                            <!-- Status Change Button -->
+                                            <button type="button" class="btn btn-sm {{ $tag->status == 'active' ? 'btn-success' : 'btn-secondary' }}" 
+                                                    data-bs-toggle="modal" data-bs-target="#statusModal{{$tag->id}}">
+                                                {{ $tag->status }}
+                                            </button>
+
+                                            <!-- Status Change Modal -->
+                                            <div class="modal fade" id="statusModal{{$tag->id}}" tabindex="-1" aria-labelledby="statusModalLabel{{$tag->id}}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content shadow-lg border-0">
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="statusModalLabel{{$tag->id}}">স্ট্যাটাস পরিবর্তন</h5>
+                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <p class="fs-5">
+                                                                @if($tag->status == 'active')
+                                                                    <p class="fs-5 text-center">
+                                                                        <i class="fa-solid fa-eye-slash text-danger"></i>  
+                                                                        আপনি কি নিশ্চিত <strong>{{ $tag->person_type_name }}</strong> ক্যাটাগরিটি 
+                                                                        <span class="badge bg-success">ওয়েবসাইটে দৃশ্যমান</span> অবস্থা থেকে  
+                                                                        <span class="badge bg-secondary">অদৃশ্য</span> করতে চান?
+                                                                    </p>
+                                                                @else
+                                                                    <p class="fs-5 text-center">
+                                                                        <i class="fa-solid fa-eye text-success"></i>  
+                                                                        আপনি কি নিশ্চিত <strong>{{ $tag->person_type_name }}</strong> ক্যাটাগরিটি  
+                                                                        <span class="badge bg-secondary">অদৃশ্য</span> অবস্থা থেকে  
+                                                                        <span class="badge bg-success">ওয়েবসাইটে দৃশ্যমান</span> করতে চান?
+                                                                    </p>
+                                                                @endif
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-center">
+                                                            <form action="{{ route('tag.status', $tag->id) }}" method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-success">
+                                                                    হ্যাঁ, পরিবর্তন করুন
+                                                                </button>
+                                                            </form>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                     </tr>
                                     <!-- tag Delete Modal -->

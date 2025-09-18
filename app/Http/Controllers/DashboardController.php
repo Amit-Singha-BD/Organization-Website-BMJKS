@@ -15,7 +15,7 @@ class DashboardController extends Controller {
         $notices = Notice::orderBy('id', 'desc')->take(5)->get();
         $title = 'Dashboard';
 
-        $tags = PersonType::get();
+        $tags = PersonType::where('status','active')->get();
         foreach($tags as $tag){
             $tag->persons_count = PersonTag::where('persontype_id', $tag->id)->count();
         }

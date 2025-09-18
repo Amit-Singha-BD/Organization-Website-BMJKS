@@ -62,6 +62,7 @@ Route::resource('committeeMember', CommitteeMemberController::class);
 Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
 Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
 Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
+Route::post('/tag/status/{id}',[PersonController::class, 'tagstatus'])->name('tag.status');
 
 
 

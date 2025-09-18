@@ -10,5 +10,6 @@ class PersonType extends Model
     
         protected $fillable = [
             'person_type_name',
+            'status'
         ];
 }
