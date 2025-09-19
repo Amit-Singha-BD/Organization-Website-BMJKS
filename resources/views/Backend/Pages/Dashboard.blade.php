@@ -139,14 +139,14 @@
                         <tbody>
                             @foreach($tags as $tag)
                                 <tr>
-                                    <td class="text-center fw-bold">{{ $loop->iteration }}</td>
-                                    <td>{{ $tag->person_type_name }}</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-primary">{{ $tag->persons_count ?? 0 }}</span>
+                                    <td class="text-center fw-bold" data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                                    <td data-label="ক্যাটাগরি নাম">{{ $tag->person_type_name }}</td>
+                                    <td class="text-center" data-label="লোকজন">
+                                        <span class="badge bg-primary" >{{ $tag->persons_count ?? 0 }}</span>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-center" data-label="দেখুন">
                                         <div class="d-flex flex-row justify-content-center gap-2">
-                                            <a href="" 
+                                            <a href="{{route('specific.category.person', $tag->id)}}" 
                                             class="btn btn-sm action-btn-info" 
                                             title="View">
                                                 <i class="fas fa-eye"></i>

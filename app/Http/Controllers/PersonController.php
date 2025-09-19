@@ -15,6 +15,7 @@ class PersonController extends Controller
      */
     public function index($personType)
     {
+        $personTypeName = PersonType::where('id', $personType)->value('person_type_name');
         // Step 1: Tag গুলো নাও
         $personTags = PersonTag::where('persontype_id', $personType)->get();
 
@@ -22,10 +23,12 @@ class PersonController extends Controller
         $personIds = $personTags->pluck('person_id'); // ধরে নিচ্ছি PersonTag এর column name হচ্ছে person_id
 
         // Step 3: Person গুলো নাও
-        $persons = Person::whereIn('id', $personIds)->get();
+        $persons = Person::whereIn('id', $personIds)->paginate(10);
 
-        return view('Backend.Pages.Special-Person');
+        return view('Backend.Pages.Person-List', compact('persons','personTypeName'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

@@ -69,9 +69,8 @@ Route::post('/tag/status/{id}',[PersonController::class, 'tagstatus'])->name('ta
 
 // Person Route Start -->
 Route::resource('person', PersonController::class);
-Route::get('/life/time/person/{personType}', [PersonController::class, 'index'])->name('life.time.person');
-Route::get('/special/person', [AdminController::class, 'specialPerson'])->name('special.person');
-Route::get('/general/person', [AdminController::class, 'generalPerson'])->name('general.person');
+Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
+
 // Person Route End <--
 
 
