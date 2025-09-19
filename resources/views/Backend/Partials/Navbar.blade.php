@@ -4,7 +4,7 @@
     </div>
     <div class="d-flex align-items-center gap-3">
         <!-- Search Button (Only on Members Page) -->
-        @if (request()->routeIs('special.person'))
+        @if (request()->routeIs('specific.category.person'))
             <button class="btn search-toggle" data-toggle="search-sidebar" title="উন্নত অনুসন্ধান">
                 <i class="fa-solid fa-search"></i>
             </button>

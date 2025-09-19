@@ -28,26 +28,26 @@
         </div>
 
         <div
-            class="sidebar-dropdown {{ Route::is('special.person') || Route::is('life.time.person') || Route::is('general.person') || Route::is('person.create') ||Route::is('tag') ? 'open' : '' }}">
+            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
                 <i class="fa-solid fa-chevron-down ms-auto"></i>
             </a>
             <div class="sidebar-submenu">
-                <a class="sidebar-sublink {{ Route::is('special.person') ? 'active' : '' }}" href="{{ route('special.person') }}">
-                    <i class="fa-solid fa-user-group"></i>
-                    <span class="sidebar-text">গুণীমান্য ব্যাক্তিবর্গ</span>
-                </a>
 
-                <a class="sidebar-sublink {{ Route::is('life.time.person','lifeTime') ? 'active' : '' }}" href="{{ route('life.time.person','lifeTime') }}">
+                <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 1 ? 'active' : '' }}" 
+                href="{{ route('specific.category.person', 1) }}">
                     <i class="fa-solid fa-crown"></i>
                     <span class="sidebar-text">আজীবন সদস্য</span>
                 </a>
-                <a class="sidebar-sublink {{ Route::is('general.person') ? 'active' : '' }}" href="{{ route('general.person') }}">
+
+                <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 2 ? 'active' : '' }}" 
+                href="{{ route('specific.category.person', 2) }}">
                     <i class="fa-solid fa-user"></i>
                     <span class="sidebar-text">সাধারণ সদস্য</span>
                 </a>
+
                 <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">
                     <i class="fa-solid fa-user-plus"></i>
                     <span class="sidebar-text">সদস্য তৈরি</span>
