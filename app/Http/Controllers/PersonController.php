@@ -28,6 +28,49 @@ class PersonController extends Controller
         return view('Backend.Pages.Person-List', compact('persons','personTypeName'));
     }
 
+    //ব্যাক্তি সার্চ
+    public function personSearch(){
+        return view('Backend.Pages.Person-Search');
+    }
+    //সার্চ রিজাল্ট
+    public function searchResult(Request $request)
+    {
+        // শুরুতে Query Builder তৈরি
+        $query = Person::query();
+
+        // সার্চের জন্য যেসব ফিল্ড চেক করতে হবে
+        $searchFields = [
+            'name',
+            'father_husband_name',
+            'mother_name',
+            'photo',
+            'date_of_birth',
+            'gender',
+            'caste',
+            'marital_status',
+            'mobile_number',
+            'village',
+            'post_office',
+            'thana',
+            'district',
+            'profession',
+            'blood_group',
+        ];
+
+        // প্রতিটি ফিল্ডের জন্য চেক করে query যোগ করা
+        foreach ($searchFields as $field) {
+            if ($request->filled($field)) {
+                $query->where($field, 'like', "%{$request->$field}%");
+            }
+        }
+
+        // Query execute
+        $persons = $query->get();
+
+        // ফলাফল view এ পাঠানো
+        return view('Backend.Pages.Person-Search', compact('persons'));
+    }
+
     
 
     /**

@@ -28,13 +28,19 @@
         </div>
 
         <div
-            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ? 'open' : '' }}">
+            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
                 <i class="fa-solid fa-chevron-down ms-auto"></i>
             </a>
             <div class="sidebar-submenu">
+
+                <a class="sidebar-sublink {{ request()->routeIs('person.search') ? 'active' : '' }}" 
+                href="{{ route('person.search') }}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span class="sidebar-text">ব্যাক্তি খুজুন</span>
+                </a>
 
                 <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 1 ? 'active' : '' }}" 
                 href="{{ route('specific.category.person', 1) }}">
