@@ -17,21 +17,12 @@
                     <img src="{{ asset('Frontend-Assets/images/profile_img.png') }}" alt="User Avatar" class="user-avatar-img">
                 </div>
                 <div class="user-info">
-                    <span class="user-name">আদমিন ইউজার</span>
+                    <span class="user-name">এডমিন ইউজার</span>
                     <small class="user-role">অ্যাডমিন</small>
                 </div>
                 <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
             </div>
             <div class="user-dropdown-menu">
-                <div class="dropdown-header">
-                    <div class="user-avatar">
-                        <img src="Assets/img/Hero1.png" alt="User Avatar" class="user-avatar-img">
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">আদমিন ইউজার</span>
-                        <small class="user-email">admin@example.com</small>
-                    </div>
-                </div>
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('change.password') }}" class="dropdown-item">
                     <i class="fa-solid fa-lock me-1"></i> পাসওয়ার্ড পরিবর্তন

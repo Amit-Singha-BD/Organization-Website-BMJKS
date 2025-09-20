@@ -70,6 +70,8 @@ Route::post('/tag/status/{id}',[PersonController::class, 'tagstatus'])->name('ta
 // Person Route Start -->
 Route::resource('person', PersonController::class);
 Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
+Route::get('search/person/', [PersonController::class, 'personSearch'])->name('person.search');
+Route::post('search/result/', [PersonController::class, 'searchResult'])->name('search.result');
 
 // Person Route End <--
 

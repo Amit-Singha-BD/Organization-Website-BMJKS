@@ -250,6 +250,7 @@ class SettingController extends Controller
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('slide', $imageName, 'public');
+
         } else {
             $imagePath = $settings->slide_image_6_path;
         }
