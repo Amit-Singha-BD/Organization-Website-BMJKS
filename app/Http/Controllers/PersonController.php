@@ -33,45 +33,29 @@ class PersonController extends Controller
         return view('Backend.Pages.Person-Search');
     }
     //সার্চ রিজাল্ট
-    public function searchResult(Request $request)
-    {
-        // শুরুতে Query Builder তৈরি
+    public function searchResult(Request $request){
+        
         $query = Person::query();
 
-        // সার্চের জন্য যেসব ফিল্ড চেক করতে হবে
-        $searchFields = [
-            'name',
-            'father_husband_name',
-            'mother_name',
-            'photo',
-            'date_of_birth',
-            'gender',
-            'caste',
-            'marital_status',
-            'mobile_number',
-            'village',
-            'post_office',
-            'thana',
-            'district',
-            'profession',
-            'blood_group',
+        $searchFields = ['name','father_husband_name','mother_name','photo','date_of_birth','gender','caste','marital_status',
+            'mobile_number','village','post_office','thana','district','profession','blood_group',
         ];
 
-        // প্রতিটি ফিল্ডের জন্য চেক করে query যোগ করা
         foreach ($searchFields as $field) {
             if ($request->filled($field)) {
-                $query->where($field, 'like', "%{$request->$field}%");
+                $query->where($field, 'like', "%" . trim($request->input($field)) . "%");
             }
         }
 
-        // Query execute
-        $persons = $query->get();
+        // যদি কোনো ফিল্ড না দেওয়া হয়
+        if ($query->getQuery()->wheres === []) {
+            return back()->with('error', 'অনুগ্রহ করে অন্তত একটি সার্চ ফিল্ড দিন');
+        }
 
-        // ফলাফল view এ পাঠানো
+        $persons = $query->paginate(10)->appends($request->all());
+
         return view('Backend.Pages.Person-Search', compact('persons'));
     }
-
-    
 
     /**
      * Show the form for creating a new resource.

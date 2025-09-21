@@ -14,7 +14,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Tappable;
-use Illuminate\Support\Traits\TransformsToResourceCollection;
 use Stringable;
 use Traversable;
 
@@ -27,7 +26,7 @@ use Traversable;
  */
 abstract class AbstractCursorPaginator implements Htmlable, Stringable
 {
-    use ForwardsCalls, Tappable, TransformsToResourceCollection;
+    use ForwardsCalls, Tappable;
 
     /**
      * All of the items being paginated.
@@ -403,12 +402,8 @@ abstract class AbstractCursorPaginator implements Htmlable, Stringable
     /**
      * Transform each item in the slice of items using a callback.
      *
-     * @template TThroughValue
-     *
-     * @param  callable(TValue, TKey): TThroughValue  $callback
+     * @param  callable  $callback
      * @return $this
-     *
-     * @phpstan-this-out static<TKey, TThroughValue>
      */
     public function through(callable $callback)
     {
