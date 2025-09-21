@@ -10,8 +10,9 @@
     </div>
 
     <div class="card shadow">
-        <div class="card-header bg-success text-white py-3">
+        <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
             <h5 class="card-title mb-0">{{ $personTypeName ?? 'ক্যাটাগরি' }} তালিকা</h5>
+            <p class="mb-0">মোট {{ $persons->total() }} জন </p>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
