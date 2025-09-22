@@ -16,6 +16,7 @@ use App\Http\Controllers\CommitteeManageController;
 use App\Http\Controllers\CommitteeYearController;
 use App\Http\Controllers\CommitteeMemberController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\DonationController;
 
 
 // Frontend Routes Start -->
@@ -58,12 +59,12 @@ Route::post('/committee/year/create', [CommitteeYearController::class, 'committe
 Route::get('/committee/{id}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
 Route::resource('committeeMember', CommitteeMemberController::class);
 
-
+//person category route start -->
 Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
 Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
 Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
 Route::post('/tag/status/{id}',[PersonController::class, 'tagstatus'])->name('tag.status');
-
+//person category route end --<
 
 
 
@@ -72,8 +73,15 @@ Route::resource('person', PersonController::class);
 Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
 Route::get('search/person/', [PersonController::class, 'personSearch'])->name('person.search');
 Route::post('search/result/', [PersonController::class, 'searchResult'])->name('search.result');
-
 // Person Route End <--
+
+//donation route Start -->
+Route::get('donation/event/list', [DonationController::class,'donationEvent'])->name('donation.event');
+Route::get('donation/event/create', [DonationController::class,'donationEventCreate'])->name('donation.event.create');
+Route::get('donation/event/create', [DonationController::class,'donationEventStore'])->name('donation.event.store');
+Route::get('recent/donation/list', [DonationController::class,'recentDonation'])->name('recent.donation');
+Route::get('donator/list', [DonationController::class,'donatorList'])->name('donator.list');
+//donation route end --<
 
 
 // Account Routes Start -->

@@ -68,6 +68,38 @@
         <a class="sidebar-link {{ Route::is('users.manage') ? 'active' : '' }}" href="{{ route('users.manage') }}"><i class="fas fa-user-circle"></i><span class="sidebar-text">অ্যাকাউন্ট ম্যানেজমেন্ট</span></a>
         <a class="sidebar-link {{ Route::is('committeeActivities.index') ? 'active' : '' }}" href="{{ route('committeeActivities.index') }}"><i class="fas fa-calendar-check"></i><span class="sidebar-text">কমিটির কার্যক্রম</span></a>
         <a class="sidebar-link {{ Route::is('finance.sheet') ? 'active' : '' }}" href="{{ route('finance.sheet') }}"><i class="fas fa-file-invoice-dollar"></i><span class="sidebar-text">আর্থিক হিসাবপত্র</span></a>
+
+         <div
+            class="sidebar-dropdown {{Route::is('donator.list') || Route::is('donation.event') || Route::is('donation.event.create') || Route::is('recent.donation') ? 'open' : '' }}">
+            <a href="#" class="sidebar-link sidebar-dropdown-toggle">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span class="sidebar-text">ডোনেশন ম্যানেজমেন্ট</span>
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+            </a>
+            <div class="sidebar-submenu">
+
+                <a class="sidebar-sublink {{ request()->routeIs('recent.donation') ? 'active' : '' }}" href="{{ route('recent.donation') }}">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="sidebar-text">রিসেন্ট ডোনেশন</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('donation.event') ? 'active' : '' }}" href="{{ route('donation.event') }}">
+                    <i class="fa-solid fa-coins"></i>
+                    <span class="sidebar-text">ডোনেশন ইভেন্ট</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('donation.event.create') ? 'active' : '' }}" href="{{ route('donation.event.create') }}">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    <span class="sidebar-text">ডোনেশন ইভেন্ট তৈরি</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('donator.list') ? 'active' : '' }}" href="{{ route('donator.list') }}">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span class="sidebar-text">ডোনেটর লিস্ট</span>
+                </a>
+            </div>
+        </div>
+
         <a class="sidebar-link {{ Route::is('contact.unread') || Route::is('contact.read') ? 'active' : '' }}" href="{{ route('contact.unread') }}"><i class="fas fa-comments"></i><span class="sidebar-text">যোগাযোগ তথ্য</span></a>
 
         <div class="sidebar-dropdown {{ Route::is('services') || Route::is('site.settings') ? 'open' : '' }}">
