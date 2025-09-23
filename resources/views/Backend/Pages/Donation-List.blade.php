@@ -2,9 +2,9 @@
 
 @section('Content')
 <div class="container py-4">
-    <div class="row mb-4">
+    <div class="row mb-3">
         <div class="col-md-12 text-center">
-            <h2 class="text-success">দাতাদের তথ্য তালিকা</h2>
+            <h2 class="text-success">রিসেন্ট দাতাদের তথ্য তালিকা</h2>
         </div>
     </div>
 

@@ -70,13 +70,18 @@
         <a class="sidebar-link {{ Route::is('finance.sheet') ? 'active' : '' }}" href="{{ route('finance.sheet') }}"><i class="fas fa-file-invoice-dollar"></i><span class="sidebar-text">আর্থিক হিসাবপত্র</span></a>
 
          <div
-            class="sidebar-dropdown {{Route::is('donator.list') || Route::is('donation.event') || Route::is('donation.event.create') || Route::is('recent.donation') ? 'open' : '' }}">
+            class="sidebar-dropdown {{Route::is('donation.create') || Route::is('donator.list') || Route::is('donation.event') || Route::is('donation.event.create') || Route::is('recent.donation') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-hand-holding-dollar"></i>
                 <span class="sidebar-text">ডোনেশন ম্যানেজমেন্ট</span>
                 <i class="fa-solid fa-chevron-down ms-auto"></i>
             </a>
             <div class="sidebar-submenu">
+
+                <a class="sidebar-sublink {{ request()->routeIs('donation.create') ? 'active' : '' }}" href="{{ route('donation.create') }}">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="sidebar-text">ডোনেশন তৈরি</span>
+                </a>
 
                 <a class="sidebar-sublink {{ request()->routeIs('recent.donation') ? 'active' : '' }}" href="{{ route('recent.donation') }}">
                     <i class="fa-solid fa-clock-rotate-left"></i>

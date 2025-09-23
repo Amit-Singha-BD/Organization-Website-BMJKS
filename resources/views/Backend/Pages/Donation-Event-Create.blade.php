@@ -23,15 +23,7 @@
                             @error('description')
                             <label class="form-label text-danger">{{$message}}</label>
                             @else
-                            <label class="form-label" >ডোনেশনের নতুন ইভেন্টের নাম (বাংলা)</label>
-                            @enderror
-                            <input name="description" placeholder="ডোনেশনের ডেসক্রিপশন লিখুন (বাংলায়)" class="form-control" required>
-                        </div>
-                        <div class="col-md-12">
-                            @error('description')
-                            <label class="form-label text-danger">{{$message}}</label>
-                            @else
-                            <label class="form-label" >ডোনেশনের নতুন ইভেন্টের নাম (বাংলা)</label>
+                            <label class="form-label" >ডোনেশনের ডেসক্রিপশন (বাংলা)</label>
                             @enderror
                             <input name="description" placeholder="ডোনেশনের ডেসক্রিপশন লিখুন (বাংলায়)" class="form-control" required>
                         </div>

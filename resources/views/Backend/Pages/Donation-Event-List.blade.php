@@ -2,6 +2,13 @@
 
 @section('Content')
 <div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 class="text-success mb-0">সকল ইভেন্টের তালিকা</h2>
+            <a href="{{ route('donation.event.create') }}" class="btn btn-success">নতুন ইভেন্ট তৈরি করুন</a>
+        </div>
+    </div>
+
     <div class="card shadow">
         <div class="card-header bg-success text-white">
             <h5 class="mb-0">ইভেন্টের তালিকা</h5>

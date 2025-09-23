@@ -76,9 +76,11 @@ Route::post('search/result/', [PersonController::class, 'searchResult'])->name('
 // Person Route End <--
 
 //donation route Start -->
+Route::get('donation/create', [DonationController::class,'donationCreate'])->name('donation.create');
+Route::post('donation/create', [DonationController::class,'donationStore'])->name('donation.store');
 Route::get('donation/event/list', [DonationController::class,'donationEvent'])->name('donation.event');
 Route::get('donation/event/create', [DonationController::class,'donationEventCreate'])->name('donation.event.create');
-Route::get('donation/event/create', [DonationController::class,'donationEventStore'])->name('donation.event.store');
+Route::post('donation/event/store', [DonationController::class,'donationEventStore'])->name('donation.event.store');
 Route::get('recent/donation/list', [DonationController::class,'recentDonation'])->name('recent.donation');
 Route::get('donator/list', [DonationController::class,'donatorList'])->name('donator.list');
 //donation route end --<
