@@ -14,7 +14,7 @@ class PersonValidation extends FormRequest
         return true;
     }
 
-        public function rules(): array
+    public function rules(): array
     {
         return [
             'name'                  => 'required|string|max:50',

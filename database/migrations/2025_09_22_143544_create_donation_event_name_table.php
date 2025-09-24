@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('event_name');
             $table->string('description');
+            $table->enum('status',['active','deactive'])->default('active');
             $table->string('total_amount')->nullable();
             $table->string('total_donator')->nullable();
             $table->timestamps();
