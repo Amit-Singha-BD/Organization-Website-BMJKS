@@ -28,52 +28,64 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Row 1 -->
+                        @foreach($donations as $donation)
                         <tr>
                             <td class="text-center">1</td>
-                            <td>মোঃ কামাল হোসেন</td>
-                            <td>মোঃ জামাল হোসেন</td>
-                            <td>ঢাকা</td>
-                            <td>৳ 678/-</td>
-                            <td class="text-center">চিকিৎসা</td>
+                            <td>{{ $donation->donator->name }}</td>
+                            <td>{{ $donation->donator->father_husband_name }}</td>
+                            <td>{{ $donation->donator->village }}</td>
+                            <td>{{ $donation->donate_amount }}</td>
+                            <td class="text-center">{{ $donation->event->event_name }}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
+                                    data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $donation->donator->id }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
-
-                        <!-- Row 2 -->
-                         <tr>
-                            <td class="text-center">1</td>
-                            <td>মোঃ কামাল হোসেন</td>
-                            <td>মোঃ জামাল হোসেন</td>
-                            <td>ঢাকা</td>
-                            <td>৳ 678/-</td>
-                            <td class="text-center">চিকিৎসা</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Row 3 -->
-                         <tr>
-                            <td class="text-center">1</td>
-                            <td>মোঃ কামাল হোসেন</td>
-                            <td>মোঃ জামাল হোসেন</td>
-                            <td>ঢাকা</td>
-                            <td>৳ 678/-</td>
-                            <td class="text-center">চিকিৎসা</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <!-- Member Modal 1 -->
+                        <div class="modal fade" id="modalViewMember{{ $donation->donator->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-info text-white">
+                                        <h5 class="modal-title">সদস্যের বিস্তারিত তথ্য</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+                                            <div class="col-12 text-center">
+                                                <img src="https://via.placeholder.com/120" 
+                                                    class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
+                                                    width="120" height="120" alt="Profile">
+                                                <h4 class="mt-3 mb-0">{{ $donation->donator->name }}</h4>
+                                                <p class="text-muted">{{$donation->donator->profession}}</p>
+                                            </div>
+                                            <hr class="mt-2">
+                                            <div class="col-md-6">
+                                                <p><strong>পিতার/স্বামীর নাম:</strong> {{ $donation->donator->father_husband_name }}</p>
+                                                <p><strong>মাতার নাম:</strong> {{ $donation->donator->mother_name }}</p>
+                                                <p><strong>জন্ম তারিখ:</strong> {{ $donation->donator->date_of_birth }}</p>
+                                                <p><strong>লিঙ্গ:</strong> {{ $donation->donator->gender }}</p>
+                                                <p><strong>বৈবাহিক অবস্থা:</strong> {{ $donation->donator->marital_status }}</p>
+                                                <p><strong>রক্তের গ্রুপ:</strong> {{ $donation->donator->blood_group }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><strong>মোবাইল:</strong> {{ $donation->donator->mobile_number }}</p>
+                                                <p><strong>ইমেইল:</strong> kamal@example.com</p>
+                                                <p><strong>গ্রাম:</strong> {{ $donation->donator->village }}</p>
+                                                <p><strong>ডাকঘর:</strong> {{ $donation->donator->post_office }}</p>
+                                                <p><strong>থানা:</strong> {{ $donation->donator->thana }}</p>
+                                                <p><strong>জেলা:</strong> {{ $donation->donator->district }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -101,46 +113,5 @@
     </div>
 </div>
 
-<!-- Member Modal 1 -->
-<div class="modal fade" id="modalViewMember1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-info text-white">
-                <h5 class="modal-title">সদস্যের বিস্তারিত তথ্য</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row g-3">
-                    <div class="col-12 text-center">
-                        <img src="https://via.placeholder.com/120" 
-                             class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
-                             width="120" height="120" alt="Profile">
-                        <h4 class="mt-3 mb-0">মোঃ কামাল হোসেন</h4>
-                        <p class="text-muted">ব্যবসায়ী</p>
-                    </div>
-                    <hr class="mt-2">
-                    <div class="col-md-6">
-                        <p><strong>পিতার/স্বামীর নাম:</strong> আব্দুল্লাহ</p>
-                        <p><strong>মাতার নাম:</strong> আয়েশা খাতুন</p>
-                        <p><strong>জন্ম তারিখ:</strong> 1990-05-20</p>
-                        <p><strong>লিঙ্গ:</strong> পুরুষ</p>
-                        <p><strong>বৈবাহিক অবস্থা:</strong> বিবাহিত</p>
-                        <p><strong>রক্তের গ্রুপ:</strong> O+</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><strong>মোবাইল:</strong> 01712345678</p>
-                        <p><strong>ইমেইল:</strong> kamal@example.com</p>
-                        <p><strong>গ্রাম:</strong> ঢাকা</p>
-                        <p><strong>ডাকঘর:</strong> সদর</p>
-                        <p><strong>থানা:</strong> ধানমন্ডি</p>
-                        <p><strong>জেলা:</strong> ঢাকা</p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection

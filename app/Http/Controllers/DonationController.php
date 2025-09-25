@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use App\Models\DonationEvent;
 use App\Models\Person;
+use App\Http\Requests\DonationValidate;
 use Illuminate\Http\Request;
 
 class DonationController extends Controller
@@ -36,7 +37,13 @@ class DonationController extends Controller
 
 
     public function recentDonation(){
-        return view('Backend.Pages.Donation-List');
+        $donations = Donation::get();
+
+        foreach($donations as $donation) {
+            $donation->donator = Person::where('id', $donation->people_id)->first();
+            $donation->event   = DonationEvent::where('id', $donation->event_id)->first();
+        }
+        return view('Backend.Pages.Donation-List',compact('donations'));
     }
 
     public function donationEvent(){
