@@ -11,5 +11,6 @@ class DonationEvent extends Model
     protected $fillable = [
         'event_name',
         'description',
+        'status'
     ];
 }

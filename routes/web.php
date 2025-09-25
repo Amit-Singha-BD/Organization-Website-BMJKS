@@ -81,6 +81,7 @@ Route::post('donation/create', [DonationController::class,'donationStore'])->nam
 Route::get('donation/event/list', [DonationController::class,'donationEvent'])->name('donation.event');
 Route::get('donation/event/create', [DonationController::class,'donationEventCreate'])->name('donation.event.create');
 Route::post('donation/event/store', [DonationController::class,'donationEventStore'])->name('donation.event.store');
+Route::post('donation/event/status/{id}', [DonationController::class,'donationEventStatus'])->name('donation.event.status');
 Route::get('recent/donation/list', [DonationController::class,'recentDonation'])->name('recent.donation');
 Route::get('donator/list', [DonationController::class,'donatorList'])->name('donator.list');
 //donation route end --<

@@ -38,6 +38,8 @@
                                     data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                                
+
                             </td>
                         </tr>
 
