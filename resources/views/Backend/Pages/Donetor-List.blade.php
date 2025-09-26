@@ -11,7 +11,7 @@
     <div class="card shadow">
         <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
             <h5 class="card-title mb-0">দাতা তালিকা</h5>
-            <p class="mb-0">মোট 5 জন</p>
+            <p class="mb-0">মোট 0 জন</p>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -28,13 +28,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Row 1 -->
+                        @foreach($persons as $person)
                         <tr>
                             <td class="text-center">1</td>
-                            <td>মোঃ কামাল হোসেন</td>
-                            <td>মোঃ জামাল হোসেন</td>
-                            <td>ঢাকা</td>
-                            <td>৳ 678/-</td>
+                            <td>{{ $person->name }}</td>
+                            <td>{{ $person->father_husband_name }}</td>
+                            <td>{{ $person->village }}</td>
+                            <td>{{ $person->totalDonation}}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
                                     data-bs-toggle="modal" data-bs-target="#modalViewMember1">
@@ -48,47 +48,7 @@
                                 </button>
                             </td>
                         </tr>
-
-                        <!-- Row 2 -->
-                         <tr>
-                            <td class="text-center">1</td>
-                            <td>মোঃ কামাল হোসেন</td>
-                            <td>মোঃ জামাল হোসেন</td>
-                            <td>ঢাকা</td>
-                            <td>৳ 678/-</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Row 3 -->
-                         <tr>
-                            <td class="text-center">1</td>
-                            <td>মোঃ কামাল হোসেন</td>
-                            <td>মোঃ জামাল হোসেন</td>
-                            <td>ঢাকা</td>
-                            <td>৳ 678/-</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

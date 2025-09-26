@@ -11,7 +11,6 @@
     <div class="card shadow">
         <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
             <h5 class="card-title mb-0">দাতা তালিকা</h5>
-            <p class="mb-0">মোট 5 জন</p>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -30,7 +29,7 @@
                     <tbody>
                         @foreach($donations as $donation)
                         <tr>
-                            <td class="text-center">1</td>
+                            <td class="text-center">{{ $loop->iteration + ($donations->currentPage()-1)*$donations->perPage() }}</td>
                             <td>{{ $donation->donator->name }}</td>
                             <td>{{ $donation->donator->father_husband_name }}</td>
                             <td>{{ $donation->donator->village }}</td>
@@ -91,25 +90,20 @@
             </div>
         </div>
 
+        <!-- Footer with Pagination -->
+        @if($donations->hasPages())
         <div class="card-footer bg-white">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    মোট 5 টি রেকর্ডের মধ্যে 1 - 3 দেখানো হচ্ছে
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="small text-muted mb-2 mb-md-0">
+                    মোট {{ $donations->total() }} টি রেকর্ডের মধ্যে 
+                    {{ $donations->firstItem() }} - {{ $donations->lastItem() }} দেখানো হচ্ছে
                 </div>
                 <div>
-                    <!-- Static Pagination -->
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled"><a class="page-link">«</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">»</a></li>
-                        </ul>
-                    </nav>
+                    {{ $donations->links() }}
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 

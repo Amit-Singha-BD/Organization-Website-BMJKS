@@ -52,7 +52,7 @@
                                 </button>
                             </td>
                             <td class="text-center">
-                                <a href="#" 
+                                <a href="{{route('donation.event.details',$event->id)}}" 
                                    class="btn btn-sm btn-info">
                                     <i class="fa fa-eye"></i> বিস্তারিত
                                 </a>

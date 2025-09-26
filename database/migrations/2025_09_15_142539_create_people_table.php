@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('district');
             $table->string('profession')->nullable();
             $table->enum('blood_group', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])->nullable();
-            $table->string('donation_id')->nullable();
+            $table->enum('donator',['no','yes'])->default('no');
             $table->timestamps();
         });
     }
