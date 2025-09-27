@@ -15,6 +15,7 @@ class PersonFactory extends Factory
         $bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
         $genders = ['Male', 'Female', 'Other'];
         $maritalStatuses = ['Single', 'Married', 'Divorced', 'Widowed'];
+        $donator = ['no','yes'];
 
         return [
             'name'                => $this->faker->name(),
@@ -32,6 +33,7 @@ class PersonFactory extends Factory
             'district'            => $this->faker->state(),
             'profession'          => $this->faker->jobTitle(),
             'blood_group'         => $this->faker->randomElement($bloodGroups),
+            'donator'             => $this->faker->randomElement($donator)
         ];
     }
 }

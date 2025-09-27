@@ -37,7 +37,7 @@ class DonationController extends Controller
 
 
     public function recentDonation(){
-        $donations = Donation::get();
+        $donations = Donation::paginate(10);
 
         foreach($donations as $donation) {
             $donation->donator = Person::where('id', $donation->people_id)->first();
@@ -90,8 +90,26 @@ class DonationController extends Controller
         }
     }
 
+    public function donationEventDetails($id){
+        $donations = Donation::where('id', $id)->paginate(10);
+            foreach($donations as $donation){
+                $donation->donator = Person::where('id', $donation->people_id)->first();
+                $donation->event = DonationEvent::where('id',$id )->first();;
+            }
+
+        return view('Backend.Pages.Donation-List',compact('donations'));
+    }
+
     public function donatorList()
-    {
-        return view('Backend.Pages.Donetor-List');
+    {   
+        $persons = Person::where('donator','yes')->get();
+            foreach($persons as $person){
+                $person->totalDonation = Donation::where('people_id', $person->id)->sum('donate_amount');
+                $person->donations = Donation::where('people_id', $person->id)->get();
+                    foreach($person->donations as $event){
+                        $event = DonationEvent::where('id', $event->event_id)->value('event_name');
+                    }
+            }
+        return view('Backend.Pages.Donetor-List',compact('persons'));
     }
 }
