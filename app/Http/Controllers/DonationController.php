@@ -24,6 +24,10 @@ class DonationController extends Controller
         if(!$person){
             return back()->withErrors(['people_id' => 'সহায়তাকারী পাওয়া যায়নি।']);
         }
+        else{
+            $person->donator = 'yes';
+            $person->update();
+        }
 
         $donation = new Donation();
         $donation->people_id     = $person->id; 
@@ -102,14 +106,14 @@ class DonationController extends Controller
 
     public function donatorList()
     {   
-        $persons = Person::where('donator','yes')->get();
+        $persons = Person::where('donator','yes')->paginate(20);
             foreach($persons as $person){
                 $person->totalDonation = Donation::where('people_id', $person->id)->sum('donate_amount');
                 $person->donations = Donation::where('people_id', $person->id)->get();
                     foreach($person->donations as $event){
-                        $event = DonationEvent::where('id', $event->event_id)->value('event_name');
+                        $event->eventName = DonationEvent::where('id', $event->event_id)->value('event_name');
                     }
             }
-        return view('Backend.Pages.Donetor-List',compact('persons'));
+        return view('Backend.Pages.Donetor-List',compact('persons','event'));
     }
 }
