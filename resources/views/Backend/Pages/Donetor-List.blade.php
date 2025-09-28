@@ -11,7 +11,7 @@
     <div class="card shadow">
         <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
             <h5 class="card-title mb-0">দাতা তালিকা</h5>
-            <p class="mb-0">মোট 0 জন</p>
+            <p class="mb-0">মোট  {{ $persons->count() }} জন</p>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -30,24 +30,136 @@
                     <tbody>
                         @foreach($persons as $person)
                         <tr>
-                            <td class="text-center">1</td>
+                            <td class="text-center">{{ $loop->iteration + ($persons->currentPage()-1)*$persons->perPage() }}</td>
                             <td>{{ $person->name }}</td>
                             <td>{{ $person->father_husband_name }}</td>
                             <td>{{ $person->village }}</td>
                             <td>{{ $person->totalDonation}}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
+                                    data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember1">
+                                    data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
+						
+                        <!-- সহায়তার তালিকা Modal 1 -->
+                        <div class="modal fade" id="eventView{{ $person->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content shadow-lg border-0">
+
+                                    <!-- Header -->
+                                    <div class="modal-header bg-info text-white">
+                                        <h5 class="modal-title">সদস্যের বিস্তারিত তথ্য</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <!-- Body -->
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+
+                                            <!-- Profile Image & Name -->
+                                            <div class="col-12 text-center">
+                                                <img src="https://via.placeholder.com/120"
+                                                    class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
+                                                    width="120" height="120" alt="Profile">
+                                                <h4 class="mt-3 mb-0">মোঃ কামাল হোসেন</h4>
+                                                <p class="text-muted">ব্যবসায়ী</p>
+                                            </div>
+
+                                            <hr class="mt-3">
+
+                                            <!-- Donation Table -->
+                                            <div class="col-12">
+												<h6 class="text-success mb-3">ডোনেশনের তালিকা</h6>
+
+												@forelse($person->donations as $donation)
+													<div class="card mb-2 shadow-sm">
+														<div class="card-body d-flex justify-content-between align-items-center">
+															<div>
+																<h6 class="mb-1">{{ $donation->event->event_name ?? 'N/A' }}</h6>
+																<small class="text-muted">{{ \Carbon\Carbon::parse($donation->date)->format('d M, Y') }}</small>
+															</div>
+															<div class="fw-bold text-success">
+																৳ {{ number_format($donation->donate_amount, 2) }}
+															</div>
+														</div>
+													</div>
+												@empty
+													<div class="alert alert-warning text-center">
+														কোনো ডোনেশন পাওয়া যায়নি
+													</div>
+												@endforelse
+											</div>
+
+
+											
+											
+											
+											
+											
+											
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            বন্ধ করুন
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Member Modal 1 -->
+                        <div class="modal fade" id="modalViewMember{{ $person->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-info text-white">
+                                        <h5 class="modal-title">সদস্যের বিস্তারিত তথ্য</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+                                            <div class="col-12 text-center">
+                                                <img src="https://via.placeholder.com/120" 
+                                                    class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
+                                                    width="120" height="120" alt="Profile">
+                                                <h4 class="mt-3 mb-0">{{ $person->name }}</h4>
+                                            </div>
+                                            <hr class="mt-2">
+                                            <div class="col-md-6">
+                                                <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name }}</p>
+                                                <p><strong>মাতার নাম:</strong> {{ $person->mother_name }}</p>
+                                                <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth }}</p>
+                                                <p><strong>লিঙ্গ:</strong> {{ $person->gender }}</p>
+                                                <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status }}</p>
+                                                <p><strong>রক্তের গ্রুপ:</strong> {{ $person->blood_group }}</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><strong>মোবাইল:</strong> {{ $person->mobile_number }}</p>
+                                                <p><strong>পেশা:</strong> {{ $person->profession }}</p>
+                                                <p><strong>গ্রাম:</strong> {{ $person->village }}</p>
+                                                <p><strong>ডাকঘর:</strong> {{ $person->post_office }}</p>
+                                                <p><strong>থানা:</strong> {{ $person->thana }}</p>
+                                                <p><strong>জেলা:</strong> {{ $person->district }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -57,65 +169,17 @@
         <div class="card-footer bg-white">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    মোট 5 টি রেকর্ডের মধ্যে 1 - 3 দেখানো হচ্ছে
+                    মোট {{ $persons->total() }} টি রেকর্ডের মধ্যে 
+                    {{ $persons->firstItem() }} - {{ $persons->lastItem() }} দেখানো হচ্ছে
                 </div>
                 <div>
-                    <!-- Static Pagination -->
-                    <nav>
-                        <ul class="pagination mb-0">
-                            <li class="page-item disabled"><a class="page-link">«</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">»</a></li>
-                        </ul>
-                    </nav>
+                    {{ $persons->links() }}
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
-<!-- Member Modal 1 -->
-<div class="modal fade" id="modalViewMember1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-info text-white">
-                <h5 class="modal-title">সদস্যের বিস্তারিত তথ্য</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row g-3">
-                    <div class="col-12 text-center">
-                        <img src="https://via.placeholder.com/120" 
-                             class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
-                             width="120" height="120" alt="Profile">
-                        <h4 class="mt-3 mb-0">মোঃ কামাল হোসেন</h4>
-                        <p class="text-muted">ব্যবসায়ী</p>
-                    </div>
-                    <hr class="mt-2">
-                    <div class="col-md-6">
-                        <p><strong>পিতার/স্বামীর নাম:</strong> আব্দুল্লাহ</p>
-                        <p><strong>মাতার নাম:</strong> আয়েশা খাতুন</p>
-                        <p><strong>জন্ম তারিখ:</strong> 1990-05-20</p>
-                        <p><strong>লিঙ্গ:</strong> পুরুষ</p>
-                        <p><strong>বৈবাহিক অবস্থা:</strong> বিবাহিত</p>
-                        <p><strong>রক্তের গ্রুপ:</strong> O+</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><strong>মোবাইল:</strong> 01712345678</p>
-                        <p><strong>ইমেইল:</strong> kamal@example.com</p>
-                        <p><strong>গ্রাম:</strong> ঢাকা</p>
-                        <p><strong>ডাকঘর:</strong> সদর</p>
-                        <p><strong>থানা:</strong> ধানমন্ডি</p>
-                        <p><strong>জেলা:</strong> ঢাকা</p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection

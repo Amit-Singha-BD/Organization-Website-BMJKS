@@ -26,5 +26,6 @@ class Person extends Model
         'district',
         'profession',
         'blood_group',
+        'donator'
     ];
 }
