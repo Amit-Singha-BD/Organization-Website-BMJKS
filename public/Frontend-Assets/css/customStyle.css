@@ -2206,3 +2206,41 @@ textarea.form-control-lg {
                 font-size: 1.5rem;
             }
         }
+
+/* ==============================================
+   কাস্টম ফর্ম স্টাইল 
+   ============================================== */
+
+    .card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+    .btn-success:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+    }
+
+    .table th {
+        border-top: none;
+        font-weight: 700;
+    }
+
+    .badge {
+        font-size: 0.75em;
+    }

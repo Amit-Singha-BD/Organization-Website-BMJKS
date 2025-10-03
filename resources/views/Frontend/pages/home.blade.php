@@ -12,7 +12,7 @@
 				<div class="carousel-item ">
 					<div class="position-relative d-inline-block w-100">
 					  <!-- ছবি -->
-					  <img src="assets/images/slide1.jpg" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
+					  <img src="{{asset('Frontend-Assets/images/slide1.jpg')}}" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
 
 					  <!-- গ্রেডিং overlay -->
 					  <div class="position-absolute top-0 start-0 end-0 bottom-0"
@@ -31,7 +31,7 @@
 				<div class="carousel-item">
 					<div class="position-relative d-inline-block w-100">
 					  <!-- ছবি -->
-					  <img src="assets/images/slide3.jpg" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
+					  <img src="{{asset('Frontend-Assets/images/slide3.jpg')}}" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
 
 					  <!-- গ্রেডিং overlay -->
 					  <div class="position-absolute top-0 start-0 end-0 bottom-0"
@@ -48,7 +48,7 @@
 				<div class="carousel-item active">
 					<div class="position-relative d-inline-block w-100">
 					  <!-- ছবি -->
-					  <img src="assets/images/slide2.jpg" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
+					  <img src="{{asset('Frontend-Assets/images/slide2.jpg')}}" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
 
 					  <!-- গ্রেডিং overlay -->
 					  <div class="position-absolute top-0 start-0 end-0 bottom-0"
