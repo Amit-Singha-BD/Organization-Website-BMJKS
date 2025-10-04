@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\FrontendSearchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\AdminController;
@@ -31,6 +32,7 @@ route::get('general-member',[FrontendController::class,'general_member'])->name(
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
 route::get('budget',[FrontendController::class,'budget'])->name('budget');
 route::get('comitee-activities',[FrontendController::class,'comitee_activities'])->name('comitee.activities');
+route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 // Frontend Routes End <--
 
 
