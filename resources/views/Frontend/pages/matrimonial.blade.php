@@ -1,127 +1,121 @@
 @extends('frontend.layouts.master_layout')
-@section('content') 
-<div class="container-fluid py-4">
-    <div class="row g-4">
-        <!-- বাম পাশের সার্চ ফিল্ড -->
-        <div class="col-lg-4">
-            <div class="card shadow-lg border-0 rounded-3">
-                <div class="card-header bg-primary text-white py-4">
-                    <h5 class="text-white card-title mb-0 fw-bold fs-4">
-                        <i class="fas fa-search me-3"></i>সদস্য অনুসন্ধান
-                    </h5>
+@section('content')
+
+<div class="container">
+    <div class="row">
+
+        {{-- ১. সার্চ ফর্ম (মোবাইলে উপরে, ডেক্সটপে বামে) --}}
+        <div class="col-12 col-lg-4 order-1 order-lg-1">
+            <div class="container">
+                <div class="card shadow-lg border-0 rounded-3 my-4">
+
+                    <h4 class="text-center card-title fw-bold">
+                        <i class="fas fa-search me-2"></i> ব্যক্তি অনুসন্ধান
+                    </h4>
+
+                    <div class="card-body card-body-content">
+                        <form class="row g-3" action="{{ route('search.result') }}" method="POST">
+                            @csrf
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-user"></i></span>
+                                    <input type="text" id="fullname" name="name" class="floating-input" placeholder="" autocomplete="name"/>
+                                    <label class="floating-label" for="fullname">ব্যাক্তির নাম</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-person-half-dress"></i></span>
+                                    <input type="text" id="fatherHusbandName" name="father_husband_name" class="floating-input" placeholder=""
+                                        autocomplete="off"/>
+                                    <label class="floating-label" for="fatherHusbandName">পিতা/স্বামীর নাম</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-user-tag"></i></span>
+                                    <input type="text" id="motherName" name="mother_name" class="floating-input" placeholder="" autocomplete="off"/>
+                                    <label class="floating-label" for="motherName">মাতার নাম</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-venus-mars"></i></span>
+                                    <select id="gender" name="gender" class="floating-input">
+                                        <option value="" disabled selected hidden></option>
+                                        <option value="male">পুরুষ</option>
+                                        <option value="female">মহিলা</option>
+                                        <option value="other">অন্যান্য</option>
+                                    </select>
+                                    <label class="floating-label" for="gender">লিঙ্গ</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-ring"></i></span>
+                                    <select id="maritalStatus" name="marital_status" class="floating-input">
+                                        <option value="" disabled selected hidden></option>
+                                        <option value="single">অবিবাহিত</option>
+                                        <option value="married">বিবাহিত</option>
+                                        <option value="widowed">বিধবা</option>
+                                        <option value="divorced">তালাকপ্রাপ্ত</option>
+                                    </select>
+                                    <label class="floating-label" for="maritalStatus">বৈবাহিক অবস্থা</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-hands-asl-interpreting"></i></span>
+                                    <select id="caste" name="caste" class="floating-input">
+                                        <option value="" disabled selected hidden></option>
+                                        <option value="islam">ইসলাম</option>
+                                        <option value="hindu">হিন্দু</option>
+                                        <option value="buddhist">বৌদ্ধ</option>
+                                        <option value="christian">খ্রিষ্টান</option>
+                                        <option value="other">অন্যান্য</option>
+                                    </select>
+                                    <label class="floating-label" for="caste">গোত্র</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-house"></i></span>
+                                    <input type="text" id="village" name="village" class="floating-input" placeholder=""
+                                        autocomplete="address-line1"/>
+                                    <label class="floating-label" for="village">গ্রাম</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 floating-wrap">
+                                <div class="floating-input-container">
+                                    <span class="icon-addon"><i class="fas fa-briefcase"></i></span>
+                                    <input type="text" id="occupation" name="profession" class="floating-input" placeholder=""
+                                        autocomplete="organization-title" />
+                                    <label class="floating-label" for="occupation">পেশা</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-grid mt-4">
+                                <button type="submit" name="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm btn-submit">
+                                    <i class="fa fa-search me-2"></i> অনুসন্ধান করুন
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="card-body p-4">
-    <form action="{{ route('search.result') }}" method="POST">
-        @csrf
-
-        <!-- নাম -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-user text-success me-2"></i> নাম
-            </label>
-            <div class="col-md-9">
-                <input type="text" name="name" class="form-control" placeholder="সদস্যের নাম লিখুন">
             </div>
         </div>
 
-        <!-- পিতা/স্বামীর নাম -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-user-friends text-success me-2"></i> পিতা/স্বামীর নাম
-            </label>
-            <div class="col-md-9">
-                <input type="text" name="father_husband_name" class="form-control" placeholder="পিতা/স্বামীর নাম লিখুন">
-            </div>
-        </div>
-
-        <!-- মাতার নাম -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-female text-success me-2"></i> মাতার নাম
-            </label>
-            <div class="col-md-9">
-                <input type="text" name="mother_name" class="form-control" placeholder="মাতার নাম লিখুন">
-            </div>
-        </div>
-
-        <!-- লিঙ্গ -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-venus-mars text-success me-2"></i> লিঙ্গ
-            </label>
-            <div class="col-md-9">
-                <select name="gender" class="form-select">
-                    <option value="">-- নির্বাচন করুন --</option>
-                    <option value="male">পুরুষ</option>
-                    <option value="female">মহিলা</option>
-                    <option value="other">অন্যান্য</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- বৈবাহিক অবস্থা -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-ring text-success me-2"></i> বৈবাহিক অবস্থা
-            </label>
-            <div class="col-md-9">
-                <select name="marital_status" class="form-select">
-                    <option value="">-- নির্বাচন করুন --</option>
-                    <option value="single">অবিবাহিত</option>
-                    <option value="married">বিবাহিত</option>
-                    <option value="widowed">বিধবা</option>
-                    <option value="divorced">তালাকপ্রাপ্ত</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- গোত্র -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-users text-success me-2"></i> গোত্র
-            </label>
-            <div class="col-md-9">
-                <input type="text" name="caste" class="form-control" placeholder="গোত্র লিখুন">
-            </div>
-        </div>
-
-        <!-- গ্রাম -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">গ্রাম</label>
-            <div class="col-md-9">
-                <input type="text" name="village" class="form-control" placeholder="গ্রামের নাম লিখুন">
-            </div>
-        </div>
-
-        <!-- পেশা -->
-        <div class="row mb-3 align-items-center">
-            <label class="col-md-3 col-form-label fw-semibold text-dark">
-                <i class="fas fa-briefcase text-success me-2"></i> পেশা
-            </label>
-            <div class="col-md-9">
-                <input type="text" name="profession" class="form-control" placeholder="পেশা লিখুন">
-            </div>
-        </div>
-
-        <!-- সার্চ বাটন -->
-        <div class="row">
-            <div class="offset-md-3 col-md-9">
-                <button type="submit" class="btn btn-success w-100 fw-bold py-2 fs-5">
-                    <i class="fas fa-search me-2"></i> অনুসন্ধান করুন
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
-            </div>
-        </div>
-
-        <!-- ডান পাশের সার্চ রেজাল্ট -->
+        {{-- ২. ডান পাশের সার্চ রেজাল্ট (মোবাইলে নিচে, ডেক্সটপে ডানে) --}}
         @if(Route::is('search.result'))
-        <div class="col-lg-8">
-            <!-- হেডার সেকশন -->
-            <div class="row mb-4">
+        <div class="col-12 col-lg-8 order-2 order-lg-2">
+            <div class="row mb-4 mt-4 mt-lg-0"> {{-- mt-4 for mobile spacing, mt-lg-0 to reset on desktop --}}
                 <div class="col-12">
                     <div class="card bg-gradient-primary text-white shadow-lg border-0 rounded-3">
                         <div class="card-body py-4">
@@ -146,7 +140,6 @@
                 </div>
             </div>
 
-            <!-- রেজাল্ট কার্ড -->
             <div class="card shadow-lg border-0 rounded-3">
                 <div class="card-header bg-white py-4 border-bottom">
                     <div class="row align-items-center">
@@ -163,7 +156,6 @@
                     </div>
                 </div>
 
-                <!-- টেবিল সেকশন -->
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle mb-0">
@@ -210,19 +202,17 @@
                                     </td>
                                     <td class="text-center py-3">
                                         <button type="button" class="btn btn-outline-success btn-sm px-3 py-2 fw-semibold" 
-                                                data-bs-toggle="modal" 
-                                                data-bs-target="#modalViewMember{{ $person->id }}">
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modalViewMember{{ $person->id }}">
                                             <i class="fas fa-eye me-2"></i>দেখুন
                                         </button>
                                     </td>
                                 </tr>
 
-                                <!-- View Member Modal -->
                                 <div class="modal fade" id="modalViewMember{{ $person->id }}" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content border-0 shadow-lg rounded-4">
                                             
-                                            <!-- Header -->
                                             <div class="modal-header bg-gradient-info text-white rounded-top-4 py-4">
                                                 <h5 class="modal-title fw-bold fs-4">
                                                     <i class="fas fa-id-card me-3"></i>সদস্যের বিস্তারিত তথ্য
@@ -230,11 +220,9 @@
                                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                             </div>
 
-                                            <!-- Body -->
                                             <div class="modal-body p-5">
                                                 <div class="row g-5">
                                                     
-                                                    <!-- Profile Section -->
                                                     <div class="col-12 text-center">
                                                         <img src="{{ $person->photo ? asset($person->photo) : asset('Frontend-Assets/images/profile_img.png') }}"
                                                             class="rounded-circle border border-4 border-info shadow-lg object-fit-cover mb-4"
@@ -245,7 +233,6 @@
                                                         </span>
                                                     </div>
 
-                                                    <!-- Information Sections -->
                                                     <div class="col-md-6">
                                                         <div class="card border-0 shadow-sm h-100">
                                                             <div class="card-header bg-light py-3">
@@ -309,7 +296,6 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Footer -->
                                             <div class="modal-footer border-0 py-4">
                                                 <button type="button" class="btn btn-secondary px-4 py-2 fw-semibold" data-bs-dismiss="modal">
                                                     <i class="fas fa-times me-2"></i>বন্ধ করুন
@@ -334,7 +320,6 @@
                     </div>
                 </div>
 
-                <!-- Pagination -->
                 @if($persons->hasPages())
                 <div class="card-footer bg-white border-0 py-4">
                     <div class="row align-items-center">
