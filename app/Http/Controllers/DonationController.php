@@ -114,6 +114,6 @@ class DonationController extends Controller
                         $event->eventName = DonationEvent::where('id', $event->event_id)->value('event_name');
                     }
             }
-        return view('Backend.Pages.Donetor-List',compact('persons','event'));
+        return view('Backend.Pages.Donetor-List',compact('persons'));
     }
 }
