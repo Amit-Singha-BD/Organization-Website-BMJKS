@@ -64,7 +64,6 @@
                                                     class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
                                                     width="120" height="120" alt="Profile">
                                                 <h4 class="mt-3 mb-0">{{ $person->name }}</h4>
-                                                <p class="text-muted">{{ $person->profession ?? 'N/A' }}</p>
                                             </div>
 
                                             <hr class="mt-2">
@@ -82,11 +81,20 @@
                                             <!-- Contact & Address -->
                                             <div class="col-md-6">
                                                 <p><strong>মোবাইল:</strong> {{ $person->mobile_number ?? 'N/A' }}</p>
-                                                <p><strong>ইমেইল:</strong> {{ $person->email ?? 'N/A' }}</p>
+                                                <p><strong>পেশা:</strong> {{ $person->profession ?? 'N/A' }}</p>
                                                 <p><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
                                                 <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'N/A' }}</p>
                                                 <p><strong>থানা:</strong> {{ $person->thana ?? 'N/A' }}</p>
                                                 <p><strong>জেলা:</strong> {{ $person->district ?? 'N/A' }}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                @if($person->personType && $person->personType->count() > 0)
+                                                    @foreach($person->personType as $type)
+                                                        <span class="badge bg-success">{{ $type->person_type_name }}</span>
+                                                    @endforeach
+                                                @else
+                                                    <span class="text-muted">কোনো টাইপ নেই</span>
+                                                @endif
                                             </div>
 
                                         </div>
