@@ -2208,39 +2208,184 @@ textarea.form-control-lg {
         }
 
 /* ==============================================
-   কাস্টম ফর্ম স্টাইল 
+   মেট্রিমনি ফর্ম স্টাইল 
    ============================================== */
 
-    .card {
-        transition: transform 0.2s ease-in-out;
+/* মূল ফ্লোটিং মোডাল র‍্যাপার */
+.floating-wrap {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* আইকন এবং ইনপুট সহ পুরো কন্টেইনার */
+.floating-input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: .5rem;
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* ফোকাস করার সময় নীল বর্ডার ও শ্যাডো */
+.floating-input-container:focus-within {
+    border-color: var(--secondary-green);
+    box-shadow: 0 0 0 .10rem var(--secondary-green);
+}
+
+/* আইকনের স্টাইল এবং অবস্থান */
+.icon-addon {
+    padding-left: .75rem;
+    padding-right: .5rem;
+    color: #495057;
+    transition: color .15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    min-width: 24px;
+}
+
+.floating-input-container:focus-within .icon-addon {
+    color: #0d6efd;
+}
+
+/* ইনপুট ফিল্ড */
+.floating-input {
+    width: 100%;
+    padding: 1rem .75rem .25rem .25rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    height: auto;
+    flex-grow: 1;
+}
+
+.floating-input:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* select ইনপুট */
+select.floating-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+}
+
+/* ভাসমান লেবেল */
+.floating-label {
+    position: absolute;
+    left: 2.5rem;
+    top: 1rem;
+    pointer-events: none;
+    transition: transform .18s ease, font-size .18s ease, color .18s ease, top .18s ease;
+    color: #6c757d;
+    font-size: 1rem;
+    transform-origin: left top;
+    background: transparent;
+    padding: 0 .25rem;
+    z-index: 10;
+}
+
+/* লেবেল উপরে উঠলে */
+.floating-input:focus+.floating-label,
+.floating-input:not(:placeholder-shown)+.floating-label,
+select.floating-input:valid+.floating-label {
+    transform: translateY(-0.9rem) scale(.93);
+    top: .3rem;
+    font-size: .85rem;
+    color: var(--text-dark);
+    background: #fff;
+    left: 2.4rem;
+}
+
+/* মিডিয়া কোয়েরি (আগের মতোই রাখা হয়েছে) */
+@media (max-width: 576px) {
+    .floating-label {
+        left: 2.2rem;
+        top: .9rem;
     }
 
-    .card:hover {
-        transform: translateY(-2px);
+    .floating-input:focus+.floating-label,
+    .floating-input:not(:placeholder-shown)+.floating-label,
+    select.floating-input:valid+.floating-label {
+        transform: translateY(-0.8rem) scale(.93);
+        top: .15rem;
+        left: 2.1rem;
     }
 
-    .form-control:focus,
-    .form-select:focus {
-        border-color: #28a745;
-        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    .icon-addon {
+        padding-left: .5rem;
+        padding-right: .25rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .floating-label {
+        left: 2rem;
+        top: .8rem;
+        font-size: 0.9rem;
     }
 
-    .btn-success {
-        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        border: none;
-        transition: all 0.3s ease;
+    .floating-input:focus+.floating-label,
+    .floating-input:not(:placeholder-shown)+.floating-label,
+    select.floating-input:valid+.floating-label {
+        transform: translateY(-0.7rem) scale(.9);
+        top: .1rem;
+        left: 1.9rem;
+        font-size: .8rem;
     }
 
-    .btn-success:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+    .floating-input {
+        font-size: 0.9rem;
+        padding: 0.9rem .5rem .2rem .2rem;
     }
 
-    .table th {
-        border-top: none;
-        font-weight: 700;
+    .icon-addon {
+        padding-left: .4rem;
+        padding-right: .2rem;
     }
+}
 
-    .badge {
-        font-size: 0.75em;
+/* কার্ড স্টাইল */
+.card {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+/* ✨ নতুন যোগ করা হয়েছে: ব্যক্তি অনুসন্ধান শিরোনামের ব্যাকগ্রাউন্ড স্টাইল */
+.card-title {
+    color: #fff !important;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    margin-bottom: 0 !important;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%) !important;
+    border-top-left-radius: 0.45rem;
+    border-top-right-radius: 0.45rem;
+    width: 100%;
+    display: block;
+}
+
+/* কার্ড বডিতে প্যাডিং সামঞ্জস্য করা হয়েছে */
+.card-body-content {
+    padding: 2rem 2.5rem 2.5rem 2.5rem;
+}
+
+@media (max-width: 576px) {
+    .card-body-content {
+        padding: 1.5rem 1.5rem 2rem 1.5rem;
     }
+}
+
+/* তারিখের ব্যাপ্তি লেবেলের জন্য স্টাইল */
+.date-range-label {
+    font-weight: bold;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
