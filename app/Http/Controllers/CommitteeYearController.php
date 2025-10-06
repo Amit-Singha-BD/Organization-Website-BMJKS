@@ -29,8 +29,11 @@ class CommitteeYearController extends Controller {
     }
 
     public function activeCommittee($id){
-        $committeeMember = CommitteeMember::where('CommitteeYear_id', $id)->orderBy('role', 'asc')->get();
-        $committeeName = CommitteeYear::where('id', $id)->first();
-        return view('Backend.Pages.Committee-Member-List', compact('committeeMember', 'committeeName', 'id'));
+        // $committeeMember = CommitteeMember::where('CommitteeYear_id', $id)->orderBy('role', 'asc')->get();
+        // $committeeName = CommitteeYear::where('id', $id)->first();
+        $committeeYear = CommitteeYear::with(['committee_members' => function($query) {
+            $query->orderBy('role', 'asc');
+        }])->find($id);
+        return view('Backend.Pages.Committee-Member-List', compact('committeeYear', 'id'));
     }
 }

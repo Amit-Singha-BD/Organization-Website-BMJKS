@@ -5,7 +5,7 @@
     <!-- Page Action Buttons -->
     <div class="container mt-4">
         <div class="row g-3 d-flex justify-content-end align-items-center">
-            @if($committeeName->status == 'active')
+            @if($committeeYear->status == 'active')
             <!-- New Member -->
             <div class="col-12 col-md-6 col-lg-2">
                 <button type="button" class="btn btn-success w-100" 
@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
                 <div class="card-header text-white text-center">
-                    <i class="fa-solid fa-sitemap"></i> {{ $committeeName->committee_name }} সদস্য তালিকা
+                    <i class="fa-solid fa-sitemap"></i> {{ $committeeYear->committee_name }} সদস্য তালিকা
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
@@ -32,20 +32,20 @@
                                 <th>ক্রমিক</th>
                                 <th>ছবি</th>
                                 <th>নাম</th>
-                                <th>ভূমিকা</th>
+                                <th>পদবী</th>
                                 <th>মোবাইল</th>
                                 <th>অ্যাকশন</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($committeeMember as $member)
+                            @foreach($committeeYear->committee_members as $member)
                             <tr class="text-center">
                                 <td>{{ $loop->iteration }}</td>
                                 <td data-label="ছবি"><img src="{{ $member->photo ? asset($member->photo) : asset('Frontend-Assets/images/profile_img.png') }}" alt="" width="42" height="42"
                                         class="rounded-circle object-fit-cover"></td>
                                 <td data-label="নাম">{{ $member->name }}</td>
-                                <td data-label="ভূমিকা"><span class="badge type">{{ $member->role }}</span></td>
+                                <td data-label="পদবী"><span class="badge type">{{ role_name($member->role) }}</span></td>
                                 <td data-label="মোবাইল">{{ $member->mobile }}</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
@@ -56,7 +56,7 @@
                                             <i class="fas fa-eye"></i>
                                         </button>
 
-                                        @if($committeeName->status == 'active')
+                                        @if($committeeYear->status == 'active')
                                         <button class="action-btn-success" 
                                             data-bs-toggle="modal"
                                             data-bs-target="#modalMember{{ $member->id }}"
@@ -91,7 +91,7 @@
                                                 </div>
                                                 <div class="col-12 text-center">
                                                     <h5 id="memberName" class="mb-0 mt-2">{{ $member->name }}</h5>
-                                                    <p id="memberPosition" class="text-muted">{{ $member->role }}</p>
+                                                    <p id="memberPosition" class="text-muted">{{ role_name($member->role) }}</p>
                                                 </div>
                                                 <hr>
                                                 <div class="col-12">
@@ -147,22 +147,11 @@
                                                             @enderror
                                                         </label>
                                                         <select class="form-select" id="role" name="role">
-                                                            <option value="1" {{ $member->role == 1 ? 'selected' : '' }}>সভাপতি</option>
-                                                            <option value="2" {{ $member->role == 2 ? 'selected' : '' }}>সহ-সভাপতি</option>
-                                                            <option value="3" {{ $member->role == 3 ? 'selected' : '' }}>সহ-সভাপতি মহিলা</option>
-                                                            <option value="4" {{ $member->role == 4 ? 'selected' : '' }}>সাধারণ সম্পাদক</option>
-                                                            <option value="5" {{ $member->role == 5 ? 'selected' : '' }}>সহ-সাধারণ সম্পাদক</option>
-                                                            <option value="6" {{ $member->role == 6 ? 'selected' : '' }}>অর্থ সম্পাদক</option>
-                                                            <option value="7" {{ $member->role == 7 ? 'selected' : '' }}>প্রচার ও প্রকাশনী সম্পাদক</option>
-                                                            <option value="8" {{ $member->role == 8 ? 'selected' : '' }}>সাহিত্য ও সাংস্কৃতিক সম্পাদক</option>
-                                                            <option value="9" {{ $member->role == 9 ? 'selected' : '' }}>দপ্তর সম্পাদক</option>
-                                                            <option value="10" {{ $member->role == 10 ? 'selected' : '' }}>ক্রীড়া সম্পাদক</option>
-                                                            <option value="11" {{ $member->role == 11 ? 'selected' : '' }}>সাংগঠনিক সম্পাদক</option>
-                                                            <option value="12" {{ $member->role == 12 ? 'selected' : '' }}>সমাজকল্যান সম্পাদক</option>
-                                                            <option value="13" {{ $member->role == 13 ? 'selected' : '' }}>শিক্ষা সম্পাদক</option>
-                                                            <option value="14" {{ $member->role == 14 ? 'selected' : '' }}>তথ্য ও প্রযুক্তি উন্নয়ন সম্পাদক</option>
-                                                            <option value="15" {{ $member->role == 15 ? 'selected' : '' }}>মহিলা বিষয়ক সম্পাদক</option>
-                                                            <option value="16" {{ $member->role == 16 ? 'selected' : '' }}>সাধারণ কার্যকরী সদস্য</option>
+                                                            @foreach(\App\Helpers\RoleHelper::all() as $id => $name)
+                                                                <option value="{{ $id }}" {{ $member->role == $id ? 'selected' : '' }}>
+                                                                    {{ $name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
 
@@ -282,7 +271,7 @@
                     <form action="{{ route('committeeMember.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <input type="hidden" value="{{ $id }}" name="CommitteeYear_id">
+                            <input type="hidden" value="{{ $committeeYear->id }}" name="CommitteeYear_id">
                             <label for="name" class="form-label @error('name') text-danger @enderror">
                                 @error('name')
                                     {{ $message }}
@@ -320,22 +309,9 @@
                             </label>
                             <select class="form-select" id="role" name="role">
                                 <option value="">পদবী নির্বাচন করুন</option>
-                                <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>সভাপতি</option>
-                                <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>সহ-সভাপতি</option>
-                                <option value="3" {{ old('role') == 3 ? 'selected' : '' }}>সহ-সভাপতি মহিলা</option>
-                                <option value="4" {{ old('role') == 4 ? 'selected' : '' }}>সাধারণ সম্পাদক</option>
-                                <option value="5" {{ old('role') == 5 ? 'selected' : '' }}>সহ-সাধারণ সম্পাদক</option>
-                                <option value="6" {{ old('role') == 6 ? 'selected' : '' }}>অর্থ সম্পাদক</option>
-                                <option value="7" {{ old('role') == 7 ? 'selected' : '' }}>প্রচার ও প্রকাশনী সম্পাদক</option>
-                                <option value="8" {{ old('role') == 8 ? 'selected' : '' }}>সাহিত্য ও সাংস্কৃতিক সম্পাদক</option>
-                                <option value="9" {{ old('role') == 9 ? 'selected' : '' }}>দপ্তর সম্পাদক</option>
-                                <option value="10" {{ old('role') == 10 ? 'selected' : '' }}>ক্রীড়া সম্পাদক</option>
-                                <option value="11" {{ old('role') == 11 ? 'selected' : '' }}>সাংগঠনিক সম্পাদক</option>
-                                <option value="12" {{ old('role') == 12 ? 'selected' : '' }}>সমাজকল্যান সম্পাদক</option>
-                                <option value="13" {{ old('role') == 13 ? 'selected' : '' }}>শিক্ষা সম্পাদক</option>
-                                <option value="14" {{ old('role') == 14 ? 'selected' : '' }}>তথ্য ও প্রযুক্তি উন্নয়ন সম্পাদক</option>
-                                <option value="15" {{ old('role') == 15 ? 'selected' : '' }}>মহিলা বিষয়ক সম্পাদক</option>
-                                <option value="16" {{ old('role') == 16 ? 'selected' : '' }}>সাধারণ কার্যকরী সদস্য</option>
+                                @foreach(\App\Helpers\RoleHelper::all() as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
                             </select>
                         </div>
 

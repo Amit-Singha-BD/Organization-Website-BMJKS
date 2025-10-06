@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CommitteeYear extends Model {
     use HasFactory;
@@ -13,4 +14,10 @@ class CommitteeYear extends Model {
         'committee_name',
         'committee_start_date',
     ];
+
+    public function committee_members(): HasMany {
+        return $this->hasMany(CommitteeMember::class,
+                             'CommitteeYear_id',
+                             'id');
+    }
 }
