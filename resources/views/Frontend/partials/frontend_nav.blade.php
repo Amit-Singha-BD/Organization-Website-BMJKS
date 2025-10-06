@@ -10,15 +10,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav  align-items-lg-center">
                 <li class="nav-item">
-                    <a class="nav-link service" href="{{route('home')}}">হোম</a>
+                    <a class="nav-link service {{ Route::is('home') ? 'active' : '' }}" href="{{route('home')}}">হোম</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('about')}}">আমাদের সম্পর্কে</a>
+                    <a class="nav-link {{ Route::is('about') ? 'active' : '' }}" href="{{route('about')}}">আমাদের সম্পর্কে</a>
                 </li>
                 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ Route::is('commitee') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                         কমিটি
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
@@ -39,15 +39,15 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('frontend.notice') ? 'active' : '' }}" href="{{route('frontend.notice')}}">নোটিশ</a>
+                    <a class="nav-link {{ Route::is('frontend.notice') ? 'active' : '' }}" href="{{route('frontend.notice')}}">নোটিশ</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('frontend.service') ? 'active' : '' }}" href="{{route('frontend.service')}}">সেবা</a>
+                    <a class="nav-link {{ Route::is('frontend.service') ? 'active' : '' }}" href="{{route('frontend.service')}}">সেবা</a>
                 </li>
                 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ Route::is('lifetime.member') || Route::is('general.member') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                         ই-সেবা
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
@@ -61,18 +61,17 @@
                 </li>
         
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('techteam')}}">টেক টিম</a>
+                    <a class="nav-link {{ Route::is('techteam') ? 'active' : '' }}" href="{{route('techteam')}}">টেক টিম</a>
                 </li>
 				
 				<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('comitee.activities') || Route::is('contact') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                         অন্যান্য
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
                         <li><a class="dropdown-item" href="{{route('budget')}}">বাজেট</a></li>
 						<li><a class="dropdown-item" href="{{route('comitee.activities')}}">কার্যক্রম</a></li>
                         <li><a class="dropdown-item" href="{{route('contact')}}">যোগাযোগ</a></li>
-						
                     </ul>
                 </li>
             </ul>
