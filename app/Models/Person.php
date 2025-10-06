@@ -28,4 +28,17 @@ class Person extends Model
         'blood_group',
         'donator'
     ];
+
+    public function personType()
+    {
+        return $this->hasManyThrough(
+            PersonType::class,   // Final Model (target)
+            PersonTag::class,    // Intermediate Model
+            'person_id',         // Foreign key on person_tags table (links to persons.id)
+            'id',                // Foreign key on person_types table
+            'id',                // Local key on persons table
+            'persontype_id'      // Local key on person_tags table
+        );
+    }
+
 }

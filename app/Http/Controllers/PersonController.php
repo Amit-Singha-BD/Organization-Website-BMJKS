@@ -15,17 +15,18 @@ class PersonController extends Controller
      */
     public function index($personType)
     {
-        $personTypeName = PersonType::where('id', $personType)->value('person_type_name');
-        // Step 1: Tag গুলো নাও
-        $personTags = PersonTag::where('persontype_id', $personType)->get();
+       // Step 1: PersonType মডেল থেকে তথ্য নাও (রিলেশনসহ এবং person এর personType সহ)
+        $personTypeData = PersonType::with(['people.personType'])
+            ->findOrFail($personType);
 
-        // Step 2: Person ID গুলো বের করো
-        $personIds = $personTags->pluck('person_id'); // ধরে নিচ্ছি PersonTag এর column name হচ্ছে person_id
+        // Step 2: নাম এবং সম্পর্কিত persons গুলো পাও
+        $personTypeName = $personTypeData->person_type_name;
 
-        // Step 3: Person গুলো নাও
-        $persons = Person::whereIn('id', $personIds)->paginate(10);
+        // Step 3: PersonType এর রিলেশন থেকে persons paginate করে আনো
+        $persons = $personTypeData->people()->with('personType')->paginate(10);
 
-        return view('Backend.Pages.Person-List', compact('persons','personTypeName'));
+        // Step 4: ভিউতে পাঠাও
+        return view('Backend.Pages.Person-List', compact('persons', 'personTypeName'));
     }
 
     //ব্যাক্তি সার্চ
