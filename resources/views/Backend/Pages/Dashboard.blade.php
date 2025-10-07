@@ -71,7 +71,7 @@
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
                 <div class="card-header text-white">
-                    <h5 class="mb-0">
+                    <h5 class="mb-0 text-center">
                         <i class="fa-solid fa-sitemap"></i>
                         সক্রিয় কমিটি তালিকা
                     </h5>
@@ -87,6 +87,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if($committees->isEmpty())
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="align-items-center py-2 text-center">
+                                            <strong>এই সক্রিয় কমিটি তালিকা টেবিলে কোনো তথ্য নেই।</strong>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
+
                             @foreach($committees as $committee)
                             <tr class="text-center">
                                 <td data-label="শাখা নাম">
@@ -116,8 +126,8 @@
 
     {{-- পূর্বে তৈরি ট্যাগগুলোর তালিকা --}}
     <div class="card shadow-sm mx-auto mt-4" style="max-width: 70rem;">
-        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 mx-auto">
                 <i class="fas fa-database"></i>
                 বাসযুক ডেটাবেজ বিন্যাস
             </h5>
@@ -130,19 +140,29 @@
                     <table class="table table-bordered table-hover align-middle mb-0">
                         <thead class="table-success text-center">
                             <tr>
-                                <th scope="col" style="width: 70px;">#ID</th>
+                                <th scope="col" style="width: 70px;">ID</th>
                                 <th scope="col">ক্যাটাগরির নাম</th>
                                 <th scope="col" style="width: 120px;">লোকজন</th>
                                 <th scope="col" style="width: 150px;">দেখুন</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if($tags->isEmpty())
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="align-items-center py-2 text-center">
+                                            <strong>এই বাসযুক ডেটাবেজ বিন্যাস টেবিলে কোনো তথ্য নেই।</strong>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
+
                             @foreach($tags as $tag)
                                 <tr>
                                     <td class="text-center fw-bold" data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
-                                    <td data-label="ক্যাটাগরি নাম">{{ $tag->person_type_name }}</td>
+                                    <td data-label="ক্যাটাগরি নাম" class="text-center">{{ $tag->person_type_name }}</td>
                                     <td class="text-center" data-label="লোকজন">
-                                        <span class="badge bg-primary" >{{ $tag->persons_count ?? 0 }}</span>
+                                        <span class="badge bg-success" >{{ $tag->persons_count ?? 0 }}</span>
                                     </td>
                                     <td class="text-center" data-label="দেখুন">
                                         <div class="d-flex flex-row justify-content-center gap-2">
@@ -172,7 +192,7 @@
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
                 <div class="card-header text-white">
-                    <h5 class="mb-0">
+                    <h5 class="mb-0 text-center">
                         <i class="fa-solid fa-bullhorn"></i> 
                         সাম্প্রতিক নোটিশ
                     </h5>
@@ -188,6 +208,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if($notices->isEmpty())
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="align-items-center py-2 text-center">
+                                            <strong>এই সাম্প্রতিক নোটিশ টেবিলে কোনো তথ্য নেই।</strong>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
 
                             @foreach($notices as $notice)
                             <tr class="text-center">
@@ -240,7 +269,7 @@
                     </table>
 
                     <div class="bg-white text-center m-4">
-                        <a href="{{ route('notice.index') }}" class="btn btn-primary btn-sm px-4">
+                        <a href="{{ route('notice.index') }}" class="btn btn-success btn-sm px-4">
                         সব নোটিশ
                         </a>
                     </div>
