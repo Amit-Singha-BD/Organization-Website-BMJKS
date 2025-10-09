@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Person extends Model
 {
     /** @use HasFactory<\Database\Factories\PersonFactory> */
     use HasFactory;
+     protected $table = 'people';
 
      protected $fillable = [
         'name',
@@ -41,4 +43,7 @@ class Person extends Model
         );
     }
 
+    public function donations() {
+        return $this->hasMany(Donation::class,'id','people_id');
+    }
 }

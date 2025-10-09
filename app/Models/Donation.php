@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Donation extends Model
 {
@@ -15,4 +16,12 @@ class Donation extends Model
         'donate_amount',
         'date'
     ];
+
+     public function event() {
+        return $this->belongsTo(DonationEvent::class,'id','event_id');
+    }
+
+    public function person() {
+        return $this->belongsTo(Person::class,'people_id','id');
+    }
 }
