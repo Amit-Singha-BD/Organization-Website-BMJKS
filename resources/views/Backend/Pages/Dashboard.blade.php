@@ -41,7 +41,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">সক্রিয় কমিটি সদস্য</small>
-                            <h4 class="mb-0">642</h4>
+                            <h4 class="mb-0">@bn('42')</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-user-group"></i></div>
                     </div>
@@ -105,7 +105,7 @@
                                         <strong>{{ $committee->committee_name }}</strong>
                                     </div>
                                 </td>
-                                <td data-label="সদস্য সংখ্যা">{{ $committee->persons_count }}</td>
+                                <td data-label="সদস্য সংখ্যা">@bn($committee->persons_count)</td>
                                 <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
@@ -131,7 +131,7 @@
                 <i class="fas fa-database"></i>
                 বাসযুক ডেটাবেজ বিন্যাস
             </h5>
-            <span class="badge bg-light text-dark">মোট: {{ $tags->count() }}</span>
+            <span class="badge bg-light text-dark">মোট:@bn($tags->count())</span>
         </div>
 
         <div class="card-body">
@@ -140,7 +140,7 @@
                     <table class="table table-bordered table-hover align-middle mb-0">
                         <thead class="table-success text-center">
                             <tr>
-                                <th scope="col" style="width: 70px;">ID</th>
+                                <th scope="col" style="width: 70px;">ক্রমিক</th>
                                 <th scope="col">ক্যাটাগরির নাম</th>
                                 <th scope="col" style="width: 120px;">লোকজন</th>
                                 <th scope="col" style="width: 150px;">দেখুন</th>
@@ -159,10 +159,10 @@
 
                             @foreach($tags as $tag)
                                 <tr>
-                                    <td class="text-center fw-bold" data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                                    <td class="text-center fw-bold" data-label="ক্রমিক নং">@bn($loop->iteration)</td>
                                     <td data-label="ক্যাটাগরি নাম" class="text-center">{{ $tag->person_type_name }}</td>
                                     <td class="text-center" data-label="লোকজন">
-                                        <span class="badge bg-success" >{{ $tag->persons_count ?? 0 }}</span>
+                                        <span class="badge bg-success" >@bn($tag->persons_count ?? 0)</span>
                                     </td>
                                     <td class="text-center" data-label="দেখুন">
                                         <div class="d-flex flex-row justify-content-center gap-2">
@@ -220,9 +220,9 @@
 
                             @foreach($notices as $notice)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক">{{ $loop->iteration }}</td>
+                                <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                                 <td data-label="শিরোনাম">{{ $notice->title }}</td>
-                                <td data-label="তারিখ">{{ $notice->date }}</td>
+                                <td data-label="তারিখ">@bn($notice->date)</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
                                         <button type="button" class="action-btn-info"
