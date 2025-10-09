@@ -27,23 +27,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($donations as $donation)
+                        @forelse($donations as $donation)
                         <tr>
                             <td class="text-center">{{ $loop->iteration + ($donations->currentPage()-1)*$donations->perPage() }}</td>
-                            <td>{{ $donation->donator->name }}</td>
-                            <td>{{ $donation->donator->father_husband_name }}</td>
-                            <td>{{ $donation->donator->village }}</td>
+                            <td>{{ $donation->person->name }}</td>
+                            <td>{{ $donation->person->father_husband_name }}</td>
+                            <td>{{ $donation->person->village }}</td>
                             <td>{{ $donation->donate_amount }}</td>
-                            <td class="text-center">{{ $donation->event->event_name }}</td>
+                            <td class="text-center">{{ $event->event_name }}</td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $donation->donator->id }}">
+                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $donation->person->id }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
                         <!-- Member Modal 1 -->
-                        <div class="modal fade" id="modalViewMember{{ $donation->donator->id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="modalViewMember{{ $donation->person->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header bg-info text-white">
@@ -56,25 +55,24 @@
                                                 <img src="https://via.placeholder.com/120" 
                                                     class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
                                                     width="120" height="120" alt="Profile">
-                                                <h4 class="mt-3 mb-0">{{ $donation->donator->name }}</h4>
-                                                <p class="text-muted">{{$donation->donator->profession}}</p>
+                                                <h4 class="mt-3 mb-0">{{ $donation->person->name }}</h4>
                                             </div>
                                             <hr class="mt-2">
                                             <div class="col-md-6">
-                                                <p><strong>পিতার/স্বামীর নাম:</strong> {{ $donation->donator->father_husband_name }}</p>
-                                                <p><strong>মাতার নাম:</strong> {{ $donation->donator->mother_name }}</p>
-                                                <p><strong>জন্ম তারিখ:</strong> {{ $donation->donator->date_of_birth }}</p>
-                                                <p><strong>লিঙ্গ:</strong> {{ $donation->donator->gender }}</p>
-                                                <p><strong>বৈবাহিক অবস্থা:</strong> {{ $donation->donator->marital_status }}</p>
-                                                <p><strong>রক্তের গ্রুপ:</strong> {{ $donation->donator->blood_group }}</p>
+                                                <p><strong>পিতার/স্বামীর নাম:</strong> {{ $donation->person->father_husband_name }}</p>
+                                                <p><strong>মাতার নাম:</strong> {{ $donation->person->mother_name }}</p>
+                                                <p><strong>জন্ম তারিখ:</strong> {{ $donation->person->date_of_birth }}</p>
+                                                <p><strong>লিঙ্গ:</strong> {{ $donation->person->gender }}</p>
+                                                <p><strong>বৈবাহিক অবস্থা:</strong> {{ $donation->person->marital_status }}</p>
+                                                <p><strong>রক্তের গ্রুপ:</strong> {{ $donation->person->blood_group }}</p>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><strong>মোবাইল:</strong> {{ $donation->donator->mobile_number }}</p>
-                                                <p><strong>ইমেইল:</strong> kamal@example.com</p>
-                                                <p><strong>গ্রাম:</strong> {{ $donation->donator->village }}</p>
-                                                <p><strong>ডাকঘর:</strong> {{ $donation->donator->post_office }}</p>
-                                                <p><strong>থানা:</strong> {{ $donation->donator->thana }}</p>
-                                                <p><strong>জেলা:</strong> {{ $donation->donator->district }}</p>
+                                                <p><strong>মোবাইল:</strong> {{ $donation->person->mobile_number }}</p>
+                                                <p><strong>পেশা:</strong>{{$donation->person->profession}}</p>
+                                                <p><strong>গ্রাম:</strong> {{ $donation->person->village }}</p>
+                                                <p><strong>ডাকঘর:</strong> {{ $donation->person->post_office }}</p>
+                                                <p><strong>থানা:</strong> {{ $donation->person->thana }}</p>
+                                                <p><strong>জেলা:</strong> {{ $donation->person->district }}</p>
                                             </div>
                                         </div>
                                     </div>
