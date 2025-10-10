@@ -65,13 +65,14 @@
                 </li>
 				
 				<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('comitee.activities') || Route::is('contact') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('comitee.activities') || Route::is('contact') || Route::is('bmjks.database.view') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                         অন্যান্য
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
                         <li><a class="dropdown-item" href="{{route('budget')}}">বাজেট</a></li>
 						<li><a class="dropdown-item" href="{{route('comitee.activities')}}">কার্যক্রম</a></li>
                         <li><a class="dropdown-item" href="{{route('contact')}}">যোগাযোগ</a></li>
+                        <li><a class="dropdown-item" href="{{route('bmjks.database.view')}}">বামযুকস ডাটাবেস</a></li>
                     </ul>
                 </li>
             </ul>

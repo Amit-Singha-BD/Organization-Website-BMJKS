@@ -18,6 +18,7 @@ use App\Http\Controllers\CommitteeYearController;
 use App\Http\Controllers\CommitteeMemberController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\FrontendPersonSearchController;
 
 
 // Frontend Routes Start -->
@@ -33,6 +34,7 @@ route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
 route::get('budget',[FrontendController::class,'budget'])->name('budget');
 route::get('comitee-activities',[FrontendController::class,'comitee_activities'])->name('comitee.activities');
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
+route::get('bmjks/database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 // Frontend Routes End <--
 
 
