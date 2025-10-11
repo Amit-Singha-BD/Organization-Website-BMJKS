@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 use App\Models\CommitteeActivitie;
 use App\Http\Requests\CommitteeActivitiesValidate;
 use Illuminate\Http\Request;

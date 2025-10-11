@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Models\DonationEvent;
 use App\Models\Person;

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\BrandingValidate;
 use App\Http\Requests\FooterLinkValidate;
 use App\Http\Requests\SEOValidate;
