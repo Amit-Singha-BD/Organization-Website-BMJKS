@@ -6,6 +6,7 @@ use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
 use App\Http\Controllers\frontend\FrontendHomeController;
+use App\Http\Controllers\frontend\FrontendContactController;
 
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\AuthenticationController;
@@ -30,7 +31,8 @@ use App\Http\Controllers\backend\DonationController;
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('commitee',[FrontendController::class,'commitee'])->name('commitee');
 route::get('notices',[FrontendController::class,'notice'])->name('frontend.notice');
-route::get('contact',[FrontendController::class,'contact'])->name('contact');
+route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
+route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
 route::get('about',[FrontendController::class,'about'])->name('about');
 route::get('service',[FrontendController::class,'service'])->name('frontend.service');
 route::get('lifetime-member',[FrontendController::class,'lifetime_member'])->name('lifetime.member');
@@ -40,6 +42,7 @@ route::get('budget',[FrontendController::class,'budget'])->name('budget');
 route::get('comitee-activities',[FrontendController::class,'comitee_activities'])->name('comitee.activities');
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks/database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
+route::post('bmjks/database/search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
 // Frontend Routes End <--
 
 
