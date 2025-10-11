@@ -92,14 +92,18 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-        if ($request->hasFile('slide_image')) {
-            if ($settings->slide_image_1_path && Storage::disk('public')->exists($settings->slide_image_1_path)) {
-                Storage::disk('public')->delete($settings->slide_image_1_path);
+       if ($request->hasFile('slide_image')) {
+            if ($settings->slide_image_1_path && file_exists(public_path($settings->slide_image_1_path))) {
+                unlink(public_path($settings->slide_image_1_path));
             }
-
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('slide', $imageName, 'public');
+            $destinationPath = public_path('slide');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image->move($destinationPath, $imageName);
+            $imagePath = 'slide/' . $imageName;
         } else {
             $imagePath = $settings->slide_image_1_path;
         }
@@ -122,14 +126,18 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-        if ($request->hasFile('slide_image')) {
-            if ($settings->slide_image_2_path && Storage::disk('public')->exists($settings->slide_image_2_path)) {
-                Storage::disk('public')->delete($settings->slide_image_2_path);
+       if ($request->hasFile('slide_image')) {
+            if ($settings->slide_image_2_path && file_exists(public_path($settings->slide_image_2_path))) {
+                unlink(public_path($settings->slide_image_2_path));
             }
-
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('slide', $imageName, 'public');
+            $destinationPath = public_path('slide');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image->move($destinationPath, $imageName);
+            $imagePath = 'slide/' . $imageName;
         } else {
             $imagePath = $settings->slide_image_2_path;
         }
@@ -152,17 +160,22 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-        if ($request->hasFile('slide_image')) {
-            if ($settings->slide_image_3_path && Storage::disk('public')->exists($settings->slide_image_3_path)) {
-                Storage::disk('public')->delete($settings->slide_image_3_path);
+       if ($request->hasFile('slide_image')) {
+            if ($settings->slide_image_3_path && file_exists(public_path($settings->slide_image_3_path))) {
+                unlink(public_path($settings->slide_image_3_path));
             }
-
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('slide', $imageName, 'public');
+            $destinationPath = public_path('slide');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image->move($destinationPath, $imageName);
+            $imagePath = 'slide/' . $imageName;
         } else {
             $imagePath = $settings->slide_image_3_path;
         }
+
 
         $settings->update([
             "slide_title_3"       => $validateData['slide_title'],
@@ -182,14 +195,18 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-        if ($request->hasFile('slide_image')) {
-            if ($settings->slide_image_4_path && Storage::disk('public')->exists($settings->slide_image_4_path)) {
-                Storage::disk('public')->delete($settings->slide_image_4_path);
+       if ($request->hasFile('slide_image')) {
+            if ($settings->slide_image_4_path && file_exists(public_path($settings->slide_image_4_path))) {
+                unlink(public_path($settings->slide_image_4_path));
             }
-
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('slide', $imageName, 'public');
+            $destinationPath = public_path('slide');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image->move($destinationPath, $imageName);
+            $imagePath = 'slide/' . $imageName;
         } else {
             $imagePath = $settings->slide_image_4_path;
         }
@@ -212,14 +229,18 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-        if ($request->hasFile('slide_image')) {
-            if ($settings->slide_image_5_path && Storage::disk('public')->exists($settings->slide_image_5_path)) {
-                Storage::disk('public')->delete($settings->slide_image_5_path);
+       if ($request->hasFile('slide_image')) {
+            if ($settings->slide_image_5_path && file_exists(public_path($settings->slide_image_5_path))) {
+                unlink(public_path($settings->slide_image_5_path));
             }
-
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('slide', $imageName, 'public');
+            $destinationPath = public_path('slide');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image->move($destinationPath, $imageName);
+            $imagePath = 'slide/' . $imageName;
         } else {
             $imagePath = $settings->slide_image_5_path;
         }
@@ -242,15 +263,18 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-        if ($request->hasFile('slide_image')) {
-            if ($settings->slide_image_6_path && Storage::disk('public')->exists($settings->slide_image_6_path)) {
-                Storage::disk('public')->delete($settings->slide_image_6_path);
+       if ($request->hasFile('slide_image')) {
+            if ($settings->slide_image_6_path && file_exists(public_path($settings->slide_image_6_path))) {
+                unlink(public_path($settings->slide_image_6_path));
             }
-
             $image = $request->file('slide_image');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('slide', $imageName, 'public');
-
+            $destinationPath = public_path('slide');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+            $image->move($destinationPath, $imageName);
+            $imagePath = 'slide/' . $imageName;
         } else {
             $imagePath = $settings->slide_image_6_path;
         }

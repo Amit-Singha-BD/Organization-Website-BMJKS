@@ -2,74 +2,52 @@
 @section('content') 
 	<!-- Hero Section -->
 		<div id="blogCarousel" class="carousel slide" data-bs-ride="carousel">
+
+			<!-- Carousel indicators -->
 			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="0" class="active"></button>
-				<button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="1"></button>
-				<button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="2"></button>
+				@for($i = 0; $i < 6; $i++)
+					<button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}"></button>
+				@endfor
 			</div>
+
+			<!-- Carousel items -->
 			<div class="carousel-inner">
-				<!-- ক্যারousel আইটেম 1 -->
-				<div class="carousel-item ">
-					<div class="position-relative d-inline-block w-100">
-					  <!-- ছবি -->
-					  <img src="{{asset('Frontend-Assets/images/slide1.jpg')}}" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
+				@for($i = 1; $i <= 6; $i++)
+					@php
+						$title = $setting->{'slide_title_' . $i};
+						$description = $setting->{'slide_description_' . $i};
+						$image = $setting->{'slide_image_' . $i . '_path'};
+					@endphp
 
-					  <!-- গ্রেডিং overlay -->
-					  <div class="position-absolute top-0 start-0 end-0 bottom-0"
-						   style="background: linear-gradient(45deg, rgba(26,155,159,0.1), rgba(242,193,78,0.1));">
-					  </div>
+					<div class="carousel-item {{ $i == 1 ? 'active' : '' }}">
+						<div class="position-relative d-inline-block w-100">
+							<img src="{{ $image ? asset($image) : asset('Frontend-Assets/images/default-slide.jpg') }}"
+								class="d-block w-100 img-fluid"
+								alt="Slide {{ $i }}">
+							
+							<div class="position-absolute top-0 start-0 end-0 bottom-0"
+								style="background: linear-gradient(45deg, rgba(26,155,159,0.1), rgba(242,193,78,0.1));">
+							</div>
+						</div>
+
+						<div class="carousel-caption">
+							<h2>{{ $title ?? 'Slide Title' }}</h2>
+							<p>{{ $description ?? 'Slide Description' }}</p>
+						</div>
 					</div>
-
-
-					<div class="carousel-caption">
-						<h2>আমার মানুর কুমেই</h2>
-						<p>আমার মানুর কুমেইর মাঝে হাবিত্ত জিংপা হান দূর্গা পূজা</p>
-					</div>
-				</div>
-
-				<!-- ক্যারousel আইটেম 2 -->
-				<div class="carousel-item">
-					<div class="position-relative d-inline-block w-100">
-					  <!-- ছবি -->
-					  <img src="{{asset('Frontend-Assets/images/slide3.jpg')}}" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
-
-					  <!-- গ্রেডিং overlay -->
-					  <div class="position-absolute top-0 start-0 end-0 bottom-0"
-						   style="background: linear-gradient(45deg, rgba(26,155,159,0.1), rgba(242,193,78,0.1));">
-					  </div>
-					</div>
-					<div class="carousel-caption">
-						<h2>আমার মানুর এলা</h2>
-						<p>নুংশি নুংশি এলার মাঝে আমার এলা জবরদস্ত</p>
-					</div>
-				</div>
-
-				<!-- ক্যারousel আইটেম 3 -->
-				<div class="carousel-item active">
-					<div class="position-relative d-inline-block w-100">
-					  <!-- ছবি -->
-					  <img src="{{asset('Frontend-Assets/images/slide2.jpg')}}" class="d-block w-100 img-fluid" alt="প্রযুক্তি ব্লগ">
-
-					  <!-- গ্রেডিং overlay -->
-					  <div class="position-absolute top-0 start-0 end-0 bottom-0"
-						   style="background: linear-gradient(45deg, rgba(26,155,159,0.1), rgba(242,193,78,0.1));">
-					  </div>
-					</div>
-					<div class="carousel-caption">
-						<h2>বামজুকসর ইয়ারি</h2>
-						<p>মনিপুরি যুবকল্যান সমিতি 40 বছর আগে ফংইসিলা</p>
-					</div>
-				</div>
+				@endfor
 			</div>
+
+			<!-- Carousel controls -->
 			<button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon"></span>
-				<span class="visually-hidden">পূর্ববর্তী</span>
 			</button>
 			<button class="carousel-control-next" type="button" data-bs-target="#blogCarousel" data-bs-slide="next">
 				<span class="carousel-control-next-icon"></span>
-				<span class="visually-hidden">পরবর্তী</span>
 			</button>
+
 		</div>
+
 
 		<!-- নোটিশ ও সভাপতি -->
 		<section class="py-5 " >
@@ -290,6 +268,48 @@
 				</div>
 			</div>
 		</section>
+
+
+		<!-- সেবা বিভাগ (স্লাইডার) -->
+		<section class="service-section">
+			<div class="container">
+				<div class="text-center">
+					<h3 class="display-5 fw-bold text-dark">সেবা সমূহ</h3>
+					<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
+				</div>
+
+				<div class="services-container">
+					<button class="nav-btn prev">
+						<i class="fas fa-chevron-left"></i>
+					</button>
+
+					<div class="services-track">
+						<!-- সার্ভিস কার্ডগুলি ডাইনামিক লুপ -->
+						@foreach($services as $service)
+							<div class="service-item">
+								<div class="card service-card">
+									<div class="card-body">
+										<div class="service-icon">
+											<i class="{{ $service->icon }} fa-2x text-white"></i>
+										</div>
+										<h5 class="card-title fw-bold">{{ $service->title }}</h5>
+										<p class="card-text text-muted">{{ $service->description }}</p>
+										<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
+											বিস্তারিত
+										</button>
+									</div>
+								</div>
+							</div>
+						@endforeach
+					</div>
+
+					<button class="nav-btn next">
+						<i class="fas fa-chevron-right"></i>
+					</button>
+				</div>
+			</div>
+		</section>
+
 
 		<!-- News & Updates -->
 		<section class="mb-5">
