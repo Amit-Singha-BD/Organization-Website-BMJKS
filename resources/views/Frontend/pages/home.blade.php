@@ -154,122 +154,6 @@
 		  </div>
 		</section>
 
-
-
-	  <!-- সেবা বিভাগ (স্লাইডার) -->
-		<section class="service-section ">
-			<div class="container ">
-				<div class="text-center ">
-					<h3 class="display-5 fw-bold text-dark" >সেবা সমূহ</h3>
-					<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
-				</div>
-
-				<div class="services-container">
-					<button class="nav-btn prev">
-						<i class="fas fa-chevron-left"></i>
-					</button>
-
-					<div class="services-track">
-						<!-- সার্ভিস কার্ডগুলি -->
-						<div class="service-item" >
-							<div class="card service-card" >
-								<div class="card-body" >
-									<div class="service-icon">
-										<i class="fas fa-id-card fa-2x text-white"></i>
-									</div>
-									<h5 class="card-title fw-bold">বামজুকস সদস্য</h5>
-									<p class="card-text text-muted">নতুন সদস্য আবেদন ও নবায়ন</p>
-									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-										বিস্তারিত
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="service-item">
-							<div class="card service-card">
-								<div class="card-body">
-									<div class="service-icon">
-										<i class="fas fa-passport fa-2x text-white"></i>
-									</div>
-									<h5 class="card-title fw-bold">উপজাতি সনদ</h5>
-									<p class="card-text text-muted">নতুন উপজাতি সনদ আবেদন</p>
-									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-										বিস্তারিত
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="service-item">
-							<div class="card service-card">
-								<div class="card-body">
-									<div class="service-icon">
-										<i class="fas fa-car fa-2x text-white"></i>
-									</div>
-									<h5 class="card-title fw-bold">আর্থিক প্রনোদনা</h5>
-									<p class="card-text text-muted">টাংগা লাগলে মাতেই</p>
-									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-										বিস্তারিত
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="service-item">
-							<div class="card service-card">
-								<div class="card-body">
-									<div class="service-icon">
-										<i class="fas fa-graduation-cap fa-2x text-white"></i>
-									</div>
-									<h5 class="card-title fw-bold">অভিযোগ</h5>
-									<p class="card-text text-muted">তিক সওয়িলে মাতেই</p>
-									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-										বিস্তারিত
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="service-item">
-							<div class="card service-card">
-								<div class="card-body">
-									<div class="service-icon">
-										<i class="fas fa-book fa-2x text-white"></i>
-									</div>
-									<h5 class="card-title fw-bold">শিক্ষা বৃত্তি</h5>
-									<p class="card-text text-muted">শিক্ষা বৃত্তির জন্য আবেদন</p>
-									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-										বিস্তারিত
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="service-item">
-							<div class="card service-card">
-								<div class="card-body">
-									<div class="service-icon">
-										<i class="fas fa-home fa-2x text-white"></i>
-									</div>
-									<h5 class="card-title fw-bold">বাসস্থান সহায়তা</h5>
-									<p class="card-text text-muted">বাসস্থান সংক্রান্ত সহায়তা</p>
-									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-										বিস্তারিত
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<button class="nav-btn next">
-						<i class="fas fa-chevron-right"></i>
-					</button>
-				</div>
-			</div>
-		</section>
-
-
 		<!-- সেবা বিভাগ (স্লাইডার) -->
 		<section class="service-section">
 			<div class="container">
@@ -293,10 +177,34 @@
 											<i class="{{ $service->icon }} fa-2x text-white"></i>
 										</div>
 										<h5 class="card-title fw-bold">{{ $service->title }}</h5>
-										<p class="card-text text-muted">{{ $service->description }}</p>
-										<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
+										<p class="card-text text-muted">{{ \Illuminate\Support\Str::words($service->description, 5, '...') }}</p>
+										<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal{{$service->id}}" title="view">
 											বিস্তারিত
 										</button>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="modal fade" id="myModal{{$service->id}}" tabindex="-1" aria-hidden="true">
+								<div class="modal-dialog modal-lg modal-dialog-centered">
+									<div class="modal-content">
+
+										<!-- Modal Header with Close Button -->
+										<div class="modal-header">
+											<h5 class="modal-title text-secondary">{{ $service->title }}</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+
+										<div class="modal-body">
+											<section id="mySection">
+												<p>
+													{{ $service->description }}
+												</p>
+											</section>
+										</div>
+
 									</div>
 								</div>
 							</div>
