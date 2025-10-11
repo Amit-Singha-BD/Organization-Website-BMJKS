@@ -8,15 +8,15 @@
 			<h5  class="text-accent mb-3">যোগাযোগ</h5>
 			<div class="mb-2">
 			  <i class="fas fa-map-marker-alt text-accent me-2"></i>
-			  <span>ঠিকানা দিন</span>
+			  <span>{{ $setting->address }}</span>
 			</div>
 			<div class="mb-2">
 			  <i  class="fas fa-phone text-accent me-2"></i>
-			  <span>+৮৮০-২-৯৫৫৫৫৫৫</span>
+			  <span>{{ $setting->phone_no  }}</span>
 			</div>
 			<div class="">
 			  <i class="fas fa-envelope text-accent me-2"></i>
-			  <span>info@gov.bd</span>
+			  <span>{{ $setting->email }}</span>
 			</div>
 		  </div>
 
@@ -24,9 +24,9 @@
 		  <div class="col-12 col-md-6 col-lg-4">
 			<h5  class="text-accent mb-3">গুরুত্বপূর্ণ লিংক</h5>
 			<ul class="list-unstyled">
-			  <li class="mb-2"><a href="#" class="text-white text-decoration-none">কার্যালয়</a></li>
-			  <li class="mb-2"><a href="#" class="text-white text-decoration-none">কার্যালয়</a></li>
-			  <li class="mb-2"><a href="#" class="text-white text-decoration-none">সংসদ</a></li>
+			  <li class="mb-2"><a href="{{ $setting->link_1  }}" class="text-white text-decoration-none">{{ $setting->link_name_1  }}</a></li>
+			  <li class="mb-2"><a href="{{ $setting->link_2  }}" class="text-white text-decoration-none">{{ $setting->link_name_2  }}</a></li>
+			  <li class="mb-2"><a href="{{ $setting->link_3  }}" class="text-white text-decoration-none">{{ $setting->link_name_3  }}</a></li>
 			</ul>
 		  </div>
 
@@ -34,16 +34,16 @@
 			<div class="col-12 col-lg-4">
 			  <h5 class="text-accent mb-3">সামাজিক মাধ্যম</h5>
 			  <div class="d-flex flex-nowrap overflow-auto justify-content-center justify-content-lg-start gap-2 p-2 ">
-				<a href="#" class="btn btn-outline-light rounded-circle flex-shrink-0 ">
+				<a href="{{ $setting->facebook_url }}" class="btn btn-outline-light rounded-circle flex-shrink-0 ">
 				  <i class="fab fa-facebook-f"></i>
 				</a>
-				<a href="#" class="btn btn-outline-light rounded-circle flex-shrink-0">
+				<a href="{{ $setting->twitter_url }}" class="btn btn-outline-light rounded-circle flex-shrink-0">
 				  <i class="fab fa-twitter"></i>
 				</a>
-				<a href="#" class="btn btn-outline-light rounded-circle flex-shrink-0">
+				<a href="{{ $setting->youtube_url }}" class="btn btn-outline-light rounded-circle flex-shrink-0">
 				  <i class="fab fa-youtube"></i>
 				</a>
-				<a href="#" class="btn btn-outline-light rounded-circle flex-shrink-0">
+				<a href="{{ $setting->instagram_url }}"  class="btn btn-outline-light rounded-circle flex-shrink-0">
 				  <i class="fab fa-instagram"></i>
 				</a>
 			  </div>
