@@ -2264,6 +2264,17 @@ textarea.form-control-lg {
     flex-grow: 1;
 }
 
+.floating-input-new {
+    width: 100%;
+    padding: 1rem .75rem .75rem .25rem;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    height: auto;
+    flex-grow: 1;
+}
+
 .floating-input:focus {
     box-shadow: none;
     border-color: transparent;
