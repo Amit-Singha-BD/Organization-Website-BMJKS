@@ -107,7 +107,7 @@
 
         <a class="sidebar-link {{ Route::is('contact.unread') || Route::is('contact.read') ? 'active' : '' }}" href="{{ route('contact.unread') }}"><i class="fas fa-comments"></i><span class="sidebar-text">যোগাযোগ তথ্য</span></a>
 
-        <div class="sidebar-dropdown {{ Route::is('services') || Route::is('site.settings') ? 'open' : '' }}">
+        <div class="sidebar-dropdown {{ Route::is('services') || Route::is('president.create') || Route::is('site.settings') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
                 <span class="sidebar-text">ওয়েব সাইট সেটিংস</span>
@@ -117,6 +117,11 @@
                 <a class="sidebar-sublink {{ Route::is('services') ? 'active' : '' }}" href="{{ route('services') }}">
                     <i class="fa-solid fa-hand-holding-droplet"></i>
                     <span class="sidebar-text">সেবা</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('president.create') ? 'active' : '' }}" href="{{ route('president.create') }}">
+                    <i class="fa-solid fa-hand-holding-droplet"></i>
+                    <span class="sidebar-text">সভাপতির বার্তা</span>
                 </a>
                 <a class="sidebar-sublink {{ Route::is('site.settings') ? 'active' : '' }}" href="{{ route('site.settings') }}">
                     <i class="fa-solid fa-gear"></i>

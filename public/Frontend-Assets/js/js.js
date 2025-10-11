@@ -305,37 +305,6 @@
                 });
             }
 
-            // বুটস্ট্রাপ লোডিং স্টেট সহ বাটন ক্লিক হ্যান্ডলার
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (!this.classList.contains('loading')) {
-                        const originalText = this.innerHTML;
-                        
-                        // লোডিং স্টেট যোগ করুন
-                        this.classList.add('loading');
-                        this.disabled = true;
-                        
-                        // লোডিং সিমুলেট করুন
-                        setTimeout(() => {
-                            this.classList.remove('loading');
-                            this.disabled = false;
-                            this.innerHTML = originalText;
-                            
-                            // বাটন টাইপের উপর ভিত্তি করে উপযুক্ত নোটিফিকেশন দেখান
-                            if (this.textContent.includes('লগইন')) {
-                                showNotification('লগইন পেইজে যাচ্ছে...', 'info');
-                            } else if (this.textContent.includes('অ্যাপ ডাউনলোড')) {
-                                showNotification('অ্যাপ ডাউনলোড শুরু হচ্ছে...', 'info');
-                            } else if (this.textContent.includes('সেবা গ্রহণ করুন')) {
-                                showNotification('সেবা পেইজে যাচ্ছে...', 'info');
-                            } else if (this.textContent.includes('আরও জানুন')) {
-                                showNotification('আরও তথ্য দেখানো হচ্ছে...', 'info');
-                            }
-                        }, 2000);
-                    }
-                });
-            });
 
             // সার্ভিস লিঙ্ক ক্লিক হ্যান্ডলার
             const serviceLinks = document.querySelectorAll('.btn-link.text-primary');
@@ -361,17 +330,7 @@
                 }
             });
 
-            // সোশ্যাল মিডিয়া লিঙ্ক
-            const socialLinks = document.querySelectorAll('.btn-outline-light.rounded-circle');
-            socialLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const platform = this.querySelector('i').className.includes('facebook') ? 'Facebook' :
-                                   this.querySelector('i').className.includes('twitter') ? 'Twitter' :
-                                   this.querySelector('i').className.includes('youtube') ? 'YouTube' : 'Instagram';
-                    showNotification(`${platform} পেইজে যাচ্ছে...`, 'info');
-                });
-            });
+
         }
 
         // ==============================================
