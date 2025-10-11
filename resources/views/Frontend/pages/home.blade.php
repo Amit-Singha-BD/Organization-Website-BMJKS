@@ -269,6 +269,48 @@
 			</div>
 		</section>
 
+
+		<!-- সেবা বিভাগ (স্লাইডার) -->
+		<section class="service-section">
+			<div class="container">
+				<div class="text-center">
+					<h3 class="display-5 fw-bold text-dark">সেবা সমূহ</h3>
+					<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
+				</div>
+
+				<div class="services-container">
+					<button class="nav-btn prev">
+						<i class="fas fa-chevron-left"></i>
+					</button>
+
+					<div class="services-track">
+						<!-- সার্ভিস কার্ডগুলি ডাইনামিক লুপ -->
+						@foreach($services as $service)
+							<div class="service-item">
+								<div class="card service-card">
+									<div class="card-body">
+										<div class="service-icon">
+											<i class="{{ $service->icon }} fa-2x text-white"></i>
+										</div>
+										<h5 class="card-title fw-bold">{{ $service->title }}</h5>
+										<p class="card-text text-muted">{{ $service->description }}</p>
+										<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
+											বিস্তারিত
+										</button>
+									</div>
+								</div>
+							</div>
+						@endforeach
+					</div>
+
+					<button class="nav-btn next">
+						<i class="fas fa-chevron-right"></i>
+					</button>
+				</div>
+			</div>
+		</section>
+
+
 		<!-- News & Updates -->
 		<section class="mb-5">
 			<div class="container">

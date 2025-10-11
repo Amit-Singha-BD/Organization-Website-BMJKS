@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
+use App\Http\Controllers\frontend\FrontendHomeController;
 
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\AuthenticationController;
@@ -25,7 +26,7 @@ use App\Http\Controllers\backend\DonationController;
 
 
 // Frontend Routes Start -->
-route::get('/',[FrontendController::class,'home_view'])->name('home');
+route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('commitee',[FrontendController::class,'commitee'])->name('commitee');
 route::get('notices',[FrontendController::class,'notice'])->name('frontend.notice');
 route::get('contact',[FrontendController::class,'contact'])->name('contact');
