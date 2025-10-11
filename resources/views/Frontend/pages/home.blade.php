@@ -225,92 +225,49 @@
 				<div class="row g-5">
 					<div class="col-lg-12">
 						<div class="text-center mb-4">
-						  <h3 class="display-5 fw-bold mb-3 text-dark">সাম্প্রতিক কার্যক্রম সমূহ</h3>
-						  <div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
+							<h3 class="display-5 fw-bold mb-3 text-dark">সাম্প্রতিক কার্যক্রম সমূহ</h3>
+							<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
 						</div>
-
 
 						<div class="row g-4">
-							<div class="col-md-6">
-								<div class="card border-0 shadow-sm h-100 news-card" >
-									<div class="card-body p-4">
-										<div class="d-flex align-items-start">
-											<div class="news-date me-3 text-center">
-												<div class="bg-primary text-white rounded-top p-2">
-													<div class="fw-bold">১৫</div>
-													<small>ডিসে</small>
-												</div>
-											</div>
-											<div>
-												<h6 class="fw-bold mb-2">২০২৪ সালের বাজেট ঘোষণা</h6>
-												<p class="text-muted small mb-0">আগামী অর্থবছরের বাজেট ঘোষণা করা হয়েছে</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							@foreach($posts as $post)
+								@php
+									$day = \Carbon\Carbon::parse($post['date'])->format('d');
+									$month = \Carbon\Carbon::parse($post['date'])->translatedFormat('M');
+								@endphp
 
-							<div class="col-md-6">
-								<div class="card border-0 shadow-sm h-100 news-card">
-									<div class="card-body p-4">
-										<div class="d-flex align-items-start">
-											<div class="news-date me-3 text-center">
-												<div class="bg-primary text-white rounded-top p-2">
-													<div class="fw-bold">১২</div>
-													<small>ডিসে</small>
+								<div class="col-md-6">
+									<div class="card border-0 shadow-sm h-100 news-card">
+										<div class="card-body p-4">
+											<div class="d-flex align-items-start">
+												<div class="news-date me-3 text-center">
+													<div class="bg-primary text-white rounded-top p-2">
+														<div class="fw-bold">{{ $day }}</div>
+														<small>{{ $month }}</small>
+													</div>
 												</div>
-											</div>
-											<div>
-												<h6 class="fw-bold mb-2">নতুন করোনা নিয়মাবলী</h6>
-												<p class="text-muted small mb-0">করোনা মহামারি নিয়ন্ত্রণে নতুন নির্দেশনা</p>
+												<div>
+													<h6 class="fw-bold mb-2">
+														<a href="{{ $post['link'] }}" target="_blank" class="text-dark text-decoration-none">
+															{{ Str::limit(strip_tags($post['title']['rendered']), 40)}}
+														</a>
+													</h6>
+													<p class="text-muted small mb-0">
+														{{ Str::limit(strip_tags($post['excerpt']['rendered']), 65) }}
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-
-							<div class="col-md-6">
-								<div class="card border-0 shadow-sm h-100 news-card">
-									<div class="card-body p-4">
-										<div class="d-flex align-items-start">
-											<div class="news-date me-3 text-center">
-												<div class="bg-primary text-white rounded-top p-2">
-													<div class="fw-bold">১০</div>
-													<small>ডিসে</small>
-												</div>
-											</div>
-											<div>
-												<h6 class="fw-bold mb-2">শিক্ষা প্রতিষ্ঠান খোলার নির্দেশ</h6>
-												<p class="text-muted small mb-0">সকল শিক্ষা প্রতিষ্ঠান খোলার নির্দেশনা জারি</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<div class="card border-0 shadow-sm h-100 news-card">
-									<div class="card-body p-4">
-										<div class="d-flex align-items-start">
-											<div class="news-date me-3 text-center">
-												<div class="bg-primary text-white rounded-top p-2">
-													<div class="fw-bold">০৮</div>
-													<small>ডিসে</small>
-												</div>
-											</div>
-											<div>
-												<h6 class="fw-bold mb-2">ডিজিটাল সেবা সম্প্রসারণ</h6>
-												<p class="text-muted small mb-0">নতুন ডিজিটাল সেবা চালু করা হয়েছে</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							@endforeach
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</section>
+
 
 		{{-- bootstrap 5 services modal --}}
 		<div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
