@@ -10,7 +10,7 @@
                     <i class="fas fa-search me-2"></i> সদস্য অনুসন্ধান
                 </h4>
                 <div class="card-body card-body-content">
-                    <form class="row g-3" action="{{ route('search.result') }}" method="POST">
+                    <form class="row g-3" action="{{ route('bmjks.database.search') }}" method="POST">
                         @csrf
                         <!-- নাম -->
                         <div class="col-12 floating-wrap">
@@ -74,10 +74,16 @@
                         </div>
 
                         <!-- গোত্র -->
-                        <div class="col-12 floating-wrap">
+                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-users"></i></span>
-                                <input type="text" id="caste" name="caste" class="floating-input" placeholder=""/>
+                                <select id="caste" name="caste" class="floating-input">
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="single">অবিবাহিত</option>
+                                    <option value="married">বিবাহিত</option>
+                                    <option value="widowed">বিধবা</option>
+                                    <option value="divorced">তালাকপ্রাপ্ত</option>
+                                </select>
                                 <label class="floating-label" for="caste">গোত্র লিখুন</label>
                             </div>
                         </div>
@@ -171,7 +177,7 @@
                         </div>
 
                         <div class="col-12 d-grid mt-3">
-                            <button type="submit" class="btn btn-success py-2 fw-semibold">
+                            <button type="submit" name="submit" class="btn btn-success py-2 fw-semibold">
                                 <i class="fa fa-search me-2"></i> অনুসন্ধান করুন
                             </button>
                         </div>
@@ -181,7 +187,7 @@
         </div>
 
         <!-- সার্চ রেজাল্ট -->
-        @if(Route::is('search.result'))
+        @if(Route::is('bmjks.database.search'))
         <div class="col-12 col-lg-8 order-2 order-lg-2">
             <div class="row py-3 justify-content-center">
                 <div class="col-12 text-center">
@@ -294,11 +300,11 @@
                                 </div>
 
                                 @empty
-                                <tr>
-                                    <td colspan="5" class="text-center text-danger fw-semibold py-4">
-                                        <i class="fas fa-exclamation-circle me-2"></i>কোনো তথ্য পাওয়া যায়নি
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-center text-danger fw-semibold py-4">
+                                            <i class="fas fa-exclamation-circle me-2"></i>কোনো তথ্য পাওয়া যায়নি
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -306,17 +312,17 @@
                 </div>
 
                 @if($persons->hasPages())
-                <div class="card-footer bg-white">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            মোট {{ $persons->total() }} টি রেকর্ডের মধ্যে 
-                            {{ $persons->firstItem() }} - {{ $persons->lastItem() }} দেখানো হচ্ছে
-                        </div>
-                        <div>
-                            {{ $persons->links() }}
+                    <div class="card-footer bg-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                মোট {{ $persons->total() }} টি রেকর্ডের মধ্যে 
+                                {{ $persons->firstItem() }} - {{ $persons->lastItem() }} দেখানো হচ্ছে
+                            </div>
+                            <div>
+                                {{ $persons->links() }}
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
