@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\CommitteeActivitie;
 use App\Models\Person;
 use App\Models\PersonType;
+use App\Models\President;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             CommitteeNameSeeder::class,
             PersonTypeSeeder::class,
+            PresidentSeeder::class,
         ]);
     }
 }

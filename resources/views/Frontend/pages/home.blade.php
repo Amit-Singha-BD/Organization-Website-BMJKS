@@ -73,41 +73,52 @@
 				  <div class="container" >
 					  <div class=" list-group list-group-flush">
 						<!-- নোটিশ আইটেম -->
-						<a href="#" class="list-group-item list-group-item-action d-flex gap-3 align-items-start custom-color" style="background-color:#f8f9fa;" >
-						  <div class="text-center">
-							<div class="badge bg-primary rounded-1 px-2 py-1">২৯ অগ</div>
-							<small class="text-muted d-block">২০২৫</small>
-						  </div>
-						  <div class="flex-grow-1">
-							<div class="fw-semibold">প্রশাসনিক আদেশ: অফিস সময়সূচি পরিবর্তন</div>
-							<small class="text-muted">সোম–বৃহঃ ৯:০০–৫:০০, শুক্রঃ ৯:০০–১:৩০ প্রযোজ্য।</small>
-						  </div>
-						  <i class="fas fa-chevron-right ms-auto pe-2 pt-3"></i>
+						@foreach($notices as $notice)
+						<a href="#" 
+						class="list-group-item list-group-item-action d-flex gap-3 align-items-start custom-color" 
+						style="background-color:#f8f9fa;"
+						data-bs-toggle="modal"
+						data-bs-target="#noticeModal{{$notice->id}}"
+						data-title="{{ $notice->title }}"
+						data-date="{{ $notice->date }}"
+						data-description="{{ $notice->description }}"
+						>
+						<div class="text-center">
+							<div class="badge bg-primary rounded-1 px-2 py-1">@bn($notice->date )</div>
+						</div>
+						<div class="flex-grow-1">
+							<div class="fw-semibold">{{ $notice->title }}</div>
+							<small class="text-muted text-truncate d-block" style="max-width:360px;">{{ \Illuminate\Support\Str::words($notice->description, 5, '...') }}</small>
+						</div>
+						<i class="fas fa-chevron-right ms-auto pe-2 pt-3"></i>
 						</a>
+						<!-- Notice Modal -->
+						<div class="modal fade" id="noticeModal{{$notice->id}}" tabindex="-1" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg">
+							<div class="modal-content">
+							<div class="modal-header bg-primary text-white">
+								<h5 class="modal-title" id="noticeModalTitle">{{ $notice->title }}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
 
-						<a href="#" class="list-group-item list-group-item-action d-flex gap-3 align-items-start">
-						  <div class="text-center">
-							<div class="badge bg-primary rounded-1 px-2 py-1">২৪ অগ</div>
-							<small class="text-muted d-block">২০২৫</small>
-						  </div>
-						  <div class="flex-grow-1">
-							<div class="fw-semibold">ভর্তি বিজ্ঞপ্তি – প্রশিক্ষণ কর্মশালা</div>
-							<small class="text-muted">রেজিস্ট্রেশন শেষ তারিখ: ১০ সেপ্টেম্বর ২০২৫</small>
-						  </div>
-						  <i class="fas fa-chevron-right ms-auto pe-2 pt-3"></i>
-						</a>
+							<div class="modal-body">
+								<div class="mb-2 text-muted small" id="noticeModalDate">@bn($notice->date )</div>
 
-						<a href="#" class="list-group-item list-group-item-action d-flex gap-3 align-items-start" style="background-color:#f8f9fa;">
-						  <div class="text-center">
-							<div class="badge bg-primary rounded-1 px-2 py-1">১৮ অগ</div>
-							<small class="text-muted d-block">২০২৫</small>
-						  </div>
-						  <div class="flex-grow-1">
-							<div class="fw-semibold">ই-সেবা প্ল্যাটফর্ম রক্ষণাবেক্ষণ নোটিশ</div>
-							<small class="text-muted">শনিবার ১২:০০–৩:০০ সময় সেবা সাময়িকভাবে বন্ধ থাকবে।</small>
-						  </div>
-						  <i class="fas fa-chevron-right ms-auto pe-2 pt-3"></i>
-						</a>
+								<div id="noticeModalDescription">
+								{{ $notice->description }}
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+							</div>
+							</div>
+						</div>
+						</div>
+
+						@endforeach
+
+
 						<!-- আরও আইটেম যোগ করুন… -->
 					  </div>
 				  </div>

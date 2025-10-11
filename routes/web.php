@@ -16,6 +16,7 @@ use App\Http\Controllers\backend\FinanceController;
 use App\Http\Controllers\backend\ServiceController;
 use App\Http\Controllers\backend\AccountController;
 use App\Http\Controllers\backend\NoticeController;
+use App\Http\Controllers\backend\PresidentController;
 use App\Http\Controllers\backend\CommitteeActivitieController;
 use App\Http\Controllers\backend\CommitteeManageController;
 use App\Http\Controllers\backend\CommitteeYearController;
@@ -56,6 +57,11 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 
 // Notice Routes Start -->
 Route::resource('notice', NoticeController::class);
+// Notice Routes End <--
+
+// President Routes Start -->
+Route::get('president', [PresidentController::class,'create_view'])->name('president.create');
+Route::put('president/{id}',[PresidentController::class,'update'])->name('president.update');
 // Notice Routes End <--
 
 
