@@ -7,7 +7,6 @@ use App\Http\Requests\ServicesDataValidate;
 use App\Models\Service;
 
 class ServiceController extends Controller {
-    
     public function services(){
         $services = Service::all();
         return view('Backend.Pages.Services', compact('services'));

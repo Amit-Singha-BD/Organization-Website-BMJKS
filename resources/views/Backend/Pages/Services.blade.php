@@ -139,7 +139,7 @@
                     <h6 class="modal-title">নতুন সেবা যোগ করুন</h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('service.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="row g-3">
