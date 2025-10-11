@@ -16,7 +16,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" id="name" name="name" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="name" name="name" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="name">নাম লিখুন</label>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-user-friends"></i></span>
-                                <input type="text" id="father_husband_name" name="father_husband_name" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="father_husband_name" name="father_husband_name" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="father_husband_name">পিতা/স্বামীর নাম লিখুন</label>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-female"></i></span>
-                                <input type="text" id="mother_name" name="mother_name" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="mother_name" name="mother_name" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="mother_name">মাতার নাম লিখুন</label>
                             </div>
                         </div>
@@ -45,14 +45,14 @@
                                 <div class="col">
                                     <div class="floating-input-container">
                                         <span class="icon-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="date" name="date_of_birth_from" class="floating-input-new" id="dob_from"/>
+                                        <input type="date" name="date_of_birth_from" class="floating-input" id="dob_from"/>
                                         <label class="floating-label" for="dob_from">থেকে</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="floating-input-container">
                                         <span class="icon-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="date" name="date_of_birth_to" class="floating-input-new" id="dob_to"/>
+                                        <input type="date" name="date_of_birth_to" class="floating-input" id="dob_to"/>
                                         <label class="floating-label" for="dob_to">পর্যন্ত</label>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-venus-mars"></i></span>
-                                <select id="gender" name="gender" class="floating-input-new">
+                                <select id="gender" name="gender" class="floating-input">
                                     <option value="" disabled selected hidden></option>
                                     <option value="male">পুরুষ</option>
                                     <option value="female">মহিলা</option>
@@ -77,7 +77,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-users"></i></span>
-                                <input type="text" id="caste" name="caste" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="caste" name="caste" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="caste">গোত্র লিখুন</label>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-ring"></i></span>
-                                <select id="marital_status" name="marital_status" class="floating-input-new">
+                                <select id="marital_status" name="marital_status" class="floating-input">
                                     <option value="" disabled selected hidden></option>
                                     <option value="single">অবিবাহিত</option>
                                     <option value="married">বিবাহিত</option>
@@ -101,7 +101,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-phone"></i></span>
-                                <input type="text" id="mobile_number" name="mobile_number" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="mobile_number" name="mobile_number" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="mobile_number">মোবাইল লিখুন</label>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" id="village" name="village" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="village" name="village" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="village">গ্রামের নাম লিখুন</label>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="text" id="post_office" name="post_office" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="post_office" name="post_office" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="post_office">পোস্ট অফিস লিখুন</label>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-map-marker-alt"></i></span>
-                                <input type="text" id="thana" name="thana" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="thana" name="thana" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="thana">থানার নাম লিখুন</label>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-city"></i></span>
-                                <input type="text" id="district" name="district" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="district" name="district" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="district">জেলার নাম লিখুন</label>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-briefcase"></i></span>
-                                <input type="text" id="profession" name="profession" class="floating-input-new" placeholder=""/>
+                                <input type="text" id="profession" name="profession" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="profession">পেশা লিখুন</label>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-tint"></i></span>
-                                <select name="blood_group" id="blood_group" class="floating-input-new">
+                                <select name="blood_group" id="blood_group" class="floating-input">
                                     <option value="" disabled selected hidden></option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
