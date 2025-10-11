@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\FinanceValidate;
 use App\Models\Finance;
 use Illuminate\Http\Request;

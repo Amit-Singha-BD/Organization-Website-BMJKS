@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 use App\Models\CommitteeMember;
 use App\Models\CommitteeYear;
 use Illuminate\Http\Request;

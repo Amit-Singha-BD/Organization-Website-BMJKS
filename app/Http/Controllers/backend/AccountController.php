@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountValidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

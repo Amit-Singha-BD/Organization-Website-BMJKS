@@ -1,24 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\FrontendSearchController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FinanceController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\NoticeController;
-use App\Http\Controllers\CommitteeActivitieController;
-use App\Http\Controllers\CommitteeManageController;
-use App\Http\Controllers\CommitteeYearController;
-use App\Http\Controllers\CommitteeMemberController;
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\DonationController;
-use App\Http\Controllers\FrontendPersonSearchController;
+
+use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\frontend\FrontendSearchController;
+use App\Http\Controllers\frontend\FrontendPersonSearchController;
+
+use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\AuthenticationController;
+use App\Http\Controllers\backend\AdminController;
+use App\Http\Controllers\backend\SettingController;
+use App\Http\Controllers\backend\ContactController;
+use App\Http\Controllers\backend\FinanceController;
+use App\Http\Controllers\backend\ServiceController;
+use App\Http\Controllers\backend\AccountController;
+use App\Http\Controllers\backend\NoticeController;
+use App\Http\Controllers\backend\CommitteeActivitieController;
+use App\Http\Controllers\backend\CommitteeManageController;
+use App\Http\Controllers\backend\CommitteeYearController;
+use App\Http\Controllers\backend\CommitteeMemberController;
+use App\Http\Controllers\backend\PersonController;
+use App\Http\Controllers\backend\DonationController;
+
 
 
 // Frontend Routes Start -->
