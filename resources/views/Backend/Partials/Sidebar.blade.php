@@ -120,7 +120,7 @@
                 </a>
 
                 <a class="sidebar-sublink {{ Route::is('president.create') ? 'active' : '' }}" href="{{ route('president.create') }}">
-                    <i class="fa-solid fa-hand-holding-droplet"></i>
+                    <i class="fas fa-user-tie"></i>
                     <span class="sidebar-text">সভাপতির বার্তা</span>
                 </a>
                 <a class="sidebar-sublink {{ Route::is('site.settings') ? 'active' : '' }}" href="{{ route('site.settings') }}">

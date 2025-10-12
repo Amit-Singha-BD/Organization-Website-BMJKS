@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class President extends Model
 {
     protected $fillable = [
+        'name',
         'message'
     ];
 }
