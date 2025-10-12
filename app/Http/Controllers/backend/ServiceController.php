@@ -33,7 +33,7 @@ class ServiceController extends Controller {
 
         $services = Service::find($id);
         if(!$services){
-            return "faild";
+            return redirect()->back()->with('error', 'সেবা তথ্য পাওয়া যায়নি! অনুগ্রহ করে পুনরায় চেষ্টা করুন।');
         }
 
         $services->update([

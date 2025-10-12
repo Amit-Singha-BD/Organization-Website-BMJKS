@@ -41,7 +41,10 @@ route::get('services-view',[FrontendServiceController::class,'service'])->name('
 route::get('lifetime-member',[FrontendController::class,'lifetime_member'])->name('lifetime.member');
 route::get('general-member',[FrontendController::class,'general_member'])->name('general.member');
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
-route::get('budget',[FrontendController::class,'budget'])->name('budget');
+
+route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
+route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
+
 route::get('comitee-activities',[FrontendController::class,'comitee_activities'])->name('comitee.activities');
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks/database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
