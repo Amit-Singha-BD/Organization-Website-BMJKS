@@ -247,37 +247,43 @@
 						</div>
 
 						<div class="row g-4">
-							@foreach($posts as $post)
-								@php
-									$day = \Carbon\Carbon::parse($post['date'])->format('d');
-									$month = \Carbon\Carbon::parse($post['date'])->translatedFormat('M');
-								@endphp
+							@if(!empty($posts) && count($posts) > 0)
+								@foreach($posts as $post)
+									@php
+										$day = \Carbon\Carbon::parse($post['date'])->format('d');
+										$month = \Carbon\Carbon::parse($post['date'])->translatedFormat('M');
+									@endphp
 
-								<div class="col-md-6">
-									<div class="card border-0 shadow-sm h-100 news-card">
-										<div class="card-body p-4">
-											<div class="d-flex align-items-start">
-												<div class="news-date me-3 text-center">
-													<div class="bg-primary text-white rounded-top p-2">
-														<div class="fw-bold">{{ $day }}</div>
-														<small>{{ $month }}</small>
+									<div class="col-md-6">
+										<div class="card border-0 shadow-sm h-100 news-card">
+											<div class="card-body p-4">
+												<div class="d-flex align-items-start">
+													<div class="news-date me-3 text-center">
+														<div class="bg-primary text-white rounded-top p-2">
+															<div class="fw-bold">{{ $day }}</div>
+															<small>{{ $month }}</small>
+														</div>
 													</div>
-												</div>
-												<div>
-													<h6 class="fw-bold mb-2">
-														<a href="{{ $post['link'] }}" target="_blank" class="text-dark text-decoration-none">
-															{{ Str::limit(strip_tags($post['title']['rendered']), 40)}}
-														</a>
-													</h6>
-													<p class="text-muted small mb-0">
-														{{ Str::limit(strip_tags($post['excerpt']['rendered']), 65) }}
-													</p>
+													<div>
+														<h6 class="fw-bold mb-2">
+															<a href="{{ $post['link'] }}" target="_blank" class="text-dark text-decoration-none">
+																{{ Str::limit(strip_tags($post['title']['rendered']), 40) }}
+															</a>
+														</h6>
+														<p class="text-muted small mb-0">
+															{{ Str::limit(strip_tags($post['excerpt']['rendered']), 65) }}
+														</p>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+								@endforeach
+							@else
+								<div class="col-12">
+									<p class="text-center text-muted">কোনো ব্লগ পোস্ট পাওয়া যায়নি।</p>
 								</div>
-							@endforeach
+							@endif
 						</div>
 
 					</div>

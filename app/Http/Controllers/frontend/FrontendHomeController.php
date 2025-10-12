@@ -15,8 +15,6 @@ class FrontendHomeController extends Controller{
         $services = Service::all();
         $notices = Notice::latest()->take(3)->get();
         $president = President::latest()->first();
-
-
         return view('frontend.pages.home', compact('services', 'posts','notices','president'));
     }
 
