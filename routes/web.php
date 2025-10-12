@@ -7,6 +7,9 @@ use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
 use App\Http\Controllers\frontend\FrontendHomeController;
 use App\Http\Controllers\frontend\FrontendContactController;
+use App\Http\Controllers\frontend\FrontendServiceController;
+use App\Http\Controllers\frontend\PdfController;
+
 
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\AuthenticationController;
@@ -34,7 +37,7 @@ route::get('notices',[FrontendController::class,'notice'])->name('frontend.notic
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
 route::get('about',[FrontendController::class,'about'])->name('about');
-route::get('service',[FrontendController::class,'service'])->name('frontend.service');
+route::get('services-view',[FrontendServiceController::class,'service'])->name('frontend.service');
 route::get('lifetime-member',[FrontendController::class,'lifetime_member'])->name('lifetime.member');
 route::get('general-member',[FrontendController::class,'general_member'])->name('general.member');
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
@@ -43,6 +46,8 @@ route::get('comitee-activities',[FrontendController::class,'comitee_activities']
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks/database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 route::post('bmjks/database/search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
+Route::get('/download-pdf', [PdfController::class, 'download'])->name('download.pdf');
+
 // Frontend Routes End <--
 
 
@@ -69,7 +74,7 @@ Route::put('president/{id}',[PresidentController::class,'update'])->name('presid
 
 
 // Committee Route Start -->
-Route::get('/committee/create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
+Route::get('/committee-create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
 Route::get('/active/committee/list', [CommitteeManageController::class, 'committeeActiveListView'])->name('active.committee.list');
 Route::get('/deactive/committee/list', [CommitteeManageController::class, 'committeeDeactiveListView'])->name('deactive.committee.list');
 Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');

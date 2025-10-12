@@ -28,7 +28,8 @@ class Person extends Model
         'district',
         'profession',
         'blood_group',
-        'donator'
+        'donator',
+        'member_aproved'
     ];
 
     public function personType()
