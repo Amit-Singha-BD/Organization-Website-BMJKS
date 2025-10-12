@@ -22,19 +22,14 @@
                         কমিটি
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                        <li><a class="dropdown-item" href="{{route('commitee')}}">প্রধান কমিটি</a></li>
-                        <li><a class="dropdown-item" href="#">বালিগাঁও শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">মাধবপুর শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">ঘোরামারা শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">তিলকপুর শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">ভানুবিল শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">তেতইগাও শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">ঢালুয়া শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">গোলেরহাওর শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">মাছিমপুর শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">ধনিটিলা শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">মাঝেরগাও শাখা</a></li>
-                        <li><a class="dropdown-item" href="#">বিশগাও</a></li>
+
+                        @foreach($committeeNames as $committee)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('committee', $committee->committee_slug ) }}">
+                                    {{ $committee->committee_name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
                 

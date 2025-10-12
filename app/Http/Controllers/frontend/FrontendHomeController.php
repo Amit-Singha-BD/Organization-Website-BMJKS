@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Service;
 use App\Models\Notice;
 use App\Models\President;
+use App\Models\CommitteeMember;
 
 class FrontendHomeController extends Controller{
 
@@ -17,5 +18,10 @@ class FrontendHomeController extends Controller{
         $president = President::latest()->first();
         return view('frontend.pages.home', compact('services', 'posts','notices','president'));
     }
+
+    public function comittee_view($slug){
+        return view('frontend.pages.commitee');
+    }
+
 
 }

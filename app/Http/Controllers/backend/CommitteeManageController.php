@@ -8,6 +8,7 @@ use App\Models\CommitteeYear;
 use App\Models\CommitteeMember;
 
 class CommitteeManageController extends Controller {
+
     public function committeeCreate(){
         $committees = CommitteeName::all();
         return view('Backend.Pages.CommitteeCreate', compact('committees'));
