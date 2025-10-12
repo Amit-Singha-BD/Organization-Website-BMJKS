@@ -29,7 +29,7 @@ use App\Http\Controllers\backend\DonationController;
 
 // Frontend Routes Start -->
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
-route::get('committee/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
+route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
 route::get('notices',[FrontendController::class,'notice'])->name('frontend.notice');
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
