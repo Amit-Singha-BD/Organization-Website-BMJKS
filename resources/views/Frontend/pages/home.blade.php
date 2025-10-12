@@ -148,19 +148,39 @@
 						   		style="width:110px; height:110px; object-fit:cover;">
 						@endif
 					  <div>
-						<h6 class="mb-0 fw-bold">$president->name</h6>
+						<h6 class="mb-0 fw-bold">{{$president->name}}</h6>
 						<small class="text-muted">সভাপতি</small>
 					  </div>
 					</div>
 
 					<p class="mb-2 text-muted">
-					  $president->message
+					  {{ \Illuminate\Support\Str::words($president->message, 5, '...') }}
 					</p>
 
 					<div class="d-grid gap-2">
-						<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
+						<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#president" title="view">
 							<i class="fas fa-journal-whills me-1"></i> সভাপতির বার্তা
 						</button>
+					</div>
+
+					<div class="modal fade" id="president" tabindex="-1" aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal-content">
+
+								<!-- Modal Header with Close Button -->
+								<div class="modal-header">
+									<h5 class="modal-title text-secondary">সভাপতির বার্তা</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+
+								<div class="modal-body">
+									<section id="mySection">
+										<p>{{$president->message}}</p>
+									</section>
+								</div>
+
+							</div>
+						</div>
 					</div>
 				  </div>
 
@@ -201,8 +221,6 @@
 									</div>
 								</div>
 							</div>
-
-
 
 							<div class="modal fade" id="myModal{{$service->id}}" tabindex="-1" aria-hidden="true">
 								<div class="modal-dialog modal-lg modal-dialog-centered">
@@ -293,33 +311,6 @@
 
 
 		{{-- bootstrap 5 services modal --}}
-		<div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
 
-					<!-- Modal Header with Close Button -->
-					<div class="modal-header">
-						<h5 class="modal-title text-secondary">What is Lorem Ipsum</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-
-					<div class="modal-body">
-						<section id="mySection">
-							<p>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea nulla, blanditiis necessitatibus odio amet
-								magni minima quo sunt, quibusdam fuga tempora rerum. Itaque maxime porro dolore natus minima tempore,
-								corporis accusamus quidem hic quam dolorum quas quis non labore ea veniam repudiandae soluta magnam 
-								aliquid neque sequi ducimus! Aperiam, aspernatur impedit quae iure accusantium incidunt adipisci
-								nam numquam quasi pariatur, accusamus, aliquid suscipit ex quas voluptates soluta dolorum facilis 
-								deleniti sit quos. Soluta quis id accusamus eos repudiandae fuga ipsa ducimus nesciunt tempore eum 
-								beatae tenetur, sed quibusdam reprehenderit provident deserunt est, in molestiae cupiditate officiis!
-								Recusandae facere veritatis minus!
-							</p>
-						</section>
-					</div>
-
-				</div>
-			</div>
-		</div>
 
 @endsection
