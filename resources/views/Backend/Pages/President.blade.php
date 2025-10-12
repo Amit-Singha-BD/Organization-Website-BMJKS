@@ -5,13 +5,42 @@
     <div class=" mt-3">
         <div class="card shadow-sm">
             <div class="card-header text-white bg-success text-center">
-                <i class="fa-solid fa-palette me-2"></i>সভাপতির বার্তা
+                <i class="fas fa-user-tie"></i> সভাপতির বার্তা
             </div>
             <div class="card-body">
-                <form action="{{ route('president.update',$president->id) }}" method="POST" >
+                <form action="{{ route('president.update',$president->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
+                        <div class="col-md-6">
+                                
+                            <label class="form-label @error('photo') text-danger @enderror">
+                                @error('photo')
+                                    {{ $message }}
+                                @else
+                                    সভাপতির ফটো
+                                @enderror
+                            </label>
+                            <input type="file" name="photo" class="form-control" accept="image/png">
+                        </div>
+                        <div class="col-md-2 ms-4">
+                            @if(!empty($president->photo))
+                            <img src="{{ asset('uploads/president/' . $president->photo) }}" 
+                                alt="সভাপতির ফটো" 
+                                class="img-thumbnail" 
+                                width="100">
+                            @endif
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label  @error('name') text-danger @enderror">
+                                 @error('name')
+                                    {{ $message }}
+                                @else
+                                    সভাপতির নাম
+                                @enderror
+                            </label>
+                            <input type="text" name="name" placeholder="সভাপতির নাম (বাংলায়)" class="form-control" value="{{ old('name', $president->name ?? '') }}"  required>
+                        </div>
                         <div class="col-md-12">
                             <label class="form-label @error('message') text-danger @enderror">
                                 @error('message')
