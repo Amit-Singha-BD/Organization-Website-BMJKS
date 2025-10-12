@@ -73,9 +73,9 @@
 				<i class="fa-solid fa-scroll text-primary fa-2x me-3"></i>
                 <h5 class="fw-bold mb-0">বামযুকসের সংবিধান ডাউনলোড করুন</h5>
               </div>
-				 <a href="yourfile.pdf" class="btn btn-success" download>
-				  <i class="fa-solid fa-download"></i> ডাউনলোড
-				</a>
+				 <a href="{{ route('download.pdf') }}" class="btn btn-success">
+              <i class="fas fa-download"></i> ডাউনলোড PDF
+          </a>
             </div>
           </div>
         </div>

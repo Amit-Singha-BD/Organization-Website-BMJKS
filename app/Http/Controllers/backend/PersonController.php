@@ -74,6 +74,7 @@ class PersonController extends Controller
     {
         // Person তৈরি করা
         $validdata = $request->validated();
+        $validdata['member_aproved'] = 'yes';
         $person = Person::create($validdata);
 
         // Selected tags

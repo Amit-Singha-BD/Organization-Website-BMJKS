@@ -154,7 +154,7 @@
 					</div>
 
 					<p class="mb-2 text-muted">
-					  {{ \Illuminate\Support\Str::words($president->message, 5, '...') }}
+					  {{ \Illuminate\Support\Str::words($president->message, 15, '...') }}
 					</p>
 
 					<div class="d-grid gap-2">
