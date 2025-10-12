@@ -18,4 +18,9 @@ class FrontendHomeController extends Controller{
         return view('frontend.pages.home', compact('services', 'posts','notices','president'));
     }
 
+    public function comittee_view($slug){
+        return $slug;
+        
+    }
+
 }
