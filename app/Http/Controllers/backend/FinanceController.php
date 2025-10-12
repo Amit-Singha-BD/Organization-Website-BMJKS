@@ -18,11 +18,11 @@ class FinanceController extends Controller
     public function sheetCreate(FinanceValidate $request){
         $validateData = $request->validated();
 
-        $pdfPath = null;
-        if ($request->hasFile('pdf_path')) {
+        $pdfName = null;
+        if($request->hasFile('pdf_path')){
             $pdf = $request->file('pdf_path');
-            $pdfName = time() . '_' . uniqid() . '.' . $pdf->getClientOriginalExtension();
-            $pdf->storeAs('finance', $pdfName, 'public');
+            $pdfName = time() . '.' . $pdf->getClientOriginalExtension();
+            $pdf->move(public_path('finance'), $pdfName);
         }
 
         $finance = Finance::create([
@@ -40,13 +40,14 @@ class FinanceController extends Controller
     }
 
     public function sheetDownload($fileName){
-        $file = public_path('storage/finance/' . $fileName);
+        $file = public_path('finance/' . $fileName);
 
-        if (file_exists($file)) {
+        if(file_exists($file)) {
             return response()->download($file);
-        } else {
+        }
+        else{
             return redirect()->back()
-                            ->with("error", "দুঃখিত! নির্দিষ্ট হিসাবটি খুঁজে পাওয়া যায়নি।");
+                             ->with('error', 'দুঃখিত! নির্দিষ্ট হিসাবটি খুঁজে পাওয়া যায়নি।');
         }
     }
 

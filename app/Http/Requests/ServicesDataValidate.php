@@ -12,7 +12,7 @@ class ServicesDataValidate extends FormRequest {
 
     public function rules(): array {
         return [
-            'icon'        => ['nullable', 'string', 'regex:/^<i class="fa-(solid|regular|brands) fa-[a-z0-9-]+"><\/i>$/'],
+            'icon'        => ['required','regex:/^fa(-[a-z]+)* fa-[a-z0-9\-]+$/'],
             'title'       => 'required|string|min:5|max:250',
             'description' => 'required|string|min:10|max:3000',
         ];

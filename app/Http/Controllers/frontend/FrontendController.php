@@ -31,9 +31,7 @@ class FrontendController extends Controller
     public function techteam(){
         return view('frontend.pages.techteam');
     }
-    public function budget(){
-        return view('frontend.pages.budget');
-    }
+
      public function comitee_activities(){
         return view('frontend.pages.comitee_activities');
     }
