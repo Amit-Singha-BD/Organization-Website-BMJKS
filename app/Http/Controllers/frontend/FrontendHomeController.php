@@ -7,6 +7,8 @@ use App\Models\Service;
 use App\Models\Notice;
 use App\Models\President;
 use App\Models\CommitteeMember;
+use App\Models\CommitteeName;
+use App\Models\CommitteeYear;
 
 class FrontendHomeController extends Controller{
 
@@ -20,8 +22,28 @@ class FrontendHomeController extends Controller{
     }
 
     public function comittee_view($slug){
-        return view('frontend.pages.commitee');
+
+        $committeeData = CommitteeName::where('committee_slug', $slug)->first();
+
+        if (!$committeeData) {
+            return redirect()->back()->with('error', 'কমিটির তথ্য পাওয়া যায়নি!');
+        }
+
+        $committeeYearData = CommitteeYear::where('committee_id', $committeeData->id)
+            ->where('status', 'active')
+            ->first();
+
+        if (!$committeeYearData) {
+            return redirect()->back()->with('error', 'এই কমিটির সক্রিয় বছর পাওয়া যায়নি!');
+        }
+
+        $committeeMembers = CommitteeMember::where('CommitteeYear_id', $committeeYearData->id)
+            ->orderBy('role')
+            ->get();
+
+        return view('frontend.pages.full_commitee', compact('committeeData', 'committeeMembers'));
     }
+
 
 
 }
