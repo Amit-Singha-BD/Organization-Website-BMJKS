@@ -18,7 +18,7 @@ class CommitteeActivitieFactory extends Factory
     public function definition(): array
     {
        return [
-            'committee_id'=> 1,
+            'committee_year_id'=> 1,
             'title' => 'happy new year consart',
             'description' => 'amra ei consart ti anonder jonno ayojon koresi',
             'activities_date' => now(),

@@ -10,7 +10,7 @@ class CommitteeActivitie extends Model
     use HasFactory;
 
     protected $fillable = [
-        'committee_id',
+        'committee_year_id',
         'title',
         'description',
         'activities_date'
