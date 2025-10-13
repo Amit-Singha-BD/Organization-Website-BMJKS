@@ -22,12 +22,7 @@ class FrontendController extends Controller
     public function service(){
         return view('frontend.pages.service');
     }
-    public function lifetime_member(){
-        return view('frontend.pages.lifetime_member');
-    }
-    public function general_member(){
-        return view('frontend.pages.general_member');
-    }
+    
     public function techteam(){
         return view('frontend.pages.techteam');
     }

@@ -4,5 +4,5 @@
     
     <!-- Custom JS -->
 	
-    <script src="{{asset('assets/js/customScript.js')}}"></script>
+    <!-- <script src="{{asset('assets/js/customScript.js')}}"></script> -->
 @endpush

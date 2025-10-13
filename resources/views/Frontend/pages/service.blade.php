@@ -54,7 +54,6 @@
 					<div class="modal-body">
 						<!-- 👉 এখানে আপনার সেকশন কপি করবেন -->
 						<section id="mySection">
-							<h3 class="text-secondary">{{ $service->title}}</h3>
 							<p>
 							{{ $service->description}}
 							</p>
