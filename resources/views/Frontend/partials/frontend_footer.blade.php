@@ -64,6 +64,5 @@
     
     <!-- Custom JS -->
 	
-    <!-- <script src="{{asset('Frontend-Assets/js/js.js')}}"></script> -->
-</body>
+    <script src="{{asset('Frontend-Assets/js/js.js')}}"></script>
 </html> 
