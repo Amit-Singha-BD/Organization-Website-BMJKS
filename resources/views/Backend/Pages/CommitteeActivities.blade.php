@@ -181,7 +181,7 @@
                             <div>
                                 <label for="status">কমিটি লিস্ট</label>
                                 <select name="committee_id" id="status" class="form-control">
-                                    <option value="">-- কমিটি সিলেক্ট --</option>
+                                    <option value="">কমিটি সিলেক্ট</option>
                                     <option value="1">2024</option>
                                     <option value="2">2025</option>
                                     <option value="3">2026</option>
