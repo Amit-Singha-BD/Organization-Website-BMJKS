@@ -13,7 +13,7 @@ return new class extends Migration
     {
          Schema::create('committee_activities', function (Blueprint $table) {
             $table->id();
-            $table->integer('committee_id');
+            $table->integer('committee_year_id');
             $table->string('title');
             $table->text('description');
             $table->date('activities_date');

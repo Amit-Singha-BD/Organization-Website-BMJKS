@@ -9,6 +9,8 @@ use App\Http\Controllers\frontend\FrontendHomeController;
 use App\Http\Controllers\frontend\FrontendContactController;
 use App\Http\Controllers\frontend\FrontendServiceController;
 use App\Http\Controllers\frontend\EServiceController;
+use App\Http\Controllers\frontend\FrontendBudgetController;
+use App\Http\Controllers\frontend\FrontendActivitiesController;
 use App\Http\Controllers\frontend\PdfController;
 
 
@@ -44,11 +46,13 @@ route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'
 route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
 route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
-
 route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
 route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
 
-route::get('comitee-activities',[FrontendController::class,'comitee_activities'])->name('comitee.activities');
+
+route::get('committee-activities',[FrontendActivitiesController::class,'committeeActivities'])->name('committee.activities');
+
+
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks/database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 route::post('bmjks/database/search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');

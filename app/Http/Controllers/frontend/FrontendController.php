@@ -27,7 +27,5 @@ class FrontendController extends Controller
         return view('frontend.pages.techteam');
     }
 
-     public function comitee_activities(){
-        return view('frontend.pages.comitee_activities');
-    }
+    
 }
