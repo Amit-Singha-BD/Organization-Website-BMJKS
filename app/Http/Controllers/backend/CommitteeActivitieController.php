@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\CommitteeActivitie;
+use App\Models\CommitteeYear;
 use App\Http\Requests\CommitteeActivitiesValidate;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class CommitteeActivitieController extends Controller
     public function index()
     {
         $activities_data = CommitteeActivitie::all();
-        return view('Backend.Pages.CommitteeActivities',compact('activities_data'));
+        $committeeYears = CommitteeYear::select('id', 'committee_name')->get();
+        return view('Backend.Pages.CommitteeActivities',compact('activities_data', 'committeeYears'));
     }
 
     /**

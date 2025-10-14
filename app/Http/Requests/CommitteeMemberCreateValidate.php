@@ -15,7 +15,7 @@ class CommitteeMemberCreateValidate extends FormRequest {
             'CommitteeYear_id' => 'required|integer',
             'name'             => 'required|string|max:255',
             'photo'            => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'role'             => 'required|integer|unique:committee_members,role|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16',
+            'role'             => 'required|integer|in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16',
             'address'          => 'required|string|max:500',
             'mobile'           => 'required|regex:/^01[0-9]{9}$/',
             'email'            => 'required|email|max:255',
