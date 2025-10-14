@@ -22,7 +22,7 @@ class CommitteeActivitiesValidate extends FormRequest
     public function rules(): array
     {
         return [
-        'committee_id'=>'required|regex:/^[0-9]+$/|max:3',
+        'committee_year_id'=>'required|regex:/^[0-9]+$/|max:3',
         'title'=>'required|string|max:70|min:5',
         'description'=>'required|string|max:3000|min:5',
         'activities_date'=>'required|date'
@@ -30,7 +30,7 @@ class CommitteeActivitiesValidate extends FormRequest
     }
     public function messages(): array {
         return [
-            "committee_id.required"       => "কমিটি সিলেক্ট কর",
+            "committee_year_id.required"       => "কমিটি সিলেক্ট কর",
 
             "title.max"       => "টাইটেল সর্বোচ্চ ৭০ অক্ষর হতে পারবে।",
             "title.min"       => "টাইটেল সর্বনিম্ন ৫ অক্ষর হতে পারবে।",

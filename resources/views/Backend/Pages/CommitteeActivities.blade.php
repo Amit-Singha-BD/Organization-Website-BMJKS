@@ -180,11 +180,11 @@
                         <div class="row g-3">
                             <div>
                                 <label for="status">কমিটি লিস্ট</label>
-                                <select name="committee_id" id="status" class="form-control">
+                                <select name="committee_year_id" id="status" class="form-control">
                                     <option value="">কমিটি সিলেক্ট</option>
-                                    <option value="1">2024</option>
-                                    <option value="2">2025</option>
-                                    <option value="3">2026</option>
+                                    @foreach($committeeYears as $committeeYear)
+                                        <option value="{{ $committeeYear->id }}">{{ $committeeYear->committee_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
