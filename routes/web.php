@@ -6,6 +6,7 @@ use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
 use App\Http\Controllers\frontend\FrontendHomeController;
+use App\Http\Controllers\frontend\FrontendNoticeController;
 use App\Http\Controllers\frontend\FrontendContactController;
 use App\Http\Controllers\frontend\FrontendServiceController;
 use App\Http\Controllers\frontend\EServiceController;
@@ -36,7 +37,7 @@ use App\Http\Controllers\backend\DonationController;
 // Frontend Routes Start -->
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
-route::get('notices',[FrontendController::class,'notice'])->name('frontend.notice');
+route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
 route::get('about',[FrontendController::class,'about'])->name('about');
@@ -44,6 +45,7 @@ route::get('services-view',[FrontendServiceController::class,'service'])->name('
 route::get('lifetime-member',[EServiceController::class,'lifetime_member_application_view'])->name('lifetime.member');
 route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'])->name('lifetime.member.store');
 route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
+route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
 route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
 route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');

@@ -63,6 +63,7 @@
             <section class="py-3">
                 <div class="container">
                     <!-- Urgent Notice -->
+                     @foreach($notices as $notice)
                     <div class="notice-card mb-4" data-category="urgent" data-year="2024">
                         <div class="notice-header " data-bs-toggle="modal" data-bs-target="#myModal">
                             <div class="d-flex align-items-center">
@@ -70,59 +71,55 @@
                                     <i class="fas fa-info-circle"></i>
                                 </div>
                                 <div class="flex-grow-1 title-date-container">
-                                    <h5 class=" notice-title" > আমাকে আমার মতো থাকতে দাও তকাদকিতাহকত াুদিাতকুদিাকহাুিকাতকদতকদকুাি জরুরি সভার নোটিশ</h5>
+                                    <h5 class=" notice-title" >{{$notice->title}}</h5>
                                     <div class="notice-date">
                                         <span class="text-muted">
-                                            <i class="fas fa-calendar me-1"></i>১৫ মার্চ, ২০২৪
+                                            <i class="fas fa-calendar me-1"></i>{{$notice->date}}
                                         </span>
                                     </div>
                                 </div>
                                 <div class="notice-actions">
-                                    <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
+                                    <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#noticeModal{{ $notice->id }}" title="view">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="notice-body">
-                            <p class="mt-1">আগামী ২০ মার্চ, ২০২৪ তারিখে সন্ধ্যা ৭টায় জরুরি সভা অনুষ্ঠিত হবে। সকল সদস্যদের উপস্থিত থাকার জন্য বিশেষভাবে অনুরোধ করা হচ্ছে।
-                            আগামী ২০ মার্চ, ২০২৪ তারিখে সন্ধ্যা ৭টায় জরুরি সভা অনুষ্ঠিত হবে। সকল সদস্যদের উপস্থিত থাকার জন্য বিশেষভাবে অনুরোধ করা হচ্ছে।আগামী ২০ মার্চ, ২০২৪ তারিখে সন্ধ্যা ৭টায় জরুরি সভা অনুষ্ঠিত হবে। সকল সদস্যদের উপস্থিত থাকার জন্য বিশেষভাবে অনুরোধ করা হচ্ছে।
-                            আগামী ২০ মার্চ, ২০২৪ তারিখে সন্ধ্যা ৭টায় জরুরি সভা অনুষ্ঠিত হবে। সকল সদস্যদের উপস্থিত থাকার জন্য বিশেষভাবে অনুরোধ করা হচ্ছে।
-                            আগামী ২০ মার্চ, ২০২৪ তারিখে সন্ধ্যা ৭টায় জরুরি সভা অনুষ্ঠিত হবে। সকল সদস্যদের উপস্থিত থাকার জন্য বিশেষভাবে অনুরোধ করা হচ্ছে।
-                            </p>
+                            <p class="mt-1">{{$notice->description}}</p>
                         </div>
                     </div>
+                     <!-- Modal -->
+                    <div class="modal fade" id="noticeModal{{ $notice->id }}" tabindex="-1" aria-labelledby="noticeModalLabel{{ $notice->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content border-0 shadow">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="noticeModalLabel{{ $notice->id }}">
+                                        <i class="fas fa-bullhorn me-2"></i> {{ $notice->title }}
+                                    </h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="mb-2 text-muted">
+                                        <i class="fas fa-calendar-alt me-2"></i>{{ $notice->date }}
+                                    </p>
+                                    <hr>
+                                    <div class="notice-description">
+                                        {!! nl2br(e($notice->description)) !!}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        বন্ধ করুন
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
 
-                    <div class="notice-card mb-4" data-category="urgent" data-year="2024">
-                        <div class="notice-header " data-bs-toggle="modal" data-bs-target="#myModal">
-                            <div class="d-flex align-items-center">
-                                <div class="notice-icon me-3">
-                                    <i class="fas fa-info-circle"></i>
-                                </div>
-                                <div class="flex-grow-1 title-date-container">
-                                    <h5 class=" notice-title" > আমাকে আমার মতো থাকতে দাও তকাদকিতাহকত াুদিাতকুদিাকহাুিকাতকদতকদকুাি জরুরি সভার নোটিশ</h5>
-                                    <div class="notice-date">
-                                        <span class="text-muted">
-                                            <i class="fas fa-calendar me-1"></i>১৫ মার্চ, ২০২৪
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="notice-actions">
-                                    <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#myModal" title="view">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="notice-body">
-                            <p class="mt-1">আগামী ২০ মার্চ, ২০২৪ তারিখে সন্ধ্যা ৭টায় জরুরি সভা অনুষ্ঠিত হবে। সকল সদস্যদের উপস্থিত থাকার জন্য বিশেষভাবে অনুরোধ করা হচ্ছে।</p>
-                        </div>
-                    </div>
-                    
-                    
-    
                     <!-- পেজিনেশন -->
-                    <nav aria-label="Page navigation">
+                    <!-- <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center custom-pagination">
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1">
@@ -150,7 +147,21 @@
                                 </a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> -->
+
+
+                    <div class="Page navigation">
+                        <div class=" pagination justify-content-center custom-pagination">
+                            <div>
+                                মোট {{ $notices->total() }} টি রেকর্ডের মধ্যে 
+                                {{ $notices->firstItem() }} - {{ $notices->lastItem() }} দেখানো হচ্ছে
+                            </div>
+                            <div>
+                               {{ $notices->links() }}
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

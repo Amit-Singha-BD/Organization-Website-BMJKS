@@ -96,131 +96,40 @@
 
         <!-- Card View for Mobile -->
         <div class="cards-container">
-            <!-- President Card -->
-            <div class="committee-card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-crown me-1"></i>সভাপতি</h5>
-                </div>
-                <div class="card-body text-center">
-                    <div class="card-square-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" 
-                             alt="সভাপতি" class="square-photo">
-                    </div>
-                    <h5 class="fw-bold" style="color: #333333;">জনাব আহমেদ হোসেন</h5>
-                    <p class="mb-2">
-                        <i class="fas fa-map-marker-alt me-1" style="color: var(--secondary-green);"></i>
-                        ঢাকা, বাংলাদেশ
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                        <a href="tel:+8801712345678" class="contact-link">+৮৮০-১৭১২-৩৪৫৬৭৮</a>
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                        <a href="mailto:president@manipuri.org" class="contact-link">president@manipuri.org</a>
-                    </p>
-                    <div class="action-buttons">
-                        <button class="btn btn-sm btn-outline-primary">
-                            <i class="fab fa-facebook-f me-1"></i> প্রোফাইল
-                        </button>
-                    </div>
-                </div>
-            </div>
             
-                   <!-- President Card -->
+             @foreach($committeeMembers as $committeeMember)
             <div class="committee-card">
                 <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-crown me-1"></i>সম্পাদক</h5>
+                    <h5 class="mb-0"><i class="fas fa-crown me-1"></i>{{ role_name($committeeMember->role) }}</h5>
                 </div>
                 <div class="card-body text-center">
                     <div class="card-square-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" 
-                             alt="সভাপতি" class="square-photo">
+                        <img src="{{ $committeeMember->photo ? asset($committeeMember->photo) : asset('Frontend-Assets/images/profile_img.png') }}" class="square-photo">
                     </div>
-                    <h5 class="fw-bold" style="color: #333333;">জনাব তিলুয়া</h5>
+                    <h5 class="fw-bold" style="color: #333333;">{{$committeeMember->name}}</h5>
                     <p class="mb-2">
                         <i class="fas fa-map-marker-alt me-1" style="color: var(--secondary-green);"></i>
-                        ঢাকা, বাংলাদেশ
+                        {{$committeeMember->address }}
                     </p>
                     <p class="mb-1">
                         <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                        <a href="tel:+8801712345678" class="contact-link">+৮৮০-১৭১২-৩৪৫৬৭৮</a>
+                        <a href="tel:+8801712345678" class="contact-link">{{$committeeMember->mobile }}</a>
                     </p>
                     <p class="mb-1">
                         <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                        <a href="mailto:president@manipuri.org" class="contact-link">president@manipuri.org</a>
+                        <a href="mailto:president@manipuri.org" class="contact-link">{{$committeeMember->email }}</a>
                     </p>
                     <div class="action-buttons">
-                        <button class="btn btn-sm btn-outline-primary">
-                            <i class="fab fa-facebook-f me-1"></i> প্রোফাইল
-                        </button>
+                        <a href="{{$committeeMember->facebook }}" 
+                            target="_blank" 
+                            class="btn btn-sm btn-outline-primary" 
+                            title="প্রোফাইল দেখুন">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-			
-			          <!-- President Card -->
-            <div class="committee-card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-crown me-1"></i>কোষাধ্যক্ষ</h5>
-                </div>
-                <div class="card-body text-center">
-                    <div class="card-square-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" 
-                             alt="সভাপতি" class="square-photo">
-                    </div>
-                    <h5 class="fw-bold" style="color: #333333;">জনাব ফলার</h5>
-                    <p class="mb-2">
-                        <i class="fas fa-map-marker-alt me-1" style="color: var(--secondary-green);"></i>
-                        ঢাকা, বাংলাদেশ
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                        <a href="tel:+8801712345678" class="contact-link">+৮৮০-১৭১২-৩৪৫৬৭৮</a>
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                        <a href="mailto:president@manipuri.org" class="contact-link">president@manipuri.org</a>
-                    </p>
-                    <div class="action-buttons">
-                        <button class="btn btn-sm btn-outline-primary">
-                            <i class="fab fa-facebook-f me-1"></i> প্রোফাইল
-                        </button>
-                    </div>
-                </div>
-            </div>
-			
-			          <!-- President Card -->
-            <div class="committee-card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-crown me-1"></i>সহ সভাপতি</h5>
-                </div>
-                <div class="card-body text-center">
-                    <div class="card-square-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" 
-                             alt="সভাপতি" class="square-photo">
-                    </div>
-                    <h5 class="fw-bold" style="color: #333333;">জনাব বান্দারা</h5>
-                    <p class="mb-2">
-                        <i class="fas fa-map-marker-alt me-1" style="color: var(--secondary-green);"></i>
-                        ঢাকা, বাংলাদেশ
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                        <a href="tel:+8801712345678" class="contact-link">+৮৮০-১৭১২-৩৪৫৬৭৮</a>
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                        <a href="mailto:president@manipuri.org" class="contact-link">president@manipuri.org</a>
-                    </p>
-                    <div class="action-buttons">
-                        <button class="btn btn-sm btn-outline-primary">
-                            <i class="fab fa-facebook-f me-1"></i> প্রোফাইল
-                        </button>
-                    </div>
-                </div>
-            </div>
-                
-            
+            </div>  
+            @endforeach       
         </div>
 		
     </div>
