@@ -6,6 +6,7 @@ use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
 use App\Http\Controllers\frontend\FrontendHomeController;
+use App\Http\Controllers\frontend\FrontendNoticeController;
 use App\Http\Controllers\frontend\FrontendContactController;
 use App\Http\Controllers\frontend\FrontendServiceController;
 use App\Http\Controllers\frontend\EServiceController;
@@ -36,7 +37,7 @@ use App\Http\Controllers\backend\DonationController;
 // Frontend Routes Start -->
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
-route::get('notices',[FrontendController::class,'notice'])->name('frontend.notice');
+route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
 route::get('about',[FrontendController::class,'about'])->name('about');
