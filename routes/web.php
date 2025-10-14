@@ -44,6 +44,7 @@ route::get('services-view',[FrontendServiceController::class,'service'])->name('
 route::get('lifetime-member',[EServiceController::class,'lifetime_member_application_view'])->name('lifetime.member');
 route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'])->name('lifetime.member.store');
 route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
+route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
 route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
 route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
