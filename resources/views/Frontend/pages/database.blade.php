@@ -198,23 +198,23 @@
             </div>
 
             <div class="card shadow-lg border-1 border-dark rounded-3">
-                <div class="card-header bg-success text-white py-3 d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0 fw-semibold">
+                <div class="card-header text-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class=" mb-0 fw-semibold">
                         <i class="fas fa-list me-2"></i> সার্চকৃত ব্যক্তির তালিকা
                     </h5>
                     <p class="mb-0">মোট {{ $persons->total() }} জন পাওয়া গেছে</p>
                 </div>
 
-                <div class="card-body p-0">
+                <div class=" p-0">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle mb-0">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="text-center">#</th>
-                                    <th>নাম</th>
-                                    <th>মোবাইল</th>
-                                    <th>গ্রাম</th>
-                                    <th class="text-center">একশন</th>
+                                    <th scope="col" class="text-center">#</th>
+                                    <th scope="col">নাম</th>
+                                    <th scope="col">মোবাইল</th>
+                                    <th scope="col">গ্রাম</th>
+                                    <th scope="col" class="text-center">একশন</th>
                                 </tr>
                             </thead>
                             <tbody>
