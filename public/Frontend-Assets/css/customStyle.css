@@ -852,9 +852,9 @@ header {
 .settings-tabs .nav-link {
     color: var(--text-dark);
     background-color: var(--white);
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-weight: 500;
+    border-radius: 20px;
+    padding: 05px 07px;
+    font-weight: 400;
     transition: all 0.3s ease;
     border: 1px solid var(--secondary-green);
 }

@@ -69,20 +69,73 @@
                             </div>
 
                             <div class="col-md-12 floating-wrap">
-                                <div class="floating-input-container">
-                                    <span class="icon-addon"><i class="fas fa-hands-asl-interpreting"></i></span>
-                                    <select id="caste" name="caste" class="floating-input">
-                                        <option value="" disabled selected hidden></option>
-                                        <option value="islam">ইসলাম</option>
-                                        <option value="hindu">হিন্দু</option>
-                                        <option value="buddhist">বৌদ্ধ</option>
-                                        <option value="christian">খ্রিষ্টান</option>
-                                        <option value="other">অন্যান্য</option>
-                                    </select>
-                                    <label class="floating-label" for="caste">গোত্র</label>
+
+                                <!-- Toggle Tabs -->
+                                <div class="btn-group" role="group" aria-label="Toggle Tabs">
+                                    <input type="radio" class="btn-check" name="tabToggle" id="tab1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-success btn-sm" for="tab1">নিচের গোত্র ছাড়া সার্চ</label>
+
+                                    <input type="radio" class="btn-check" name="tabToggle" id="tab2" autocomplete="off">
+                                    <label class="btn btn-outline-success btn-sm" for="tab2">পছন্দের গোত্র সার্চ</label>
+                                </div>
+
+                                <!-- Tab Contents -->
+                                <div class="mt-2">
+
+                                    <!-- 🟢 Tab 1 : Dropdown -->
+                                    <div id="content1" class="tab-content-item">
+                                        <h6 class="text-success mb-2" style="font-size: 0.9rem;">নিজের গোত্র বাদ দিন</h6>
+                                        <div class="col-md-6 mx-auto">
+                                            <select class="form-select form-select-sm">
+                                                <option value="">-- নির্বাচন করুন --</option>
+                                                <option value="1">কাশ্যব</option>
+                                                <option value="2">মধুকল্য</option>
+                                                <option value="3">Grifindor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- 🔵 Tab 2 : Checkboxes Inline -->
+                                    <div id="content2" class="tab-content-item d-none">
+                                        <h6 class="text-success mb-2" style="font-size: 0.9rem;">পছন্দের গোত্র দাও</h6>
+                                        <div class="col-md-6 mx-auto d-flex flex-wrap gap-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="check1">
+                                                <label class="form-check-label small" for="check1">কাশ্যব</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="check2">
+                                                <label class="form-check-label small" for="check2">মধুকল্য</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="check3">
+                                                <label class="form-check-label small" for="check3">Grifindor</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            
+
+<script>
+    const tab1 = document.getElementById('tab1');
+    const tab2 = document.getElementById('tab2');
+    const content1 = document.getElementById('content1');
+    const content2 = document.getElementById('content2');
+
+    tab1.addEventListener('change', () => {
+        content1.classList.remove('d-none');
+        content2.classList.add('d-none');
+    });
+
+    tab2.addEventListener('change', () => {
+        content2.classList.remove('d-none');
+        content1.classList.add('d-none');
+    });
+</script>
+
+
+
                             <div class="col-md-12 floating-wrap">
                                 <div class="floating-input-container">
                                     <span class="icon-addon"><i class="fas fa-house"></i></span>

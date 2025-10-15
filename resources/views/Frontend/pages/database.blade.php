@@ -191,7 +191,7 @@
         <div class="col-12 col-lg-8 order-2 order-lg-2">
             <div class="row py-3 justify-content-center">
                 <div class="col-12 text-center">
-                    <h2 class="text-success fw-bold mb-1">
+                    <h2 class="text-secondary fw-bold mb-1">
                         <i class="fas fa-users me-2"></i> সার্চকৃত ব্যক্তির তথ্য তালিকা
                     </h2>
                 </div>
@@ -244,7 +244,7 @@
                                 <div class="modal fade" id="modalViewMember{{ $person->id }}" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content border-0 shadow-lg rounded-4">
-                                            <div class="modal-header bg-info text-white">
+                                            <div class="modal-header bg-primary text-white">
                                                 <h5 class="modal-title fw-semibold">
                                                     <i class="fas fa-id-card me-2"></i> সদস্যের বিস্তারিত তথ্য
                                                 </h5>
