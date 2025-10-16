@@ -53,6 +53,8 @@ route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budget
 
 
 route::get('committee-activities',[FrontendActivitiesController::class,'committeeActivities'])->name('committee.activities');
+route::get('committee-activities-search',[FrontendActivitiesController::class,'activitieSearch'])->name('committee.activities.search');
+route::get('committee-activities-filter',[FrontendActivitiesController::class,'activitieFilter'])->name('committee.activities.filter');
 
 
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
