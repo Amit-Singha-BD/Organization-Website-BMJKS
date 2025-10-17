@@ -212,7 +212,6 @@
                                 <tr>
                                     <th scope="col" class="text-center">#</th>
                                     <th scope="col">নাম</th>
-                                    <th scope="col">মোবাইল</th>
                                     <th scope="col">গ্রাম</th>
                                     <th scope="col" class="text-center">একশন</th>
                                 </tr>
@@ -229,7 +228,6 @@
                                             <span class="fw-semibold">{{ $person->name }}</span>
                                         </div>
                                     </td>
-                                    <td><span class="badge bg-info text-dark">{{ $person->mobile_number ?? 'N/A' }}</span></td>
                                     <td>{{ $person->village }}</td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-outline-success" 
@@ -269,7 +267,6 @@
                                                         <ul class="list-unstyled mb-0">
                                                             <li class="mb-2"><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'N/A' }}</li>
-                                                            <li class="mb-2"><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>রক্তের গ্রুপ:</strong> {{ $person->blood_group ?? 'N/A' }}</li>
@@ -280,7 +277,6 @@
                                                             <i class="fas fa-address-card me-2"></i> যোগাযোগ ও ঠিকানা
                                                         </h6>
                                                         <ul class="list-unstyled mb-0">
-                                                            <li class="mb-2"><strong>মোবাইল:</strong> {{ $person->mobile_number ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>গোত্র:</strong> {{ $person->caste ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</li>
                                                             <li class="mb-2"><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'N/A' }}</li>
