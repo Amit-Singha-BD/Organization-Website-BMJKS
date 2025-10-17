@@ -13,7 +13,7 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        $notice_data = Notice::orderBy('id', 'desc')->paginate(10);
+        $notice_data = Notice::orderBy('id', 'desc')->paginate(5);
         $title = 'Notice';
          return view('Backend.Pages.Notice',compact('notice_data','title'));
     }

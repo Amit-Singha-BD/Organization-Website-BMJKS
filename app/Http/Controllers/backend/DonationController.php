@@ -51,7 +51,7 @@ class DonationController extends Controller
     }
 
     public function donationEvent(){
-        $donationEvent = DonationEvent::with('donations.person')->paginate(20);
+        $donationEvent = DonationEvent::with('donations.person')->paginate(10);
         return view('Backend.Pages.Donation-Event-List',compact('donationEvent'));
     }
 
@@ -106,7 +106,7 @@ class DonationController extends Controller
 
     public function donatorList()
     {   
-        $persons = Person::where('donator','yes')->paginate(20);
+        $persons = Person::where('donator','yes')->paginate(10);
             foreach($persons as $person){
                 $person->totalDonation = Donation::where('people_id', $person->id)->sum('donate_amount');
                 $person->donations = Donation::where('people_id', $person->id)->get();

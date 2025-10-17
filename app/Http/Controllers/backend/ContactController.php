@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function contactUnread(){
-        $contacts = Contact::where('read_status', 'unread')->get();
+        $contacts = Contact::where('read_status', 'unread')->paginate(10);
         return view('Backend.Pages.Contact', compact('contacts'));
     }
 
     public function contactRead(){
-        $contacts = Contact::where('read_status', 'read')->get();
+        $contacts = Contact::where('read_status', 'read')->paginate(10);
         return view('Backend.Pages.Contact', compact('contacts'));
     }
 

@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="card table-card shadow-sm mt-3">
+    <div class="card table-card shadow-sm my-3">
         <div class="card-header text-white text-center">
             <i class="fas fa-file-invoice-dollar"></i> আর্থিক হিসাবপত্রের তালিকা
         </div>
@@ -161,6 +161,8 @@
             </div>
         </div>
     </div>
+
+    {{ $finances->links() }}
 
     <!-- Create Modal -->
     <div class="modal fade" id="createFinanceModal" tabindex="-1" aria-hidden="true">

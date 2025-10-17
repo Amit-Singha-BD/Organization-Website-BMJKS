@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class FinanceController extends Controller
 {
     public function finance(){
-        $finances = Finance::all();
+        $finances = Finance::paginate(10);
         return view('Backend.Pages.Finance', compact('finances'));
     }
 

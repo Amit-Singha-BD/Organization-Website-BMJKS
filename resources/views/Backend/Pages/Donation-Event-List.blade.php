@@ -14,7 +14,7 @@
     </div>
 
     <!-- Event List Card -->
-    <div class="card shadow">
+    <div class="card shadow mb-3">
         <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0"><i class="fa fa-calendar-check"></i> ইভেন্টের তালিকা</h5>
             <span class="badge bg-light text-dark">মোট {{ $donationEvent->total() }} ইভেন্ট</span>
@@ -128,5 +128,8 @@
         </div>
         @endif
     </div>
+
+    {{ $donationEvent->links() }}
+
 </div>
 @endsection
