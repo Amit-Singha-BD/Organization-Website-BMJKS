@@ -14,7 +14,7 @@ class CommitteeActivitieController extends Controller
      */
     public function index()
     {
-        $activities_data = CommitteeActivitie::all();
+        $activities_data = CommitteeActivitie::paginate(10);
         $committeeYears = CommitteeYear::select('id', 'committee_name')->get();
         return view('Backend.Pages.CommitteeActivities',compact('activities_data', 'committeeYears'));
     }

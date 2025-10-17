@@ -1505,3 +1505,65 @@ body.sidebar-collapsed .admin-brand span {
     background-color: var(--primary-green);
     color: var(--text-light);
 }
+
+    	/* ==============================================
+       কাস্টম পেজিনেশন স্টাইল 
+       ============================================== */
+    
+    	.pagination.custom-pagination {
+    	    margin-bottom: 0;
+    	}
+    
+    	.custom-pagination .page-item {
+    	    margin: 0 4px;
+    	}
+    
+    	.custom-pagination .page-link {
+    	    color: var(--primary-green);
+    	    border: 1px solid #dee2e6;
+    	    border-radius: 8px;
+    	    padding: 8px 16px;
+    	    font-weight: 500;
+    	    transition: all 0.3s ease;
+    	}
+    
+    	.custom-pagination .page-link:hover {
+    	    background-color: var(--primary-green);
+    	    color: var(--bg-white);
+    	    border-color: var(--primary-green);
+    	}
+    
+    	.custom-pagination .page-item.active .page-link {
+    	    background-color: var(--primary-green);
+    	    border-color: var(--primary-green);
+    	    color: var(--bg-white);
+    	}
+    
+    	.custom-pagination .page-item.disabled .page-link {
+    	    color: #6c757d;
+    	    pointer-events: none;
+    	    background-color: var(--bg-white);
+    	    border-color: #dee2e6;
+    	}
+    
+    	/* আরো সুন্দর করার জন্য কিছু অতিরিক্ত স্টাইল */
+    	.custom-pagination .page-link:focus {
+    	    box-shadow: 0 0 0 0.25rem rgba(42, 110, 63, 0.25);
+    	}
+    
+    	.custom-pagination .page-item:first-child .page-link,
+    	.custom-pagination .page-item:last-child .page-link {
+    	    border-radius: 8px;
+    	}
+    
+    	/* রেস্পন্সিভ স্টাইল */
+    	@media (max-width: 576px) {
+    	    .custom-pagination .page-link {
+    	        padding: 6px 12px;
+    	        font-size: 0.9rem;
+    	    }
+    
+    	    .custom-pagination .page-item {
+    	        margin: 0 2px;
+    	    }
+    	}

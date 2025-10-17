@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="card shadow">
+    <div class="card shadow mb-3">
         <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
             <h5 class="card-title mb-0">দাতা তালিকা</h5>
         </div>
@@ -103,6 +103,9 @@
         </div>
         @endif
     </div>
+
+    {{ $donations->links() }}
+
 </div>
 
 

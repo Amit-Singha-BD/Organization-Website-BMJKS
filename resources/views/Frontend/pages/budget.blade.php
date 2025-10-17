@@ -45,36 +45,7 @@
             </div>
         @endforeach
 
-        <!-- Pagination -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center custom-pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">
-                        <i class="fas fa-arrow-left me-1"></i> পূর্ববর্তী
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">১</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">২</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">৩</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">৪</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">৫</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        পরবর্তী <i class="fas fa-arrow-right ms-1"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        {{ $budgets->links() }}
 
     </div>
 </section>

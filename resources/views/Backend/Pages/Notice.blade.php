@@ -70,7 +70,7 @@
     </div>
 
     <!-- Notices Table -->
-    <div class="card table-card shadow-sm mt-3">
+    <div class="card table-card shadow-sm my-3">
         <div class="card-header text-white text-center">
             <i class="fa-solid fa-bullhorn"></i> নোটিশ তালিকা
         </div>
@@ -200,6 +200,8 @@
         </div>
     </div>
 
+    {{ $notice_data->links() }}
+
     <!-- Notice Create Modal -->
     <div class="modal fade" id="modalNotice" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered">
@@ -235,9 +237,5 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 @endsection
