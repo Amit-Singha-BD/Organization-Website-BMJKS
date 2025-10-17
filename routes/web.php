@@ -38,6 +38,7 @@ use App\Http\Controllers\backend\DonationController;
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
 route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
+route::get('notices-title-search',[FrontendNoticeController::class,'notice_titlesearch'])->name('frontend.notice.titlesearch');
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
 route::get('about',[FrontendController::class,'about'])->name('about');

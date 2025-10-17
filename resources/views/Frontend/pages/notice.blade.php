@@ -21,22 +21,26 @@
                 <div class="container">
                     <div class="row g-2 d-flex justify-content-around align-items-center">
                         <div class="col-lg-4">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control form-control-sm" placeholder="অনুসন্ধান..." aria-label="Search">
-                                <button class="btn btn-primary btn-sm" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>		
+                            <form action="{{ route('frontend.notice') }}" method="GET" >
+                                <div class="input-group input-group-sm">
+                                    <input type="text" name="title" class="form-control form-control-sm" 
+                                        placeholder="নোটিশের শিরোনাম লিখে অনুসন্ধান করুন..." 
+                                        value="{{ request('title') }}" required>
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>		
                         </div>
 
                         <div class="col-12 col-lg-6 bg-light border border-2 p-1 rounded">
-                            <form class="row g-1 align-items-center" action="" method="get">
+                            <form class="row g-1 align-items-center" action="{{ route('frontend.notice') }}" method="get">
                                 <!-- Date Range -->
                                 <div class="col-12 col-md">
                                     <div class="row row-cols-3 g-1 align-items-center text-center">
                                         <!-- From Date -->
                                         <div class="col">
-                                            <input class="form-control form-control-sm" type="date">
+                                            <input class="form-control form-control-sm" name="from_date" type="date" value="{{ request('from_date') }}" required>
                                         </div>
                                         <!-- Label -->
                                         <div class="col d-flex align-items-center justify-content-center fw-semibold small">
@@ -44,7 +48,7 @@
                                         </div>
                                         <!-- To Date -->
                                         <div class="col">
-                                            <input class="form-control form-control-sm" type="date">
+                                            <input class="form-control form-control-sm" name="to_date" type="date" value="{{ request('to_date') }}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -63,9 +67,9 @@
             <section class="py-3">
                 <div class="container">
                     <!-- Urgent Notice -->
-                     @foreach($notices as $notice)
+                     @forelse($notices as $notice)
                     <div class="notice-card mb-4" data-category="urgent" data-year="2024">
-                        <div class="notice-header " data-bs-toggle="modal" data-bs-target="#myModal">
+                        <div class="notice-header " data-bs-toggle="modal" data-bs-target="#noticeModal{{ $notice->id }}">
                             <div class="d-flex align-items-center">
                                 <div class="notice-icon me-3">
                                     <i class="fas fa-info-circle"></i>
@@ -116,7 +120,15 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="d-flex justify-content-center align-items-center" style="min-height:150px;">
+                        <div class="text-center">
+                            <i class="bi bi-info-circle text-success fs-3 mb-2"></i>
+                            <h6 class="text-muted mb-0">কোনো নোটিশ পাওয়া যায়নি</h6>
+                        </div>
+                    </div>
+
+                    @endforelse
 
                     <!-- পেজিনেশন -->
                     <!-- <nav aria-label="Page navigation">

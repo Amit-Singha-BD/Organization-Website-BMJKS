@@ -9,9 +9,22 @@ use Illuminate\Http\Request;
 
 class FrontendNoticeController extends Controller
 {
-     public function notice(){
-        $notices = Notice::latest()->paginate(10);
+    public function notice(Request $request)
+    {
+        $search = $request->input('title');
+        $from   = $request->input('from_date');
+        $to     = $request->input('to_date');
 
-        return view('frontend.pages.notice',compact('notices'));
+        $notices = Notice::when($search, function ($query, $search) {
+                return $query->where('title', 'like', "%{$search}%");
+            })
+            ->when($from && $to, function ($query) use ($from, $to) {
+                return $query->whereBetween('created_at', [$from, $to]);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('Frontend.pages.notice', compact('notices', 'search'));
     }
+
 }
