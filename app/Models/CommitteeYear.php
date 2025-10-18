@@ -20,4 +20,8 @@ class CommitteeYear extends Model {
                              'CommitteeYear_id',
                              'id');
     }
+
+    public function committeeActivities(): HasMany{
+        return $this->hasMany(CommitteeActivitie::class, 'committee_year_id', 'id');
+    }
 }

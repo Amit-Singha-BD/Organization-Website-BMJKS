@@ -10,46 +10,38 @@ use App\Models\CommitteeYear;
 
 class FrontendActivitiesController extends Controller {
     public function committeeActivities() {
-        $committeeYears = CommitteeYear::where('committee_id', 1)->latest()->get();
-
-        foreach ($committeeYears as $committeeYear) {
-            $committeeYear->committeeMembers = CommitteeMember::where('CommitteeYear_id', $committeeYear->id)
-                ->select('name', 'photo', 'role')
-                ->whereIn('role', ['1', '4'])
-                ->get();
-
-            $committeeYear->committeeActivities = CommitteeActivitie::where('committee_year_id', $committeeYear->id)->get();
-        }
+        $committeeYears = CommitteeYear::with(['committee_members' => function($members){
+            $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
+                    ->whereIn('role', ['1', '4']);
+        }, 'committeeActivities'])->where('committee_id', 1)
+                                   ->latest()
+                                   ->get();
 
         return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
 
     public function activitieSearch(Request $request) {
-        $activities = CommitteeActivitie::where('title', 'like', "%{$request->search}%")->get();
+        $request->validate([
+            'search' => 'required|string|max:100',
+        ], [
+            'search.required' => 'অনুগ্রহ করে সার্চ ফিল্ডটি পূরণ করুন।',
+            'search.string'   => 'সার্চ ফিল্ডে শুধুমাত্র লেখা ব্যবহার করতে হবে।',
+            'search.max'      => 'সার্চ ফিল্ড সর্বোচ্চ 100 অক্ষরের হতে পারে।',
+        ]);
 
-        foreach ($activities as $activitie) {
-            $activitie->committeeMembers = CommitteeMember::where('CommitteeYear_id', $activitie->committee_year_id)
-                ->select('name', 'photo', 'role')
-                ->whereIn('role', ['1', '4'])
-                ->get();
-
-            $activitie->committeeYears = CommitteeYear::where('id', $activitie->committee_year_id)->get();
-        }
+        $activities = CommitteeActivitie::with(['committeeYear.committee_members' => function($members){
+            $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
+                    ->whereIn('role', ['1', '4']);
+        }])->where('title', 'like', "%{$request->search}%")->get();
 
         return view('frontend.pages.comitee_activities', compact('activities'));
     }
 
     public function activitieFilter(Request $request) {
-        $activities = CommitteeActivitie::where('activities_date', $request->filter)->get();
-
-        foreach ($activities as $activitie) {
-            $activitie->committeeMembers = CommitteeMember::where('CommitteeYear_id', $activitie->committee_year_id)
-                ->select('name', 'photo', 'role')
-                ->whereIn('role', ['1', '4'])
-                ->get();
-
-            $activitie->committeeYears = CommitteeYear::where('id', $activitie->committee_year_id)->get();
-        }
+        $activities = CommitteeActivitie::with(['committeeYear.committee_members' => function($members){
+            $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
+                    ->whereIn('role', ['1', '4']);
+        }])->where('activities_date', $request->filter)->get();
 
         return view('frontend.pages.comitee_activities', compact('activities'));
     }
