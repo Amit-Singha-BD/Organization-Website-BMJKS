@@ -18,7 +18,7 @@ class Donation extends Model
     ];
 
      public function event() {
-        return $this->belongsTo(DonationEvent::class,'id','event_id');
+        return $this->belongsTo(DonationEvent::class,'event_id','id');
     }
 
     public function person() {

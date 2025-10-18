@@ -57,7 +57,7 @@
 
                                         <!-- Header -->
                                         <div class="modal-header bg-info text-white">
-                                            <h5 class="modal-title">সদস্যের বিস্তারিত তথ্য</h5>
+                                            <h5 class="modal-title">সদস্যের ডোনেশনের তথ্য</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
 
