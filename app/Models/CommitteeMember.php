@@ -19,4 +19,8 @@ class CommitteeMember extends Model
         'email',
         'facebook',
     ];
+
+    public function committeeYear(){
+        return $this->belongsTo(CommitteeYear::class, 'CommitteeYear_id', 'id');
+    }
 }

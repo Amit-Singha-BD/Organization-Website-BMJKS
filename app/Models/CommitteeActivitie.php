@@ -15,4 +15,8 @@ class CommitteeActivitie extends Model
         'description',
         'activities_date'
     ];
+
+    public function committeeYear(){
+        return $this->belongsTo(CommitteeYear::class, 'committee_year_id', 'id');
+    }
 }
