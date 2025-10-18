@@ -34,7 +34,7 @@
                             <td>{{ $donation->person->father_husband_name }}</td>
                             <td>{{ $donation->person->village }}</td>
                             <td>{{ $donation->donate_amount }}</td>
-                            <td class="text-center">{{ $event->event_name }}</td>
+                            <td class="text-center">{{ $donation->event->event_name }}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $donation->person->id }}">
                                     <i class="fas fa-eye"></i>

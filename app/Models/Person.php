@@ -45,6 +45,6 @@ class Person extends Model
     }
 
     public function donations() {
-        return $this->hasMany(Donation::class,'id','people_id');
+        return $this->hasMany(Donation::class,'people_id','id');
     }
 }
