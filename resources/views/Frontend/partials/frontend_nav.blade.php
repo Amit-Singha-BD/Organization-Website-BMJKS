@@ -60,7 +60,7 @@
                 </li>
 				
 				<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('committee.activities') || Route::is('contact') || Route::is('bmjks.database.view') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('committee.activities') || Route::is('contact') || Route::is('bmjks.database.view') || Route::is('donetor.frontend') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                         অন্যান্য
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
@@ -68,6 +68,7 @@
 						<li><a class="dropdown-item" href="{{route('committee.activities')}}">কার্যক্রম</a></li>
                         <li><a class="dropdown-item" href="{{route('contact')}}">যোগাযোগ</a></li>
                         <li><a class="dropdown-item" href="{{route('bmjks.database.view')}}">বামযুকস ডাটাবেস</a></li>
+                        <li><a class="dropdown-item" href="{{ route('donetor.frontend') }}">ডোনেটর</a></li>
                     </ul>
                 </li>
             </ul>
