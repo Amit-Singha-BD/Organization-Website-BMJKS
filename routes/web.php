@@ -14,6 +14,7 @@ use App\Http\Controllers\frontend\FrontendBudgetController;
 use App\Http\Controllers\frontend\FrontendActivitiesController;
 use App\Http\Controllers\frontend\FrontendLifetimeMemberController;
 use App\Http\Controllers\frontend\PdfController;
+use App\Http\Controllers\frontend\DonetorController;
 
 
 use App\Http\Controllers\backend\DashboardController;
@@ -39,7 +40,6 @@ use App\Http\Controllers\backend\DonationController;
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
 route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
-route::get('notices-title-search',[FrontendNoticeController::class,'notice_titlesearch'])->name('frontend.notice.titlesearch');
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
 route::get('about',[FrontendController::class,'about'])->name('about');
@@ -52,6 +52,7 @@ route::get('application-success',[EServiceController::class,'application_success
 route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
 route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
 route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
+route::get('donetor-list',[DonetorController::class,'donetorFrontend'])->name('donetor.frontend');
 
 
 route::get('committee-activities',[FrontendActivitiesController::class,'committeeActivities'])->name('committee.activities');

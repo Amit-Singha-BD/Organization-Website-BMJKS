@@ -36,6 +36,9 @@ body {
 .bg-primary {
     background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%) !important;
 }
+.bg-secondary {
+    background: linear-gradient(135deg, var(--secondary-green) 0%, var(--cream-white) 100%) !important;
+}
 .bg-fatafati {
     background: linear-gradient(35deg, var(--primary-green) 0%, var(--secondary-green) 78%, var(--cream-white) 100%) !important;
 }
@@ -2552,5 +2555,42 @@ select.floating-input:valid+.floating-label {
         font-weight: 600;
         color: #0b8457;
         text-align: left;
+/* ==============================================
+   ডোনেটর পেজ স্টাইল
+   ============================================== */
+.donator .table th,
+.donator .table td {
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+
+.donator .card {
+    border-radius: 10px;
+}
+
+.donator .card-body p {
+    font-size: 0.9rem;
+}
+
+.donator .modal-content {
+    border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .donator h1.display-5 {
+        font-size: 1.8rem;
+    }
+
+    .donator .card-body h5 {
+        font-size: 1.1rem;
+    }
+
+    .donator .btn {
+        font-size: 0.85rem;
+    }
+
+    .modal-dialog {
+        max-width: 95% !important;
+        margin: 1rem auto;
     }
 }
