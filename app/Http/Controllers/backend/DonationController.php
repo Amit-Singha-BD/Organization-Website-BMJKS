@@ -41,13 +41,13 @@ class DonationController extends Controller
 
 
     public function recentDonation(){
-       $donations = Donation::with(['event', 'person'])->paginate(10);
+       $donations = Donation::with(['event', 'person'])->latest()->paginate(10);
         
         return view('Backend.Pages.Donation-List',compact('donations'));
     }
 
     public function donationEvent(){
-        $donationEvent = DonationEvent::with('donations.person')->paginate(10);
+        $donationEvent = DonationEvent::with('donations.person')->latest()->paginate(10);
         return view('Backend.Pages.Donation-Event-List',compact('donationEvent'));
     }
 
@@ -94,7 +94,7 @@ class DonationController extends Controller
     {
         $event = DonationEvent::findOrFail($id);
 
-        $donations = $event->donations()->with('person')->paginate(20);
+        $donations = $event->donations()->with('person')->latest()->paginate(20);
 
         return view('Backend.Pages.Donation-List', compact('event', 'donations'));
     }
@@ -102,7 +102,7 @@ class DonationController extends Controller
 
     public function donatorList()
     {   
-        $persons = Person::where('donator','yes')->with('donations.event')->paginate(10);
+        $persons = Person::where('donator','yes')->with('donations.event')->latest()->paginate(10);
             foreach($persons as $person){
                 $person->totalDonation = Donation::where('people_id', $person->id)->sum('donate_amount');
             }
