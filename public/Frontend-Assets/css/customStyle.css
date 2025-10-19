@@ -2389,3 +2389,168 @@ select.floating-input:valid+.floating-label {
     color: #6c757d;
     margin-bottom: 15px;
 }
+
+
+/* LifeTime Members View Style */
+.member-table-wrapper {
+    font-family: "Noto Sans Bengali", sans-serif;
+    background: linear-gradient(135deg, #d9f8e3, #e8faff, #ffffff);
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.member-table-wrapper .page-title {
+    font-weight: 700;
+    color: #0b8457;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.member-table-wrapper .card {
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.member-table-wrapper .card-header {
+    background: linear-gradient(135deg, #0b8457, #0dcaf0);
+    color: white;
+    border-bottom: none;
+}
+
+.member-table-wrapper .card-header h5 {
+    font-weight: 600;
+}
+
+.member-table-wrapper .table thead th {
+    background-color: #e8f5e9;
+    color: #0b8457;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* TABLE CONTENT WRAP */
+.member-table-wrapper .table td,
+.member-table-wrapper .table th {
+    white-space: normal !important;
+    /* Line break করা যাবে */
+    word-wrap: break-word;
+    /* বড় শব্দ লাইন ব্রেক হবে */
+}
+
+/* Prevent horizontal scroll */
+.member-table-wrapper .table-responsive {
+    overflow-x: hidden !important;
+}
+
+.member-table-wrapper .table-hover tbody tr {
+    transition: all 0.2s ease;
+}
+
+.member-table-wrapper .table-hover tbody tr:hover {
+    background-color: #effff3;
+    transform: scale(1.01);
+}
+
+.member-table-wrapper .btn-info {
+    background: linear-gradient(135deg, #0dcaf0, #0b84b9);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.member-table-wrapper .btn-info:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #0b84b9, #0dcaf0);
+}
+
+.member-table-wrapper .search-box {
+    position: relative;
+}
+
+.member-table-wrapper .search-box input {
+    border-radius: 30px;
+    padding-left: 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.member-table-wrapper .search-box i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #0b8457;
+}
+
+.member-table-wrapper .pagination .page-link {
+    border: none;
+    color: #0b8457;
+    font-weight: 500;
+    border-radius: 30px;
+}
+
+.member-table-wrapper .pagination .active .page-link {
+    background: #0b8457;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.member-table-wrapper .card-footer {
+    background: transparent;
+    color: #333;
+}
+
+/* MODAL */
+.member-table-wrapper .modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.member-table-wrapper .modal-header {
+    background: linear-gradient(135deg, #0dcaf0, #0b8457);
+    color: white;
+}
+
+.member-table-wrapper .modal-body img {
+    object-fit: cover;
+}
+
+.member-table-wrapper .modal-body .badge {
+    font-size: 0.9rem;
+    margin: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 767px) {
+    .member-table-wrapper .table thead {
+        display: none;
+    }
+
+    .member-table-wrapper .table,
+    .member-table-wrapper .table tbody,
+    .member-table-wrapper .table tr,
+    .member-table-wrapper .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .member-table-wrapper .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none !important;
+        border-bottom: 1px solid #ddd !important;
+    }
+
+    .member-table-wrapper .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 50%;
+        font-weight: 600;
+        color: #0b8457;
+        text-align: left;
+    }
+}

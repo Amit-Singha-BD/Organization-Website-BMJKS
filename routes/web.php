@@ -12,6 +12,7 @@ use App\Http\Controllers\frontend\FrontendServiceController;
 use App\Http\Controllers\frontend\EServiceController;
 use App\Http\Controllers\frontend\FrontendBudgetController;
 use App\Http\Controllers\frontend\FrontendActivitiesController;
+use App\Http\Controllers\frontend\FrontendLifetimeMemberController;
 use App\Http\Controllers\frontend\PdfController;
 
 
@@ -61,6 +62,7 @@ route::get('committee-activities-filter',[FrontendActivitiesController::class,'a
 route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks/database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 route::post('bmjks/database/search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
+route::get('lifetime-member-view/{personType}',[FrontendLifetimeMemberController::class,'lifetimeMemberView'])->name('lifetime.member.view');
 Route::get('/download-pdf', [PdfController::class, 'download'])->name('download.pdf');
 
 // Frontend Routes End <--

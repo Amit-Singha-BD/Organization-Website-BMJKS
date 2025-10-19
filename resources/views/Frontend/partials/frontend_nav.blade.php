@@ -68,6 +68,7 @@
 						<li><a class="dropdown-item" href="{{route('committee.activities')}}">কার্যক্রম</a></li>
                         <li><a class="dropdown-item" href="{{route('contact')}}">যোগাযোগ</a></li>
                         <li><a class="dropdown-item" href="{{route('bmjks.database.view')}}">বামযুকস ডাটাবেস</a></li>
+                        <li><a class="dropdown-item" href="{{route('lifetime.member.view', 5)}}">আজীবন সদস্য</a></li>
                     </ul>
                 </li>
             </ul>
