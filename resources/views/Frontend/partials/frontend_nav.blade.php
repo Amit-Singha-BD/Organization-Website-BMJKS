@@ -60,7 +60,7 @@
                 </li>
 				
 				<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('committee.activities') || Route::is('contact') || Route::is('bmjks.database.view') || Route::is('donetor.frontend') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle {{ Route::is('budget') || Route::is('committee.activities') || Route::is('contact') || Route::is('bmjks.database.view') || Route::is('donetor.frontend') || Route::is('lifetime.member.view') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown">
                         অন্যান্য
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
