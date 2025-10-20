@@ -5,17 +5,39 @@ use App\Http\Controllers\Controller;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 use App\Http\Requests\NoticeValidate;
+use Carbon\Carbon;
 
 class NoticeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $notice_data = Notice::orderBy('id', 'desc')->paginate(5);
+        $search = $request->input('title');
+        $from   = $request->input('from_date');
+        $to     = $request->input('to_date');
+
+        $notice_data = Notice::when($search, function ($query, $search) {
+                return $query->where('title', 'like', "%{$search}%");
+            })
+            ->when($from && $to, function ($query) use ($from, $to) {
+                return $query->whereBetween('date', [$from, $to]);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        
+        // এই মাসের মোট নোটিশ
+        $currentMonth = Carbon::now()->month;
+        $currentYear  = Carbon::now()->year;
+
+        $monthly_notice_count = Notice::whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->count();
+
         $title = 'Notice';
-         return view('Backend.Pages.Notice',compact('notice_data','title'));
+
+         return view('Backend.Pages.Notice',compact('notice_data','title','monthly_notice_count','search','from','to'));
     }
 
     /**

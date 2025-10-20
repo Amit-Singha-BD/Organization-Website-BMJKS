@@ -88,7 +88,7 @@ Route::resource('notice', NoticeController::class);
 // President Routes Start -->
 Route::get('president', [PresidentController::class,'create_view'])->name('president.create');
 Route::put('president/{id}',[PresidentController::class,'update'])->name('president.update');
-// Notice Routes End <--
+// President Routes End <--
 
 
 // Committee Route Start -->
