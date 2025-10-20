@@ -60,7 +60,7 @@
                                             
                                             <!-- Profile Image & Name -->
                                             <div class="col-12 text-center">
-                                                <img src="{{ $person->photo ? asset($person->photo) : asset('Frontend-Assets/images/profile_img.png') }}"
+                                                <img src="{{ $person->photo ? asset('uploads/person/'.$person->photo) : asset('Frontend-Assets/images/profile_img.png') }}"
                                                     class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
                                                     width="120" height="120" alt="Profile">
                                                 <h4 class="mt-3 mb-0">{{ $person->name }}</h4>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Person;
 use App\Models\PersonType;
 use App\Models\PersonTag;
@@ -70,23 +71,43 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PersonValidation $request)
-    {
-        // Person তৈরি করা
-        $validdata = $request->validated();
-        $validdata['member_aproved'] = 'yes';
-        $person = Person::create($validdata);
+    public function store(PersonValidation $request) {
+        DB::beginTransaction();
 
-        // Selected tags
-        $selectedTags = $request->input('person_tag', []); // array of tag IDs
-        //প্রতিটি tag attach করা
-        foreach ($selectedTags as $tagId) {
-            PersonTag::create([
-                'person_id'     => $person->id,
-                'persontype_id' => $tagId
-            ]);
+        try {
+            // Person তৈরি করা
+            $validdata = $request->validated();
+            $validdata['member_aproved'] = 'yes';
+
+            // ইমেজ আপলোড হ্যান্ডেল করা
+            if ($request->hasFile('photo')) {
+                $image = $request->file('photo');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('uploads/person'), $imageName);
+                $validdata['photo'] = $imageName;
+            } else {
+                $validdata['photo'] = null;
+            }
+
+            // Person তৈরি
+            $person = Person::create($validdata);
+
+            // Tag attach করা
+            $selectedTags = $request->input('person_tag', []);
+            foreach ($selectedTags as $tagId) {
+                PersonTag::create([
+                    'person_id'     => $person->id,
+                    'persontype_id' => $tagId
+                ]);
+            }
+
+            DB::commit(); // সবকিছু সফল হলে commit
+            return redirect()->back()->with('success', 'সফলভাবে সংরক্ষণ করা হয়েছে!');
+        } catch (\Exception $e) {
+            DB::rollBack(); // কোনো সমস্যা হলে rollback
+            \Log::error('Person Store Error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'কিছু একটা সমস্যা হয়েছে! আবার চেষ্টা করুন।');
         }
-        return redirect()->back()->with('success', 'সফলভাবে সংরক্ষণ করা হয়েছে!');
     }
 
     /**
