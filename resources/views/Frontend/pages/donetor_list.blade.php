@@ -16,7 +16,7 @@
             <span class="badge bg-light text-success fs-6">মোট {{ $persons->total() }} জন</span>
         </div>
 
-        <div class="card-body p-3">
+        <div class="card-body ">
             <!-- Desktop Table -->
             <div class="table d-none d-md-block">
                 <table class="table table-bordered table-hover mb-0 align-middle">
@@ -39,8 +39,8 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=random&color=fff&size=32" 
-                                         class="rounded-circle me-2" alt="Profile">
+
+                                         
                                     <span class="fw-semibold">{{ $person->name }}</span>
                                 </div>
                             </td>
@@ -48,118 +48,16 @@
                             <td>{{ $person->village ?? 'N/A' }}</td>
                             <td class="text-center text-success fw-bold">৳ {{ number_format($person->totalDonation, 2) }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
+                                <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
                                     <i class="fas fa-list"></i>
                                 </button>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
+                                <button class="btn btn-sm btn-accent" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
-
-                        <!-- Donation List Modal -->
-                        <div class="modal fade" id="eventView{{ $person->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content shadow-lg border-0">
-                                    <div class="modal-header bg-info text-white">
-                                        <h5 class="modal-title"><i class="fas fa-donate me-2"></i>ডোনেশনের তথ্য</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="text-center mb-3">
-                                            <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=0D8ABC&color=fff&size=100"
-                                                 class="rounded-circle border border-3 border-info shadow-sm"
-                                                 width="100" height="100" alt="Profile">
-                                            <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
-                                            <p class="text-muted mb-0">{{ $person->profession ?? 'N/A' }}</p>
-                                            <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ {{ number_format($person->totalDonation, 2) }}</p>
-                                        </div>
-                                        <hr>
-                                        @forelse($person->donations as $donation)
-                                        <div class="card mb-2 shadow-sm border-0">
-                                            <div class="card-body">
-                                                <div class="row align-items-center">
-                                                    <div class="col-8">
-                                                        <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'N/A' }}</h6>
-                                                        <small class="text-muted">
-                                                            <i class="fas fa-calendar me-1"></i>
-                                                            {{ \Carbon\Carbon::parse($donation->date)->format('d M, Y') }}
-                                                        </small>
-                                                    </div>
-                                                    <div class="col-4 text-end">
-                                                        <span class="fw-bold text-success fs-6">
-                                                            ৳ {{ number_format($donation->donate_amount, 2) }}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @empty
-                                        <div class="alert alert-warning text-center py-3">
-                                            <i class="fas fa-exclamation-circle me-2"></i>
-                                            কোনো ডোনেশন পাওয়া যায়নি
-                                        </div>
-                                        @endforelse
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            <i class="fas fa-times me-1"></i>বন্ধ করুন
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Member Profile Modal -->
-                        <div class="modal fade" id="modalViewMember{{ $person->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content shadow-lg border-0">
-                                    <div class="modal-header bg-warning text-dark">
-                                        <h5 class="modal-title">
-                                            <i class="fas fa-user-circle me-2"></i>সদস্যের বিস্তারিত তথ্য
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="text-center mb-3">
-                                            <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=FFC107&color=000&size=120"
-                                                 class="rounded-circle border border-3 border-warning shadow-sm"
-                                                 width="120" height="120" alt="Profile">
-                                            <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
-                                            <p class="text-muted mb-0">{{ $person->profession ?? 'N/A' }}</p>
-                                        </div>
-                                        <hr>
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <h6 class="text-success mb-3 border-bottom pb-2"><i class="fas fa-user me-2"></i>ব্যক্তিগত তথ্য</h6>
-                                                <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'N/A' }}</p>
-                                                <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'N/A' }}</p>
-                                                <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'N/A' }}</p>
-                                                <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'N/A' }}</p>
-                                                <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'N/A' }}</p>
-                                                <p><strong>রক্তের গ্রুপ:</strong> <span class="badge bg-danger">{{ $person->blood_group ?? 'N/A' }}</span></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h6 class="text-success mb-3 border-bottom pb-2"><i class="fas fa-address-card me-2"></i>যোগাযোগের তথ্য</h6>
-                                                <p><strong>মোবাইল:</strong> <span class="badge bg-primary">{{ $person->mobile_number ?? 'N/A' }}</span></p>
-                                                <p><strong>পেশা:</strong> {{ $person->profession ?? 'N/A' }}</p>
-                                                <p><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
-                                                <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'N/A' }}</p>
-                                                <p><strong>থানা:</strong> {{ $person->thana ?? 'N/A' }}</p>
-                                                <p><strong>জেলা:</strong> <span class="badge bg-info">{{ $person->district ?? 'N/A' }}</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            <i class="fas fa-times me-1"></i>বন্ধ করুন
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         @empty
                         <tr>
@@ -176,20 +74,19 @@
                 <div class="card shadow-sm mb-3 border-0">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=random&color=fff&size=50" 
-                                 class="rounded-circle me-3 border border-2 border-primary" alt="Profile">
+                            
                             <div>
                                 <h5 class="mb-0 fw-bold">{{ $person->name }}</h5>
-                                <small class="text-muted">{{ $person->father_husband_name ?? 'N/A' }}</small>
+                                <small class="text-muted">পিতা: {{ $person->father_husband_name ?? 'N/A' }}</small>
                             </div>
                         </div>
                         <p class="mb-1"><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
                         <p class="mb-2"><strong>মোট সহায়তা:</strong> <span class="text-success fw-bold">৳ {{ number_format($person->totalDonation, 2) }}</span></p>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-sm btn-info w-50 me-2" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
+                            <button class="btn btn-sm btn-secondary w-50 me-2" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
                                 <i class="fas fa-list me-1"></i> সহায়তা
                             </button>
-                            <button class="btn btn-sm btn-warning w-50" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
+                            <button class="btn btn-sm btn-accent w-50" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
                                 <i class="fas fa-user me-1"></i> প্রোফাইল
                             </button>
                         </div>
@@ -217,16 +114,111 @@
     </div>
 </div>
 
-<style>
-.donator .table th, .donator .table td { vertical-align: middle; font-size: 0.9rem; }
-.donator .card { border-radius: 10px; }
-.donator .card-body p { font-size: 0.9rem; }
-.donator .modal-content { border-radius: 15px; }
-@media (max-width: 768px) {
-    .donator h1.display-5 { font-size: 1.8rem; }
-    .donator .card-body h5 { font-size: 1.1rem; }
-    .donator .btn { font-size: 0.85rem; }
-    .modal-dialog { max-width: 95% !important; margin: 1rem auto; }
-}
-</style>
+    @forelse($persons as $person)
+    <!-- Donation List Modal -->
+    <div class="modal fade" id="eventView{{ $person->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg border-0">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title"><i class="fas fa-donate me-2"></i>ডোনেশনের তথ্য</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=0D8ABC&color=fff&size=100"
+                                class="rounded-circle border border-3 border-info shadow-sm"
+                                width="100" height="100" alt="Profile">
+                        <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
+                        <p class="text-muted mb-0">{{ $person->profession ?? 'N/A' }}</p>
+                        <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ {{ number_format($person->totalDonation, 2) }}</p>
+                    </div>
+                    <hr>
+                    @forelse($person->donations as $donation)
+                    <div class="card mb-2 shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'N/A' }}</h6>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar me-1"></i>
+                                        {{ \Carbon\Carbon::parse($donation->date)->format('d M, Y') }}
+                                    </small>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <span class="fw-bold text-success fs-6">
+                                        ৳ {{ number_format($donation->donate_amount, 2) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="alert alert-warning text-center py-3">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        কোনো ডোনেশন পাওয়া যায়নি
+                    </div>
+                    @endforelse
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>বন্ধ করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Profile Modal -->
+    <div class="modal fade" id="modalViewMember{{ $person->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg border-0">
+                <div class="modal-header bg-secondary text-dark">
+                    <h5 class="modal-title text-white">
+                        <i class="fas fa-user-circle me-2"></i>সদস্যের বিস্তারিত তথ্য
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=random&color=fff&size=120"
+                                class="rounded-circle border border-3 shadow-sm"
+                                width="120" height="120" alt="Profile">
+                        <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
+                        <p class="text-muted mb-0">{{ $person->profession ?? 'N/A' }}</p>
+                    </div>
+                    <hr>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <h6 class="text-success mb-3  pb-2"><i class="fas fa-user me-2"></i>ব্যক্তিগত তথ্য</h6>
+                            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'N/A' }}</p>
+                            <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'N/A' }}</p>
+                            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'N/A' }}</p>
+                            <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'N/A' }}</p>
+                            <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'N/A' }}</p>
+                            <p><strong>রক্তের গ্রুপ:</strong> <span class="badge bg-danger">{{ $person->blood_group ?? 'N/A' }}</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-success mb-3  pb-2"><i class="fas fa-address-card me-2"></i>যোগাযোগের তথ্য</h6>
+                            <p><strong>মোবাইল:</strong> <span class="badge bg-primary">{{ $person->mobile_number ?? 'N/A' }}</span></p>
+                            <p><strong>পেশা:</strong> {{ $person->profession ?? 'N/A' }}</p>
+                            <p><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
+                            <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'N/A' }}</p>
+                            <p><strong>থানা:</strong> {{ $person->thana ?? 'N/A' }}</p>
+                            <p><strong>জেলা:</strong> {{ $person->district ?? 'N/A' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>বন্ধ করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @empty
+        কোন ডাটা নেই
+    @endforelse
+
 @endsection
