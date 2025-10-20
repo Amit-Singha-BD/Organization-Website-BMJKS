@@ -42,6 +42,9 @@ body {
 .bg-fatafati {
     background: linear-gradient(35deg, var(--primary-green) 0%, var(--secondary-green) 78%, var(--cream-white) 100%) !important;
 }
+.bg-cream {
+    background: linear-gradient(35deg, var(--cream-white) 0%, var(--white) 78%, var(--cream-white) 100%) !important;
+}
 .text-primary {
     color: var(--primary-green) !important;
 }

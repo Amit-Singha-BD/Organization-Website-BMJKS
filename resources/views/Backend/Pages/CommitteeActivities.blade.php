@@ -4,13 +4,12 @@
 
     <div class="container mt-4">
         <div class="row align-items-center g-2">
-
             <!-- Search -->
             <div class="col-12 col-md-8 col-lg-5">
                 <form action="" method="get">
                     <div class="input-group">
-                        <input type="date" class="form-control">
-                        <input type="text" class="form-control" placeholder="কার্যক্রমের নাম দিয়ে সার্চ করুন…">
+                        <input type="date" name="date" class="form-control">
+                        <input type="text" name="title" class="form-control" placeholder="কার্যক্রমের নাম দিয়ে সার্চ করুন…">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>

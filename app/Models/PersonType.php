@@ -25,6 +25,7 @@ class PersonType extends Model
             'id',                // Local key on person_types table
             'person_id'          // Local key on person_tags table
         );
+        
 
     }
 }

@@ -19,11 +19,12 @@ class DashboardController extends Controller {
         foreach($tags as $tag){
             $tag->persons_count = PersonTag::where('persontype_id', $tag->id)->count();
         }
-        $committees = CommitteeYear::where('status', 'active')->get();
-        foreach($committees as $committee){
-            $committee->persons_count = CommitteeMember::where('CommitteeYear_id', $committee->id)->count();
-        }
+        $committees = CommitteeYear::where('status', 'active')->withCount('committee_members')->get();
+        $total_active_member = $committees->sum('committee_members_count');
+        
+        $lifetime_person = PersonTag::where('persontype_id', 5)->count();
+        $general_person = PersonTag::where('persontype_id', 6)->count();
 
-        return view('Backend.Pages.Dashboard', compact('notices','title', 'tags', 'committees'));
+        return view('Backend.Pages.Dashboard', compact('notices','title', 'tags', 'committees','lifetime_person','general_person','total_active_member'));
     }
 }
