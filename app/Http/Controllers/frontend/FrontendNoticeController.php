@@ -19,7 +19,7 @@ class FrontendNoticeController extends Controller
                 return $query->where('title', 'like', "%{$search}%");
             })
             ->when($from && $to, function ($query) use ($from, $to) {
-                return $query->whereBetween('created_at', [$from, $to]);
+                return $query->whereBetween('date', [$from, $to]);
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10);

@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">মোট নোটিশ</small>
-                            <h4 class="mb-0">128</h4>
+                            <h4 class="mb-0">@bn($notice_data->total())</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-bullhorn"></i></div>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">এই মাসে প্রকাশিত</small>
-                            <h4 class="mb-0">23</h4>
+                            <h4 class="mb-0">@bn($monthly_notice_count)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-calendar"></i></div>
                     </div>
@@ -37,11 +37,11 @@
 
             <!-- Date Filter -->
             <div class="col-12 col-md-6 col-lg-6">
-                <form action="" method="get">
+                <form action="{{ route('notice.index') }}" method="GET">
                     <div class="input-group">
-                        <input class="form-control" type="date">
+                        <input class="form-control" name="from_date" type="date" value="{{ request('from_date') }}" required>
                         <span class="input-group-text">থেকে</span>
-                        <input class="form-control" type="date">
+                        <input class="form-control" name="to_date" type="date" value="{{ request('to_date') }}">
                         <button class="btn btn-outline-success" type="submit">বাছাই করুন</button>
                     </div>
                 </form>
@@ -49,9 +49,9 @@
 
             <!-- Search -->
             <div class="col-12 col-md-6 col-lg-4">
-                <form action="" method="get">
+                <form action="{{ route('notice.index') }}" method="GET">
                     <div class="input-group">
-                        <input class="form-control" type="text" placeholder="নোটিশের শিরোনাম দিন">
+                        <input class="form-control" type="text" name="title" placeholder="নোটিশের শিরোনাম দিন" value="{{ request('title') }}" required>
                         <button class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>
@@ -72,7 +72,17 @@
     <!-- Notices Table -->
     <div class="card table-card shadow-sm my-3">
         <div class="card-header text-white text-center">
-            <i class="fa-solid fa-bullhorn"></i> নোটিশ তালিকা
+            
+            @if($search || $from || $to)
+                
+                <strong>সার্চ রেজাল্ট:</strong>
+                @if($search) <em>{{ $search }}</em> @endif
+                @if($from) | শুরু: {{ $from }} @endif
+                @if($to) | শেষ: {{ $to }} @endif
+                
+            @else
+                <i class="fa-solid fa-bullhorn"></i> নোটিশ তালিকা
+            @endif
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -88,9 +98,9 @@
                     <tbody>
                         @foreach($notice_data as $notice)
                         <tr class="text-center">
-                            <td data-label="ক্রমিক">{{$loop->iteration}}</td>
+                            <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                             <td data-label="শিরোনাম">{{$notice->title}}</td>
-                            <td data-label="তারিখ">{{$notice->date}}</td>
+                            <td data-label="তারিখ">@bn($notice->date)</td>
                             <td data-label="অ্যাকশন">
                                 <div class="d-flex flex-row justify-content-center gap-2">
                                     <button type="button" class="action-btn-info" title="বিস্তারিত দেখুন"
