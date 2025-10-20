@@ -134,23 +134,23 @@
                     </div>
                     <hr>
                     @forelse($person->donations as $donation)
-                    <div class="card mb-2 shadow-sm border-0">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'N/A' }}</h6>
-                                    <small class="text-muted">
-                                        <i class="fas fa-calendar me-1"></i>
-                                        {{ \Carbon\Carbon::parse($donation->date)->format('d M, Y') }}
-                                    </small>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <span class="fw-bold text-success fs-6">
-                                        ৳ {{ number_format($donation->donate_amount, 2) }}
-                                    </span>
-                                </div>
+                    <div class="mb-2 bg-cream  shadow-sm border-0">
+                        
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'N/A' }}</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>
+                                    {{ \Carbon\Carbon::parse($donation->date)->format('d M, Y') }}
+                                </small>
+                            </div>
+                            <div class="col-4 text-end">
+                                <span class="fw-bold text-success fs-6">
+                                    ৳ {{ number_format($donation->donate_amount, 2) }}
+                                </span>
                             </div>
                         </div>
+                        
                     </div>
                     @empty
                     <div class="alert alert-warning text-center py-3">

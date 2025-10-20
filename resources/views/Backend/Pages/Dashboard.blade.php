@@ -11,7 +11,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">আজীবন সদস্য</small>
-                            <h4 class="mb-0">128</h4>
+                            <h4 class="mb-0">@bn($lifetime_person)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-bullhorn"></i></div>
                     </div>
@@ -25,8 +25,8 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট সক্রিয় কমিটি</small>
-                            <h4 class="mb-0">7</h4>
+                            <small class="text-dark">সাধারণ সদস্য</small>
+                            <h4 class="mb-0">@bn($general_person)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-users-gear"></i></div>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">সক্রিয় কমিটি সদস্য</small>
-                            <h4 class="mb-0">@bn('42')</h4>
+                            <h4 class="mb-0">@bn($total_active_member)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-user-group"></i></div>
                     </div>

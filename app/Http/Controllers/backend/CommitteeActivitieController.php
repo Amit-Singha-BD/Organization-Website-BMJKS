@@ -12,7 +12,7 @@ class CommitteeActivitieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $activities_data = CommitteeActivitie::paginate(10);
         $committeeYears = CommitteeYear::select('id', 'committee_name')->get();
