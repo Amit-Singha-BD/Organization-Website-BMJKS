@@ -2,11 +2,9 @@
 
 @section('content')
 
-<div class="container member-table-wrapper py-5">
-    <div class="row mb-4 align-items-center">
-        <div class="col-md-6">
-            <h2 class="page-title">ব্যক্তির তথ্য তালিকা</h2>
-        </div>
+<div class="container member-table-wrapper py-4">
+    <div class="align-items-center">
+        <h2 class="page-title text-center">আজীবন সদস্য তালিকা</h2>
     </div>
 
     <div class="card">
@@ -22,7 +20,7 @@
                         <tr>
                             <th>#</th>
                             <th>নাম</th>
-                            <th>মোবাইল</th>
+                            <th>পিতার/স্বামীর নাম</th>
                             <th>গ্রাম</th>
                             <th>একশন</th>
                         </tr>
@@ -32,7 +30,7 @@
                         <tr>
                             <td data-label="#">{{ $loop->iteration + ($persons->currentPage()-1)*$persons->perPage() }}</td>
                             <td data-label="নাম">{{ $person->name }}</td>
-                            <td data-label="মোবাইল">{{ $person->mobile_number }}</td>
+                            <td data-label="পিতার/স্বামীর নাম">{{ $person->father_husband_name }}</td>
                             <td data-label="গ্রাম">{{ $person->village }}</td>
                             <td data-label="একশন" class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#viewMemberModal{{ $person->id }}">
@@ -76,7 +74,7 @@
             <h4 class="mt-3 mb-0">{{ $person->name }}</h4>
           </div>
           <hr class="mt-3">
-          <div class="col-md-6">
+          <div class="col-md-6 text-center">
             <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'N/A' }}</p>
             <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'N/A' }}</p>
             <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'N/A' }}</p>
@@ -84,7 +82,7 @@
             <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'N/A' }}</p>
             <p><strong>রক্তের গ্রুপ:</strong> {{ $person->blood_group ?? 'N/A' }}</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 text-center">
             <p><strong>মোবাইল:</strong> {{ $person->mobile_number ?? 'N/A' }}</p>
             <p><strong>পেশা:</strong> {{ $person->profession ?? 'N/A' }}</p>
             <p><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
