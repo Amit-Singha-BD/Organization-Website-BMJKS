@@ -14,8 +14,18 @@ class CommitteeActivitieController extends Controller
      */
     public function index(Request $request)
     {
-        $activities_data = CommitteeActivitie::paginate(10);
+        $title = $request->input('title');
+        $date = $request->input('date');
+        $activities_data = CommitteeActivitie::when($title, function($query,$title) {
+            return $query->where('title','like',"%{$title}%");
+        })
+        ->when($date, function($query,$date){
+            return $query->where('activities_date','like',"%{$date}%");
+        })
+        ->latest()->paginate(10);
+
         $committeeYears = CommitteeYear::select('id', 'committee_name')->get();
+
         return view('Backend.Pages.CommitteeActivities',compact('activities_data', 'committeeYears'));
     }
 
