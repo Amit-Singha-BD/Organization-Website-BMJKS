@@ -43,7 +43,7 @@
                 </a>
 
                 <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 1 ? 'active' : '' }}" 
-                href="{{ route('specific.category.person', 5) }}">
+                href="{{ route('specific.category.person', 1) }}">
                     <i class="fa-solid fa-crown"></i>
                     <span class="sidebar-text">আজীবন সদস্য</span>
                 </a>
