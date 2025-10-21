@@ -6,10 +6,10 @@
         <div class="row align-items-center g-2">
             <!-- Search -->
             <div class="col-12 col-md-8 col-lg-5">
-                <form action="" method="get">
+                <form action="{{ route('committeeActivities.index') }}" method="GET">
                     <div class="input-group">
-                        <input type="date" name="date" class="form-control">
-                        <input type="text" name="title" class="form-control" placeholder="কার্যক্রমের নাম দিয়ে সার্চ করুন…">
+                        <input type="date" name="date" class="form-control" value="{{ request('date') }}">
+                        <input type="text" name="title" class="form-control" placeholder="কার্যক্রমের নাম দিয়ে সার্চ করুন…" value="{{ request('title') }}">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>
