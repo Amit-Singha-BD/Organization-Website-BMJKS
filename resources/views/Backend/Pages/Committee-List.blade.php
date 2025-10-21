@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">মোট সক্রিয় কমিটি</small>
-                            <h4 class="mb-0">12</h4>
+                            <h4 class="mb-0">@bn($totalActiveCommittees)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">মোট নিষ্ক্রিয় কমিটি</small>
-                            <h4 class="mb-0"></h4>
+                            <h4 class="mb-0">@bn($totalDeactiveCommittees)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
                     </div>

@@ -17,18 +17,25 @@ class CommitteeManageController extends Controller {
     public function committeeActiveListView(){
         $committees = CommitteeYear::withCount('committee_members')->where('status', 'active')->get();
         $totalActiveMembers = $committees->sum('committee_members_count');
+        $totalActiveCommittees = $committees->count();
+        
 
         $deactiveCommittees = CommitteeYear::withCount('committee_members')->where('status', 'deactive')->get();
         $totalDeactiveMembers = $deactiveCommittees->sum('committee_members_count');
-        return view('Backend.Pages.Committee-List', compact('committees', 'totalActiveMembers', 'totalDeactiveMembers'));
+        $totalDeactiveCommittees = $deactiveCommittees->count();
+
+        return view('Backend.Pages.Committee-List', compact('committees', 'totalActiveMembers', 'totalDeactiveMembers', 'totalActiveCommittees', 'totalDeactiveCommittees'));
     }
 
     public function committeeDeactiveListView(){
         $committees = CommitteeYear::withCount('committee_members')->where('status', 'deactive')->get();
         $totalDeactiveMembers = $committees->sum('committee_members_count');
+        $totalDeactiveCommittees = $committees->count();
 
         $activeCommittees = CommitteeYear::withCount('committee_members')->where('status', 'active')->get();
         $totalActiveMembers = $activeCommittees->sum('committee_members_count');
-        return view('Backend.Pages.Committee-List', compact('committees', 'totalDeactiveMembers', 'totalActiveMembers'));
+        $totalActiveCommittees = $activeCommittees->count();
+
+        return view('Backend.Pages.Committee-List', compact('committees', 'totalDeactiveMembers', 'totalActiveMembers', 'totalActiveCommittees', 'totalDeactiveCommittees'));
     }
 }
