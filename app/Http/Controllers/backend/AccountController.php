@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller {
     public function users(){
         $committeeName = CommitteeName::select('id', 'committee_name')->get();
-        $users = User::whereNotIn('account_type', ['SuperAdmin'])->get();
+        $users = User::all();
         return view('Backend.Pages.Users-Manage', compact('users', 'committeeName'));
     }
 

@@ -13,8 +13,7 @@ class FrontendActivitiesController extends Controller {
         $committeeYears = CommitteeYear::with(['committee_members' => function($members){
             $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
                     ->whereIn('role', ['1', '4']);
-        }, 'committeeActivities'])->where('committee_id', 1)
-                                   ->latest()
+        }, 'committeeActivities'])->latest()
                                    ->get();
 
         return view('frontend.pages.comitee_activities', compact('committeeYears'));
