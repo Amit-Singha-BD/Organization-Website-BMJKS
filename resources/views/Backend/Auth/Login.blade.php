@@ -9,7 +9,7 @@
                             <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-3"
                                 style="background: linear-gradient(135deg, rgba(0,106,78,0.1), rgba(0,143,90,0.1));">
                             
-                                <img src="{{ asset('Assets/img/backend-logo.png')}}" alt="Logo" style="width:32px; height:32px; object-fit:contain;">
+                                <img src="{{asset('Frontend-Assets/images/header/logo.png')}}" alt="Logo" style="width:38px; height:38px; object-fit:contain;">
                                 <strong class="text-success">বাংলাদেশ মণিপুরী যুব কল্যাণ সমিতি</strong>
                             </div>
                         </div>
