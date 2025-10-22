@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CommitteeName;
 use App\Models\CommitteeYear;
 use App\Models\CommitteeMember;
@@ -15,7 +16,10 @@ class CommitteeManageController extends Controller {
     }
 
     public function committeeActiveListView(){
-        $committees = CommitteeYear::withCount('committee_members')->where('status', 'active')->get();
+        $committees = CommitteeYear::withCount('committee_members')->where('status', 'active')
+            ->when(Auth::user()->branch != 1, function($query) {
+                $query->where('committee_id', Auth::user()->branch);
+            })->get();
         $totalActiveMembers = $committees->sum('committee_members_count');
         $totalActiveCommittees = $committees->count();
         
