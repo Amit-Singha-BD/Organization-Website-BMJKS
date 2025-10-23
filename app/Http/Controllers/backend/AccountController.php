@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller {
     public function users(){
-        $committeeName = CommitteeName::select('id', 'committee_name')->get();
-        $users = User::all();
-        return view('Backend.Pages.Users-Manage', compact('users', 'committeeName'));
+        $users = User::with('committeeName')->get();
+        return view('Backend.Pages.Users-Manage', compact('users'));
     }
 
     public function userStore(AccountValidate $request){
