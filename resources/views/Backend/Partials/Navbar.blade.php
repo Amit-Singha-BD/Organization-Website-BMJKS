@@ -17,8 +17,7 @@
                     <img src="{{ asset('Frontend-Assets/images/profile_img.png') }}" alt="User Avatar" class="user-avatar-img">
                 </div>
                 <div class="user-info">
-                    <span class="user-name">এডমিন ইউজার</span>
-                    <small class="user-role">অ্যাডমিন</small>
+                    <span class="user-name">{{Auth::user()->name}}</span>
                 </div>
                 <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
             </div>

@@ -5,6 +5,7 @@
             <span class="text-white">বামযুকস</span>
         </a>
     </div>
+    @superadmin
     <nav class="admin-nav">
         <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
         <a class="sidebar-link {{ Route::is('notice.index') ? 'active' : '' }}" href="{{ route('notice.index') }}"><i class="fa-solid fa-bullhorn"></i><span class="sidebar-text">নোটিশ</span></a>
@@ -130,5 +131,126 @@
             </div>
         </div>
     </nav>
+    @endsuperadmin
+    @admin
+    <nav class="admin-nav">
+        <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
+
+
+        <a class="sidebar-link {{ Route::is('active.committee.list') || Route::is('deactive.committee.list') || Route::is('branch.committee.list') ? 'active' : '' }}" href="{{ route('active.committee.list') }}" href="{{ route('active.committee.list') }}"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-text">কমিটি তালিকা</span></a>
+
+        <div
+            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') ? 'open' : '' }}">
+            <a href="#" class="sidebar-link sidebar-dropdown-toggle">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+            </a>
+            <div class="sidebar-submenu">
+
+                <a class="sidebar-sublink {{ request()->routeIs('person.search') || request()->routeIs('search.result') ? 'active' : '' }}" 
+                href="{{ route('person.search') }}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span class="sidebar-text">ব্যাক্তি খুজুন</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 1 ? 'active' : '' }}" 
+                href="{{ route('specific.category.person', 1) }}">
+                    <i class="fa-solid fa-crown"></i>
+                    <span class="sidebar-text">আজীবন সদস্য</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 2 ? 'active' : '' }}" 
+                href="{{ route('specific.category.person', 2) }}">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="sidebar-text">সাধারণ সদস্য</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span class="sidebar-text">সদস্য তৈরি</span>
+                </a>
+            </div>
+        </div>
+
+        <a class="sidebar-link {{ Route::is('committeeActivities.index') ? 'active' : '' }}" href="{{ route('committeeActivities.index') }}"><i class="fas fa-calendar-check"></i><span class="sidebar-text">কমিটির কার্যক্রম</span></a>
+                <a class="sidebar-link {{ Route::is('contact.unread') || Route::is('contact.read') ? 'active' : '' }}" href="{{ route('contact.unread') }}"><i class="fas fa-comments"></i><span class="sidebar-text">যোগাযোগ তথ্য</span></a>
+    </nav>
+    @endadmin
+    @cashier
+    <nav class="admin-nav">
+        <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
+
+        <a class="sidebar-link {{ Route::is('finance.sheet') ? 'active' : '' }}" href="{{ route('finance.sheet') }}"><i class="fas fa-file-invoice-dollar"></i><span class="sidebar-text">আর্থিক হিসাবপত্র</span></a>
+         <div
+            class="sidebar-dropdown {{Route::is('donation.create') || Route::is('donator.list') || Route::is('donation.event') || Route::is('donation.event.create') || Route::is('recent.donation') ? 'open' : '' }}">
+            <a href="#" class="sidebar-link sidebar-dropdown-toggle">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span class="sidebar-text">ডোনেশন ম্যানেজমেন্ট</span>
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+            </a>
+            <div class="sidebar-submenu">
+
+                <a class="sidebar-sublink {{ request()->routeIs('donation.create') ? 'active' : '' }}" href="{{ route('donation.create') }}">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="sidebar-text">ডোনেশন তৈরি</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('recent.donation') ? 'active' : '' }}" href="{{ route('recent.donation') }}">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="sidebar-text">রিসেন্ট ডোনেশন</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('donation.event') ? 'active' : '' }}" href="{{ route('donation.event') }}">
+                    <i class="fa-solid fa-coins"></i>
+                    <span class="sidebar-text">ডোনেশন ইভেন্ট</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('donation.event.create') ? 'active' : '' }}" href="{{ route('donation.event.create') }}">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    <span class="sidebar-text">ডোনেশন ইভেন্ট তৈরি</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('donator.list') ? 'active' : '' }}" href="{{ route('donator.list') }}">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span class="sidebar-text">ডোনেটর লিস্ট</span>
+                </a>
+            </div>
+        </div>
+        <div
+            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') ? 'open' : '' }}">
+            <a href="#" class="sidebar-link sidebar-dropdown-toggle">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+            </a>
+            <div class="sidebar-submenu">
+
+                <a class="sidebar-sublink {{ request()->routeIs('person.search') || request()->routeIs('search.result') ? 'active' : '' }}" 
+                href="{{ route('person.search') }}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span class="sidebar-text">ব্যাক্তি খুজুন</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 1 ? 'active' : '' }}" 
+                href="{{ route('specific.category.person', 1) }}">
+                    <i class="fa-solid fa-crown"></i>
+                    <span class="sidebar-text">আজীবন সদস্য</span>
+                </a>
+
+                <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 2 ? 'active' : '' }}" 
+                href="{{ route('specific.category.person', 2) }}">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="sidebar-text">সাধারণ সদস্য</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span class="sidebar-text">সদস্য তৈরি</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    @endcashier
 </aside>
 <main class="admin-content">
