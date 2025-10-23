@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -42,6 +43,20 @@ class AppServiceProvider extends ServiceProvider
             $view->with('committeeNames', CommitteeName::get());
         });
 
+        Blade::if('superadmin', function () {
+            return Auth::check() && Auth::user()->account_type === 'superadmin';
+        });
+
+        Blade::if('admin', function () {
+            return Auth::check() && Auth::user()->account_type === 'admin';
+        });
+
+        Blade::if('cashier', function () {
+            return Auth::check() && Auth::user()->account_type === 'cashier';
+        });
+
+
         Paginator::useBootstrapFive();
     }
+
 }

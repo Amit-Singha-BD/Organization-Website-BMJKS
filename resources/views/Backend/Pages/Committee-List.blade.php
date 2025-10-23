@@ -8,9 +8,16 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <small class="text-dark">মোট সক্রিয় কমিটি</small>
-                            <h4 class="mb-0">@bn($totalActiveCommittees)</h4>
+                            <small class="text-dark">
+                                মোট সক্রিয় কমিটি
+                            </small>
+                            <h4 class="mb-0">
+                          
+                                    @bn($totalActiveCommittees)
+
+                            </h4>
                         </div>
+
                         <div class="display-6 social-color"><i class="fa-solid fa-sitemap"></i></div>
                     </div>
                 </div>
