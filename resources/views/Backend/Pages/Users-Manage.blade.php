@@ -20,8 +20,8 @@
                     <thead>
                         <tr class="text-center">
                             <th>ক্রমিক নং</th>
-                            <th>একাউন্টের ধরন</th>
                             <th>নাম</th>
+                            <th>একাউন্টের ধরন</th>
                             <th>শাখা</th>
                             <th>মোবাইল</th>
                             <th>অ্যাকশন</th>
@@ -32,9 +32,9 @@
                         @foreach ($users as $user)
                             <tr class="text-center">
                                 <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
-                                <td data-label="একাউন্টের ধরন">{{ $user->account_type }}</td>
                                 <td data-label="নাম">{{ $user->name }}</td>
-                                <td data-label="শাখা">{{ $user->branch }}</td>
+                                <td data-label="একাউন্টের ধরন">{{ $user->account_type }}</td>
+                                <td data-label="শাখা">{{ $user->committeeName->committee_name }}</td>
                                 <td data-label="মোবাইল">{{ $user->phone_no }}</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
@@ -67,7 +67,7 @@
                                                 width="100" height="100">
                                             <p><strong>নাম:</strong> {{ $user->name }}</p>
                                             <p><strong>ইউজারনেম:</strong> {{ $user->username }}</p>
-                                            <p><strong>শাখা:</strong> {{ $user->branch }}</p>
+                                            <p><strong>শাখা:</strong> {{ $user->committeeName->committee_name }}</p>
                                             <p><strong>মোবাইল:</strong> {{ $user->phone_no }}</p>
                                             <p><strong>অ্যাকাউন্ট ধরন:</strong> {{ $user->account_type }}</p>
                                         </div>
@@ -223,8 +223,8 @@
                                 </label>
                                 <select name="branch" id="branch" class="form-select">
                                     <option value="" selected disabled>একটি নির্বাচন করুন</option>
-                                    @foreach($committeeName as $committee)
-                                    <option value="{{ $committee->id }}">{{ $committee->committee_name }}</option>
+                                    @foreach($users as $committee)
+                                    <option value="{{ $committee->committeeName->id }}">{{ $committee->committeeName->committee_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
