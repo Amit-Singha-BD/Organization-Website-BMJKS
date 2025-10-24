@@ -15,33 +15,46 @@ class PersonTypeSeeder extends Seeder
     {
         PersonType::insert([
             [
-                "person_type_name" => "dakhula",
+                "person_type_name" => "আজীবন সদস্য",
                 "status"           => "active"          
             ],
             [
-                "person_type_name" => "esalpa",
+                "person_type_name" => "সাধারন সদস্য",
                 "status"           => "active"
             ],
             [
-                "person_type_name" => "sebari",
-                "status"           => "active"
-            ],
-            [
-                "person_type_name" => "vandari",
-                "status"           => "active"
-            ],
-            [
-                "person_type_name" => "lifeTime",
-                "status"           => "active"
-            ],
-            [
-               "person_type_name" => "general",
-                "status"           => "active"
-            ],
-            [
-               "person_type_name" => "bekar",
+                "person_type_name" => "বামুন",
                 "status"           => "deactive"
-            ]
+            ],
+            [
+                "person_type_name" => "ডাকুলা",
+                "status"           => "active"
+            ],
+            [
+                "person_type_name" => "ইসালপা",
+                "status"           => "active"
+            ],
+            [
+                "person_type_name" => "ডাক্তার",
+                "status"           => "active"
+            ],
+            [
+               "person_type_name" => "বিসিএস ক্যাডার",
+                "status"           => "active"
+            ],
+            [
+               "person_type_name" => "শিক্ষক",
+                "status"           => "active"
+            ],
+            [
+               "person_type_name" => "সরকারি চাকুরিজীবি",
+                "status"           => "active"
+            ],
+            [
+               "person_type_name" => "বেসরকারি চাকুরিজীবি",
+                "status"           => "active"
+            ],
+
         ]);
     }
 }

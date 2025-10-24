@@ -72,120 +72,124 @@ Route::get('/download-pdf', [PdfController::class, 'download'])->name('download.
 // Authentication Route Start -->
 Route::get('/Login', [AuthenticationController::class, 'showLoginFrom'])->name('login');
 Route::post('/Login', [AuthenticationController::class, 'login'])->name('login.submit');
-Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
 // Authentication Route End <--
 
-
-// Dashboard Route Start -->
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-// Authentication Route End <--
-
-
-// Notice Routes Start -->
-Route::resource('notice', NoticeController::class);
-// Notice Routes End <--
-
-// President Routes Start -->
-Route::get('president', [PresidentController::class,'create_view'])->name('president.create');
-Route::put('president/{id}',[PresidentController::class,'update'])->name('president.update');
-// President Routes End <--
+//this is all auth--------------
+Route::middleware(['auth'])->group(function () {
+    // Dashboard Route Start -->
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    // Dashboard Route End <--
+    Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
+    //person route
+    Route::resource('person', PersonController::class);
 
 
-// Committee Route Start -->
-Route::get('/committee-create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
-Route::get('/active/committee/list', [CommitteeManageController::class, 'committeeActiveListView'])->name('active.committee.list');
-Route::get('/deactive/committee/list', [CommitteeManageController::class, 'committeeDeactiveListView'])->name('deactive.committee.list');
-Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
-Route::get('/committee/{id}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
-Route::resource('committeeMember', CommitteeMemberController::class);
+    //this is superadmin route---------------
+    Route::middleware('superadmin')->group(function () {
+        // Notice Routes Start -->
+        Route::resource('notice', NoticeController::class);
+        // Notice Routes End <--
 
-//person category route start -->
-Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
-Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
-Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
-Route::post('/tag/status/{id}',[PersonController::class, 'tagstatus'])->name('tag.status');
-//person category route end --<
+        // President Routes Start -->
+        Route::get('president', [PresidentController::class,'create_view'])->name('president.create');
+        Route::put('president/{id}',[PresidentController::class,'update'])->name('president.update');
+        // President Routes End <--
 
 
+        // Committee Route Start -->
+        Route::get('/committee-create', [CommitteeManageController::class, 'committeeCreate'])->name('committee.create');
+        Route::post('/committee/year/create', [CommitteeYearController::class, 'committeeYearCreate'])->name('committee.year.create');
+        
 
-// Person Route Start -->
-Route::resource('person', PersonController::class);
-Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
-Route::get('search/person/', [PersonController::class, 'personSearch'])->name('person.search');
-Route::post('search/result/', [PersonController::class, 'searchResult'])->name('search.result');
-// Person Route End <--
+        //person category route start -->
+        Route::get('/tag', [PersonController::class, 'tag'])->name('tag');
+        Route::post('/tag', [PersonController::class, 'tagcreate'])->name('tag.create');
+        Route::delete('/tag/delete/{id}', [PersonController::class, 'tagdelete'])->name('tag.destroy');
+        Route::post('/tag/status/{id}',[PersonController::class, 'tagstatus'])->name('tag.status');
+        //person category route end --<
 
-//donation route Start -->
-Route::get('donation/create', [DonationController::class,'donationCreate'])->name('donation.create');
-Route::post('donation/create', [DonationController::class,'donationStore'])->name('donation.store');
-Route::get('donation/event/list', [DonationController::class,'donationEvent'])->name('donation.event');
-Route::get('donation/event/create', [DonationController::class,'donationEventCreate'])->name('donation.event.create');
-Route::post('donation/event/store', [DonationController::class,'donationEventStore'])->name('donation.event.store');
-Route::post('donation/event/status/{id}', [DonationController::class,'donationEventStatus'])->name('donation.event.status');
-Route::get('donation/event/details/{id}', [DonationController::class,'donationEventDetails'])->name('donation.event.details');
-Route::get('recent/donation/list', [DonationController::class,'recentDonation'])->name('recent.donation');
-Route::get('donator/list', [DonationController::class,'donatorList'])->name('donator.list');
-//donation route end --<
+        // Account Routes Start -->
+        Route::get('/users/manage', [AccountController::class, 'users'])->name('users.manage');
+        Route::post('/users/create', [AccountController::class, 'userStore'])->name('users.store');
+        Route::put('/users/password/update/{id}', [AccountController::class, 'passwordUpdate'])->name('password.update');
+        Route::delete('/users/delete/{id}', [AccountController::class, 'userDestroy'])->name('account.destroy');
+        // Account Routes End <--
 
+        // Services Routes Start
+        Route::get('/services', [ServiceController::class, 'services'])->name('services');
+        Route::post('/service/store', [ServiceController::class, 'serviceStore'])->name('service.store');
+        Route::post('/service/update/{id}', [ServiceController::class, 'serviceUpdate'])->name('service.update');
+        Route::delete('/service/destroy/{id}', [ServiceController::class, 'serviceDestroy'])->name('service.destroy');
+        // Services Routes End
 
-// Account Routes Start -->
-Route::get('/users/manage', [AccountController::class, 'users'])->name('users.manage');
-Route::post('/users/create', [AccountController::class, 'userStore'])->name('users.store');
-Route::put('/users/password/update/{id}', [AccountController::class, 'passwordUpdate'])->name('password.update');
-Route::delete('/users/delete/{id}', [AccountController::class, 'userDestroy'])->name('account.destroy');
-// Account Routes End <--
+        // Settings Routes Start
+        Route::get('/site/settings', [SettingController::class, 'siteSettings'])->name('site.settings');
+        Route::put('/site/settings/branding', [SettingController::class, 'brandingUpdate'])->name('branding.update');
+        Route::put('/site/settings/seo', [SettingController::class, 'seoUpdate'])->name('seo.update');
+        Route::put('/site/settings/slide-one', [SettingController::class, 'slideOneUpdate'])->name('slide.one.update');
+        Route::put('/site/settings/slide-two', [SettingController::class, 'slideTwoUpdate'])->name('slide.two.update');
+        Route::put('/site/settings/slide-three', [SettingController::class, 'slideThreeUpdate'])->name('slide.three.update');
+        Route::put('/site/settings/slide-four', [SettingController::class, 'slideFourUpdate'])->name('slide.four.update');
+        Route::put('/site/settings/slide-five', [SettingController::class, 'slideFiveUpdate'])->name('slide.five.update');
+        Route::put('/site/settings/slide-six', [SettingController::class, 'slideSixUpdate'])->name('slide.six.update');
+        Route::put('/site/settings/footer-link', [SettingController::class, 'footerLinkUpdate'])->name('footer.link.update');
+        Route::put('/site/settings/social', [SettingController::class, 'socialUpdate'])->name('social.update');
+        Route::put('/site/settings/contact', [SettingController::class, 'contactInfoUpdate'])->name('contact.update');
+        // Settings Routes End
 
+        Route::get('/change/password', [AdminController::class, 'changePassword'])->name('change.password');
+    });
 
-// Activities Routes Start -->
-Route::resource('committeeActivities', CommitteeActivitieController::class);
-// Activities Routes End <--
+    //this is admin route also access superadmin------------------
+    Route::middleware('admin')->group(function () {
+        Route::get('/active/committee/list', [CommitteeManageController::class, 'committeeActiveListView'])->name('active.committee.list');
+        Route::get('/deactive/committee/list', [CommitteeManageController::class, 'committeeDeactiveListView'])->name('deactive.committee.list');
+        Route::get('/committee/{id}', [CommitteeYearController::class, 'activeCommittee'])->name('active.committee');
+        Route::resource('committeeMember', CommitteeMemberController::class);
 
+        // Person Route Start -->
+        
+        Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
+        Route::get('search/person/', [PersonController::class, 'personSearch'])->name('person.search');
+        Route::post('search/result/', [PersonController::class, 'searchResult'])->name('search.result');
+        // Person Route End <--
 
-// Finance Routes Start -->
-Route::get('/finance/sheet', [FinanceController::class, 'finance'])->name('finance.sheet');
-Route::post('/finance/sheet/create', [FinanceController::class, 'sheetCreate'])->name('finance.sheet.create');
-Route::get('/finance/sheet/download/{fileName}', [FinanceController::class, 'sheetDownload'])->name('finance.sheet.download');
-Route::put('/finance/sheet/update/{id}', [FinanceController::class, 'sheetUpdate'])->name('finance.sheet.update');
-Route::delete('/finance/sheet/destroy/{id}', [FinanceController::class, 'sheetDestroy'])->name('finance.sheet.destroy');
-// Finance Routes End <--
+        // Activities Routes Start -->
+        Route::resource('committeeActivities', CommitteeActivitieController::class);
+        // Activities Routes End <--
 
+        //Contact Routes Start -->
+        Route::get('/contact/unread', [ContactController::class, 'contactUnread'])->name('contact.unread');
+        Route::get('/contact/read', [ContactController::class, 'contactRead'])->name('contact.read');
+        Route::patch('/contact/read/confirm/{id}', [ContactController::class, 'readConfirm'])->name('contact.read.confirm');
+        Route::patch('/contact/unread/confirm/{id}', [ContactController::class, 'unreadConfirm'])->name('contact.unread.confirm');
+        //Contact Routes End <--
+    });
 
-//Contact Routes Start -->
-Route::get('/contact/unread', [ContactController::class, 'contactUnread'])->name('contact.unread');
-Route::get('/contact/read', [ContactController::class, 'contactRead'])->name('contact.read');
-Route::patch('/contact/read/confirm/{id}', [ContactController::class, 'readConfirm'])->name('contact.read.confirm');
-Route::patch('/contact/unread/confirm/{id}', [ContactController::class, 'unreadConfirm'])->name('contact.unread.confirm');
-//Contact Routes End <--
+    //this is cashier route also access superadmin-----------------
+    Route::middleware('cashier')->group(function () {
+        //donation route Start -->
+        Route::get('donation/create', [DonationController::class,'donationCreate'])->name('donation.create');
+        Route::post('donation/create', [DonationController::class,'donationStore'])->name('donation.store');
+        Route::get('donation/event/list', [DonationController::class,'donationEvent'])->name('donation.event');
+        Route::get('donation/event/create', [DonationController::class,'donationEventCreate'])->name('donation.event.create');
+        Route::post('donation/event/store', [DonationController::class,'donationEventStore'])->name('donation.event.store');
+        Route::post('donation/event/status/{id}', [DonationController::class,'donationEventStatus'])->name('donation.event.status');
+        Route::get('donation/event/details/{id}', [DonationController::class,'donationEventDetails'])->name('donation.event.details');
+        Route::get('recent/donation/list', [DonationController::class,'recentDonation'])->name('recent.donation');
+        Route::get('donator/list', [DonationController::class,'donatorList'])->name('donator.list');
+        //donation route end --<
 
+        // Finance Routes Start -->
+        Route::get('/finance/sheet', [FinanceController::class, 'finance'])->name('finance.sheet');
+        Route::post('/finance/sheet/create', [FinanceController::class, 'sheetCreate'])->name('finance.sheet.create');
+        Route::get('/finance/sheet/download/{fileName}', [FinanceController::class, 'sheetDownload'])->name('finance.sheet.download');
+        Route::put('/finance/sheet/update/{id}', [FinanceController::class, 'sheetUpdate'])->name('finance.sheet.update');
+        Route::delete('/finance/sheet/destroy/{id}', [FinanceController::class, 'sheetDestroy'])->name('finance.sheet.destroy');
+        // Finance Routes End <--
+    });
 
-// Services Routes Start
-Route::get('/services', [ServiceController::class, 'services'])->name('services');
-Route::post('/service/store', [ServiceController::class, 'serviceStore'])->name('service.store');
-Route::post('/service/update/{id}', [ServiceController::class, 'serviceUpdate'])->name('service.update');
-Route::delete('/service/destroy/{id}', [ServiceController::class, 'serviceDestroy'])->name('service.destroy');
-// Services Routes End
-
-
-// Settings Routes Start
-Route::get('/site/settings', [SettingController::class, 'siteSettings'])->name('site.settings');
-Route::put('/site/settings/branding', [SettingController::class, 'brandingUpdate'])->name('branding.update');
-Route::put('/site/settings/seo', [SettingController::class, 'seoUpdate'])->name('seo.update');
-
-Route::put('/site/settings/slide-one', [SettingController::class, 'slideOneUpdate'])->name('slide.one.update');
-Route::put('/site/settings/slide-two', [SettingController::class, 'slideTwoUpdate'])->name('slide.two.update');
-Route::put('/site/settings/slide-three', [SettingController::class, 'slideThreeUpdate'])->name('slide.three.update');
-Route::put('/site/settings/slide-four', [SettingController::class, 'slideFourUpdate'])->name('slide.four.update');
-Route::put('/site/settings/slide-five', [SettingController::class, 'slideFiveUpdate'])->name('slide.five.update');
-Route::put('/site/settings/slide-six', [SettingController::class, 'slideSixUpdate'])->name('slide.six.update');
-
-Route::put('/site/settings/footer-link', [SettingController::class, 'footerLinkUpdate'])->name('footer.link.update');
-Route::put('/site/settings/social', [SettingController::class, 'socialUpdate'])->name('social.update');
-Route::put('/site/settings/contact', [SettingController::class, 'contactInfoUpdate'])->name('contact.update');
-// Settings Routes End
-
-
-Route::get('/change/password', [AdminController::class, 'changePassword'])->name('change.password');
-
+});
 
 
 

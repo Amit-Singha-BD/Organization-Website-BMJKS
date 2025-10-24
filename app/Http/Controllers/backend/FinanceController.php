@@ -10,8 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class FinanceController extends Controller
 {
-    public function finance(){
-        $finances = Finance::paginate(10);
+    public function finance(Request $request){
+        $date = $request->input('date');
+        $title = $request->input('title');
+        
+        $finances = Finance::when($date, function($query, $date){
+            return $query->where('date', 'like', "%{$date}%");})
+            ->when($title, function($query, $title){
+            return $query->where('title', 'like', "%{$title}%");})
+            ->latest('date')->paginate(10);
+
         return view('Backend.Pages.Finance', compact('finances'));
     }
 
