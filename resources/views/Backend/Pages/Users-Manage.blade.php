@@ -34,7 +34,13 @@
                                 <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
                                 <td data-label="নাম">{{ $user->name }}</td>
                                 <td data-label="একাউন্টের ধরন">{{ $user->account_type }}</td>
-                                <td data-label="শাখা">{{ $user->committeeName->committee_name }}</td>
+                                <td data-label="শাখা">
+                                    @if($user->account_type == 'admin')
+                                        {{ $user->committeeName->committee_name }}
+                                    @else
+                                        {{ $user->account_type == 'superadmin' ? 'সুপার অ্যাডমিন' : ($user->account_type == 'cashier' ? 'ক্যাশিয়ার' : $user->account_type) }}
+                                    @endif
+                                </td>
                                 <td data-label="মোবাইল">{{ $user->phone_no }}</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
@@ -67,7 +73,13 @@
                                                 width="100" height="100">
                                             <p><strong>নাম:</strong> {{ $user->name }}</p>
                                             <p><strong>ইউজারনেম:</strong> {{ $user->username }}</p>
-                                            <p><strong>শাখা:</strong> {{ $user->committeeName->committee_name }}</p>
+                                            <p><strong>শাখা:</strong> 
+                                                @if($user->account_type == 'admin')
+                                                    {{ $user->committeeName->committee_name }}
+                                                @else
+                                                    {{ $user->account_type == 'superadmin' ? 'সুপার অ্যাডমিন' : ($user->account_type == 'cashier' ? 'ক্যাশিয়ার' : $user->account_type) }}
+                                                @endif
+                                            </p>
                                             <p><strong>মোবাইল:</strong> {{ $user->phone_no }}</p>
                                             <p><strong>অ্যাকাউন্ট ধরন:</strong> {{ $user->account_type }}</p>
                                         </div>
@@ -174,7 +186,7 @@
                                     @error('name')
                                         {{ $message }}
                                     @else
-                                        নাম
+                                        অ্যাকাউন্ট ব্যবহারকারীর নাম
                                     @enderror
                                 </label>
                                 <input type="text" name="name" class="form-control">
@@ -209,8 +221,9 @@
                                 </label>
                                 <select name="account_type" id="account_type" class="form-select">
                                     <option value="" selected disabled>একটি নির্বাচন করুন</option>
+                                    <option value="SuperAdmin">সুপার অ্যাডমিন</option>
+                                    <option value="Cashier">ক্যাশিয়ার</option>
                                     <option value="Admin">অ্যাডমিন</option>
-                                    <option value="Editor">এডিটর</option>
                                 </select>
                             </div>
                             <div class="col-12">
@@ -224,7 +237,7 @@
                                 <select name="branch" id="branch" class="form-select">
                                     <option value="" selected disabled>একটি নির্বাচন করুন</option>
                                     @foreach($users as $committee)
-                                    <option value="{{ $committee->committeeName->id }}">{{ $committee->committeeName->committee_name }}</option>
+                                        <option value="{{ $committee->id }}">{{ $committee->account_type == 'admin' ? $committee->committeeName->committee_name : $committee->account_type }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -236,7 +249,7 @@
                                         পাসওয়ার্ড (৮+ অক্ষর, বড়+ছোট অক্ষর, সংখ্যা)
                                     @enderror
                                 </label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control" placeholder="Password1234">
                             </div>
                             <div class="col-12">
                                 <label class="form-label @error('password_confirmation') text-danger @enderror">
@@ -259,4 +272,26 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accountType = document.getElementById('account_type');
+            const branchField = document.getElementById('branch').closest('.col-12'); // পুরো div
+
+            function toggleBranchField() {
+                const value = accountType.value.toLowerCase();
+                if (value === 'superadmin' || value === 'cashier') {
+                    branchField.style.display = 'none';
+                } else {
+                    branchField.style.display = 'block';
+                }
+            }
+
+            // প্রথমে লোডে চেক করা
+            toggleBranchField();
+
+            // onchange ইভেন্ট
+            accountType.addEventListener('change', toggleBranchField);
+        });
+    </script>
+    
 @endsection
