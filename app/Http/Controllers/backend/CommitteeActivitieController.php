@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CommitteeActivitie;
 use App\Models\CommitteeYear;
 use App\Http\Requests\CommitteeActivitiesValidate;
@@ -14,6 +15,13 @@ class CommitteeActivitieController extends Controller
      */
     public function index(Request $request)
     {
+        $committeeYears = CommitteeYear::when(Auth::user()->branch != 100, function($query) {
+            $query->where('committee_id', Auth::user()->branch);
+        })->get();
+        $committeefilter = CommitteeYear::when(Auth::user()->branch != 100, function($query) {
+            $query->where('committee_id', Auth::user()->branch);
+        })->pluck('id');
+
         $title = $request->input('title');
         $date = $request->input('date');
         $activities_data = CommitteeActivitie::when($title, function($query,$title) {
@@ -22,9 +30,10 @@ class CommitteeActivitieController extends Controller
         ->when($date, function($query,$date){
             return $query->where('activities_date','like',"%{$date}%");
         })
+        ->whereIn('committee_year_id',$committeefilter)
         ->latest()->paginate(10);
 
-        $committeeYears = CommitteeYear::select('id', 'committee_name')->get();
+
 
         return view('Backend.Pages.CommitteeActivities',compact('activities_data', 'committeeYears'));
     }

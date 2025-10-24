@@ -16,7 +16,7 @@ class UserSeeder extends Seeder {
                 "username"     => "bmjkssuperadmin",
                 "phone_no"     => "0171000001",
                 "account_type" => "superadmin",
-                "branch"       => "1",
+                "branch"       => "100",
                 "password"     => Hash::make('12345678'),
                 'created_at'   => now(),
                 'updated_at'   => now()
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder {
                 "username"     => "bmjkscashier",
                 "phone_no"     => "0172000000",
                 "account_type" => "cashier",
-                "branch"       => "1",
+                "branch"       => "99",
                 "password"     => Hash::make('12345678'),
                 'created_at'   => now(),
                 'updated_at'   => now()
