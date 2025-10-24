@@ -174,7 +174,7 @@
         </div>
 
         <a class="sidebar-link {{ Route::is('committeeActivities.index') ? 'active' : '' }}" href="{{ route('committeeActivities.index') }}"><i class="fas fa-calendar-check"></i><span class="sidebar-text">কমিটির কার্যক্রম</span></a>
-                <a class="sidebar-link {{ Route::is('contact.unread') || Route::is('contact.read') ? 'active' : '' }}" href="{{ route('contact.unread') }}"><i class="fas fa-comments"></i><span class="sidebar-text">যোগাযোগ তথ্য</span></a>
+            @if(in_array(Auth::user()->branch, ['1','100']))    <a class="sidebar-link {{ Route::is('contact.unread') || Route::is('contact.read') ? 'active' : '' }}" href="{{ route('contact.unread') }}"><i class="fas fa-comments"></i><span class="sidebar-text">যোগাযোগ তথ্য</span></a>@endif
     </nav>
     @endadmin
     @cashier

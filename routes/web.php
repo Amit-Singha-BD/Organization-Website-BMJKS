@@ -159,10 +159,12 @@ Route::middleware(['auth'])->group(function () {
         // Activities Routes End <--
 
         //Contact Routes Start -->
-        Route::get('/contact/unread', [ContactController::class, 'contactUnread'])->name('contact.unread');
-        Route::get('/contact/read', [ContactController::class, 'contactRead'])->name('contact.read');
-        Route::patch('/contact/read/confirm/{id}', [ContactController::class, 'readConfirm'])->name('contact.read.confirm');
-        Route::patch('/contact/unread/confirm/{id}', [ContactController::class, 'unreadConfirm'])->name('contact.unread.confirm');
+        Route::middleware('contact')->group(function () {
+            Route::get('/contact/unread', [ContactController::class, 'contactUnread'])->name('contact.unread');
+            Route::get('/contact/read', [ContactController::class, 'contactRead'])->name('contact.read');
+            Route::patch('/contact/read/confirm/{id}', [ContactController::class, 'readConfirm'])->name('contact.read.confirm');
+            Route::patch('/contact/unread/confirm/{id}', [ContactController::class, 'unreadConfirm'])->name('contact.unread.confirm');
+        });
         //Contact Routes End <--
     });
 

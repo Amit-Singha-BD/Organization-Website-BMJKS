@@ -78,7 +78,7 @@
                                     <h5 class=" notice-title" >{{$notice->title}}</h5>
                                     <div class="notice-date">
                                         <span class="text-muted">
-                                            <i class="fas fa-calendar me-1"></i>{{$notice->date}}
+                                            <i class="fas fa-calendar me-1"></i>@bn($notice->date)
                                         </span>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p class="mb-2 text-muted">
-                                        <i class="fas fa-calendar-alt me-2"></i>{{ $notice->date }}
+                                        <i class="fas fa-calendar-alt me-2"></i>@bn($notice->date)
                                     </p>
                                     <hr>
                                     <div class="notice-description">
