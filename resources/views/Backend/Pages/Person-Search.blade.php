@@ -198,6 +198,10 @@
                                                     data-bs-target="#modalViewMember{{ $person->id }}">
                                                 <i class="fas fa-eye me-1"></i> দেখুন
                                             </button>
+                                            <a type="button" class="btn btn-sm btn-outline-success" 
+                                                href="{{route('person.edit.view',$person->id)}}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
                                         </td>
                                     </tr>
 

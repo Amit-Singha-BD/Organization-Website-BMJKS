@@ -8,6 +8,7 @@ use App\Models\PersonType;
 use App\Models\PersonTag;
 use App\Http\Requests\PersonValidation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PersonController extends Controller
 {
@@ -26,8 +27,8 @@ class PersonController extends Controller
         // Step 3: PersonType এর রিলেশন থেকে persons paginate করে আনো
         $persons = $personTypeData->people()->with('personType')->paginate(10);
 
-        // Step 4: ভিউতে পাঠাও
-        return view('Backend.Pages.Person-List', compact('persons', 'personTypeName'));
+        $tags = PersonType::get();
+        return view('Backend.Pages.Person-List', compact('persons', 'personTypeName','tags'));
     }
 
     //ব্যাক্তি সার্চ
@@ -129,9 +130,61 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Person $person)
+
+
+    public function update(PersonValidation $request, Person $person)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // ✅ ভ্যালিড ডেটা নেওয়া
+            $validdata = $request->validated();
+            $validdata['member_aproved'] = 'yes';
+
+            $selectedTags = $request->input('person_tag', []);
+            if(Empty($selectedTags)){
+                return redirect()->back()->with('error','যেকোন একটি ক্যাটাগরি সিলেক্ট করুন');
+            }
+
+            // ✅ পুরনো ইমেজ ডিলিট + নতুন আপলোড
+            if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+                // পুরনো ছবি মুছে ফেলা (যদি থাকে)
+                if ($person->photo && File::exists(public_path('uploads/person/' . $person->photo))) {
+                    File::delete(public_path('uploads/person/' . $person->photo));
+                }
+
+                // নতুন ছবি আপলোড
+                $image = $request->file('photo');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('uploads/person'), $imageName);
+                $validdata['photo'] = $imageName;
+            }
+
+            // ✅ Person আপডেট করা
+            $person->update($validdata);
+
+            // পুরনো ট্যাগ ডিলিট করা
+            PersonTag::where('person_id', $person->id)->delete();
+
+            // নতুন ট্যাগ insert করা
+            
+            
+            foreach ($selectedTags as $tagId) {
+                PersonTag::create([
+                    'person_id'     => $person->id,
+                    'persontype_id' => $tagId
+                ]);
+            }
+
+
+            DB::commit();
+            return redirect()->back()->with('success', 'সফলভাবে আপডেট করা হয়েছে!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            \Log::error('Person Update Error: ' . $e->getMessage());
+            
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -139,8 +192,21 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        // যদি personType আছে এবং id 1 থাকে, delete না করা
+        if ($person->personType->contains('id', 1)) {
+            return redirect()->back()->with('error', 'এই ধরনের সদস্য ডিলিট করা যাবে না।');
+        }
+
+        // যদি ছবি থাকে, আগে ডিলিট করা
+        if ($person->photo && file_exists(public_path('uploads/person/' . $person->photo))) {
+            unlink(public_path('uploads/person/' . $person->photo));
+        }
+
+        $person->delete();
+
+        return redirect()->back()->with('success', 'সদস্য সফলভাবে ডিলিট হয়েছে');
     }
+
 
     public function tag(){
         $tags = PersonType::get();
