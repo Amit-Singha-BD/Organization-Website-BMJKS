@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'superadmin'=>App\Http\Middleware\SuperAdminMiddleware::class,
             'admin'=>App\Http\Middleware\AdminMiddleware::class,
             'cashier'=>App\Http\Middleware\CashierMiddleware::class,
+            'contact'=>App\Http\Middleware\ContactMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
