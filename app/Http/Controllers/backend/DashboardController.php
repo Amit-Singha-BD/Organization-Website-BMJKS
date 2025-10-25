@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Notice;
 use App\Models\PersonType;
@@ -19,7 +20,11 @@ class DashboardController extends Controller {
         foreach($tags as $tag){
             $tag->persons_count = PersonTag::where('persontype_id', $tag->id)->count();
         }
-        $committees = CommitteeYear::where('status', 'active')->withCount('committee_members')->get();
+        $committees = CommitteeYear::where('status', 'active')->when(!in_array(Auth::user()->branch, ['1', '100']), 
+            function ($query) {
+            $query->where('committee_id', Auth::user()->branch);
+            })->withCount('committee_members')->get();
+
         $total_active_member = $committees->sum('committee_members_count');
         
         $lifetime_person = PersonTag::where('persontype_id', 5)->count();
