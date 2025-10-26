@@ -67,8 +67,9 @@
                         <li><a class="dropdown-item" href="{{route('budget')}}">বাজেট</a></li>
 						<li><a class="dropdown-item" href="{{route('committee.activities')}}">কার্যক্রম</a></li>
                         <li><a class="dropdown-item" href="{{route('contact')}}">যোগাযোগ</a></li>
-                        <li><a class="dropdown-item" href="{{route('bmjks.database.view')}}">বামযুকস ডাটাবেস</a></li>
-                        <li><a class="dropdown-item" href="{{route('lifetime.member.view', 5)}}">আজীবন সদস্য</a></li>
+                        <li><a class="dropdown-item" href="{{route('bmjks.database.info')}}">বামযুকস ডাটাবেস</a></li>
+                        <li><a class="dropdown-item" href="{{route('bmjks.database.view')}}">বামযুকস ডাটাবেস সার্চ</a></li>
+                        <li><a class="dropdown-item" href="{{route('lifetime.member.view', 1)}}">আজীবন সদস্য</a></li>
                         <li><a class="dropdown-item" href="{{ route('donetor.frontend') }}">ডোনেটর</a></li>
                     </ul>
                 </li>
