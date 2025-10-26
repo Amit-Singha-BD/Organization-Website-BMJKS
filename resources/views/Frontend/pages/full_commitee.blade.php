@@ -42,53 +42,58 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($committeeMembers as $committeeMember)
-                        <tr class="committee-row">
-                            <td class="align-middle text-center">
-                                <div class="square-photo-wrapper">
-                                    <img src="{{ $committeeMember->photo ? asset($committeeMember->photo) : asset('Frontend-Assets/images/profile_img.png') }}" class="square-photo">
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <div class="committee-info">
-                                    <h6 class="fw-bold mb-1" style="color: #333333;">
-                                        {{$committeeMember->name}}</h6>
-                                    <small style="color: var(--secondary-green);">
-                                        <i class="fas fa-map-marker-alt me-1"></i>
-                                        {{$committeeMember->address }}
-                                    </small>
-                                </div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <span class="badge text-white" style="background-color: var(--primary-green);">
-                                    {{ role_name($committeeMember->role) }}
-                                </span>
-                            </td>
-                            <td class="align-middle">
-                                <a href="tel:+8801712345678" class="contact-link">
-                                    <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                                    {{$committeeMember->mobile }}
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                <a href="mailto:president@manipuri.org" class="contact-link">
-                                    <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                                    {{$committeeMember->email }}
-                                </a>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="btn-group" role="group">
-                                    <a href="{{$committeeMember->facebook }}" 
-                                    target="_blank" 
-                                    class="btn btn-sm btn-outline-primary" 
-                                    title="প্রোফাইল দেখুন">
-                                        <i class="fab fa-facebook-f"></i>
+                        @forelse($committeeMembers as $committeeMember)
+                            <tr class="committee-row">
+                                <td class="align-middle text-center">
+                                    <div class="square-photo-wrapper">
+                                        <img src="{{ $committeeMember->photo ? asset($committeeMember->photo) : asset('Frontend-Assets/images/profile_img.png') }}" class="square-photo">
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="committee-info">
+                                        <h6 class="fw-bold mb-1" style="color: #333333;">
+                                            {{$committeeMember->name}}</h6>
+                                        <small style="color: var(--secondary-green);">
+                                            <i class="fas fa-map-marker-alt me-1"></i>
+                                            {{$committeeMember->address }}
+                                        </small>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <span class="badge text-white" style="background-color: var(--primary-green);">
+                                        {{ role_name($committeeMember->role) }}
+                                    </span>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="tel:+8801712345678" class="contact-link">
+                                        <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
+                                        {{$committeeMember->mobile }}
                                     </a>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-
+                                </td>
+                                <td class="align-middle">
+                                    <a href="mailto:president@manipuri.org" class="contact-link">
+                                        <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
+                                        {{$committeeMember->email }}
+                                    </a>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <div class="btn-group" role="group">
+                                        <a href="{{$committeeMember->facebook }}" 
+                                        target="_blank" 
+                                        class="btn btn-sm btn-outline-primary" 
+                                        title="প্রোফাইল দেখুন">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    <i class="fas fa-info-circle me-2"></i>কোন সদস্য পাওয়া যায়নি।
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -96,40 +101,45 @@
 
         <!-- Card View for Mobile -->
         <div class="cards-container">
-            
-             @foreach($committeeMembers as $committeeMember)
-            <div class="committee-card">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-crown me-1"></i>{{ role_name($committeeMember->role) }}</h5>
-                </div>
-                <div class="card-body text-center">
-                    <div class="card-square-photo">
-                        <img src="{{ $committeeMember->photo ? asset($committeeMember->photo) : asset('Frontend-Assets/images/profile_img.png') }}" class="square-photo">
+            @forelse($committeeMembers as $committeeMember)
+                <div class="committee-card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-crown me-1"></i>{{ role_name($committeeMember->role) }}</h5>
                     </div>
-                    <h5 class="fw-bold" style="color: #333333;">{{$committeeMember->name}}</h5>
-                    <p class="mb-2">
-                        <i class="fas fa-map-marker-alt me-1" style="color: var(--secondary-green);"></i>
-                        {{$committeeMember->address }}
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                        <a href="tel:+8801712345678" class="contact-link">{{$committeeMember->mobile }}</a>
-                    </p>
-                    <p class="mb-1">
-                        <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                        <a href="mailto:president@manipuri.org" class="contact-link">{{$committeeMember->email }}</a>
-                    </p>
-                    <div class="action-buttons">
-                        <a href="{{$committeeMember->facebook }}" 
-                            target="_blank" 
-                            class="btn btn-sm btn-outline-primary" 
-                            title="প্রোফাইল দেখুন">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                    <div class="card-body text-center">
+                        <div class="card-square-photo">
+                            <img src="{{ $committeeMember->photo ? asset($committeeMember->photo) : asset('Frontend-Assets/images/profile_img.png') }}" class="square-photo">
+                        </div>
+                        <h5 class="fw-bold" style="color: #333333;">{{$committeeMember->name}}</h5>
+                        <p class="mb-2">
+                            <i class="fas fa-map-marker-alt me-1" style="color: var(--secondary-green);"></i>
+                            {{$committeeMember->address }}
+                        </p>
+                        <p class="mb-1">
+                            <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
+                            <a href="tel:+8801712345678" class="contact-link">{{$committeeMember->mobile }}</a>
+                        </p>
+                        <p class="mb-1">
+                            <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
+                            <a href="mailto:president@manipuri.org" class="contact-link">{{$committeeMember->email }}</a>
+                        </p>
+                        <div class="action-buttons">
+                            <a href="{{$committeeMember->facebook }}" 
+                                target="_blank" 
+                                class="btn btn-sm btn-outline-primary" 
+                                title="প্রোফাইল দেখুন">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>  
-            @endforeach       
+                </div>  
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center py-4 text-muted">
+                        <i class="fas fa-info-circle me-2"></i>কোন সদস্য পাওয়া যায়নি
+                    </td>
+                </tr>
+            @endforelse       
         </div>
 		
     </div>

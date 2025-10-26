@@ -10,7 +10,7 @@
     <div class="card">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h5 class="mb-0">{{ $personTypeName ?? 'ক্যাটাগরি' }} তালিকা</h5>
-            <span>মোট {{ $persons->total() }} জন</span>
+            <span>মোট @bn($persons->total()) জন</span>
         </div>
 
         <div class="card-body p-0">
@@ -18,7 +18,7 @@
                 <table class="table table-bordered table-hover mb-0">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>ক্রমিক</th>
                             <th>নাম</th>
                             <th>পিতার/স্বামীর নাম</th>
                             <th>গ্রাম</th>
@@ -28,7 +28,7 @@
                     <tbody>
                         @forelse($persons as $person)
                         <tr>
-                            <td data-label="#">{{ $loop->iteration + ($persons->currentPage()-1)*$persons->perPage() }}</td>
+                            <td data-label="#">@bn($loop->iteration + ($persons->currentPage()-1)*$persons->perPage())</td>
                             <td data-label="নাম">{{ $person->name }}</td>
                             <td data-label="পিতার/স্বামীর নাম">{{ $person->father_husband_name }}</td>
                             <td data-label="গ্রাম">{{ $person->village }}</td>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
-            <div>মোট {{ $persons->total() }} টি রেকর্ড দেখানো হচ্ছে</div>
+            <div>মোট @bn($persons->total()) টি রেকর্ড দেখানো হচ্ছে</div>
             <nav>
                 {{ $persons->links() }}
             </nav>
@@ -75,20 +75,20 @@
           </div>
           <hr class="mt-3">
           <div class="col-md-6 text-center">
-            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'N/A' }}</p>
-            <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'N/A' }}</p>
-            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'N/A' }}</p>
-            <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'N/A' }}</p>
-            <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'N/A' }}</p>
-            <p><strong>রক্তের গ্রুপ:</strong> {{ $person->blood_group ?? 'N/A' }}</p>
+            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'কোন তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'কোন তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>রক্তের গ্রুপ:</strong> {{ $person->blood_group ?? 'তথ্য পাওয়া যায়নি' }}</p>
           </div>
           <div class="col-md-6 text-center">
-            <p><strong>মোবাইল:</strong> {{ $person->mobile_number ?? 'N/A' }}</p>
-            <p><strong>পেশা:</strong> {{ $person->profession ?? 'N/A' }}</p>
-            <p><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
-            <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'N/A' }}</p>
-            <p><strong>থানা:</strong> {{ $person->thana ?? 'N/A' }}</p>
-            <p><strong>জেলা:</strong> {{ $person->district ?? 'N/A' }}</p>
+            <p><strong>মোবাইল:</strong> {{ $person->mobile_number ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>পেশা:</strong> {{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>থানা:</strong> {{ $person->thana ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>জেলা:</strong> {{ $person->district ?? 'তথ্য পাওয়া যায়নি' }}</p>
           </div>
           <div class="col-12 mt-2 text-center">
             @if($person->personType && $person->personType->count() > 0)

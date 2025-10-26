@@ -26,7 +26,7 @@ class FrontendHomeController extends Controller{
         $committeeData = CommitteeName::where('committee_slug', $slug)->first();
 
         if (!$committeeData) {
-            return redirect()->back()->with('error', 'কমিটির তথ্য পাওয়া যায়নি!');
+            return view('frontend.pages.data-not-found');
         }
 
         $committeeYearData = CommitteeYear::where('committee_id', $committeeData->id)
@@ -34,7 +34,7 @@ class FrontendHomeController extends Controller{
             ->first();
 
         if (!$committeeYearData) {
-            return redirect()->back()->with('error', 'এই কমিটির সক্রিয় বছর পাওয়া যায়নি!');
+            return view('frontend.pages.data-not-found');
         }
 
         $committeeMembers = CommitteeMember::where('CommitteeYear_id', $committeeYearData->id)

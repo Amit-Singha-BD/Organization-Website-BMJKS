@@ -18,7 +18,7 @@
 			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
 
 				<!-- 1 হেল্প কার্ড -->
-				 @foreach($services as $service)
+				@foreach($services as $service)
 				<div class="col">
 					<div class="card help-card h-100 shadow-sm border-0">
 						<div class="card-header bg-secondary-help text-white text-center py-4">
@@ -32,44 +32,35 @@
 								{{ $service->description}}
 							</p>
 
-
-
-							<button class="btn btn-secondary-help w-100 mt-auto rounded-pill fw-semibold" data-bs-toggle="modal" data-bs-target="#servieModal{{ $service->id}}">
+							<button class="btn btn-secondary-help w-100 mt-auto rounded-pill fw-semibold" data-bs-toggle="modal" data-bs-target="#serviceModal{{ $service->id}}">
 								<i class="fas fa-info-circle me-2"></i>বিস্তারিত জানুন
 							</button>
 						</div>
 					</div>
 				</div>
 
-				<!-- Bootstrap Modal -->
-				<div class="modal fade" id="servieModal{{ $service->id}}" tabindex="-1" aria-hidden="true">
-				<div class="modal-dialog modal-lg modal-dialog-centered">
-					<div class="modal-content">
+				<div class="modal fade" id="serviceModal{{$service->id}}" tabindex="-1" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg">
+						<div class="modal-content">
+							<div class="modal-header bg-primary text-white">
+								<h5 class="modal-title" id="noticeModalTitle">{{ $service->title }}</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div id="noticeModalDescription">
+									{{ $service->description }}
+								</div>
+							</div>
 
-					<div class="modal-header">
-						<h5 class="modal-title">{{ $service->title}}</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+							</div>
+						</div>
 					</div>
-
-					<div class="modal-body">
-						<!-- 👉 এখানে আপনার সেকশন কপি করবেন -->
-						<section id="mySection">
-							<p>
-							{{ $service->description}}
-							</p>
-						</section>
-					</div>
-
-					</div>
-				</div>
 				</div>
 				@endforeach
-
 			</div>
 		</div>
-
-
-
 @endsection
 
  
