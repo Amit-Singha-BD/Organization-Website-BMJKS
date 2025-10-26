@@ -13,7 +13,7 @@
     <div class="card shadow-lg border-0 mt-4">
         <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
             <h5 class="mb-0"><i class="fas fa-users me-2"></i>দাতা তালিকা</h5>
-            <span class="badge bg-light text-success fs-6">মোট {{ $persons->total() }} জন</span>
+            <span class="badge bg-light text-success fs-6">মোট @bn($persons->total()) জন</span>
         </div>
 
         <div class="card-body ">
@@ -22,7 +22,7 @@
                 <table class="table table-bordered table-hover mb-0 align-middle">
                     <thead class="table-success text-center">
                         <tr>
-                            <th>#</th>
+                            <th>ক্রমিক</th>
                             <th>নাম</th>
                             <th>পিতার নাম</th>
                             <th>গ্রাম</th>
@@ -35,7 +35,7 @@
                         @forelse($persons as $person)
                         <tr>
                             <td class="text-center fw-bold text-success">
-                                {{ $loop->iteration + ($persons->currentPage() - 1) * $persons->perPage() }}
+                                @bn($loop->iteration + ($persons->currentPage() - 1) * $persons->perPage())
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -44,8 +44,8 @@
                                     <span class="fw-semibold">{{ $person->name }}</span>
                                 </div>
                             </td>
-                            <td>{{ $person->father_husband_name ?? 'N/A' }}</td>
-                            <td>{{ $person->village ?? 'N/A' }}</td>
+                            <td>{{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</td>
+                            <td>{{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</td>
                             <td class="text-center text-success fw-bold">৳ {{ number_format($person->totalDonation, 2) }}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
@@ -77,11 +77,11 @@
                             
                             <div>
                                 <h5 class="mb-0 fw-bold">{{ $person->name }}</h5>
-                                <small class="text-muted">পিতা: {{ $person->father_husband_name ?? 'N/A' }}</small>
+                                <small class="text-muted">পিতা: {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</small>
                             </div>
                         </div>
-                        <p class="mb-1"><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
-                        <p class="mb-2"><strong>মোট সহায়তা:</strong> <span class="text-success fw-bold">৳ {{ number_format($person->totalDonation, 2) }}</span></p>
+                        <p class="mb-1"><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                        <p class="mb-2"><strong>মোট সহায়তা:</strong> <span class="text-success fw-bold">৳ @bn(number_format($person->totalDonation, 2))</span></p>
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-sm btn-secondary w-50 me-2" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
                                 <i class="fas fa-list me-1"></i> সহায়তা
@@ -104,8 +104,8 @@
         <!-- Card Footer -->
         <div class="card-footer bg-light text-center">
             <div class="small text-muted">
-                মোট {{ $persons->total() }} টি রেকর্ডের মধ্যে 
-                <strong>{{ $persons->firstItem() }} - {{ $persons->lastItem() }}</strong> দেখানো হচ্ছে
+                মোট @bn($persons->total()) টি রেকর্ডের মধ্যে 
+                <strong>@bn($persons->firstItem()) - @bn($persons->lastItem())</strong> দেখানো হচ্ছে
             </div>
             <div class="mt-2">
                 {{ $persons->links('pagination::bootstrap-5') }}
@@ -129,8 +129,8 @@
                                 class="rounded-circle border border-3 border-info shadow-sm"
                                 width="100" height="100" alt="Profile">
                         <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
-                        <p class="text-muted mb-0">{{ $person->profession ?? 'N/A' }}</p>
-                        <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ {{ number_format($person->totalDonation, 2) }}</p>
+                        <p class="text-muted mb-0">{{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                        <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ @bn(number_format($person->totalDonation, 2))</p>
                     </div>
                     <hr>
                     @forelse($person->donations as $donation)
@@ -138,15 +138,15 @@
                         
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'N/A' }}</h6>
+                                <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'তথ্য পাওয়া যায়নি' }}</h6>
                                 <small class="text-muted">
                                     <i class="fas fa-calendar me-1"></i>
-                                    {{ \Carbon\Carbon::parse($donation->date)->format('d M, Y') }}
+                                    @bn($donation->date)->format('d M, Y'))
                                 </small>
                             </div>
                             <div class="col-4 text-end">
                                 <span class="fw-bold text-success fs-6">
-                                    ৳ {{ number_format($donation->donate_amount, 2) }}
+                                    ৳ @bn(number_format($donation->donate_amount, 2))
                                 </span>
                             </div>
                         </div>
@@ -184,27 +184,27 @@
                                 class="rounded-circle border border-3 shadow-sm"
                                 width="120" height="120" alt="Profile">
                         <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
-                        <p class="text-muted mb-0">{{ $person->profession ?? 'N/A' }}</p>
+                        <p class="text-muted mb-0">{{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
                     </div>
                     <hr>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <h6 class="text-success mb-3  pb-2"><i class="fas fa-user me-2"></i>ব্যক্তিগত তথ্য</h6>
-                            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'N/A' }}</p>
-                            <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'N/A' }}</p>
-                            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'N/A' }}</p>
-                            <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'N/A' }}</p>
-                            <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'N/A' }}</p>
-                            <p><strong>রক্তের গ্রুপ:</strong> <span class="badge bg-danger">{{ $person->blood_group ?? 'N/A' }}</span></p>
+                            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>রক্তের গ্রুপ:</strong> <span class="badge bg-danger">{{ $person->blood_group ?? 'তথ্য পাওয়া যায়নি' }}</span></p>
                         </div>
                         <div class="col-md-6">
                             <h6 class="text-success mb-3  pb-2"><i class="fas fa-address-card me-2"></i>যোগাযোগের তথ্য</h6>
-                            <p><strong>মোবাইল:</strong> <span class="badge bg-primary">{{ $person->mobile_number ?? 'N/A' }}</span></p>
-                            <p><strong>পেশা:</strong> {{ $person->profession ?? 'N/A' }}</p>
-                            <p><strong>গ্রাম:</strong> {{ $person->village ?? 'N/A' }}</p>
-                            <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'N/A' }}</p>
-                            <p><strong>থানা:</strong> {{ $person->thana ?? 'N/A' }}</p>
-                            <p><strong>জেলা:</strong> {{ $person->district ?? 'N/A' }}</p>
+                            <p><strong>মোবাইল:</strong> <span class="badge bg-primary">{{ $person->mobile_number ?? 'তথ্য পাওয়া যায়নি' }}</span></p>
+                            <p><strong>পেশা:</strong> {{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>থানা:</strong> {{ $person->thana ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>জেলা:</strong> {{ $person->district ?? 'তথ্য পাওয়া যায়নি' }}</p>
                         </div>
                     </div>
                 </div>

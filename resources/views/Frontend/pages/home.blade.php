@@ -75,51 +75,48 @@
 						<!-- নোটিশ আইটেম -->
 						@foreach($notices as $notice)
 						<a href="#" 
-						class="list-group-item list-group-item-action d-flex gap-3 align-items-start custom-color" 
-						style="background-color:#f8f9fa;"
-						data-bs-toggle="modal"
-						data-bs-target="#noticeModal{{$notice->id}}"
-						data-title="{{ $notice->title }}"
-						data-date="{{ $notice->date }}"
-						data-description="{{ $notice->description }}"
+							class="list-group-item list-group-item-action d-flex gap-3 align-items-start custom-color" 
+							style="background-color:#f8f9fa;"
+							data-bs-toggle="modal"
+							data-bs-target="#noticeModal{{$notice->id}}"
+							data-title="{{ $notice->title }}"
+							data-date="{{ $notice->date }}"
+							data-description="{{ $notice->description }}"
 						>
-						<div class="text-center">
-							<div class="badge bg-primary rounded-1 px-2 py-1">@bn($notice->date )</div>
-						</div>
-						<div class="flex-grow-1">
-							<div class="fw-semibold">{{ $notice->title }}</div>
-							<small class="text-muted text-truncate d-block" style="max-width:360px;">{{ \Illuminate\Support\Str::words($notice->description, 5, '...') }}</small>
-						</div>
-						<i class="fas fa-chevron-right ms-auto pe-2 pt-3"></i>
+							<div class="text-center">
+								<div class="badge bg-primary rounded-1 px-2 py-1">@bn($notice->date )</div>
+							</div>
+							<div class="flex-grow-1">
+								<div class="fw-semibold">{{ $notice->title }}</div>
+								<small class="text-muted text-truncate d-block" style="max-width:360px;">{{ \Illuminate\Support\Str::words($notice->description, 5, '...') }}</small>
+							</div>
+							<i class="fas fa-chevron-right ms-auto pe-2 pt-3"></i>
 						</a>
+
 						<!-- Notice Modal -->
 						<div class="modal fade" id="noticeModal{{$notice->id}}" tabindex="-1" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered modal-lg">
-							<div class="modal-content">
-							<div class="modal-header bg-primary text-white">
-								<h5 class="modal-title" id="noticeModalTitle">{{ $notice->title }}</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
+							<div class="modal-dialog modal-dialog-centered modal-lg">
+								<div class="modal-content">
+								<div class="modal-header bg-primary text-white">
+									<h5 class="modal-title" id="noticeModalTitle">{{ $notice->title }}</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
 
-							<div class="modal-body">
-								<div class="mb-2 text-muted small" id="noticeModalDate">@bn($notice->date )</div>
+								<div class="modal-body">
+									<div class="mb-2 text-muted small" id="noticeModalDate">@bn($notice->date )</div>
 
-								<div id="noticeModalDescription">
-								{{ $notice->description }}
+									<div id="noticeModalDescription">
+									{{ $notice->description }}
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+								</div>
 								</div>
 							</div>
-
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
-							</div>
-							</div>
 						</div>
-						</div>
-
 						@endforeach
-
-
-						<!-- আরও আইটেম যোগ করুন… -->
 					  </div>
 				  </div>
 
@@ -164,25 +161,27 @@
 					</div>
 
 					<div class="modal fade" id="president" tabindex="-1" aria-hidden="true">
-						<div class="modal-dialog modal-lg modal-dialog-centered">
+						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content">
+							<div class="modal-header bg-primary text-white">
+								<h5 class="modal-title" id="noticeModalTitle">সভাপতির বার্তা</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
 
-								<!-- Modal Header with Close Button -->
-								<div class="modal-header">
-									<h5 class="modal-title text-secondary">সভাপতির বার্তা</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<div class="modal-body">
+								<div id="noticeModalDescription">
+								{{$president->message}}
 								</div>
+							</div>
 
-								<div class="modal-body">
-									<section id="mySection">
-										<p>{{$president->message}}</p>
-									</section>
-								</div>
-
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+							</div>
 							</div>
 						</div>
-					</div>
-				  </div>
+						</div>
+
+				  	</div>
 
 				</div>
 			  </div>
@@ -215,31 +214,30 @@
 										</div>
 										<h5 class="card-title fw-bold">{{ $service->title }}</h5>
 										<p class="card-text text-muted">{{ \Illuminate\Support\Str::words($service->description, 5, '...') }}</p>
-										<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#myModal{{$service->id}}" title="view">
+										<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#serviceModal{{$service->id}}" title="view">
 											বিস্তারিত
 										</button>
 									</div>
 								</div>
 							</div>
 
-							<div class="modal fade" id="myModal{{$service->id}}" tabindex="-1" aria-hidden="true">
-								<div class="modal-dialog modal-lg modal-dialog-centered">
+							<div class="modal fade" id="serviceModal{{$service->id}}" tabindex="-1" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg">
 									<div class="modal-content">
+									<div class="modal-header bg-primary text-white">
+										<h5 class="modal-title" id="noticeModalTitle">{{ $service->title }}</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
 
-										<!-- Modal Header with Close Button -->
-										<div class="modal-header">
-											<h5 class="modal-title text-secondary">{{ $service->title }}</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									<div class="modal-body">
+										<div id="noticeModalDescription">
+										{{ $service->description }}
 										</div>
+									</div>
 
-										<div class="modal-body">
-											<section id="mySection">
-												<p>
-													{{ $service->description }}
-												</p>
-											</section>
-										</div>
-
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+									</div>
 									</div>
 								</div>
 							</div>

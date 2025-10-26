@@ -130,47 +130,10 @@
 
                     @endforelse
 
-                    <!-- পেজিনেশন -->
-                    <!-- <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center custom-pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">
-                                    <i class="fas fa-arrow-left me-1"></i> পূর্ববর্তী
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">১</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">২</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">৩</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">৪</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">৫</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    পরবর্তী <i class="fas fa-arrow-right ms-1"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav> -->
-
-
                     <div class="Page navigation">
                         <div class=" pagination justify-content-center custom-pagination">
                             <div>
-                                মোট {{ $notices->total() }} টি রেকর্ডের মধ্যে 
-                                {{ $notices->firstItem() }} - {{ $notices->lastItem() }} দেখানো হচ্ছে
-                            </div>
-                            <div>
                                {{ $notices->links() }}
-                                
                             </div>
                         </div>
                     </div>
