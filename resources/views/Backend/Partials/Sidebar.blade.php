@@ -27,9 +27,8 @@
                 </a>
             </div>
         </div>
-
         <div
-            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') ? 'open' : '' }}">
+            class="sidebar-dropdown {{ Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') || Route::is('tag') || Route::is('person.search') || Route::is('search.result') || Route::is('person.edit.view') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
@@ -140,7 +139,7 @@
         <a class="sidebar-link {{ Route::is('active.committee.list') || Route::is('deactive.committee.list') || Route::is('branch.committee.list') ? 'active' : '' }}" href="{{ route('active.committee.list') }}" href="{{ route('active.committee.list') }}"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-text">কমিটি তালিকা</span></a>
 
         <div
-            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') ? 'open' : '' }}">
+            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') || Route::is('person.edit.view') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>

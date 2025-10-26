@@ -33,6 +33,7 @@ use App\Http\Controllers\backend\CommitteeYearController;
 use App\Http\Controllers\backend\CommitteeMemberController;
 use App\Http\Controllers\backend\PersonController;
 use App\Http\Controllers\backend\DonationController;
+use App\Http\Controllers\backend\ExtraController;
 
 
 
@@ -82,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
     //person route
     Route::resource('person', PersonController::class);
+    Route::get('person_edit_view/{id}',[ExtraController::class, 'personEditView'])->name('person.edit.view');
 
 
     //this is superadmin route---------------

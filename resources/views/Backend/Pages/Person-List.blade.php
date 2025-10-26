@@ -33,14 +33,38 @@
                             <td data-label="নাম">{{ $person->name }}</td>
                             <td data-label="মোবাইল নং">{{ $person->mobile_number }}</td>
                             <td data-label="গ্রাম">{{ $person->village }}</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
-                                    data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $person->id }}">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                
+                            <td data-label="অ্যাকশন">
+                                <div class="d-flex flex-row justify-content-center gap-2">
 
+                                    <!-- View Button -->
+                                    <button type="button" class="action-btn-info" title="বিস্তারিত দেখুন"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalViewMember{{ $person->id }}"
+                                        data-id="{{ $person->id }}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+
+                                    <!-- Edit Button -->
+                                    <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEditMember{{ $person->id }}"
+                                        data-id="{{ $person->id }}">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+
+                                    <!-- Delete Button -->
+                                     @if(!$person->personType->contains('id', 1))
+                                    <button type="button" class="action-btn-danger" title="মুছে ফেলুন"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteMemberModal{{ $person->id }}"
+                                        data-id="{{ $person->id }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    @endif
+
+                                </div>
                             </td>
+
                         </tr>
 
                         <!-- View Member Modal -->
@@ -104,6 +128,195 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Person Modal -->
+                        <div class="modal fade" id="modalEditMember{{ $person->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-success text-white">
+                                        <h6 class="modal-title">ব্যক্তির তথ্য সম্পাদনা</h6>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <form action="{{ route('person.update', $person->id) }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-body">
+                                            <div class="row g-3">
+
+                                                <!-- নাম -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">নাম</label>
+                                                    <input type="text" name="name" class="form-control" value="{{ $person->name }}">
+                                                </div>
+
+                                                <!-- পিতার/স্বামীর নাম -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">পিতার / স্বামীর নাম</label>
+                                                    <input type="text" name="father_husband_name" class="form-control" value="{{ $person->father_husband_name }}">
+                                                </div>
+
+                                                <!-- মাতার নাম -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">মাতার নাম</label>
+                                                    <input type="text" name="mother_name" class="form-control" value="{{ $person->mother_name }}">
+                                                </div>
+
+                                                <!-- জন্ম তারিখ -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">জন্ম তারিখ</label>
+                                                    <input type="date" name="date_of_birth" class="form-control" value="{{ $person->date_of_birth }}">
+                                                </div>
+
+                                                <!-- লিঙ্গ -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">লিঙ্গ</label>
+                                                    <select name="gender" class="form-select">
+                                                        <option value="male" {{ $person->gender == 'male' ? 'selected' : '' }}>পুরুষ</option>
+                                                        <option value="female" {{ $person->gender == 'female' ? 'selected' : '' }}>মহিলা</option>
+                                                        <option value="other" {{ $person->gender == 'other' ? 'selected' : '' }}>অন্যান্য</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- জাত -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">জাত</label>
+                                                    <input type="text" name="caste" class="form-control" value="{{ $person->caste }}">
+                                                </div>
+
+                                                <!-- বৈবাহিক অবস্থা -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">বৈবাহিক অবস্থা</label>
+                                                    <select name="marital_status" class="form-select">
+                                                        <option value="single" {{ $person->marital_status == 'single' ? 'selected' : '' }}>অবিবাহিত</option>
+                                                        <option value="married" {{ $person->marital_status == 'married' ? 'selected' : '' }}>বিবাহিত</option>
+                                                        <option value="widowed" {{ $person->marital_status == 'widowed' ? 'selected' : '' }}>বিপত্নীক/বিধবা</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- মোবাইল -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">মোবাইল নম্বর</label>
+                                                    <input type="text" name="mobile_number" class="form-control" value="{{ $person->mobile_number }}">
+                                                </div>
+
+                                                <!-- পেশা -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">পেশা</label>
+                                                    <input type="text" name="profession" class="form-control" value="{{ $person->profession }}">
+                                                </div>
+
+                                                <!-- ব্লাড গ্রুপ -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">রক্তের গ্রুপ</label>
+                                                    <input type="text" name="blood_group" class="form-control" value="{{ $person->blood_group }}">
+                                                </div>
+
+                                                <!-- গ্রাম -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">গ্রাম</label>
+                                                    <input type="text" name="village" class="form-control" value="{{ $person->village }}">
+                                                </div>
+
+                                                <!-- পোস্ট অফিস -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">পোস্ট অফিস</label>
+                                                    <input type="text" name="post_office" class="form-control" value="{{ $person->post_office }}">
+                                                </div>
+
+                                                <!-- থানা -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">থানা</label>
+                                                    <input type="text" name="thana" class="form-control" value="{{ $person->thana }}">
+                                                </div>
+
+                                                <!-- জেলা -->
+                                                <div class="col-md-6">
+                                                    <label class="form-label">জেলা</label>
+                                                    <input type="text" name="district" class="form-control" value="{{ $person->district }}">
+                                                </div>
+
+                                                <!-- ছবি -->
+                                                <div class="col-12">
+                                                    <label class="form-label">ছবি</label>
+                                                    <input type="file" name="photo" class="form-control" accept="image/*" onchange="previewPersonImage{{ $person->id }}(event)">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="form-label d-block mb-2">সদস্যের ক্যাটাগরি</label>
+                            
+                                                    @if($person->personType && $person->personType->count() > 0)
+                                                        @php
+                                                            // Person এর সব টাইপ আইডিগুলোকে একটি array তে নিচ্ছি
+                                                            $selectedTypes = $person->personType->pluck('id')->toArray();
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $selectedTypes = [];
+                                                        @endphp
+                                                    @endif
+
+                                                    @foreach($tags as $tag)
+                                                        <div class="form-check form-check-inline">
+                                                            <input 
+                                                                class="form-check-input" 
+                                                                type="checkbox" 
+                                                                name="person_tag[]" 
+                                                                value="{{ $tag->id }}" 
+                                                                id="tag{{ $tag->id }}"
+                                                                {{ in_array($tag->id, $selectedTypes) ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="tag{{ $tag->id }}">
+                                                                {{ $tag->person_type_name }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+
+                                                <!-- ছবি প্রিভিউ -->
+                                                <div class="col-12 text-center">
+                                                    <img id="photoPreview{{ $person->id }}" 
+                                                        src="{{ $person->photo ? asset($person->photo) : asset('Frontend-Assets/images/profile_img.png') }}" 
+                                                        class="img-fluid rounded-circle shadow-sm mt-2" 
+                                                        style="max-width: 150px;">
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">বাতিল</button>
+                                            <button type="submit" class="btn btn-success">আপডেট করুন</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Member Delete Modal -->
+                        <div class="modal fade" id="deleteMemberModal{{ $person->id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-danger text-white">
+                                        <h6 class="modal-title">সদস্য মুছে ফেলুন</h6>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('person.destroy', $person->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" id="{{ $person->id }}">
+                                        <div class="modal-body text-center">
+                                            <p>আপনি কি নিশ্চিত যে আপনি এই সদস্যকে মুছে ফেলতে চান?</p>
+                                            <p class="text-danger">এই কাজটি পূর্বাবস্থায় ফেরানো যাবে না।</p>
+                                        </div>
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                                            <button type="submit" name="submit" class="btn btn-danger">মুছে ফেলুন</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
