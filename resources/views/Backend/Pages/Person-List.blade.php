@@ -5,7 +5,13 @@
 <div class="container py-4">
     <div class="row mb-4">
         <div class="col-md-8">
-            <h2 class="text-success">ব্যক্তির তথ্য তালিকা</h2>
+            <h2 class="text-success">
+                {{ Route::is('lifetime.member.padding.list') 
+                    ? "আবেদনকৃত আজীবন সদস্য তালিকা" 
+                    : (Route::is('general.member.padding.list') 
+                        ? "আবেদনকৃত সাধারণ সদস্য তালিকা" 
+                        : "ব্যক্তির তথ্য তালিকা") }}
+            </h2>
         </div>
     </div>
 
@@ -46,6 +52,15 @@
                                     
                                     <!-- Edit Button -->
                                      @if($person->personType->contains('id', 1) and Auth::user()->account_type=='superadmin')
+                                    <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEditMember{{ $person->id }}"
+                                        data-id="{{ $person->id }}">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    @endif
+
+                                    @if($person->personType->contains('id', 2) and $person->member_aproved == 'no')
                                     <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
                                         data-bs-toggle="modal"
                                         data-bs-target="#modalEditMember{{ $person->id }}"

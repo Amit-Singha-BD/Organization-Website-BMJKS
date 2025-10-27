@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('post_office');
             $table->string('thana');
             $table->string('district');
+            $table->string('gm_id')->nullable();
             $table->string('profession')->nullable();
             $table->enum('blood_group', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])->nullable();
             $table->enum('donator',['no','yes'])->default('no');

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Person;
 use App\Models\PersonType;
 use App\Models\PersonTag;
+use App\Models\CommitteeName;
 use App\Http\Requests\PersonValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -64,10 +65,10 @@ class PersonController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {   
+    public function create(){
+        $committeeNames = CommitteeName::get();
         $tags = PersonType::get();
-        return view('Backend.Pages.PersonCreate',compact('tags'));
+        return view('Backend.Pages.PersonCreate',compact('tags', 'committeeNames'));
     }
 
     /**
@@ -76,12 +77,15 @@ class PersonController extends Controller
     public function store(PersonValidation $request) {
         DB::beginTransaction();
 
-        try {
-            // Person তৈরি করা
             $validdata = $request->validated();
+            $selectedTags = $request->input('person_tag', []);
+            if (in_array(2, $selectedTags) && empty($validdata['gm_id'])) {
+                return redirect()->back()->with('error', 'সাধারণ সদস্যের কমিটি নির্বাচন করুন');
+            }
+
+        try {
             $validdata['member_aproved'] = 'yes';
 
-            // ইমেজ আপলোড হ্যান্ডেল করা
             if ($request->hasFile('photo')) {
                 $image = $request->file('photo');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -91,11 +95,7 @@ class PersonController extends Controller
                 $validdata['photo'] = null;
             }
 
-            // Person তৈরি
             $person = Person::create($validdata);
-
-            // Tag attach করা
-            $selectedTags = $request->input('person_tag', []);
             foreach ($selectedTags as $tagId) {
                 PersonTag::create([
                     'person_id'     => $person->id,
@@ -103,10 +103,10 @@ class PersonController extends Controller
                 ]);
             }
 
-            DB::commit(); // সবকিছু সফল হলে commit
+            DB::commit();
             return redirect()->back()->with('success', 'সফলভাবে সংরক্ষণ করা হয়েছে!');
         } catch (\Exception $e) {
-            DB::rollBack(); // কোনো সমস্যা হলে rollback
+            DB::rollBack();
             \Log::error('Person Store Error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'কিছু একটা সমস্যা হয়েছে! আবার চেষ্টা করুন।');
         }
@@ -265,6 +265,36 @@ class PersonController extends Controller
         }
         $tagStatus->update();
         return redirect()->back()->with('success',$mgs);
+    }
+
+    public function lifetimeMemberPaddingList(){
+        $personTypeData = PersonType::with(['people.personType'])
+            ->findOrFail(1);
+        $personTypeName = $personTypeData->person_type_name;
+        $persons = $personTypeData->people()->with('personType')->where('member_aproved', 'no')->paginate(10);
+        $tags = PersonType::get();
+        return view('Backend.Pages.Person-List', compact('persons', 'personTypeName','tags'));
+    }
+
+    public function generalMemberPaddingList(){
+        $personTypeData = PersonType::with(['people.personType'])
+            ->findOrFail(2);
+        $personTypeName = $personTypeData->person_type_name;
+        if(Auth::user()->account_type=='superadmin'){
+            $persons = $personTypeData->people()->with('personType')->where('member_aproved', 'no')->paginate(10);
+        }
+        if(Auth::user()->account_type=='admin'){
+            $persons = $personTypeData->people()->with('personType')->where('gm_id', Auth::user()->branch)->where('member_aproved', 'no')->paginate(10);
+        }
+        $tags = PersonType::get();
+        return view('Backend.Pages.Person-List', compact('persons', 'personTypeName','tags'));
+    }
+
+    public function lifetimeMemberAprove($id){
+
+    }
+    public function generalMemberAprove($id){
+        
     }
     
 }

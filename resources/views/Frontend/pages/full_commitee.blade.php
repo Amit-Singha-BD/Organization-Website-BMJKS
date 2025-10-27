@@ -7,7 +7,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12 text-center">
-						<h1 class="fw-bold ">{{ $committeeData->committee_name }}</h1>
+						<h1 class="fw-bold">{{ $committeeData->committee_name }}</h1>
 						<div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
 						<p class="mt-2 lead">মণিপুরী যুব কল্যাণ সমিতির সকল সদস্যের তালিকা</p>
 					</div>

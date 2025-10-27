@@ -28,7 +28,7 @@
             </div>
         </div>
         <div
-            class="sidebar-dropdown {{ Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') || Route::is('tag') || Route::is('person.search') || Route::is('search.result') || Route::is('person.edit.view') ? 'open' : '' }}">
+            class="sidebar-dropdown {{ Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') || Route::is('tag') || Route::is('person.search') || Route::is('search.result') || Route::is('person.edit.view') || Route::is('lifetime.member.padding.list') || Route::is('general.member.padding.list') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
@@ -45,13 +45,25 @@
                 <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 1 ? 'active' : '' }}" 
                 href="{{ route('specific.category.person', 1) }}">
                     <i class="fa-solid fa-crown"></i>
-                    <span class="sidebar-text">আজীবন সদস্য</span>
+                    <span class="sidebar-text">আজীবন সদস্য তালিকা</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('lifetime.member.padding.list') ? 'active' : '' }}" 
+                href="{{ route('lifetime.member.padding.list') }}">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="sidebar-text">সদস্য অনুমোধন</span>
                 </a>
 
                 <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 2 ? 'active' : '' }}" 
                 href="{{ route('specific.category.person', 2) }}">
                     <i class="fa-solid fa-user"></i>
-                    <span class="sidebar-text">সাধারণ সদস্য</span>
+                    <span class="sidebar-text">সাধারণ সদস্য তালিকা</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('general.member.padding.list') ? 'active' : '' }}" 
+                href="{{ route('general.member.padding.list') }}">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="sidebar-text">সদস্য অনুমোধন</span>
                 </a>
 
                 <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">

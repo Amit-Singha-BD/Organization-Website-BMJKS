@@ -14,9 +14,9 @@ use App\Models\President;
 class DatabaseSeeder extends Seeder
 {
     public function run(): void{
-		Notice::factory()->count(10)->create();
+		Notice::factory()->count(100)->create();
         CommitteeActivitie::factory()->count(10)->create();
-        Person::factory()->count(10)->create();
+        Person::factory()->count(100)->create();
         $this->call([
             UserSeeder::class,
             SettingSeeder::class,

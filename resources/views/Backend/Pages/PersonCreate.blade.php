@@ -174,6 +174,20 @@
                             </select>
                         </div>
 
+                        <div class="col-md-6">
+                            @error('gm_id')
+                            <label class="form-label text-danger">{{$message}}</label>
+                            @else
+                            <label class="form-label">কমিটি নির্বাচন করুন (সাধারণ সদস্যদের জন্য)</label>
+                            @enderror
+                            <select name="gm_id" class="form-select">
+                                <option value="">নির্বাচন করুন</option>
+                                @foreach($committeeNames as $committeeName)
+                                    <option value="{{ $committeeName->id }}">{{ $committeeName->committee_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="col-md-12">
                             
                             <label class="form-label d-block mb-2">সদস্যের ক্যাটাগরি</label>
