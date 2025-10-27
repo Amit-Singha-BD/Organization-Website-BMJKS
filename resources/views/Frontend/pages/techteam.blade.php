@@ -111,93 +111,19 @@
 				</div>
 			</div>
 
-			<div class="row justify-content-center p-2">
-				<div class="col-12 col-lg-10">
-					<div class="card shadow-lg overflow-hidden" style="border-radius: 15px; border: none; height: 20rem;">
-						<div class="row g-0 h-100">
-							<!-- প্রোফাইল সেকশন -->
-							<div class="col-md-3 profile-section  position-relative z-1">
-								<div class="d-flex flex-column align-items-center justify-content-center h-100">
-									<img src="{{ asset('assets/images/shyamol.png') }}"
-										alt="Law School BD MCQ Bank BD এর প্রতিষ্ঠাতা ও পরিচালক" class="profile-img  mb-3">
-									<h4 class="fw-bold mb-1">শ্যামল সিংহ</h4>
-									<p class="mb-1">প্রজেক্ট ম্যানেজার</p>
-								</div>
-							</div>
-
-							<!-- উক্তি সেকশন -->
-							<div class="col-md-9 quote-section p-4">
-								<div class="d-flex flex-column h-100">
-									<p class="quote-text flex-grow-1">
-										ওয়েবসাইট ডেভেলপমেন্টের পুরো কার্যক্রমের পরিকল্পনা, সমন্বয় এবং মান নিয়ন্ত্রণ করেছেন শ্যামল সিংহ।
-										তাঁর নেতৃত্বে টেক টিম নির্ধারিত সময়ের মধ্যে কার্যক্রম বর্তমানে চলমান রয়েছে।
-									</p>
-									<hr>
-									<div
-										class="d-flex flex-nowrap overflow-auto justify-content-center justify-content-lg-end gap-2 p-2 ">
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0 ">
-											<i class="fab fa-facebook-f"></i>
-										</a>
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0">
-											<i class="fab fa-twitter"></i>
-										</a>
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0">
-											<i class="fab fa-youtube"></i>
-										</a>
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0">
-											<i class="fab fa-instagram"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<!-- Member 4 -->
 			<div class="row justify-content-center p-2">
 				<div class="col-12 col-lg-10">
-					<div class="card shadow-lg overflow-hidden" style="border-radius: 15px; border: none; height: 20rem;">
+					<div class="card shadow-lg overflow-hidden" style="border-radius: 15px; border: none;">
 						<div class="row g-0 h-100">
-							<!-- প্রোফাইল সেকশন -->
-							<div class="col-md-3 profile-section  position-relative z-1">
-								<div class="d-flex flex-column align-items-center justify-content-center h-100">
-									<img src="{{ asset('assets/images/shivananda.jpeg') }}" 
-										 alt="মনিপুরী যুব কল্যাণ সমিতির সভাপতি" class="profile-img  mb-3">
-									<h4 class="fw-bold mb-1">শিবানন্দ সিংহ</h4>
-									<p class="mb-1">উদ্যোক্তা</p>
-
-
-								</div>
-							</div>
-
 							<!-- উক্তি সেকশন -->
-							<div class="col-md-9 quote-section p-4">
-								<div class="d-flex flex-column h-100">
+							<div class="col-md-12 p-4">
+								<div class="d-flex flex-column">
 									<p class="quote-text flex-grow-1">
-										মনিপুরি যুব কল্যাণ সমিতির সভাপতি শিবানন্দ সিংহ এই ওয়েবসাইট তৈরির উদ্যোগ গ্রহণ করেছেন।
-										সমাজ ও তরুণ প্রজন্মকে প্রযুক্তির সাথে যুক্ত করা এবং সমিতির কার্যক্রমকে ডিজিটালাইজ করার উদ্দেশ্যেই এই প্রকল্প শুরু হয়েছে।
-										সমিতিকে প্রযুক্তির মাধ্যমে আরও এগিয়ে নেওয়ার লক্ষ্যে তিনি ভানুবিল ফ্রিল্যান্সিং ট্রেনিং সেন্টারের সহায়তা গ্রহণ করেছেন।
-										ভানুবিল ফ্রিল্যান্সিং ট্রেনিং সেন্টারের টেকনিক্যাল দক্ষতা ও সহযোগীতার মাধ্যমে ওয়েবসাইট এবং প্রয়োজনীয় CMS নির্মাণ কাজ
-										বর্তমানে চলমান রয়েছে।
-										আমরা বিশ্বাস করি—প্রযুক্তি সমাজ উন্নয়নের শক্তিশালী হাতিয়ার, এবং এই ওয়েবসাইট তারই একটি বাস্তব উদাহরণ।
+
+										উত্তর গাঁও ভানুবিল গ্রামের অবস্থিত Bhanubil Freelancing Training Center একটি দক্ষতা উন্নয়নমূলক প্রতিষ্ঠান, যেখানে স্থানীয় তরুণদের আধুনিক আইটি দক্ষতায় প্রশিক্ষিত করে কর্মসংস্থানের সুযোগ সৃষ্টি করা হয়। এই কেন্দ্রের টেক টিমের সদস্য রনি সিংহ ও অমিত সিংহ এখান থেকে ওয়েব ডিজাইন ও ওয়েব ডেভেলপমেন্ট প্রশিক্ষণ গ্রহণ করেছেন। রনি সিংহ ও অমিত সিংহ তাদের অর্জিত দক্ষতাকে মনিপুরি সমাজের কল্যাণে প্রয়োগের উদ্দেশ্যে মনিপুরি সমাজের তরুণ প্রজন্মকে প্রযুক্তির সাথে যুক্ত করে মনিপুরি যুব কল্যাণ সমিতির কার্যক্রমকে ডিজিটাল প্ল্যাটফর্মে রূপান্তরিত করার লক্ষ্য নিয়ে এই ওয়েবসাইট তৈরির উদ্যোগ গ্রহণ করেন। <br><br>
+										আমরা দৃঢ়ভাবে বিশ্বাস করি — প্রযুক্তি সমাজ উন্নয়নের সবচেয়ে শক্তিশালী হাতিয়ার, এবং এই ওয়েবসাইট তারই একটি অনন্য বাস্তব উদাহরণ, যা মনিপুরি সমাজকে আরও এক ধাপ এগিয়ে নেবে একটি আধুনিক, সংযুক্ত ও প্রযুক্তিনির্ভর ভবিষ্যতের পথে।
 									</p>
-									<hr>
-									<div class="d-flex flex-nowrap overflow-auto justify-content-center justify-content-lg-end gap-2 p-2 ">
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0 ">
-										  <i class="fab fa-facebook-f"></i>
-										</a>
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0">
-										  <i class="fab fa-twitter"></i>
-										</a>
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0">
-										  <i class="fab fa-youtube"></i>
-										</a>
-										<a href="#" class="btn btn-outline-secondary rounded-circle flex-shrink-0">
-										  <i class="fab fa-instagram"></i>
-										</a>
-									 </div>
 								</div>
 							</div>
 						</div>

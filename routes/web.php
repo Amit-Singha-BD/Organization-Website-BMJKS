@@ -50,7 +50,7 @@ route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'
 route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
 route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
 route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
-route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
+route::get('techteam', function(){return view('frontend.pages.techteam');})->name('techteam');
 route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
 route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
 route::get('donetor-list',[DonetorController::class,'donetorFrontend'])->name('donetor.frontend');
