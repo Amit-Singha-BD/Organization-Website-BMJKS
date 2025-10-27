@@ -43,7 +43,7 @@
                                         data-id="{{ $person->id }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
-
+                                    @if(!$person->personType->contains('id', 1))
                                     <!-- Edit Button -->
                                     <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
                                         data-bs-toggle="modal"
@@ -53,7 +53,7 @@
                                     </button>
 
                                     <!-- Delete Button -->
-                                     @if(!$person->personType->contains('id', 1))
+                                     
                                     <button type="button" class="action-btn-danger" title="মুছে ফেলুন"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteMemberModal{{ $person->id }}"
