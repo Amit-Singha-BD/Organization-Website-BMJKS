@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\frontend\FrontendController;
-use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
 use App\Http\Controllers\frontend\FrontendHomeController;
 use App\Http\Controllers\frontend\FrontendNoticeController;
@@ -36,8 +35,6 @@ use App\Http\Controllers\backend\PersonController;
 use App\Http\Controllers\backend\DonationController;
 use App\Http\Controllers\backend\ExtraController;
 
-
-
 // Frontend Routes Start -->
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
@@ -51,7 +48,7 @@ route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'
 route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
 route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
 route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
-route::get('techteam',[FrontendController::class,'techteam'])->name('techteam');
+route::get('techteam', function(){return view('frontend.pages.techteam');})->name('techteam');
 route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
 route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
 route::get('donetor-list',[DonetorController::class,'donetorFrontend'])->name('donetor.frontend');
@@ -62,8 +59,6 @@ route::get('committee-activities',[FrontendActivitiesController::class,'committe
 route::get('committee-activities-search',[FrontendActivitiesController::class,'activitieSearch'])->name('committee.activities.search');
 route::get('committee-activities-filter',[FrontendActivitiesController::class,'activitieFilter'])->name('committee.activities.filter');
 
-
-route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks-database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 route::post('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
 route::get('bmjks-database-info',[FrontendDatabaseController::class,'bmjks_database_info'])->name('bmjks.database.info');
