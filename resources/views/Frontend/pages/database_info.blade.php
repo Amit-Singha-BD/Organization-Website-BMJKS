@@ -5,7 +5,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12 text-center">
-						<h1 class="display-4 fw-bold text-dark">বামজুক ডেটাবেজ বিন্যাস</h1>
+						<h1 class="fw-bold text-dark">বামজুক ডেটাবেজ বিন্যাস</h1>
 						<div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
 						<p class="mt-2 lead text-dark">বিষ্ণুপ্রিয়া মনিপুরী বিশেষ ব্যাক্তিবর্গের তথ্য ও তালিকা</p>
 					</div>
@@ -53,9 +53,9 @@
                                     </td>
                                     <td class="text-center" data-label="দেখুন">
                                         <div class="d-flex flex-row justify-content-center gap-2">
-                                            <a href="{{route('specific.member.view', $tag->id)}}" 
+                                            <a href="{{route('personType.data.show', $tag->id)}}" 
                                             class="btn btn-sm action-btn-info" 
-                                            title="View">
+                                            title="View" target="_blank">
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                         </div>
