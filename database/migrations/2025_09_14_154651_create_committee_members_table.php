@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('committee_members', function (Blueprint $table) {
             $table->id();
-            $table->integer('CommitteeYear_id'); //ফরেইন কী
-            $table->string('name'); // নাম
-            $table->string('photo')->nullable(); // ছবি (optional)
-            $table->integer('role'); // পদবী
-            $table->text('address')->nullable(); // ঠিকানা
-            $table->string('mobile'); // মোবাইল নম্বর
-            $table->string('email')->nullable(); // ইমেইল
-            $table->string('facebook')->nullable(); // ফেসবুক লিঙ্ক
+            $table->integer('CommitteeYear_id');
+            $table->string('name');
+            $table->string('photo')->nullable();
+            $table->integer('role');
+            $table->text('address')->nullable();
+            $table->string('mobile');
+            $table->string('email')->nullable();
+            $table->string('facebook')->nullable();
             $table->timestamps();
         });
     }

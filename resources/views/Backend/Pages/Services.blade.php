@@ -40,7 +40,7 @@
 
                         @foreach($services as $service)
                         <tr class="text-center">
-                            <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                            <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                             <td data-label="আইকন">{!! $service->icon !!}</td>
                             <td data-label="সেবার নাম">{{ $service->title }}</td>
                             <td data-label="বিবরণ">{{ $service->description }}</td>

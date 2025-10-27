@@ -1,19 +1,29 @@
 @extends('frontend.layouts.master_layout')
 @section('content')
 <div class="container py-4">
-
-    <div class="card shadow-sm mx-auto mt-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 mx-auto">
+        <section class="page-header ">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<h1 class="display-4 fw-bold text-dark">বামজুক ডেটাবেজ বিন্যাস</h1>
+						<div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
+						<p class="mt-2 lead text-dark">বিষ্ণুপ্রিয়া মনিপুরী বিশেষ ব্যাক্তিবর্গের তথ্য ও তালিকা</p>
+					</div>
+				</div>
+			</div>
+		</section>
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h5 class="mb-0 ">
                 <i class="fas fa-database"></i>
                 বাসযুক ডেটাবেজ বিন্যাস
             </h5>
-            <span class="badge bg-light text-dark">মোট:@bn($tags->count())</span>
+            <span class="badge bg-light text-success fs-6">মোট:@bn($tags->count())</span>
         </div>
 
         <div class="card-body">
             @if($tags->count() > 0)
-                <div class="table-responsive">
+                <div class="table">
                     <table class="table table-bordered table-hover align-middle mb-0">
                         <thead class="table-success text-center">
                             <tr>
@@ -43,7 +53,7 @@
                                     </td>
                                     <td class="text-center" data-label="দেখুন">
                                         <div class="d-flex flex-row justify-content-center gap-2">
-                                            <a href="{{route('specific.category.person', $tag->id)}}" 
+                                            <a href="{{route('specific.member.view', $tag->id)}}" 
                                             class="btn btn-sm action-btn-info" 
                                             title="View">
                                                 <i class="fas fa-eye"></i>
