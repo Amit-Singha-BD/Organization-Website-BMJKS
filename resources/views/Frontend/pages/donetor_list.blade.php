@@ -4,7 +4,7 @@
 
     <!-- Page Header -->
     <section class="page-header mt-5 text-center">
-        <h1 class="display-5 fw-bold">ডোনেটরদের তালিকা</h1>
+        <h1 class="fw-bold">টপ ডোনেটরদের তালিকা</h1>
         <div class="border-bottom border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
         <p class="mt-2 lead">দাতাদের সম্পূর্ণ বিবরণ</p>
     </section>
