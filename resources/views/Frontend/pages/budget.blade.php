@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="display-4 fw-bold text-dark">বাজেট</h1>
+                <h1 class="fw-bold text-dark">বাজেট</h1>
                 <div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
                 <p class="mt-2 lead text-dark">বার্ষিক ও বিভিন্ন বাজেট</p>
             </div>
