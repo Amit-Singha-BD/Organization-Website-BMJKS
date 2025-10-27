@@ -70,7 +70,8 @@
                         <li><a class="dropdown-item" href="{{route('bmjks.database.info')}}">বামযুকস ডাটাবেস</a></li>
                         <li><a class="dropdown-item" href="{{route('bmjks.database.view')}}">বামযুকস ডাটাবেস সার্চ</a></li>
                         <li><a class="dropdown-item" href="{{route('lifetime.member.view', 1)}}">আজীবন সদস্য</a></li>
-                        <li><a class="dropdown-item" href="{{ route('donetor.frontend') }}">ডোনেটর</a></li>
+                        <li><a class="dropdown-item" href="{{ route('donetor.frontend') }}">রিসেন্ট ডোনেটর</a></li>
+                        <li><a class="dropdown-item" href="{{ route('top.donetor.frontend') }}">টপ ডোনেটর</a></li>
                     </ul>
                 </li>
             </ul>

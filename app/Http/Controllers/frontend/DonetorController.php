@@ -12,10 +12,21 @@ class DonetorController extends Controller
 {
     public function donetorFrontend()
     {
-    $persons = Person::where('donator','yes')->with('donations.event')->latest()->paginate(1);
-        foreach($persons as $person){
-            $person->totalDonation = Donation::where('people_id', $person->id)->sum('donate_amount');
-        }
+        $persons = Person::where('donator', 'yes')
+                ->with('donations.event')
+                ->withSum('donations', 'donate_amount') // প্রতিটি person এর মোট দান বের করছে
+                ->latest()
+                ->paginate(10);
+
+    return view('frontend.pages.donetor_list', compact('persons'));
+    }
+    public function topDonetorFrontend()
+    {
+        $persons = Person::where('donator', 'yes')
+            ->with('donations.event')
+            ->withSum('donations', 'donate_amount') // প্রতিটি person এর মোট দান বের করছে
+            ->orderByDesc('donations_sum_donate_amount') // মোট দানের পরিমাণ অনুযায়ী সাজাচ্ছে
+            ->paginate(10);
 
     return view('frontend.pages.donetor_list', compact('persons'));
     }
