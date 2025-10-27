@@ -62,6 +62,8 @@ route::get('committee-activities-filter',[FrontendActivitiesController::class,'a
 route::get('bmjks-database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 route::post('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
 route::get('bmjks-database-info',[FrontendDatabaseController::class,'bmjks_database_info'])->name('bmjks.database.info');
+route::get('person-type-data-show/{person}',[FrontendDatabaseController::class,'personTypeDataShow'])->name('personType.data.show');
+
 route::get('specific-person/{personType}',[SpecificPersonController::class,'specificPerson'])->name('specific.member.view');
 route::get('lifetime-member-view/{personType}',[FrontendLifetimeMemberController::class,'lifetimeMemberView'])->name('lifetime.member.view');
 Route::get('/download-pdf', [PdfController::class, 'download'])->name('download.pdf');
