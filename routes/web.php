@@ -155,6 +155,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
         Route::get('search/person/', [PersonController::class, 'personSearch'])->name('person.search');
         Route::post('search/result/', [PersonController::class, 'searchResult'])->name('search.result');
+        Route::get('lifetime-member-padding-list', [PersonController::class, 'lifetimeMemberPaddingList'])->name('lifetime.member.padding.list');
+        Route::get('general-member-padding-list', [PersonController::class, 'generalMemberPaddingList'])->name('general.member.padding.list');
+        
         // Person Route End <--
 
         // Activities Routes Start -->
