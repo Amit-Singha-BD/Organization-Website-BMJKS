@@ -120,11 +120,9 @@
 							<div class="col-md-3 profile-section  position-relative z-1">
 								<div class="d-flex flex-column align-items-center justify-content-center h-100">
 									<img src="{{ asset('assets/images/amitsingha.png') }}" 
-										 alt="Laravel Expert in Bangladesh - Amit Singha" class="profile-img  mb-3">
+										 alt="Laravel Expert in Bangladesh - Shyamol Singha" class="profile-img  mb-3">
 									<h4 class="fw-bold mb-1">শ্যামল সিংহ</h4>
 									<p class="mb-1">প্রজেক্ট ম্যানেজার</p>
-
-
 								</div>
 							</div>
 
