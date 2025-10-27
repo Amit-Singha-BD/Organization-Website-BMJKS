@@ -78,7 +78,12 @@
                             @else
                             <label class="form-label">গোত্র</label>
                             @enderror
-                            <input name="caste" class="form-control">
+                            <select name="caste" class="form-select">
+                                <option value="">নির্বাচন করুন</option>
+                                <option value="male">পুরুষ</option>
+                                <option value="female">মহিলা</option>
+                                <option value="other">অন্যান্য</option>
+                            </select>
                         </div>
 
                         <div class="col-md-6">

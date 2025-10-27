@@ -41,12 +41,12 @@
 
                             @foreach($committeeYear->committee_members as $member)
                             <tr class="text-center">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>@bn($loop->iteration)</td>
                                 <td data-label="ছবি"><img src="{{ $member->photo ? asset($member->photo) : asset('Frontend-Assets/images/profile_img.png') }}" alt="" width="42" height="42"
                                         class="rounded-circle object-fit-cover"></td>
                                 <td data-label="নাম">{{ $member->name }}</td>
                                 <td data-label="পদবী"><span class="badge type">{{ role_name($member->role) }}</span></td>
-                                <td data-label="মোবাইল">{{ $member->mobile }}</td>
+                                <td data-label="মোবাইল">@bn($member->mobile)</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
                                         <button type="button" class="action-btn-info" title="বিস্তারিত দেখুন"
@@ -95,7 +95,7 @@
                                                 </div>
                                                 <hr>
                                                 <div class="col-12">
-                                                    <p class="mb-1"><strong>মোবাইল:</strong> <span id="memberMobile">{{ $member->mobile }}</span></p>
+                                                    <p class="mb-1"><strong>মোবাইল:</strong> <span id="memberMobile">@bn($member->mobile)</span></p>
                                                     <p class="mb-1"><strong>ইমেইল:</strong> {{ $member->email }}</p>
                                                     <p class="mb-1"><strong>ঠিকানা:</strong> {{ $member->address }}</p>
                                                     <p class="mb-1">

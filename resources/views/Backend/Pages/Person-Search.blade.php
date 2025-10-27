@@ -70,7 +70,7 @@
                             <div class="col-12">
                                 <label class="form-label fw-medium">লিঙ্গ</label>
                                 <select name="gender" class="form-select">
-                                    <option value="">-- নির্বাচন করুন --</option>
+                                    <option value="">নির্বাচন করুন</option>
                                     <option value="male">পুরুষ</option>
                                     <option value="female">মহিলা</option>
                                     <option value="other">অন্যান্য</option>
@@ -79,13 +79,19 @@
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">গোত্র</label>
-                                <input type="text" name="caste" class="form-control" placeholder="গোত্র লিখুন">
+                                <select name="caste" class="form-select">
+                                    <option value="">নির্বাচন করুন</option>
+                                    <option value="single">অবিবাহিত</option>
+                                    <option value="married">বিবাহিত</option>
+                                    <option value="widowed">বিধবা</option>
+                                    <option value="divorced">তালাকপ্রাপ্ত</option>
+                                </select>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">বৈবাহিক অবস্থা</label>
                                 <select name="marital_status" class="form-select">
-                                    <option value="">-- নির্বাচন করুন --</option>
+                                    <option value="">নির্বাচন করুন</option>
                                     <option value="single">অবিবাহিত</option>
                                     <option value="married">বিবাহিত</option>
                                     <option value="widowed">বিধবা</option>

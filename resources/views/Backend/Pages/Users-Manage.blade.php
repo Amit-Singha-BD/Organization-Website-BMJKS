@@ -19,7 +19,7 @@
                 <table class="table align-middle">
                     <thead>
                         <tr class="text-center">
-                            <th>ক্রমিক নং</th>
+                            <th>ক্রমিক</th>
                             <th>নাম</th>
                             <th>একাউন্টের ধরন</th>
                             <th>শাখা</th>
@@ -31,7 +31,7 @@
 
                         @foreach ($users as $user)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                                <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                                 <td data-label="নাম">{{ $user->name }}</td>
                                 <td data-label="একাউন্টের ধরন">{{ $user->account_type }}</td>
                                 <td data-label="শাখা">
@@ -41,7 +41,7 @@
                                         {{ $user->account_type == 'superadmin' ? 'সুপার অ্যাডমিন' : ($user->account_type == 'cashier' ? 'ক্যাশিয়ার' : $user->account_type) }}
                                     @endif
                                 </td>
-                                <td data-label="মোবাইল">{{ $user->phone_no }}</td>
+                                <td data-label="মোবাইল">@bn($user->phone_no)</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
                                         <button class="btn action-btn-info" data-bs-toggle="modal"
@@ -80,7 +80,7 @@
                                                     {{ $user->account_type == 'superadmin' ? 'সুপার অ্যাডমিন' : ($user->account_type == 'cashier' ? 'ক্যাশিয়ার' : $user->account_type) }}
                                                 @endif
                                             </p>
-                                            <p><strong>মোবাইল:</strong> {{ $user->phone_no }}</p>
+                                            <p><strong>মোবাইল:</strong> @bn($user->phone_no)</p>
                                             <p><strong>অ্যাকাউন্ট ধরন:</strong> {{ $user->account_type }}</p>
                                         </div>
                                         <div class="modal-footer">

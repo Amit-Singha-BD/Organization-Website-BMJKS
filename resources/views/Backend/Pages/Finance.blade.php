@@ -37,7 +37,7 @@
                 <table class="table align-middle">
                     <thead>
                         <tr class="text-center">
-                            <th>ক্রমিক নং</th>
+                            <th>ক্রমিক</th>
                             <th>হিসাবের ধরন</th>
                             <th>তারিখ</th>
                             <th>অ্যাকশন</th>
@@ -56,9 +56,9 @@
 
                         @foreach ($finances as $finance)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                                <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                                 <td data-label="হিসাবের ধরন">{{ $finance->title }}</td>
-                                <td data-label="তারিখ">{{ $finance->date }}</td>
+                                <td data-label="তারিখ">@bn($finance->date)</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
                                         <a href="{{ route('finance.sheet.download', $finance->pdf_path) }}" class="btn action-btn-info">
