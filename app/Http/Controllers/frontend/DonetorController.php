@@ -12,7 +12,7 @@ class DonetorController extends Controller
 {
     public function donetorFrontend()
     {
-    $persons = Person::where('donator','yes')->with('donations.event')->latest()->paginate(1);
+    $persons = Person::where('donator','yes')->with('donations.event')->latest()->paginate(10);
         foreach($persons as $person){
             $person->totalDonation = Donation::where('people_id', $person->id)->sum('donate_amount');
         }

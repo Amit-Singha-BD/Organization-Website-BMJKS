@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\frontend\FrontendController;
-use App\Http\Controllers\frontend\FrontendSearchController;
 use App\Http\Controllers\frontend\FrontendPersonSearchController;
 use App\Http\Controllers\frontend\FrontendHomeController;
 use App\Http\Controllers\frontend\FrontendNoticeController;
@@ -35,15 +34,13 @@ use App\Http\Controllers\backend\PersonController;
 use App\Http\Controllers\backend\DonationController;
 use App\Http\Controllers\backend\ExtraController;
 
-
-
 // Frontend Routes Start -->
 route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
 route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
 route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
 route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
 route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
-route::get('about',[FrontendController::class,'about'])->name('about');
+route::get('about',function(){return view('frontend.pages.about');})->name('about');
 route::get('services-view',[FrontendServiceController::class,'service'])->name('frontend.service');
 route::get('lifetime-member',[EServiceController::class,'lifetime_member_application_view'])->name('lifetime.member');
 route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'])->name('lifetime.member.store');
@@ -60,8 +57,6 @@ route::get('committee-activities',[FrontendActivitiesController::class,'committe
 route::get('committee-activities-search',[FrontendActivitiesController::class,'activitieSearch'])->name('committee.activities.search');
 route::get('committee-activities-filter',[FrontendActivitiesController::class,'activitieFilter'])->name('committee.activities.filter');
 
-
-route::get('metrimonial',[FrontendSearchController::class,'metrimonial_search'])->name('metrimonial.view');
 route::get('bmjks-database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
 route::post('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
 route::get('bmjks-database-info',[FrontendDatabaseController::class,'bmjks_database_info'])->name('bmjks.database.info');
