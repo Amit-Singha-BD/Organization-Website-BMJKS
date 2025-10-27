@@ -37,7 +37,7 @@
                 <table class="table align-middle">
                     <thead>
                         <tr class="text-center">
-                            <th>ক্রমিক নং</th>
+                            <th>ক্রমিক</th>
                             <th>কার্যক্রমের নাম</th>
                             <th>বিবরণ</th>
                             <th>তারিখ</th>
@@ -47,10 +47,10 @@
                     <tbody>
                         @foreach($activities_data as $activities)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক নং">{{$loop->iteration}}</td>
+                                <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                                 <td data-label="কার্যক্রমের নাম">{{$activities->title}}</td>
                                 <td data-label="বিবরণ">{{$activities->description}}</td>
-                                <td data-label="তারিখ">{{$activities->activities_date}}</td>
+                                <td data-label="তারিখ">@bn($activities->activities_date)</td>
                                 <td data-label="অ্যাকশন">
                                     <div class="d-flex flex-row justify-content-center gap-2">
                                         <button class="btn action-btn-info" data-bs-toggle="modal" data-bs-target="#viewCommitteeModal{{$activities->id}}">
@@ -79,7 +79,7 @@
                                             <!-- বিস্তারিত -->
                                             <p><strong>কার্যক্রমের নাম:</strong>{{$activities->title}}</p>
                                             <p><strong>বিবরণ:</strong> {{$activities->description}}</p>
-                                            <p><strong>তারিখ:</strong> {{$activities->activities_date}}</p>
+                                            <p><strong>তারিখ:</strong> @bn($activities->activities_date)</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>

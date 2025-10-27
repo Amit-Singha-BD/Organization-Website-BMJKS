@@ -33,7 +33,7 @@
                 <table class="table align-middle">
                     <thead>
                         <tr class="text-center">
-                            <th>ক্রমিক নং</th>
+                            <th>ক্রমিক</th>
                             <th>নাম</th>
                             <th>মোবাইল</th>
                             <th>মেসেজ টাইটেল</th>
@@ -54,9 +54,9 @@
 
                         @foreach ($contacts as $contact)
                             <tr class="text-center">
-                                <td data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                                <td data-label="ক্রমিক">@bn($loop->iteration)</td>
                                 <td data-label="নাম">{{ $contact->name }}</td>
-                                <td data-label="মোবাইল">{{ $contact->phone_no }}</td>
+                                <td data-label="মোবাইল">@bn($contact->phone_no)</td>
                                 <td data-label="মেসেজ টাইটেল">{{ Str::limit($contact->message_title, 15, '....') }}</td>
                                 <td data-label="মেসেজ">{{ Str::limit($contact->message, 20, '....') }}</td>
                                 <td data-label="অ্যাকশন">
@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <p><strong>নাম:</strong> {{ $contact->name }}</p>
-                                            <p><strong>মোবাইল:</strong> {{ $contact->phone_no }}</p>
+                                            <p><strong>মোবাইল:</strong> @bn($contact->phone_no)</p>
                                             <p><strong>মেসেজ টাইটেল:</strong> {{ $contact->message_title }}</p>
                                             <p><strong>মেসেজ:</strong> {{ $contact->message }}</p>
                                         </div>
