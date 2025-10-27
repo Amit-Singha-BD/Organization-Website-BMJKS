@@ -43,17 +43,19 @@
                                         data-id="{{ $person->id }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    @if(!$person->personType->contains('id', 1))
+                                    
                                     <!-- Edit Button -->
+                                     @if($person->personType->contains('id', 1) and Auth::user()->account_type=='superadmin')
                                     <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
                                         data-bs-toggle="modal"
                                         data-bs-target="#modalEditMember{{ $person->id }}"
                                         data-id="{{ $person->id }}">
                                         <i class="fas fa-edit"></i>
                                     </button>
+                                    @endif
 
                                     <!-- Delete Button -->
-                                     
+                                     @if(!$person->personType->contains('id', 1))
                                     <button type="button" class="action-btn-danger" title="মুছে ফেলুন"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteMemberModal{{ $person->id }}"
