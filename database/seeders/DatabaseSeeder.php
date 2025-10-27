@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PersonTypeSeeder::class,
             PresidentSeeder::class,
             CommitteeYearSeeder::class,
+            CommitteeMemberSeeder::class,
         ]);
     }
 }

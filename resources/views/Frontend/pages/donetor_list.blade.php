@@ -46,7 +46,7 @@
                             </td>
                             <td>{{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</td>
                             <td>{{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</td>
-                            <td class="text-center text-success fw-bold">৳ {{ number_format($person->totalDonation, 2) }}</td>
+                            <td class="text-center text-success fw-bold">৳ {{ $person->donations_sum_donate_amount }}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
                                     <i class="fas fa-list"></i>
