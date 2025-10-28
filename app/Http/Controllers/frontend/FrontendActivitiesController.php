@@ -33,7 +33,9 @@ class FrontendActivitiesController extends Controller {
                     ->whereIn('role', ['1', '4']);
         }])->where('title', 'like', "%{$request->search}%")->paginate(5);
 
-        return view('frontend.pages.comitee_activities', compact('activities'));
+        $committeeYears = $activities;
+
+        return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
 
     public function activitieFilter(Request $request) {
@@ -42,6 +44,8 @@ class FrontendActivitiesController extends Controller {
                     ->whereIn('role', ['1', '4']);
         }])->where('activities_date', $request->filter)->paginate(5);
 
-        return view('frontend.pages.comitee_activities', compact('activities'));
+        $committeeYears = $activities;
+
+        return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
 }
