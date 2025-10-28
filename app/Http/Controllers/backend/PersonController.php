@@ -135,7 +135,7 @@ class PersonController extends Controller
 
     public function update(PersonValidation $request, Person $person)
     {
-        if ((Auth::user()->account_type != 'superadmin' ||Auth::user()->account_type != 'cashier')|| $person->personType->contains('id', 1)) {
+        if ((Auth::user()->account_type != 'superadmin' || Auth::user()->account_type != 'cashier')|| $person->personType->contains('id', 1)) {
             return redirect()->back()->with('error', 'আজীবন সদস্যের তথ্য আপডেট করা যাবে না');
         }
 
@@ -290,11 +290,28 @@ class PersonController extends Controller
         return view('Backend.Pages.Person-List', compact('persons', 'personTypeName','tags'));
     }
 
-    public function lifetimeMemberAprove($id){
-
+    public function lifetimeMemberApprove(Request $request, $id){
+        if(Auth::user()->account_type == 'cashier' || Auth::user()->account_type == 'superadmin'){
+            $people = Person::find($id);
+            $people->member_aproved = 'yes';
+            $people->save();
+            return redirect()->back()->with('success', 'আজীবন সদস্য সফলভাবে অনুমোদন করা হয়েছে।');
+        }
+        else{
+            return redirect()->back()->with('error', 'আজীবন সদস্য অনুমোদন করতে ব্যর্থ হয়েছে।');
+        }
     }
-    public function generalMemberAprove($id){
-        
+
+    public function generalMemberApprove(Request $request, $id){
+        if(Auth::user()->account_type == 'admin' || Auth::user()->account_type == 'superadmin'){
+            $people = Person::find($id);
+            $people->member_aproved = 'yes';
+            $people->save();
+            return redirect()->back()->with('success', 'সাধারন সদস্য সফলভাবে অনুমোদন করা হয়েছে।');
+        }
+        else{
+            return redirect()->back()->with('error', 'সাধারন সদস্য অনুমোদন করতে ব্যর্থ হয়েছে।');
+        }
     }
     
 }
