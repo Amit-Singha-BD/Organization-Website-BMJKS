@@ -59,8 +59,8 @@
         @if(Route::is('committee.activities.search') || Route::is('committee.activities.filter'))
             <section class="py-3">
                 <div class="container">
-                    @if($activities->isNotEmpty())
-                        @foreach($activities as $activitie)
+                    @if($committeeYears->isNotEmpty())
+                        @foreach($committeeYears as $activitie)
                             <div class="activity-card mb-4">
                                 <div class="activity-header">
                                     <div class="row align-items-center">
@@ -172,12 +172,23 @@
                 </div>
             </section>
         @endif
+          <!-- Card Footer -->
+        <div class="card-footer bg-light text-center">
+            <div class="small text-muted">
+                মোট @bn($committeeYears->total()) টি রেকর্ডের মধ্যে 
+                <strong>@bn($committeeYears->firstItem()) - @bn($committeeYears->lastItem())</strong> দেখানো হচ্ছে
+            </div>
+            <div class="mt-2">
+                {{ $committeeYears->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 
+
 <!-- Modals Section -->
 @if(Route::is('committee.activities.search') || Route::is('committee.activities.filter'))
-    @foreach($activities as $activitie)
+    @foreach($committeeYears as $activitie)
         <div class="modal fade" id="activitieModal{{ $activitie->id }}" tabindex="-1" aria-labelledby="activitieLabel{{ $activitie->id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">

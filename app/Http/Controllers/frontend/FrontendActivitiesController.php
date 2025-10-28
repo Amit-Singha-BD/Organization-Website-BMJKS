@@ -31,17 +31,21 @@ class FrontendActivitiesController extends Controller {
         $activities = CommitteeActivitie::with(['committeeYear.committee_members' => function($members){
             $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
                     ->whereIn('role', ['1', '4']);
-        }])->where('title', 'like', "%{$request->search}%")->get();
+        }])->where('title', 'like', "%{$request->search}%")->paginate(5);
 
-        return view('frontend.pages.comitee_activities', compact('activities'));
+        $committeeYears = $activities;
+
+        return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
 
     public function activitieFilter(Request $request) {
         $activities = CommitteeActivitie::with(['committeeYear.committee_members' => function($members){
             $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
                     ->whereIn('role', ['1', '4']);
-        }])->where('activities_date', $request->filter)->get();
+        }])->where('activities_date', $request->filter)->paginate(5);
 
-        return view('frontend.pages.comitee_activities', compact('activities'));
+        $committeeYears = $activities;
+
+        return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
 }

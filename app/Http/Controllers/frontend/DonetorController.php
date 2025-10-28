@@ -13,10 +13,10 @@ class DonetorController extends Controller
     public function donetorFrontend()
     {
         $persons = Person::where('donator', 'yes')
-                ->with('donations.event')
-                ->withSum('donations', 'donate_amount')
-                ->latest()
-                ->paginate(10);
+            ->with('donations.event')
+            ->withSum('donations', 'donate_amount')
+            ->orderByDesc(Donation::select('date')->whereColumn('people_id', 'people.id')->latest('date')->limit(1))
+            ->paginate(10);
 
     return view('frontend.pages.donetor_list', compact('persons'));
     }

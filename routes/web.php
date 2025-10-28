@@ -36,37 +36,39 @@ use App\Http\Controllers\backend\DonationController;
 use App\Http\Controllers\backend\ExtraController;
 
 // Frontend Routes Start -->
-route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
-route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
-route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
-route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
-route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
-route::get('about',function (){return view('Frontend.pages.about');})->name('about');
-route::get('services-view',[FrontendServiceController::class,'service'])->name('frontend.service');
-route::get('lifetime-member',[EServiceController::class,'lifetime_member_application_view'])->name('lifetime.member');
-route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'])->name('lifetime.member.store');
-route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
-route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
-route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
-route::get('techteam', function(){return view('frontend.pages.techteam');})->name('techteam');
-route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
-route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
-route::get('donetor-list',[DonetorController::class,'donetorFrontend'])->name('donetor.frontend');
-route::get('top-donetor-list',[DonetorController::class,'topDonetorFrontend'])->name('top.donetor.frontend');
+Route::middleware(['viewCount'])->group(function () {
+    route::get('/',[FrontendHomeController::class,'home_view'])->name('home');
+    route::get('committee-view/{slug}',[FrontendHomeController::class,'comittee_view'])->name('committee');
+    route::get('notices',[FrontendNoticeController::class,'notice'])->name('frontend.notice');
+    route::get('contact',[FrontendContactController::class,'contact'])->name('contact');
+    route::post('message/store',[FrontendContactController::class,'Store'])->name('message.store');
+    route::get('about',function (){return view('Frontend.pages.about');})->name('about');
+    route::get('services-view',[FrontendServiceController::class,'service'])->name('frontend.service');
+    route::get('lifetime-member',[EServiceController::class,'lifetime_member_application_view'])->name('lifetime.member');
+    route::post('lifetime-member',[EServiceController::class,'lifetime_member_store'])->name('lifetime.member.store');
+    route::get('general-member',[EServiceController::class,'general_member_application_view'])->name('general.member');
+    route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
+    route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
+    route::get('techteam', function(){return view('frontend.pages.techteam');})->name('techteam');
+    route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
+    route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
+    route::get('donetor-list',[DonetorController::class,'donetorFrontend'])->name('donetor.frontend');
+    route::get('top-donetor-list',[DonetorController::class,'topDonetorFrontend'])->name('top.donetor.frontend');
 
 
-route::get('committee-activities',[FrontendActivitiesController::class,'committeeActivities'])->name('committee.activities');
-route::get('committee-activities-search',[FrontendActivitiesController::class,'activitieSearch'])->name('committee.activities.search');
-route::get('committee-activities-filter',[FrontendActivitiesController::class,'activitieFilter'])->name('committee.activities.filter');
+    route::get('committee-activities',[FrontendActivitiesController::class,'committeeActivities'])->name('committee.activities');
+    route::get('committee-activities-search',[FrontendActivitiesController::class,'activitieSearch'])->name('committee.activities.search');
+    route::get('committee-activities-filter',[FrontendActivitiesController::class,'activitieFilter'])->name('committee.activities.filter');
 
-route::get('bmjks-database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
-route::post('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
-route::get('bmjks-database-info',[FrontendDatabaseController::class,'bmjks_database_info'])->name('bmjks.database.info');
-route::get('person-type-data-show/{person}',[FrontendDatabaseController::class,'personTypeDataShow'])->name('personType.data.show');
+    route::get('bmjks-database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
+    route::post('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
+    route::get('bmjks-database-info',[FrontendDatabaseController::class,'bmjks_database_info'])->name('bmjks.database.info');
+    route::get('person-type-data-show/{person}',[FrontendDatabaseController::class,'personTypeDataShow'])->name('personType.data.show');
 
-route::get('specific-person/{personType}',[SpecificPersonController::class,'specificPerson'])->name('specific.member.view');
-route::get('lifetime-member-view/{personType}',[FrontendLifetimeMemberController::class,'lifetimeMemberView'])->name('lifetime.member.view');
-Route::get('/download-pdf', [PdfController::class, 'download'])->name('download.pdf');
+    route::get('specific-person/{personType}',[SpecificPersonController::class,'specificPerson'])->name('specific.member.view');
+    route::get('lifetime-member-view/{personType}',[FrontendLifetimeMemberController::class,'lifetimeMemberView'])->name('lifetime.member.view');
+    Route::get('/download-pdf', [PdfController::class, 'download'])->name('download.pdf');
+});
 
 // Frontend Routes End <--
 

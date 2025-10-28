@@ -17,7 +17,7 @@
                 <table class="table table-bordered table-hover mb-0">
                     <thead class="table-success">
                         <tr>
-                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">ক্রমিক</th>
                             <th scope="col">নাম</th>
                             <th scope="col">পিতার নাম</th>
                             <th scope="col">গ্রাম</th>
@@ -29,11 +29,11 @@
                     <tbody>
                         @forelse($donations as $donation)
                         <tr>
-                            <td class="text-center">{{ $loop->iteration + ($donations->currentPage()-1)*$donations->perPage() }}</td>
+                            <td class="text-center">@bn($loop->iteration + ($donations->currentPage()-1)*$donations->perPage() )</td>
                             <td>{{ $donation->person->name }}</td>
                             <td>{{ $donation->person->father_husband_name }}</td>
                             <td>{{ $donation->person->village }}</td>
-                            <td>{{ $donation->donate_amount }}</td>
+                            <td>@bn( $donation->donate_amount )</td>
                             <td class="text-center">{{ $donation->event->event_name }}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modalViewMember{{ $donation->person->id }}">

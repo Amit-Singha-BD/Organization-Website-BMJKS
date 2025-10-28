@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Person extends Model
 {
-    /** @use HasFactory<\Database\Factories\PersonFactory> */
     use HasFactory;
      protected $table = 'people';
 
