@@ -21,7 +21,7 @@ class EServiceController extends Controller
         $person = Person::create($validdata);
         PersonTag::create([
             'person_id'     => $person->id,
-            'persontype_id' => 5
+            'persontype_id' => 1
         ]);
         return view('frontend.pages.application_success_msz')->with('name',$person->name)->with('mobile',$person->mobile_number);
     }
@@ -38,7 +38,7 @@ class EServiceController extends Controller
 
         PersonTag::create([
             'person_id'     => $person->id,
-            'persontype_id' => 6
+            'persontype_id' => 2
         ]);
         return view('frontend.pages.application_success_msz')->with('name',$person->name)->with('mobile',$person->mobile_number);
     }

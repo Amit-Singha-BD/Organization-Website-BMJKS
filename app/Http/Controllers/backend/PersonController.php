@@ -280,6 +280,7 @@ class PersonController extends Controller
         $personTypeData = PersonType::with(['people.personType'])
             ->findOrFail(2);
         $personTypeName = $personTypeData->person_type_name;
+        $persons = $personTypeData->people()->with('personType')->where('member_aproved', 'no')->paginate(10);
         if(Auth::user()->account_type=='superadmin'){
             $persons = $personTypeData->people()->with('personType')->where('member_aproved', 'no')->paginate(10);
         }

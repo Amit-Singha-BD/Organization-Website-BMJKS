@@ -9,6 +9,7 @@ use App\Models\PersonType;
 use App\Models\PersonTag;
 use App\Models\CommitteeYear;
 use App\Models\CommitteeMember;
+use App\Models\ViewCount;
 
 class DashboardController extends Controller {
 
@@ -27,9 +28,10 @@ class DashboardController extends Controller {
 
         $total_active_member = $committees->sum('committee_members_count');
         
-        $lifetime_person = PersonTag::where('persontype_id', 5)->count();
-        $general_person = PersonTag::where('persontype_id', 6)->count();
+        $lifetime_person = PersonTag::where('persontype_id', 1)->count();
+        $general_person = PersonTag::where('persontype_id', 2)->count();
+        $view_count = ViewCount::value('count');
 
-        return view('Backend.Pages.Dashboard', compact('notices','title', 'tags', 'committees','lifetime_person','general_person','total_active_member'));
+        return view('Backend.Pages.Dashboard', compact('notices','title', 'tags', 'committees','lifetime_person','general_person','total_active_member','view_count'));
     }
 }
