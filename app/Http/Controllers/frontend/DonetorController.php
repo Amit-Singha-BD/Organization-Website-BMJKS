@@ -14,7 +14,7 @@ class DonetorController extends Controller
     {
         $persons = Person::where('donator', 'yes')
                 ->with('donations.event')
-                ->withSum('donations', 'donate_amount') // প্রতিটি person এর মোট দান বের করছে
+                ->withSum('donations', 'donate_amount')
                 ->latest()
                 ->paginate(10);
 
@@ -24,8 +24,8 @@ class DonetorController extends Controller
     {
         $persons = Person::where('donator', 'yes')
             ->with('donations.event')
-            ->withSum('donations', 'donate_amount') // প্রতিটি person এর মোট দান বের করছে
-            ->orderByDesc('donations_sum_donate_amount') // মোট দানের পরিমাণ অনুযায়ী সাজাচ্ছে
+            ->withSum('donations', 'donate_amount')
+            ->orderByDesc('donations_sum_donate_amount')
             ->paginate(10);
 
     return view('frontend.pages.donetor_list', compact('persons'));

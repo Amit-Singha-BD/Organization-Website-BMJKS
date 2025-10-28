@@ -14,7 +14,7 @@ class FrontendActivitiesController extends Controller {
             $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
                     ->whereIn('role', ['1', '4']);
         }, 'committeeActivities'])->latest()
-                                   ->get();
+                                   ->paginate(10); 
 
         return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
