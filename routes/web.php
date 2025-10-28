@@ -152,11 +152,13 @@ Route::middleware(['auth'])->group(function () {
 
         // Person Route Start -->
         
-        Route::get('specific/category/person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
-        Route::get('search/person/', [PersonController::class, 'personSearch'])->name('person.search');
-        Route::post('search/result/', [PersonController::class, 'searchResult'])->name('search.result');
+        Route::get('specific-category-person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
+        Route::get('search-person', [PersonController::class, 'personSearch'])->name('person.search');
+        Route::post('search-result', [PersonController::class, 'searchResult'])->name('search.result');
         Route::get('lifetime-member-padding-list', [PersonController::class, 'lifetimeMemberPaddingList'])->name('lifetime.member.padding.list');
         Route::get('general-member-padding-list', [PersonController::class, 'generalMemberPaddingList'])->name('general.member.padding.list');
+        Route::post('lifetime-member-approve/{id}', [PersonController::class, 'lifetimeMemberApprove'])->name('lifetime.member.approve');
+        Route::post('general-member-approve/{id}', [PersonController::class, 'generalMemberApprove'])->name('general.member.approve');
         
         // Person Route End <--
 

@@ -69,6 +69,17 @@
                                     </button>
                                     @endif
 
+                                    <!-- Member Approve Button -->
+                                    @if($person->member_aproved == 'no')
+                                    <button type="button" 
+                                        class="action-btn-success" 
+                                        title="সদস্য অনুমোদন করুন"
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#approveMemberModal{{ $person->id }}">
+                                        <i class="fas fa-user-check"></i>
+                                    </button>
+                                    @endif
+
                                     <!-- Delete Button -->
                                      @if(!$person->personType->contains('id', 1))
                                     <button type="button" class="action-btn-danger" title="মুছে ফেলুন"
@@ -78,11 +89,40 @@
                                         <i class="fas fa-trash"></i>
                                     </button>
                                     @endif
-
                                 </div>
                             </td>
-
                         </tr>
+
+
+                        <!-- Member Approve Modal -->
+                        <div class="modal fade" id="approveMemberModal{{ $person->id }}" tabindex="-1" aria-labelledby="approveMemberLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header bg-success text-white">
+                                <h5 class="modal-title" id="approveMemberLabel">সদস্য অনুমোদন</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="
+                                    {{ Route::is('lifetime.member.padding.list') 
+                                        ? route('lifetime.member.approve', $person->id)
+                                        : (Route::is('general.member.padding.list') 
+                                            ?  route('general.member.approve', $person->id)
+                                            : '') 
+                                }}
+                                " method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                <p>আপনি কি নিশ্চিত যে <strong>{{ $person->name }}</strong> কে সদস্য হিসেবে অনুমোদন দিতে চান?</p>
+                                <input type="hidden" name="member_aproved" value="yes">
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                                <button type="submit" class="btn btn-success">অনুমোদন দিন</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
 
                         <!-- View Member Modal -->
                         <div class="modal fade" id="modalViewMember{{ $person->id }}" tabindex="-1" aria-hidden="true">

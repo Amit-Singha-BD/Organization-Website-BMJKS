@@ -21,6 +21,24 @@
 							<i class="fas fa-question-circle me-2"></i> আপনি কেন সাধারন সদস্য হবেন ?
 						</p>
 					</div>
+
+					<h4 class="section-title">কমিটি নির্বাচন তথ্য</h4>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+								@error('gm_id')
+								<label class="form-label text-danger">{{$message}}</label>
+								@else
+								<label class="form-label">কমিটি নির্বাচন করুন</label>
+								@enderror
+								<select name="gm_id" class="form-select">
+									<option value="">নির্বাচন করুন</option>
+									@foreach($committeeNames as $committeeName)
+										<option value="{{ $committeeName->id }}">{{ $committeeName->committee_name }}</option>
+									@endforeach
+								</select>
+							</div>
+					</div>
+
 					<h4 class="section-title">ব্যক্তিগত তথ্য</h4>
 					<div class="row">
 						<div class="col-md-6 mb-3">
