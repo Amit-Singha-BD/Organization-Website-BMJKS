@@ -10,6 +10,7 @@ use App\Models\CommitteeActivitie;
 use App\Models\Person;
 use App\Models\PersonType;
 use App\Models\President;
+use App\Models\Finance;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PresidentSeeder::class,
             CommitteeYearSeeder::class,
             CommitteeMemberSeeder::class,
+            FinanceSeeder::class,
         ]);
     }
 }
