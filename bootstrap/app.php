@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin'=>App\Http\Middleware\AdminMiddleware::class,
             'cashier'=>App\Http\Middleware\CashierMiddleware::class,
             'contact'=>App\Http\Middleware\ContactMiddleware::class,
+            'viewCount'=>App\Http\Middleware\ViewCountMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

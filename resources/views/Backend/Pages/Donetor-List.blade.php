@@ -12,7 +12,7 @@
         <div class="card shadow mb-3">
             <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
                 <h5 class="card-title mb-0">দাতা তালিকা</h5>
-                <p class="mb-0">মোট {{ $persons->count() }} জন</p>
+                <p class="mb-0">মোট @bn($persons->count() ) জন</p>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -35,7 +35,7 @@
                                 <td>{{ $person->name }}</td>
                                 <td>{{ $person->father_husband_name }}</td>
                                 <td>{{ $person->village }}</td>
-                                <td>{{ $person->totalDonation }}</td>
+                                <td>@bn($person->totalDonation )</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-sm btn-info" title="বিস্তারিত দেখুন"
                                         data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
