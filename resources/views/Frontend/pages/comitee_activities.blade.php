@@ -169,8 +169,19 @@
                 </div>
             </section>
         @endif
+          <!-- Card Footer -->
+        <div class="card-footer bg-light text-center">
+            <div class="small text-muted">
+                মোট @bn($committeeYears->total()) টি রেকর্ডের মধ্যে 
+                <strong>@bn($committeeYears->firstItem()) - @bn($committeeYears->lastItem())</strong> দেখানো হচ্ছে
+            </div>
+            <div class="mt-2">
+                {{ $committeeYears->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
+
 
 <!-- Modals Section -->
 @if(Route::is('committee.activities.search') || Route::is('committee.activities.filter'))
