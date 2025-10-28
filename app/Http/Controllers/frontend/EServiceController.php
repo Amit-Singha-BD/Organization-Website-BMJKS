@@ -8,6 +8,7 @@ use App\Http\Requests\LifetimeMemberValidation;
 use App\Models\Person;
 use App\Models\PersonType;
 use App\Models\PersonTag;
+use App\Models\CommitteeName;
 
 class EServiceController extends Controller
 {
@@ -15,11 +16,9 @@ class EServiceController extends Controller
         return view('frontend.pages.lifetime_member');
     }
     public function lifetime_member_store(LifetimeMemberValidation $request){
-             // Person তৈরি করা
         $validdata = $request->validated();
+        $validdata['member_aproved'] = 'no';
         $person = Person::create($validdata);
-
-        // Selected tags
         PersonTag::create([
             'person_id'     => $person->id,
             'persontype_id' => 5
@@ -28,15 +27,15 @@ class EServiceController extends Controller
     }
 
     public function general_member_application_view(){
-        return view('frontend.pages.general_member');
+        $committeeNames = CommitteeName::get();
+        return view('frontend.pages.general_member', compact('committeeNames'));
     }
 
     public function general_member_store(LifetimeMemberValidation $request){
-             // Person তৈরি করা
         $validdata = $request->validated();
+        $validdata['member_aproved'] = 'no';
         $person = Person::create($validdata);
 
-        // Selected tags
         PersonTag::create([
             'person_id'     => $person->id,
             'persontype_id' => 6

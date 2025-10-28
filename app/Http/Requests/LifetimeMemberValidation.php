@@ -36,6 +36,7 @@ class LifetimeMemberValidation extends FormRequest
             'thana'                 => 'required|string|max:25',
             'district'              => 'required|string|max:25',
             'profession'            => 'nullable|string|max:25',
+            'gm_id'                 => 'nullable|string|max:2',
             'blood_group'           => 'nullable|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
         ];
     }
