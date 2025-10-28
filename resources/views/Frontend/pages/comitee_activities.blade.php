@@ -51,7 +51,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -106,6 +105,7 @@
                                 </div>
                             </div>
                         @endforeach
+
                     @else
                         <h4 class="text-center">কোনো কার্যক্রম পাওয়া যায়নি।</h4>
                     @endif
@@ -166,6 +166,9 @@
                     @else
                         <h4 class="text-center">কোনো কমিটির কার্যক্রম পাওয়া যায়নি।</h4>
                     @endif
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $committeeYears->links() }}
                 </div>
             </section>
         @endif
