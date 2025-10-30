@@ -56,12 +56,16 @@
             </div>
         </div>
 
-        <div class="card-footer d-flex justify-content-between align-items-center flex-wrap">
-            <div>মোট @bn($persons->total()) টি রেকর্ড দেখানো হচ্ছে</div>
-            <nav>
-                {{ $persons->links() }}
-            </nav>
+        <div class="mt-4">
+            <div class="text-center mb-2">
+                মোট @bn($persons->total()) টি রেকর্ডের মধ্যে
+                @bn($persons->firstItem()) - @bn($persons->lastItem()) দেখানো হচ্ছে
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                {{ $persons->links('pagination::bootstrap-5') }}
+            </div>
         </div>
+        
     </div>
 </div>
 

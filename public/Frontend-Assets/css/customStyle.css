@@ -2502,7 +2502,7 @@ select.floating-input:valid+.floating-label {
     color: var(--primary-green);
 }
 
-.member-table-wrapper .pagination .page-link {
+/* .member-table-wrapper .pagination .page-link {
     border: none;
     color: var(--primary-green);
     font-weight: 500;
@@ -2514,6 +2514,11 @@ select.floating-input:valid+.floating-label {
     color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
+
+.page-link:hover{
+    background: var(--primary-green);
+    color: white;
+} */
 
 .member-table-wrapper .card-footer {
     background: transparent;
