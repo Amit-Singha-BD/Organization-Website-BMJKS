@@ -135,7 +135,7 @@ class PersonController extends Controller
 
     public function update(PersonValidation $request, Person $person)
     {
-        if ((Auth::user()->account_type != 'superadmin' || Auth::user()->account_type != 'cashier')|| $person->personType->contains('id', 1)) {
+        if ((Auth::user()->account_type != 'superadmin' && Auth::user()->account_type != 'cashier') && $person->personType->contains('id', 1)) {
             return redirect()->back()->with('error', 'আজীবন সদস্যের তথ্য আপডেট করা যাবে না');
         }
 
