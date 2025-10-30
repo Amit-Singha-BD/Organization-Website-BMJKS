@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\CommitteeActivitie;
 use App\Models\Person;
 use App\Models\PersonType;
+use App\Models\PersonTag;
 use App\Models\President;
 use App\Models\Finance;
 
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
 		Notice::factory()->count(100)->create();
         CommitteeActivitie::factory()->count(10)->create();
         Person::factory()->count(100)->create();
+        
         $this->call([
             UserSeeder::class,
             SettingSeeder::class,
@@ -29,5 +31,6 @@ class DatabaseSeeder extends Seeder
             CommitteeMemberSeeder::class,
             FinanceSeeder::class,
         ]);
+        PersonTag::factory()->count(50)->create();
     }
 }
