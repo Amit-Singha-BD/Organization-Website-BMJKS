@@ -16,9 +16,11 @@ class PersonFactory extends Factory
         $genders = ['Male', 'Female', 'Other'];
         $maritalStatuses = ['Single', 'Married', 'Divorced', 'Widowed'];
         $donator = ['no','yes'];
+        $relation_type = ['পিতা', 'স্বামী'];
 
         return [
             'name'                => $this->faker->name(),
+            'relation_type'       => $this->faker->randomElement($relation_type),
             'father_husband_name' => $this->faker->name('male'),
             'mother_name'         => $this->faker->name('female'),
             'photo'               => $this->faker->imageUrl(200, 200, 'people'),

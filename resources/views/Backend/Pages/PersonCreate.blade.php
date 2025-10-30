@@ -21,13 +21,19 @@
                         </div>
 
                         <div class="col-md-6">
-                            @error('father_husband_name')
-                            <label class="form-label text-danger">{{$message}}</label>
-                            @else
-                            <label class="form-label">পিতার নাম / স্বামী</label>
-                            @enderror
-                            <input name="father_husband_name" class="form-control">
-                        </div>
+							<div class="d-flex align-items-center gap-3">
+								<div class="d-flex align-items-center">
+									<input class="relation-checkbox" type="radio" name="relation_type" id="fatherOption" value="পিতা" checked>
+									<label for="fatherOption" class="relation-label">পিতা</label>
+								</div>
+								<div class="d-flex align-items-center">
+									<input class="relation-checkbox" type="radio" name="relation_type" id="husbandOption" value="স্বামী">
+									<label for="husbandOption" class="relation-label">স্বামী</label>
+								</div>
+							</div>
+
+							<input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" placeholder="পিতার নাম লিখুন">
+						</div>
 
                         <div class="col-md-6">
                             @error('mother_name')
@@ -220,6 +226,30 @@
             }
             reader.readAsDataURL(input.files[0]);
         }
+
+        const fatherOption = document.getElementById('fatherOption');
+        const husbandOption = document.getElementById('husbandOption');
+        const relationName = document.getElementById('relationName');
+
+        function updatePlaceholder() {
+            if (fatherOption.checked) {
+                relationName.placeholder = "পিতার নাম লিখুন";
+            } else if (husbandOption.checked) {
+                relationName.placeholder = "স্বামীর নাম লিখুন";
+            } else {
+                relationName.placeholder = "নাম লিখুন";
+            }
+        }
+
+        fatherOption.addEventListener('change', () => {
+            if (fatherOption.checked) husbandOption.checked = false;
+            updatePlaceholder();
+        });
+
+        husbandOption.addEventListener('change', () => {
+            if (husbandOption.checked) fatherOption.checked = false;
+            updatePlaceholder();
+        });
     </script>
 
 

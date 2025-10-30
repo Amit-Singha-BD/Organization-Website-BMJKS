@@ -14,6 +14,7 @@ class Person extends Model
 
      protected $fillable = [
         'name',
+        'relation_type',
         'father_husband_name',
         'mother_name',
         'photo',

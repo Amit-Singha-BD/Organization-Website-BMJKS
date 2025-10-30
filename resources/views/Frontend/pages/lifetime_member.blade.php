@@ -30,12 +30,22 @@
 							</label>
 							<input type="text" name="name" class="form-control" id="fullName" value="{{ old('name') }}" required>
 						</div>
+
 						<div class="col-md-6 mb-3">
-							<label for="fatherName" class="form-label required-field @error('father_husband_name') text-danger @enderror">
-								@error('father_husband_name') {{ $message }} @else পিতার নাম / স্বামীর নাম @enderror
-							</label>
-							<input type="text" name="father_husband_name" class="form-control" id="fatherName" value="{{ old('father_husband_name') }}" required>
+							<div class="d-flex align-items-center gap-3">
+								<div class="d-flex align-items-center">
+									<input class="relation-checkbox" type="radio" name="relation_type" id="fatherOption" value="পিতা" checked>
+									<label for="fatherOption" class="relation-label">পিতা</label>
+								</div>
+								<div class="d-flex align-items-center">
+									<input class="relation-checkbox" type="radio" name="relation_type" id="husbandOption" value="স্বামী">
+									<label for="husbandOption" class="relation-label">স্বামী</label>
+								</div>
+							</div>
+
+							<input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" placeholder="পিতার নাম লিখুন">
 						</div>
+
 					</div>
 					
 					<div class="row">
@@ -211,4 +221,31 @@
     </div>
   </div>
 </div>
+
+<script>
+	const fatherOption = document.getElementById('fatherOption');
+	const husbandOption = document.getElementById('husbandOption');
+	const relationName = document.getElementById('relationName');
+
+	function updatePlaceholder() {
+		if (fatherOption.checked) {
+			relationName.placeholder = "পিতার নাম লিখুন";
+		} else if (husbandOption.checked) {
+			relationName.placeholder = "স্বামীর নাম লিখুন";
+		} else {
+			relationName.placeholder = "নাম লিখুন";
+		}
+	}
+
+	fatherOption.addEventListener('change', () => {
+		if (fatherOption.checked) husbandOption.checked = false;
+		updatePlaceholder();
+	});
+
+	husbandOption.addEventListener('change', () => {
+		if (husbandOption.checked) fatherOption.checked = false;
+		updatePlaceholder();
+	});
+</script>
+
 @endsection
