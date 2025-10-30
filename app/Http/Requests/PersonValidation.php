@@ -18,6 +18,7 @@ class PersonValidation extends FormRequest
     {
         return [
             'name'                  => 'required|string|max:50',
+            'relation_type'         => 'required|in:পিতা,স্বামী',
             'father_husband_name'   => 'required|string|max:50',
             'mother_name'           => 'required|string|max:50',
             'photo'                 => 'nullable|image|mimes:jpg,jpeg,png|max:2048',

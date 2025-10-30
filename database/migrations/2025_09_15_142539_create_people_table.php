@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // ব্যক্তির নাম
+            $table->string('name');
+            $table->string('relation_type');
             $table->string('father_husband_name');
             $table->string('mother_name');
             $table->string('photo')->nullable();

@@ -2611,3 +2611,39 @@ select.floating-input:valid+.floating-label {
         margin: 1rem auto;
     }
 }
+
+/* Life Time And Genaral Person Apply From Check Box Style */
+.relation-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 2px solid var(--primary-green);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.relation-checkbox:checked {
+    background-color: var(--primary-green);
+    box-shadow: 0 0 4px rgba(13, 110, 253, 0.6);
+}
+
+.relation-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.relation-label {
+    margin-left: 5px;
+    font-weight: 500;
+    color: #333;
+}
