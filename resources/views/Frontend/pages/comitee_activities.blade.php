@@ -153,7 +153,8 @@
                                     <ul class="activity-list">
                                         @foreach ($committeeYear->committeeActivities as $activitie)
                                             <li class="activity-item">
-                                                <span class="activity-name">{{ $activitie->title }}</span>
+                                                <span class="activity-name">@bn($loop->iteration)</span>
+                                                <span class="activity-name">{{ Str::limit($activitie->title, 30, '...') }}</span>
                                                 <button class="view-btn btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#activitieModal{{ $activitie->id }}">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
@@ -166,9 +167,6 @@
                     @else
                         <h4 class="text-center">কোনো কমিটির কার্যক্রম পাওয়া যায়নি।</h4>
                     @endif
-                </div>
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $committeeYears->links() }}
                 </div>
             </section>
         @endif
