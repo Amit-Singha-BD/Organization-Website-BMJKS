@@ -12,14 +12,16 @@ class DonetorController extends Controller
 {
     public function donetorFrontend()
     {
-        $persons = Person::where('donator', 'yes')
-            ->with('donations.event')
-            ->withSum('donations', 'donate_amount')
-            ->orderByDesc(Donation::select('date')->whereColumn('people_id', 'people.id')->latest('date')->limit(1))
+        $donations = Donation::with(['person', 'event'])
+            ->whereHas('person', function ($query) {
+                $query->where('donator', 'yes');
+            })
+            ->orderByDesc('date') // সর্বশেষ ডোনেশন আগে দেখাবে
             ->paginate(10);
 
-    return view('frontend.pages.donetor_list', compact('persons'));
+        return view('frontend.pages.recent_donation', compact('donations'));
     }
+
     public function topDonetorFrontend()
     {
         $persons = Person::where('donator', 'yes')
