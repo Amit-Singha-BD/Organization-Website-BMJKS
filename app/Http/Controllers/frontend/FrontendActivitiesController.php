@@ -10,11 +10,15 @@ use App\Models\CommitteeYear;
 
 class FrontendActivitiesController extends Controller {
     public function committeeActivities() {
-        $committeeYears = CommitteeYear::with(['committee_members' => function($members){
+        $committeeYears = CommitteeYear::with([
+        'committee_members' => function($members) {
             $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
                     ->whereIn('role', ['1', '4']);
-        }, 'committeeActivities'])->latest()
-                                   ->paginate(10); 
+        }, 'committeeActivities'])
+        ->whereHas('committeeActivities')
+        ->orderByRaw("CASE WHEN status = 'active' THEN 0 ELSE 1 END ASC")
+        ->latest('id')
+        ->paginate(10);
 
         return view('frontend.pages.comitee_activities', compact('committeeYears'));
     }
