@@ -31,8 +31,8 @@ class NoticeController extends Controller
         $currentMonth = Carbon::now()->month;
         $currentYear  = Carbon::now()->year;
 
-        $monthly_notice_count = Notice::whereMonth('created_at', $currentMonth)
-            ->whereYear('created_at', $currentYear)
+        $monthly_notice_count = Notice::whereMonth('date', $currentMonth)
+            ->whereYear('date', $currentYear)
             ->count();
 
         $title = 'Notice';

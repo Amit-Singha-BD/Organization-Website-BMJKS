@@ -212,33 +212,55 @@
 
     {{ $notice_data->links() }}
 
+
     <!-- Notice Create Modal -->
     <div class="modal fade" id="modalNotice" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
+                <div class="modal-header bg-success text-white">
                     <h6 class="modal-title">নতুন নোটিশ যোগ করুন</h6>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
+
                 <form action="{{ route('notice.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="row g-3">
+
+                            {{-- শিরোনাম --}}
                             <div class="col-12">
                                 <label class="form-label">শিরোনাম</label>
-                                <input type="text" name="title" class="form-control" placeholder="নোটিশের শিরোনাম লিখুন" required>
+                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                                    value="{{ old('title') }}" placeholder="নোটিশের শিরোনাম লিখুন" required>
+                                @error('title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
+                            {{-- তারিখ --}}
                             <div class="col-md-12">
                                 <label class="form-label">তারিখ</label>
-                                <input type="date" name="date" class="form-control" required>
+                                <input type="date" name="date" class="form-control @error('date') is-invalid @enderror"
+                                    value="{{ old('date') }}" required>
+                                @error('date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
+                            {{-- বিবরণ --}}
                             <div class="col-12">
                                 <label class="form-label">বিবরণ</label>
-                                <textarea class="form-control" name="description" rows="4" placeholder="নোটিশের বিস্তারিত লিখুন"></textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                    name="description" rows="4" placeholder="নোটিশের বিস্তারিত লিখুন">{{ old('description') }}</textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">বাতিল</button>
                         <button type="submit" class="btn btn-success">সংরক্ষণ করুন</button>
@@ -247,5 +269,6 @@
             </div>
         </div>
     </div>
+
 
 @endsection
