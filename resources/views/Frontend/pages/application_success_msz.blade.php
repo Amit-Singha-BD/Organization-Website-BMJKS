@@ -9,8 +9,7 @@
 						<h1 class="display-4 fw-bold text-dark">Success</h1>
 						<div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
 						<p class="mt-2 lead text-dark">
-							জনাব <span class="fw-bold">{{$name}}</span> আপনার আবেদনটি সফলভাবে গ্রহন করা হয়েছে । 
-							খুব শিগ্রই আপনার এই <span class="fw-bold">{{$mobile}}</span> নাম্বারে যোগাযোগ করা হবে ।
+							{{$msz}}
 						</p>
 						
 						<a class="btn btn-primary" href="{{route('home')}}"> হোমে ফিরে যান </a>

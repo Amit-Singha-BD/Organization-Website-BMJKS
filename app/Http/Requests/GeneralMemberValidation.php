@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LifetimeMemberValidation extends FormRequest
+class GeneralMemberValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -37,6 +37,7 @@ class LifetimeMemberValidation extends FormRequest
             'thana'                 => 'required|string|max:25',
             'district'              => 'required|string|max:25',
             'profession'            => 'nullable|string|max:25',
+            'gm_id'                 => 'required|string|max:2',
             'blood_group'           => 'nullable|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
         ];
     }
@@ -94,6 +95,10 @@ class LifetimeMemberValidation extends FormRequest
 
             'profession.string'           => 'পেশা অবশ্যই টেক্সট হতে হবে।',
             'profession.max'              => 'পেশার নাম সর্বোচ্চ ২৫ অক্ষর হতে পারবে।',
+
+            'gm_id.required'              => 'যেকোন একটি কমিটি সিলেক্ট করুন।',
+            'gm_id.string'                => 'যেকোন একটি কমিটি সিলেক্ট করুন।',
+            'gm_id.max'                   => 'যেকোন একটি কমিটি সিলেক্ট করুন।',
 
             'blood_group.in'              => 'সঠিক ব্লাড গ্রুপ নির্বাচন করুন (A+, A-, B+, B-, AB+, AB-, O+, O-)।',
         ];
