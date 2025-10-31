@@ -75,7 +75,7 @@
                                     <i class="fas fa-info-circle"></i>
                                 </div>
                                 <div class="flex-grow-1 title-date-container">
-                                    <h5 class=" notice-title" >{{$notice->title}}</h5>
+                                    <h5 class=" notice-title" >{{ Str::limit($notice->title, 40, '...') }}</h5>
                                     <div class="notice-date">
                                         <span class="text-muted">
                                             <i class="fas fa-calendar me-1"></i>@bn($notice->date)
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="notice-body">
-                            <p class="mt-1">{{$notice->description}}</p>
+                            <p class="mt-1">{{ Str::limit($notice->description, 60, '...') }}</p>
                         </div>
                     </div>
                      <!-- Modal -->

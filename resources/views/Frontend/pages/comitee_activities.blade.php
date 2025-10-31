@@ -153,8 +153,11 @@
                                     <ul class="activity-list">
                                         @foreach ($committeeYear->committeeActivities as $activitie)
                                             <li class="activity-item">
-                                                <span class="activity-name">@bn($loop->iteration)</span>
-                                                <span class="activity-name">{{ Str::limit($activitie->title, 30, '...') }}</span>
+                                                <div>
+                                                    <span class="activity-name">@bn($loop->iteration).</span>
+                                                    <span class="activity-name mx-2">{{ Str::limit($activitie->title, 50, '...') }}</span>
+                                                </div>
+                                                
                                                 <button class="view-btn btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#activitieModal{{ $activitie->id }}">
                                                     <i class="fas fa-eye"></i>
                                                 </button>

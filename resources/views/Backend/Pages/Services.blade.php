@@ -41,9 +41,9 @@
                         @foreach($services as $service)
                         <tr class="text-center">
                             <td data-label="ক্রমিক">@bn($loop->iteration)</td>
-                            <td data-label="আইকন">{!! $service->icon !!}</td>
-                            <td data-label="সেবার নাম">{{ $service->title }}</td>
-                            <td data-label="বিবরণ">{{ $service->description }}</td>
+                            <td data-label="আইকন"><i class="{{ $service->icon }}"></i></td>
+                            <td data-label="সেবার নাম">{{ Str::limit($service->title, 20, '...') }}</td>
+                            <td data-label="বিবরণ">{{ Str::limit($service->description, 30, '...') }}</td>
                             <td data-label="অ্যাকশন">
                                 <div class="d-flex flex-row justify-content-center gap-2">
                                     <button class="action-btn-success edit-service-btn" data-bs-toggle="modal"
@@ -75,7 +75,7 @@
                                             <div class="row g-3">
                                                 <div class="col-12 text-center">
                                                     <label class="form-label d-block">বর্তমান আইকন</label>
-                                                    <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center" style="width: 64px; height: 64px;">{{ $service->icon }}</div>
+                                                    <div class="rounded-circle border bg-light d-inline-flex align-items-center justify-content-center" style="width: 64px; height: 64px;"><i class="{{ $service->icon }} fa-2x"></i></div>
                                                 </div>
                                                 <div class="col-12">
                                                     <label class="form-label">আইকন</label>
@@ -167,7 +167,7 @@
                                         সেবার নাম
                                     @enderror
                                 </label>
-                                <input type="text" name="title" class="form-control" required>
+                                <input type="text" name="title" class="form-control" placeholder="যেমন: চিকিৎসা পরামর্শ সেবা">
                             </div>
                             <div class="col-12">
                                 <label class="form-label @error('description') text-danger @enderror">
@@ -177,7 +177,7 @@
                                         সেবার বিবরণ
                                     @enderror
                                 </label>
-                                <textarea class="form-control" name="description" rows="3" required></textarea>
+                                <textarea class="form-control" name="description" rows="3" placeholder="সেবাটির সংক্ষিপ্ত বিবরণ লিখুন, যেমন— আমাদের বিশেষজ্ঞ ডাক্তারদের মাধ্যমে অনলাইনে চিকিৎসা পরামর্শ প্রদান করা হয়।"></textarea>
                             </div>
                         </div>
                     </div>
