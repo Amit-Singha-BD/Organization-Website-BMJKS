@@ -14,7 +14,7 @@ class PresidentSeeder extends Seeder
     public function run(): void
     {
         President::insert([
-            "name"         => "খলতুম",
+            "name"         => "সভাপতি",
             "message"         => "সভাপতির পক্ষ থেকে সবাইকে ধন্যবাদ",
         ]);
     }

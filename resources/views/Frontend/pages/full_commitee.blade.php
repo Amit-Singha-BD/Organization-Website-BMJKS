@@ -117,11 +117,11 @@
                         </p>
                         <p class="mb-1">
                             <i class="fas fa-phone me-2" style="color: var(--primary-green);"></i>
-                            <a href="tel:+8801712345678" class="contact-link">{{$committeeMember->mobile }}</a>
+                            <a href="tel:{{$committeeMember->mobile }}" class="contact-link">{{$committeeMember->mobile }}</a>
                         </p>
                         <p class="mb-1">
                             <i class="fas fa-envelope me-2" style="color: var(--secondary-green);"></i>
-                            <a href="mailto:president@manipuri.org" class="contact-link">{{$committeeMember->email }}</a>
+                            <a href="mailto:{{$committeeMember->email }}" class="contact-link">{{$committeeMember->email }}</a>
                         </p>
                         <div class="action-buttons">
                             <a href="{{$committeeMember->facebook }}" 

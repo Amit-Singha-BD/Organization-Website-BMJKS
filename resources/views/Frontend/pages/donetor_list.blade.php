@@ -4,7 +4,7 @@
 
     <!-- Page Header -->
     <section class="page-header mt-5 text-center">
-        <h1 class="fw-bold">{{ Route::is('donetor.frontend') ? 'সম্প্রতি ডোনেশন তালিকা' : 'টপ ডোনেটরদের তালিকা' }}</h1>
+        <h1 class="fw-bold">টপ ডোনেটরদের তালিকা</h1>
         <div class="border-bottom border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
         <p class="mt-2 lead">দাতাদের সম্পূর্ণ বিবরণ</p>
     </section>
@@ -24,7 +24,7 @@
                         <tr>
                             <th>ক্রমিক</th>
                             <th>নাম</th>
-                            <th>পিতার নাম</th>
+                            <th>পিতা / স্বামীর নাম</th>
                             <th>গ্রাম</th>
                             <th>সহায়তার পরিমান</th>
                             <th>সহায়তার তালিকা</th>
@@ -77,7 +77,7 @@
                             
                             <div>
                                 <h5 class="mb-0 fw-bold">{{ $person->name }}</h5>
-                                <small class="text-muted">পিতা: {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</small>
+                                <small class="text-muted">{{$person->relation_type}}: {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</small>
                             </div>
                         </div>
                         <p class="mb-1"><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
@@ -125,9 +125,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center mb-3">
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=0D8ABC&color=fff&size=100"
-                                class="rounded-circle border border-3 border-info shadow-sm"
-                                width="100" height="100" alt="Profile">
+                        <img src="{{ $person->photo ? asset('uploads/person/' . $person->photo) 
+                                : 'https://ui-avatars.com/api/?name=' . urlencode($person->name) . '&background=random&color=fff&size=120' }}" 
+                                class="rounded-circle border border-3 shadow-sm" 
+                                width="120" height="120" >
                         <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
                         <p class="text-muted mb-0">{{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
                         <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ @bn(number_format($person->totalDonation, 2))</p>
@@ -141,7 +142,7 @@
                                 <h6 class="mb-1 text-primary">{{ $donation->event->event_name ?? 'তথ্য পাওয়া যায়নি' }}</h6>
                                 <small class="text-muted">
                                     <i class="fas fa-calendar me-1"></i>
-                                    @bn($donation->date)->format('d M, Y'))
+                                    @bn($donation->date)
                                 </small>
                             </div>
                             <div class="col-4 text-end">
@@ -180,19 +181,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center mb-3">
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode($person->name) }}&background=random&color=fff&size=120"
-                                class="rounded-circle border border-3 shadow-sm"
-                                width="120" height="120" alt="Profile">
+                        <img src="{{ $person->photo ? asset('uploads/person/' . $person->photo) 
+                                : 'https://ui-avatars.com/api/?name=' . urlencode($person->name) . '&background=random&color=fff&size=120' }}" 
+                                class="rounded-circle border border-3 shadow-sm" 
+                                width="120" height="120" >
+
                         <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
-                        <p class="text-muted mb-0">{{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
                     </div>
                     <hr>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <h6 class="text-success mb-3  pb-2"><i class="fas fa-user me-2"></i>ব্যক্তিগত তথ্য</h6>
-                            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>{{$person->relation_type}}:</strong> {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
                             <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
-                            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'তথ্য পাওয়া যায়নি' }}</p>
+                            <p><strong>পেশা:</strong> {{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
                             <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'তথ্য পাওয়া যায়নি' }}</p>
                             <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'তথ্য পাওয়া যায়নি' }}</p>
                             <p><strong>রক্তের গ্রুপ:</strong> <span class="badge bg-danger">{{ $person->blood_group ?? 'তথ্য পাওয়া যায়নি' }}</span></p>
