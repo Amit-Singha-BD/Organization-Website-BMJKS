@@ -58,6 +58,7 @@
                                 </td>
                                 <td data-label="এ্যাকশন">
                                     <div class="d-flex justify-content-center gap-2">
+                                        @if(!in_array($tag->id, [1, 2]))
                                         <!-- Status Change Button -->
                                         <button type="button" class="btn btn-sm {{ $tag->status == 'active' ? 'btn-outline-success' : 'btn-outline-secondary' }}" 
                                                 data-bs-toggle="modal" data-bs-target="#statusModal{{$tag->id}}">
@@ -69,6 +70,7 @@
                                         <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{$tag->id}}">
                                             <i class="fas fa-trash-alt me-1"></i> মুছুন
                                         </button>
+                                        @endif
                                     </div>
 
                                     <!-- Status Change Modal -->

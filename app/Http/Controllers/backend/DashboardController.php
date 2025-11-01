@@ -17,10 +17,13 @@ class DashboardController extends Controller {
         $notices = Notice::orderBy('id', 'desc')->take(5)->get();
         $title = 'Dashboard';
 
-        $tags = PersonType::where('status','active')->get();
-        foreach($tags as $tag){
-            $tag->persons_count = PersonTag::where('persontype_id', $tag->id)->count();
-        }
+        $tags = PersonType::where('status', 'active')
+            ->with(['people' => function ($query) {
+                $query->where('member_aproved', 'yes');
+            }])
+            ->get();
+
+
         $committees = CommitteeYear::where('status', 'active')->when(!in_array(Auth::user()->branch, ['1', '100']), 
             function ($query) {
             $query->where('committee_id', Auth::user()->branch);

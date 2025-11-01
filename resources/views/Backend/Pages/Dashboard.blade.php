@@ -162,7 +162,7 @@
                                     <td class="text-center fw-bold" data-label="ক্রমিক নং">@bn($loop->iteration)</td>
                                     <td data-label="ক্যাটাগরি নাম" class="text-center">{{ $tag->person_type_name }}</td>
                                     <td class="text-center" data-label="লোকজন">
-                                        <span class="badge bg-success" >@bn($tag->persons_count ?? 0)</span>
+                                        <span class="badge bg-success" >@bn($tag->people->count() ?? 0)</span>
                                     </td>
                                     <td class="text-center" data-label="দেখুন">
                                         <div class="d-flex flex-row justify-content-center gap-2">
