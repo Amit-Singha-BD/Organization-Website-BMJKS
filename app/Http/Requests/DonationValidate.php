@@ -24,7 +24,7 @@ class DonationValidate extends FormRequest
         return [
             'people_id'     => 'required|exists:people,mobile_number',   // লোকটি অবশ্যই people টেবিলে থাকতে হবে
             'event_id'      => 'required|exists:donation_event_name,id', // ইভেন্টটি অবশ্যই donation_events টেবিলে থাকতে হবে
-            'donate_amount' => 'required|numeric|min:1',      // কমপক্ষে ১ টাকা হতে হবে
+            'donate_amount' => 'required|numeric|min:1|max:8',      // কমপক্ষে ১ টাকা হতে হবে
             'date'          => 'required|date'
         ];
     }
@@ -39,6 +39,7 @@ class DonationValidate extends FormRequest
             'donate_amount.required' => 'ডোনেশনের পরিমাণ দিতে হবে।',
             'donate_amount.numeric'  => 'ডোনেশনের পরিমাণ অবশ্যই সংখ্যায় হতে হবে।',
             'donate_amount.min'      => 'ডোনেশনের পরিমাণ ন্যূনতম ১ টাকা হতে হবে।',
+            'donate_amount.max'      => 'ডোনেশনের পরিমাণ সর্বোচ্চ ১ কোটি টাকা হতে পারবে',
 
             'date.required'          => 'তারিখ নির্বাচন করতে হবে।',
             'date.date'              => 'তারিখটি সঠিক নয়।',
