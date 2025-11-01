@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LifetimeMemberValidation;
+use App\Http\Requests\GeneralMemberValidation;
 use App\Models\Person;
 use App\Models\PersonType;
 use App\Models\PersonTag;
@@ -23,7 +24,11 @@ class EServiceController extends Controller
             'person_id'     => $person->id,
             'persontype_id' => 1
         ]);
-        return view('frontend.pages.application_success_msz')->with('name',$person->name)->with('mobile',$person->mobile_number);
+
+        $msz ='জনাব '.$person->name.' আপনার আবেদনটি সফলভাবে গ্রহন করা হয়েছে । 
+			    খুব শিগ্রই আপনার এই '.$person->mobile_number.' নাম্বারে যোগাযোগ করা হবে ।';
+
+        return view('frontend.pages.application_success_msz')->with('msz',$msz);
     }
 
     public function general_member_application_view(){
@@ -31,7 +36,7 @@ class EServiceController extends Controller
         return view('frontend.pages.general_member', compact('committeeNames'));
     }
 
-    public function general_member_store(LifetimeMemberValidation $request){
+    public function general_member_store(GeneralMemberValidation $request){
         $validdata = $request->validated();
         $validdata['member_aproved'] = 'no';
         $person = Person::create($validdata);
@@ -40,6 +45,10 @@ class EServiceController extends Controller
             'person_id'     => $person->id,
             'persontype_id' => 2
         ]);
-        return view('frontend.pages.application_success_msz')->with('name',$person->name)->with('mobile',$person->mobile_number);
+
+        $msz ='জনাব '.$person->name.' আপনার আবেদনটি সফলভাবে গ্রহন করা হয়েছে । 
+			    খুব শিগ্রই আপনার এই '.$person->mobile_number.' নাম্বারে যোগাযোগ করা হবে ।';
+
+        return view('frontend.pages.application_success_msz')->with('msz',$msz);
     }
 }

@@ -27,7 +27,10 @@ class PersonController extends Controller
         $personTypeName = $personTypeData->person_type_name;
 
         // Step 3: PersonType এর রিলেশন থেকে persons paginate করে আনো
-        $persons = $personTypeData->people()->with('personType')->paginate(10);
+        $persons = $personTypeData->people()
+                ->where('member_aproved', 'yes')
+                ->with('personType')
+                ->paginate(10);
 
         $tags = PersonType::get();
         return view('Backend.Pages.Person-List', compact('persons', 'personTypeName','tags'));
