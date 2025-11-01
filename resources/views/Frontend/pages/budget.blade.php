@@ -2,16 +2,41 @@
 @section('content')
 
 <!-- Budget Section -->
-<section class="page-header mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="fw-bold text-dark">বাজেট</h1>
-                <div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
-                <p class="mt-2 lead text-dark">বার্ষিক ও বিভিন্ন বাজেট</p>
-            </div>
-        </div>
+<section class="page-header mt-5 mb-4">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-12 text-center">
+        <h1 class="fw-bold text-dark">বাজেট</h1>
+        <div class="border-bottom border-white border-3 mx-auto" style="width: 100px; background-color:#1A9B9F;"></div>
+      </div>
     </div>
+
+    <div class="row align-items-center">
+      <!-- Left: Search Bar -->
+      <div class="col-md-4 col-sm-12 mb-2 mb-md-0">
+        <form action="{{ route('budget.search') }}" method="get">
+          @csrf
+          <div class="input-group">
+            <input type="text" name="search" class="form-control" value="{{ request()->search }}" placeholder="বাজেটের নাম লিখুন..." aria-label="Search">
+            <button class="btn btn-primary" type="submit" name="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          @error('search')
+            <div class="text-danger small mt-1">{{ $message }}</div>
+          @enderror
+        </form>
+      </div>
+
+      <!-- Center: Subtitle -->
+      <div class="col-md-4 col-sm-12 text-md-center text-start">
+        <p class="lead fw-semibold text-dark mb-0">বার্ষিক ও বিভিন্ন বাজেট</p>
+      </div>
+
+      <!-- Right: Empty or future content -->
+      <div class="col-md-4"></div>
+    </div>
+  </div>
 </section>
 
 <!-- বাজেট List -->
