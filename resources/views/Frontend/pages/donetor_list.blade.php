@@ -201,7 +201,6 @@
                         </div>
                         <div class="col-md-6">
                             <h6 class="text-success mb-3  pb-2"><i class="fas fa-address-card me-2"></i>যোগাযোগের তথ্য</h6>
-                            <p><strong>মোবাইল:</strong> <span class="badge bg-primary">{{ $person->mobile_number ?? 'তথ্য পাওয়া যায়নি' }}</span></p>
                             <p><strong>পেশা:</strong> {{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
                             <p><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
                             <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'তথ্য পাওয়া যায়নি' }}</p>

@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('facebook')->nullable();
             $table->timestamps();
+
+            // এক কমিটি আইডির মধ্যে এক রোল একবারই থাকবে
+            $table->unique(['CommitteeYear_id', 'role']);
         });
     }
 

@@ -87,15 +87,13 @@
           </div>
           <hr class="mt-3">
           <div class="col-md-6 text-center">
-            <p><strong>পিতার/স্বামীর নাম:</strong> {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
+            <p><strong>{{ $person->relation_type }}:</strong> {{ $person->father_husband_name ?? 'তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>মাতার নাম:</strong> {{ $person->mother_name ?? 'কোন তথ্য পাওয়া যায়নি' }}</p>
-            <p><strong>জন্ম তারিখ:</strong> {{ $person->date_of_birth ?? 'কোন তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>লিঙ্গ:</strong> {{ $person->gender ?? 'তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>বৈবাহিক অবস্থা:</strong> {{ $person->marital_status ?? 'তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>রক্তের গ্রুপ:</strong> {{ $person->blood_group ?? 'তথ্য পাওয়া যায়নি' }}</p>
           </div>
           <div class="col-md-6 text-center">
-            <p><strong>মোবাইল:</strong> {{ $person->mobile_number ?? 'তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>পেশা:</strong> {{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
             <p><strong>ডাকঘর:</strong> {{ $person->post_office ?? 'তথ্য পাওয়া যায়নি' }}</p>

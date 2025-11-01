@@ -128,6 +128,7 @@
                                             <div class="modal-body">
                                                 <div class="row g-3">
                                                     <div class="col-12">
+                                                        <input type="hidden" value="{{ $committeeYear->id }}" name="CommitteeYear_id">
                                                         <label class="form-label @error('name') text-danger @enderror">
                                                             @error('name')
                                                                 {{ $message }}
