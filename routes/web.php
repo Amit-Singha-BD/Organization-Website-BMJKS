@@ -50,8 +50,13 @@ Route::middleware(['viewCount'])->group(function () {
     route::post('general-member',[EServiceController::class,'general_member_store'])->name('general.member.store');
     route::get('application-success',[EServiceController::class,'application_success_msz'])->name('application.success');
     route::get('techteam', function(){return view('frontend.pages.techteam');})->name('techteam');
+
+
     route::get('budgets-view',[FrontendBudgetController::class,'budget'])->name('budget');
     route::get('budget-download/{fileName}',[FrontendBudgetController::class,'budgetDownload'])->name('budget.download');
+    route::get('budget-search',[FrontendBudgetController::class,'budgetSearch'])->name('budget.search');
+
+
     route::get('donetor-list',[DonetorController::class,'donetorFrontend'])->name('donetor.frontend');
     route::get('top-donetor-list',[DonetorController::class,'topDonetorFrontend'])->name('top.donetor.frontend');
 
