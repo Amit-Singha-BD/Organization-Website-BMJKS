@@ -51,7 +51,7 @@
                 <a class="sidebar-sublink {{ Route::is('lifetime.member.padding.list') ? 'active' : '' }}" 
                 href="{{ route('lifetime.member.padding.list') }}">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="sidebar-text">সদস্য অনুমোধন</span>
+                    <span class="sidebar-text">আজীবন সদস্য অনুমোধন</span>
                 </a>
 
                 <a class="sidebar-sublink {{ request()->routeIs('specific.category.person') && request()->route('personType') == 2 ? 'active' : '' }}" 
@@ -63,7 +63,7 @@
                 <a class="sidebar-sublink {{ Route::is('general.member.padding.list') ? 'active' : '' }}" 
                 href="{{ route('general.member.padding.list') }}">
                     <i class="fa-solid fa-user-check"></i>
-                    <span class="sidebar-text">সদস্য অনুমোধন</span>
+                    <span class="sidebar-text">সাধারণ সদস্য অনুমোধন</span>
                 </a>
 
                 <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">

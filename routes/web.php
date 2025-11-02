@@ -66,7 +66,7 @@ Route::middleware(['viewCount'])->group(function () {
     route::get('committee-activities-filter',[FrontendActivitiesController::class,'activitieFilter'])->name('committee.activities.filter');
 
     route::get('bmjks-database',[FrontendPersonSearchController::class,'bmjksDatabase'])->name('bmjks.database.view');
-    route::post('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
+    route::get('bmjks-database-search',[FrontendPersonSearchController::class,'bmjksDatabaseSearch'])->name('bmjks.database.search');
     route::get('bmjks-database-info',[FrontendDatabaseController::class,'bmjks_database_info'])->name('bmjks.database.info');
     route::get('person-type-data-show/{person}',[FrontendDatabaseController::class,'personTypeDataShow'])->name('personType.data.show');
 

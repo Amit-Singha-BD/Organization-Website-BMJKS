@@ -35,6 +35,26 @@ class AppServiceProvider extends ServiceProvider
             ?>";
         });
 
+        Blade::directive('member_count', function ($expression) {
+            return "<?php 
+                \$count = \\App\\Models\\PersonType::where('status', 'active')
+                    ->where('id', {$expression})
+                    ->withCount(['people as count' => function(\$query) {
+                        \$query->where('member_aproved', '!=', 'no');
+                    }])
+                    ->value('count') ?? 0;
+
+                echo str_replace(
+                    ['0','1','2','3','4','5','6','7','8','9'],
+                    ['০','১','২','৩','৪','৫','৬','৭','৮','৯'],
+                    \$count
+                );
+            ?>";
+        });
+
+
+
+
         View::composer('*', function ($view) {
             $view->with('setting', Setting::first());
         });

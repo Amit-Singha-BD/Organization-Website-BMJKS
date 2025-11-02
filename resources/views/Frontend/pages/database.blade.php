@@ -10,7 +10,7 @@
                     <i class="fas fa-search me-2"></i> সদস্য অনুসন্ধান
                 </h4>
                 <div class="card-body card-body-content">
-                    <form class="row g-3" action="{{ route('bmjks.database.search') }}" method="POST">
+                    <form class="row g-3" action="{{ route('bmjks.database.search') }}" method="GET">
                         @csrf
                         <!-- নাম -->
                         <div class="col-12 floating-wrap">
@@ -162,7 +162,7 @@
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-tint"></i></span>
                                 <select name="blood_group" id="blood_group" class="floating-input">
-                                    <option value="" disabled selected hidden></option>
+                                    <option value="" disabled selected hidden>রক্তের গ্রপ বেছে নিন</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
                                     <option value="B+">B+</option>
@@ -173,6 +173,20 @@
                                     <option value="O-">O-</option>
                                 </select>
                                 <label class="floating-label" for="blood_group">রক্তের গ্রুপ</label>
+                            </div>
+                        </div>
+
+                        <!-- সদস্য ক্যাটাগরি -->
+                        <div class="col-12 floating-wrap">
+                            <div class="floating-input-container">
+                                <span class="icon-addon"><i class="fa-solid fa-user"></i></span>
+                                <select name="tag" id="tag" class="floating-input">
+                                    <option value="" disabled selected hidden>সদস্য ক্যাটাগরি বেছে নিন</option>
+                                    @foreach($tags as $tag)
+                                    <option value="{{$tag->id}}">{{$tag->person_type_name}}</option>
+                                    @endforeach
+                                </select>
+                                <label class="floating-label" for="tag">সদস্যের ক্যাটাগরি</label>
                             </div>
                         </div>
 
