@@ -11,7 +11,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">আজীবন সদস্য</small>
-                            <h4 class="mb-0">@bn($lifetime_person)</h4>
+                            <h4 class="mb-0">@member_count(1)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-bullhorn"></i></div>
                     </div>
@@ -26,7 +26,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">সাধারণ সদস্য</small>
-                            <h4 class="mb-0">@bn($general_person)</h4>
+                            <h4 class="mb-0">@member_count(2)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-users-gear"></i></div>
                     </div>

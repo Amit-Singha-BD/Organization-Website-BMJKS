@@ -51,7 +51,7 @@
                                             </button>
 
                                             <!-- Edit Button -->
-                                             @if($person->personType->contains('id', 1) and Auth::user()->account_type=='superadmin')
+                                             @if(($person->personType->contains('id', 1) and Auth::user()->account_type=='superadmin') || $person->personType->contains('id', 2))
                                             <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#modalEditMember{{ $person->id }}"
@@ -60,14 +60,6 @@
                                             </button>
                                             @endif
 
-                                            @if($person->personType->contains('id', 2) and $person->member_aproved == 'no')
-                                            <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalEditMember{{ $person->id }}"
-                                                data-id="{{ $person->id }}">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            @endif
 
                                             <!-- Member Approve Button -->
                                             @if($person->member_aproved == 'no')
@@ -81,7 +73,7 @@
                                             @endif
 
                                             <!-- Delete Button -->
-                                             @if(!$person->personType->contains('id', 1))
+                                             @if((!$person->personType->contains('id', 1)) || ($person->personType->contains('id', 1) and $person->member_aproved == 'no'))
                                             <button type="button" class="action-btn-danger" title="মুছে ফেলুন"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deleteMemberModal{{ $person->id }}"
