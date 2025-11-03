@@ -16,7 +16,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" id="name" name="name" class="floating-input" placeholder=""/>
+                                <input type="text" id="name" name="name" class="floating-input" placeholder="" value="{{ old('name', request('name')) }}"/>
                                 <label class="floating-label" for="name">নাম লিখুন</label>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-user-friends"></i></span>
-                                <input type="text" id="father_husband_name" name="father_husband_name" class="floating-input" placeholder=""/>
+                                <input type="text" id="father_husband_name" name="father_husband_name" class="floating-input" placeholder="" value="{{ old('father_husband_name', request('father_husband_name')) }}"/>
                                 <label class="floating-label" for="father_husband_name">পিতা/স্বামীর নাম লিখুন</label>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-female"></i></span>
-                                <input type="text" id="mother_name" name="mother_name" class="floating-input" placeholder=""/>
+                                <input type="text" id="mother_name" name="mother_name" class="floating-input" placeholder="" value="{{ old('mother_name', request('mother_name')) }}"/>
                                 <label class="floating-label" for="mother_name">মাতার নাম লিখুন</label>
                             </div>
                         </div>
@@ -45,14 +45,14 @@
                                 <div class="col">
                                     <div class="floating-input-container">
                                         <span class="icon-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="date" name="date_of_birth_from" class="floating-input" id="dob_from"/>
+                                        <input type="date" name="date_of_birth_from" class="floating-input" id="dob_from" value="{{ old('date_of_birth_from', request('date_of_birth_from')) }}"/>
                                         <label class="floating-label" for="dob_from">থেকে</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="floating-input-container">
                                         <span class="icon-addon"><i class="fa fa-calendar"></i></span>
-                                        <input type="date" name="date_of_birth_to" class="floating-input" id="dob_to"/>
+                                        <input type="date" name="date_of_birth_to" class="floating-input" id="dob_to" value="{{ old('date_of_birth_to', request('date_of_birth_to')) }}"/>
                                         <label class="floating-label" for="dob_to">পর্যন্ত</label>
                                     </div>
                                 </div>
@@ -65,9 +65,9 @@
                                 <span class="icon-addon"><i class="fa fa-venus-mars"></i></span>
                                 <select id="gender" name="gender" class="floating-input">
                                     <option value="" disabled selected hidden></option>
-                                    <option value="male">পুরুষ</option>
-                                    <option value="female">মহিলা</option>
-                                    <option value="other">অন্যান্য</option>
+                                    <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>পুরুষ</option>
+                                    <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>মহিলা</option>
+                                    <option value="other" {{ old('gender', request('gender')) == 'other' ? 'selected' : '' }}>অন্যান্য</option>
                                 </select>
                                 <label class="floating-label" for="gender">লিঙ্গ</label>
                             </div>
@@ -79,10 +79,10 @@
                                 <span class="icon-addon"><i class="fa fa-users"></i></span>
                                 <select id="caste" name="caste" class="floating-input">
                                     <option value="" disabled selected hidden></option>
-                                    <option value="single">অবিবাহিত</option>
-                                    <option value="married">বিবাহিত</option>
-                                    <option value="widowed">বিধবা</option>
-                                    <option value="divorced">তালাকপ্রাপ্ত</option>
+                                    <option value="single" {{ old('caste', request('caste')) == 'single' ? 'selected' : '' }}>অবিবাহিত</option>
+                                    <option value="married" {{ old('caste', request('caste')) == 'married' ? 'selected' : '' }}>বিবাহিত</option>
+                                    <option value="widowed" {{ old('caste', request('caste')) == 'widowed' ? 'selected' : '' }}>বিধবা</option>
+                                    <option value="divorced" {{ old('caste', request('caste')) == 'divorced' ? 'selected' : '' }}>তালাকপ্রাপ্ত</option>
                                 </select>
                                 <label class="floating-label" for="caste">গোত্র লিখুন</label>
                             </div>
@@ -93,11 +93,11 @@
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-ring"></i></span>
                                 <select id="marital_status" name="marital_status" class="floating-input">
-                                    <option value="" disabled selected hidden></option>
-                                    <option value="single">অবিবাহিত</option>
-                                    <option value="married">বিবাহিত</option>
-                                    <option value="widowed">বিধবা</option>
-                                    <option value="divorced">তালাকপ্রাপ্ত</option>
+                                    <option value="" disabled {{ old('marital_status', request('marital_status')) ? '' : 'selected' }} hidden></option>
+                                    <option value="single" {{ old('marital_status', request('marital_status')) == 'single' ? 'selected' : '' }}>অবিবাহিত</option>
+                                    <option value="married" {{ old('marital_status', request('marital_status')) == 'married' ? 'selected' : '' }}>বিবাহিত</option>
+                                    <option value="widowed" {{ old('marital_status', request('marital_status')) == 'widowed' ? 'selected' : '' }}>বিধবা</option>
+                                    <option value="divorced" {{ old('marital_status', request('marital_status')) == 'divorced' ? 'selected' : '' }}>তালাকপ্রাপ্ত</option>
                                 </select>
                                 <label class="floating-label" for="marital_status">বৈবাহিক অবস্থা</label>
                             </div>
@@ -107,7 +107,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-phone"></i></span>
-                                <input type="text" id="mobile_number" name="mobile_number" class="floating-input" placeholder=""/>
+                                <input type="text" id="mobile_number" name="mobile_number" class="floating-input" placeholder="" value="{{ old('mobile_number', request('mobile_number')) }}"/>
                                 <label class="floating-label" for="mobile_number">মোবাইল লিখুন</label>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" id="village" name="village" class="floating-input" placeholder=""/>
+                                <input type="text" id="village" name="village" class="floating-input" placeholder="" value="{{ old('village', request('village')) }}"/>
                                 <label class="floating-label" for="village">গ্রামের নাম লিখুন</label>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="text" id="post_office" name="post_office" class="floating-input" placeholder=""/>
+                                <input type="text" id="post_office" name="post_office" class="floating-input" value="{{ old('post_office', request('post_office')) }}" placeholder=""/>
                                 <label class="floating-label" for="post_office">পোস্ট অফিস লিখুন</label>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-map-marker-alt"></i></span>
-                                <input type="text" id="thana" name="thana" class="floating-input" placeholder=""/>
+                                <input type="text" id="thana" name="thana" class="floating-input" value="{{ old('thana', request('thana')) }}" placeholder=""/>
                                 <label class="floating-label" for="thana">থানার নাম লিখুন</label>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-city"></i></span>
-                                <input type="text" id="district" name="district" class="floating-input" placeholder=""/>
+                                <input type="text" id="district" name="district" class="floating-input" value="{{ old('district', request('district')) }}" placeholder=""/>
                                 <label class="floating-label" for="district">জেলার নাম লিখুন</label>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                         <div class="col-12 floating-wrap">
                             <div class="floating-input-container">
                                 <span class="icon-addon"><i class="fa fa-briefcase"></i></span>
-                                <input type="text" id="profession" name="profession" class="floating-input" placeholder=""/>
+                                <input type="text" id="profession" name="profession" value="{{ old('profession', request('profession')) }}" class="floating-input" placeholder=""/>
                                 <label class="floating-label" for="profession">পেশা লিখুন</label>
                             </div>
                         </div>
@@ -163,14 +163,11 @@
                                 <span class="icon-addon"><i class="fa fa-tint"></i></span>
                                 <select name="blood_group" id="blood_group" class="floating-input">
                                     <option value="" disabled selected hidden>রক্তের গ্রপ বেছে নিন</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
+                                    @foreach(['A+','A-','B+','B-','AB+','AB-','O+','O-'] as $group)
+                                        <option value="{{ $group }}" {{ old('blood_group', request('blood_group')) == $group ? 'selected' : '' }}>
+                                            {{ $group }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 <label class="floating-label" for="blood_group">রক্তের গ্রুপ</label>
                             </div>
