@@ -43,6 +43,13 @@ class FrontendActivitiesController extends Controller {
     }
 
     public function activitieFilter(Request $request) {
+        $request->validate([
+            'filter' => 'required|date',
+        ], [
+            'filter.required' => 'ফিল্টার ফিল্ডটি অবশ্যই দিতে হবে।',
+            'filter.date' => 'অনুগ্রহ করে সঠিক তারিখ প্রদান করুন।',
+        ]);
+
         $activities = CommitteeActivitie::with(['committeeYear.committee_members' => function($members){
             $members->select('id', 'CommitteeYear_id', 'name', 'role', 'photo')
                     ->whereIn('role', ['1', '4']);
