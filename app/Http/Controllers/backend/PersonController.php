@@ -29,6 +29,9 @@ class PersonController extends Controller
         // Step 3: PersonType এর রিলেশন থেকে persons paginate করে আনো
         $persons = $personTypeData->people()
                 ->where('member_aproved', 'yes')
+                 ->when(!in_array(Auth::user()->account_type, ['superadmin', 'cashier']), function ($query) {
+                        $query->where('gm_id', Auth::user()->branch);
+                    })
                 ->with('personType')
                 ->paginate(10);
 
