@@ -151,7 +151,7 @@
         <a class="sidebar-link {{ Route::is('active.committee.list') || Route::is('deactive.committee.list') || Route::is('branch.committee.list') ? 'active' : '' }}" href="{{ route('active.committee.list') }}" href="{{ route('active.committee.list') }}"><i class="fa-solid fa-diagram-project"></i><span class="sidebar-text">কমিটি তালিকা</span></a>
 
         <div
-            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') || Route::is('person.edit.view') ? 'open' : '' }}">
+            class="sidebar-dropdown {{Route::is('specific.category.person','1') || Route::is('specific.category.person','2') || Route::is('person.create') ||Route::is('tag') ||Route::is('person.search') ||Route::is('search.result') || Route::is('person.edit.view') || Route::is('general.member.padding.list') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">সদস্য ম্যানেজমেন্ট</span>
@@ -175,6 +175,12 @@
                 href="{{ route('specific.category.person', 2) }}">
                     <i class="fa-solid fa-user"></i>
                     <span class="sidebar-text">সাধারণ সদস্য</span>
+                </a>
+
+                <a class="sidebar-sublink {{ Route::is('general.member.padding.list') ? 'active' : '' }}" 
+                href="{{ route('general.member.padding.list') }}">
+                    <i class="fa-solid fa-user-check"></i>
+                    <span class="sidebar-text">সাধারণ সদস্য অনুমোধন</span>
                 </a>
 
                 <a class="sidebar-sublink {{ Route::is('person.create') ? 'active' : '' }}" href="{{ route('person.create') }}">
