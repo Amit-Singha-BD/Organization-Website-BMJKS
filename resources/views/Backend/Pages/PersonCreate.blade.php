@@ -11,29 +11,29 @@
                 @csrf
                 <div class="card-body">
                     <div class="row g-3">
+
                         <div class="col-md-6">
                             @error('name')
                             <label class="form-label text-danger">{{$message}}</label>
                             @else
                             <label class="form-label">নাম</label>
                             @enderror
-                            <input name="name" class="form-control" required>
+                            <input name="name" class="form-control" placeholder="পূর্ণ নাম লিখুন" required>
                         </div>
 
                         <div class="col-md-6">
-							<div class="d-flex align-items-center gap-3">
-								<div class="d-flex align-items-center">
-									<input class="relation-checkbox" type="radio" name="relation_type" id="fatherOption" value="পিতা" checked>
-									<label for="fatherOption" class="relation-label">পিতা</label>
-								</div>
-								<div class="d-flex align-items-center">
-									<input class="relation-checkbox" type="radio" name="relation_type" id="husbandOption" value="স্বামী">
-									<label for="husbandOption" class="relation-label">স্বামী</label>
-								</div>
-							</div>
-
-							<input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" placeholder="পিতার নাম লিখুন">
-						</div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center">
+                                    <input class="relation-checkbox" type="radio" name="relation_type" id="fatherOption" value="পিতা" checked>
+                                    <label for="fatherOption" class="relation-label">পিতা</label>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <input class="relation-checkbox" type="radio" name="relation_type" id="husbandOption" value="স্বামী">
+                                    <label for="husbandOption" class="relation-label">স্বামী</label>
+                                </div>
+                            </div>
+                            <input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" placeholder="পিতার নাম লিখুন">
+                        </div>
 
                         <div class="col-md-6">
                             @error('mother_name')
@@ -41,7 +41,7 @@
                             @else
                             <label class="form-label">মাতার নাম</label>
                             @enderror
-                            <input name="mother_name" class="form-control">
+                            <input name="mother_name" class="form-control" placeholder="মাতার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -51,8 +51,7 @@
                             <label class="form-label">ছবি</label>
                             @enderror
                             <input type="file" name="photo" class="form-control" onchange="previewMemberPhoto(event)">
-                            <img id="previewPhoto" src="" alt="Preview" class="mt-2 rounded"
-                                style="max-height:120px; display:none;">
+                            <img id="previewPhoto" src="" alt="Preview" class="mt-2 rounded" style="max-height:120px; display:none;">
                         </div>
 
                         <div class="col-md-6">
@@ -71,7 +70,7 @@
                             <label class="form-label">লিঙ্গ</label>
                             @enderror
                             <select name="gender" class="form-select">
-                                <option value="">নির্বাচন করুন</option>
+                                <option value="">লিঙ্গ নির্বাচন করুন</option>
                                 <option value="male">পুরুষ</option>
                                 <option value="female">মহিলা</option>
                                 <option value="other">অন্যান্য</option>
@@ -85,7 +84,7 @@
                             <label class="form-label">গোত্র</label>
                             @enderror
                             <select name="caste" class="form-select">
-                                <option value="">নির্বাচন করুন</option>
+                                <option value="">গোত্র নির্বাচন করুন</option>
                                 <option value="male">পুরুষ</option>
                                 <option value="female">মহিলা</option>
                                 <option value="other">অন্যান্য</option>
@@ -99,7 +98,7 @@
                             <label class="form-label">বৈবাহিক অবস্থা</label>
                             @enderror
                             <select name="marital_status" class="form-select">
-                                <option value="">নির্বাচন করুন</option>
+                                <option value="">বৈবাহিক অবস্থা নির্বাচন করুন</option>
                                 <option value="single">অবিবাহিত</option>
                                 <option value="married">বিবাহিত</option>
                                 <option value="widowed">বিধবা</option>
@@ -113,7 +112,7 @@
                             @else
                             <label class="form-label">মোবাইল নম্বর</label>
                             @enderror
-                            <input name="mobile_number" class="form-control" placeholder="01XXXXXXXXX">
+                            <input name="mobile_number" class="form-control" placeholder="১১-সংখ্যার মোবাইল নম্বর লিখুন (যেমনঃ 01XXXXXXXXX)">
                         </div>
 
                         <div class="col-md-6">
@@ -122,7 +121,7 @@
                             @else
                             <label class="form-label">গ্রাম</label>
                             @enderror
-                            <input name="village" class="form-control">
+                            <input name="village" class="form-control" placeholder="গ্রামের নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -131,7 +130,7 @@
                             @else
                             <label class="form-label">পোস্ট অফিস</label>
                             @enderror
-                            <input name="post_office" class="form-control">
+                            <input name="post_office" class="form-control" placeholder="পোস্ট অফিসের নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -140,7 +139,7 @@
                             @else
                             <label class="form-label">থানা</label>
                             @enderror
-                            <input name="thana" class="form-control">
+                            <input name="thana" class="form-control" placeholder="থানার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -149,7 +148,7 @@
                             @else
                             <label class="form-label">জেলা</label>
                             @enderror
-                            <input name="district" class="form-control">
+                            <input name="district" class="form-control" placeholder="জেলার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -158,7 +157,7 @@
                             @else
                             <label class="form-label">পেশা</label>
                             @enderror
-                            <input name="profession" class="form-control">
+                            <input name="profession" class="form-control" placeholder="আপনার পেশা লিখুন (যেমনঃ শিক্ষক, কৃষক)">
                         </div>
 
                         <div class="col-md-6">
@@ -168,7 +167,7 @@
                             <label class="form-label">রক্তের গ্রুপ</label>
                             @enderror
                             <select name="blood_group" class="form-select">
-                                <option value="">নির্বাচন করুন</option>
+                                <option value="">রক্তের গ্রুপ নির্বাচন করুন</option>
                                 <option>A+</option>
                                 <option>A-</option>
                                 <option>B+</option>
@@ -187,7 +186,7 @@
                             <label class="form-label">কমিটি নির্বাচন করুন (সাধারণ সদস্যদের জন্য)</label>
                             @enderror
                             <select name="gm_id" class="form-select">
-                                <option value="">নির্বাচন করুন</option>
+                                <option value="">কমিটি নির্বাচন করুন</option>
                                 @foreach($committeeNames as $committeeName)
                                     <option value="{{ $committeeName->id }}">{{ $committeeName->committee_name }}</option>
                                 @endforeach
@@ -195,21 +194,18 @@
                         </div>
 
                         <div class="col-md-12">
-                            
                             <label class="form-label d-block mb-2">সদস্যের ক্যাটাগরি</label>
-                            
                             @foreach($tags as $tag)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="person_tag[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}">
                                     <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->person_type_name }}</label>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="submit" class="btn btn-success">সংরক্ষণ</button>
+                    <button type="submit" class="btn btn-success">সংরক্ষণ করুন</button>
                 </div>
             </form>
         </div>
@@ -251,6 +247,5 @@
             updatePlaceholder();
         });
     </script>
-
 
 @endsection
