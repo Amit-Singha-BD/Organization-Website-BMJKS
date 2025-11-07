@@ -139,8 +139,8 @@ class PersonController extends Controller
      */
 
 
-    public function update(PersonValidation $request, Person $person)
-    {
+    public function update(PersonValidation $request, Person $person){
+ 
         if ((Auth::user()->account_type != 'superadmin' && Auth::user()->account_type != 'cashier') && $person->personType->contains('id', 1)) {
             return redirect()->back()->with('error', 'আজীবন সদস্যের তথ্য আপডেট করা যাবে না');
         }
@@ -150,10 +150,10 @@ class PersonController extends Controller
         try {
             // ✅ ভ্যালিড ডেটা নেওয়া
             $validdata = $request->validated();
-            $validdata['member_aproved'] = 'yes';
 
             $selectedTags = $request->input('person_tag', []);
-            if(Empty($selectedTags)){
+            $lifetime_tag_count = PersonTag::where('person_id', $person->id)->where('persontype_id','1')->count();
+            if(Empty($selectedTags) and $lifetime_tag_count==0){
                 return redirect()->back()->with('error','যেকোন একটি ক্যাটাগরি সিলেক্ট করুন');
             }
 
@@ -175,7 +175,7 @@ class PersonController extends Controller
             $person->update($validdata);
 
             // পুরনো ট্যাগ ডিলিট করা
-            PersonTag::where('person_id', $person->id)->delete();
+            PersonTag::where('person_id', $person->id)->where('persontype_id', '!=', 1)->delete();
 
             // নতুন ট্যাগ insert করা
             
@@ -192,6 +192,7 @@ class PersonController extends Controller
             return redirect()->back()->with('success', 'সফলভাবে আপডেট করা হয়েছে!');
         } catch (\Exception $e) {
             DB::rollBack();
+            //return $e->getMessage();
             \Log::error('Person Update Error: ' . $e->getMessage());
             
             return redirect()->back()->with('error', $e->getMessage());
@@ -204,7 +205,7 @@ class PersonController extends Controller
     public function destroy(Person $person)
     {
         // যদি personType আছে এবং id 1 থাকে, delete না করা
-        if ($person->personType->contains('id', 1)) {
+        if ($person->member_aproved === 'yes' && $person->personType->contains('id', 1)) {
             return redirect()->back()->with('error', 'এই ধরনের সদস্য ডিলিট করা যাবে না।');
         }
 

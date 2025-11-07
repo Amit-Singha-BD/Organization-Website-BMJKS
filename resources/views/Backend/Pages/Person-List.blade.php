@@ -196,6 +196,14 @@
                                                 <div class="modal-body">
                                                     <div class="row g-3">
 
+                                                         <!-- ছবি প্রিভিউ -->
+                                                        <div class="col-12 text-center">
+                                                            <img id="photoPreview{{ $person->id }}" 
+                                                                src="{{ $person->photo ? asset('uploads/person/' . $person->photo) : asset('Frontend-Assets/images/profile_img.png') }}" 
+                                                                class="img-fluid rounded-circle shadow-sm" 
+                                                                width="100" height="100" >
+                                                        </div>
+
                                                         <!-- নাম -->
                                                         <div class="col-md-6">
                                                             <label class="form-label">নাম</label>
@@ -320,7 +328,7 @@
                                                                 @endphp
                                                             @endif
 
-                                                            @foreach($tags as $tag)
+                                                            @foreach($tags->where('id', '!=', 1) as $tag)
                                                                 <div class="form-check form-check-inline">
                                                                     <input 
                                                                         class="form-check-input" 
@@ -335,14 +343,6 @@
                                                                 </div>
                                                             @endforeach
 
-                                                        </div>
-
-                                                        <!-- ছবি প্রিভিউ -->
-                                                        <div class="col-12 text-center">
-                                                            <img id="photoPreview{{ $person->id }}" 
-                                                                src="{{ $person->photo ? asset($person->photo) : asset('Frontend-Assets/images/profile_img.png') }}" 
-                                                                class="img-fluid rounded-circle shadow-sm mt-2" 
-                                                                style="max-width: 150px;">
                                                         </div>
 
                                                     </div>

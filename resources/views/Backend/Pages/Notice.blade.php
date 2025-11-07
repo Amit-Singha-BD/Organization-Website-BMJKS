@@ -158,15 +158,15 @@
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label class="form-label">শিরোনাম</label>
-                                                <input type="text" name="title" class="form-control" required>
+                                                <input type="text" name="title" class="form-control" value="{{ old('title', $notice->title ?? '') }}" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">তারিখ</label>
-                                                <input type="date" name="date" class="form-control" required>
+                                                <input type="date" name="date" class="form-control" value="{{ old('date', $notice->date ?? '') }}" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">বিবরণ</label>
-                                                <textarea class="form-control" name="description" rows="5" required></textarea>
+                                                <textarea class="form-control" name="description" rows="5" required>{{ old('description', $notice->description ?? '') }}</textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
