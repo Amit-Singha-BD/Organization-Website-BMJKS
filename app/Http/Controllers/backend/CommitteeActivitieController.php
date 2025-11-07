@@ -84,10 +84,10 @@ class CommitteeActivitieController extends Controller
         $validData = $request->validated();
 
         if ($committeeActivity->update($validData)) {
-            return redirect()->route('committeeActivities.index')->with('success', 'এক্টিভিটি সফলভাবে আপডেট হয়েছে');
+            return redirect()->back()->with('success', 'এক্টিভিটি সফলভাবে আপডেট হয়েছে');
         }
 
-        return redirect()->route('committeeActivities.index')->with('error', 'এক্টিভিটি আপডেট ব্যর্থ হয়েছে');
+        return redirect()->back()->with('error', 'এক্টিভিটি আপডেট ব্যর্থ হয়েছে');
     }
 
 

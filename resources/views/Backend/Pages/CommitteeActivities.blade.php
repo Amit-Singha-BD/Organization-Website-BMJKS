@@ -96,7 +96,8 @@
                                             <h6 class="modal-title">কার্যক্রম সম্পাদনা</h6>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <form action="{{ route('committeeActivities.update',$activities->id) }}" method="POST">
+
+                                        <form action="{{ route('committeeActivities.update', $activities->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <div class="modal-body">
@@ -104,35 +105,59 @@
 
                                                     <div>
                                                         <label for="status">কমিটি লিস্ট</label>
-                                                        <select name="committee_id" id="status" class="form-control">
-                                                            <option value="">-- কমিটি সিলেক্ট --</option>
-                                                            <option value="1">2024</option>
-                                                            <option value="2">2025</option>
-                                                            <option value="3">2026</option>
+                                                        <select name="committee_year_id" id="status"
+                                                            class="form-control @error('committee_year_id') is-invalid @enderror">
+                                                            <option value="">কমিটি সিলেক্ট করুন</option>
+                                                            @foreach ($committeeYears as $committeeYear)
+                                                                <option value="{{ $committeeYear->id }}" {{ $committeeYear->id == $activities->committee_year_id ? 'selected' : '' }}>
+                                                                    {{ $committeeYear->committee_name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
+                                                        @error('committee_year_id')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
+
                                                     <div class="col-12">
                                                         <label class="form-label">কার্যক্রমের নাম</label>
-                                                        <input type="text" name="title" class="form-control"  required>
+                                                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                                                            value="{{ old('title', $activities->title) }}">
+                                                        @error('title')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
+
                                                     <div class="col-12">
                                                         <label class="form-label">বিবরণ</label>
-                                                        <textarea name="description" class="form-control" rows="3" required> </textarea>
+                                                        <textarea name="description" class="form-control @error('description') is-invalid @enderror"
+                                                            rows="3">{{ old('description', $activities->description) }}</textarea>
+                                                        @error('description')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
+
                                                     <div class="col-12">
                                                         <label class="form-label">তারিখ</label>
-                                                        <input name="activities_date" type="date" class="form-control"  required>
+                                                        <input name="activities_date" type="date"
+                                                            class="form-control @error('activities_date') is-invalid @enderror"
+                                                            value="{{ old('activities_date', $activities->activities_date) }}">
+                                                        @error('activities_date')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
+
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-                                                <button type="submit" class="btn btn-success">আপডেট করুন</button>
+                                                <button type="submit" name="submit" class="btn btn-success">আপডেট করুন</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- Delete Modal -->
                             <div class="modal fade" id="deleteCommitteeModal{{$activities->id}}" tabindex="-1" aria-hidden="true">
@@ -182,7 +207,7 @@
                             <div>
                                 <label for="status">কমিটি লিস্ট</label>
                                 <select name="committee_year_id" id="status" class="form-control">
-                                    <option value="">কমিটি সিলেক্ট</option>
+                                    <option value="">কমিটি সিলেক্ট করুন</option>
                                     @foreach($committeeYears as $committeeYear)
                                         <option value="{{ $committeeYear->id }}">{{ $committeeYear->committee_name }}</option>
                                     @endforeach

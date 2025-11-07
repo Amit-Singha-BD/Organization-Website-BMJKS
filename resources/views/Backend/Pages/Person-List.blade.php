@@ -6,11 +6,11 @@
         <div class="row mb-4">
             <div class="col-md-8">
                 <h2 class="text-success">
-                    {{ Route::is('lifetime.member.padding.list') 
-                        ? "আবেদনকৃত আজীবন সদস্য তালিকা" 
-                        : (Route::is('general.member.padding.list') 
-                            ? "আবেদনকৃত সাধারণ সদস্য তালিকা" 
-                            : "ব্যক্তির তথ্য তালিকা") }}
+                    {{ Route::is('lifetime.member.padding.list')
+    ? "আবেদনকৃত আজীবন সদস্য তালিকা"
+    : (Route::is('general.member.padding.list')
+        ? "আবেদনকৃত সাধারণ সদস্য তালিকা"
+        : "ব্যক্তির তথ্য তালিকা") }}
                 </h2>
             </div>
         </div>
@@ -18,14 +18,14 @@
         <div class="card shadow">
             <div class="card-header bg-success text-white py-3 d-flex justify-content-between">
                 <h5 class="card-title mb-0">{{ $personTypeName ?? 'ক্যাটাগরি' }} তালিকা</h5>
-                <p class="mb-0">মোট {{ $persons->total() }} জন </p>
+                <p class="mb-0">মোট @bn($persons->total()) জন </p>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover mb-0">
                         <thead class="table-success">
-                            <tr>
-                                <th scope="col" class="text-center">#</th>
+                            <tr class="text-center">
+                                <th scope="col">ক্রমিক</th>
                                 <th scope="col">নাম</th>
                                 <th scope="col">মোবাইল</th>
                                 <th scope="col">গ্রাম</th>
@@ -34,8 +34,8 @@
                         </thead>
                         <tbody>
                             @forelse($persons as $person)
-                                <tr>
-                                    <td data-label="ক্রমিক নং" class="text-center">{{ $loop->iteration + ($persons->currentPage()-1)*$persons->perPage() }}</td>
+                                <tr class="text-center">
+                                    <td data-label="ক্রমিক">@bn($loop->iteration + ($persons->currentPage() - 1) * $persons->perPage())</td>
                                     <td data-label="নাম">{{ $person->name }}</td>
                                     <td data-label="মোবাইল নং">{{ $person->mobile_number }}</td>
                                     <td data-label="গ্রাম">{{ $person->village }}</td>
@@ -51,7 +51,7 @@
                                             </button>
 
                                             <!-- Edit Button -->
-                                             @if(($person->personType->contains('id', 1) and Auth::user()->account_type=='superadmin') || $person->personType->contains('id', 2))
+                                             @if(($person->personType->contains('id', 1) and Auth::user()->account_type == 'superadmin') || $person->personType->contains('id', 2))
                                             <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#modalEditMember{{ $person->id }}"
@@ -95,11 +95,11 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="
-                                            {{ Route::is('lifetime.member.padding.list') 
-                                                ? route('lifetime.member.approve', $person->id)
-                                                : (Route::is('general.member.padding.list') 
-                                                    ?  route('general.member.approve', $person->id)
-                                                    : '') 
+                                            {{ Route::is('lifetime.member.padding.list')
+        ? route('lifetime.member.approve', $person->id)
+        : (Route::is('general.member.padding.list')
+            ? route('general.member.approve', $person->id)
+            : '') 
                                         }}
                                         " method="POST">
                                         @csrf
@@ -133,7 +133,7 @@
 
                                                     <!-- Profile Image & Name -->
                                                     <div class="col-12 text-center">
-                                                        <img src="{{ $person->photo ? asset('uploads/person/'.$person->photo) : asset('Frontend-Assets/images/profile_img.png') }}"
+                                                        <img src="{{ $person->photo ? asset('uploads/person/' . $person->photo) : asset('Frontend-Assets/images/profile_img.png') }}"
                                                             class="rounded-circle border border-3 border-info shadow-sm object-fit-cover"
                                                             width="120" height="120" alt="Profile">
                                                         <h4 class="mt-3 mb-0">{{ $person->name }}</h4>
@@ -319,12 +319,12 @@
 
                                                             @if($person->personType && $person->personType->count() > 0)
                                                                 @php
-                                                                    // Person এর সব টাইপ আইডিগুলোকে একটি array তে নিচ্ছি
-                                                                    $selectedTypes = $person->personType->pluck('id')->toArray();
+        // Person এর সব টাইপ আইডিগুলোকে একটি array তে নিচ্ছি
+        $selectedTypes = $person->personType->pluck('id')->toArray();
                                                                 @endphp
                                                             @else
                                                                 @php
-                                                                    $selectedTypes = [];
+        $selectedTypes = [];
                                                                 @endphp
                                                             @endif
 
@@ -396,8 +396,8 @@
             <div class="card-footer bg-white">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        মোট {{ $persons->total() }} টি রেকর্ডের মধ্যে 
-                        {{ $persons->firstItem() }} - {{ $persons->lastItem() }} দেখানো হচ্ছে
+                        মোট @bn($persons->total()) টি রেকর্ডের মধ্যে 
+                        @bn($persons->firstItem()) - @bn($persons->lastItem()) দেখানো হচ্ছে
                     </div>
                     <div>
                         {{ $persons->links() }}

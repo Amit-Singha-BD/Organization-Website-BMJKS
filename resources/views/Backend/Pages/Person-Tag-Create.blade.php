@@ -37,8 +37,8 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-hover align-middle mb-0">
                     <thead class="table-success">
-                        <tr>
-                            <th scope="col" width="60">#ID</th>
+                        <tr class="text-center">
+                            <th scope="col" width="60">ক্রমিক</th>
                             <th scope="col">ক্যাটাগরির নাম</th>
                             <th scope="col" width="120" class="text-center">লোকজন</th>
                             <th scope="col" width="200" class="text-center">একশন</th>
@@ -46,15 +46,15 @@
                     </thead>
                     <tbody>
                         @foreach($tags as $tag)
-                            <tr>
-                                <td scope="row" class="text-center" data-label="ক্রমিক নং">{{ $loop->iteration }}</td>
+                            <tr class="text-center">
+                                <td scope="row" data-label="ক্রমিক">@bn($loop->iteration)</td>
                                 <td data-label="ক্যাটাগরি নাম">
-                                    <div class="d-flex align-items-center">
+                                    <div>
                                         {{ $tag->person_type_name }}
                                     </div>
                                 </td>
                                 <td class="text-center" data-label="সদস্য সংখ্যা">
-                                    <span class="badge bg-info rounded-pill">{{ $tag->persons_count ?? 0 }}</span>
+                                    <span class="badge bg-info rounded-pill">@bn($tag->persons_count ?? 0 )</span>
                                 </td>
                                 <td data-label="এ্যাকশন">
                                     <div class="d-flex justify-content-center gap-2">
