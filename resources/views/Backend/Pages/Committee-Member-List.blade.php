@@ -127,6 +127,13 @@
                                             @method('PUT')
                                             <div class="modal-body">
                                                 <div class="row g-3">
+                                                     <!-- ছবি প্রিভিউ -->
+                                                    <div class="col-12 text-center">
+                                                        <img id="photoPreview{{ $member->id }}" 
+                                                            src="{{ $member->photo ? asset($member->photo) : asset('Frontend-Assets/images/profile_img.png') }}" 
+                                                            class="img-fluid rounded-circle shadow-sm" 
+                                                            width="100" height="100" >
+                                                    </div>
                                                     <div class="col-12">
                                                         <input type="hidden" value="{{ $committeeYear->id }}" name="CommitteeYear_id">
                                                         <label class="form-label @error('name') text-danger @enderror">
