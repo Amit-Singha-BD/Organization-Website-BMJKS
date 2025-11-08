@@ -179,23 +179,34 @@
                             </select>
                         </div>
 
-                        <div class="col-md-6">
-                            @error('gm_id')
-                            <label class="form-label text-danger">{{$message}}</label>
-                            @else
-                            <label class="form-label">কমিটি নির্বাচন করুন (সাধারণ সদস্যদের জন্য)</label>
-                            @enderror
-                            <select name="gm_id" class="form-select">
-                                <option value="">কমিটি নির্বাচন করুন</option>
-                                @foreach($committeeNames as $committeeName)
-                                    <option value="{{ $committeeName->id }}">{{ $committeeName->committee_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+
+
+                         @if(Auth::user()->account_type=='superadmin' || Auth::user()->account_type=='cashier')
+                            <div class="col-md-6">
+                                @error('gm_id')
+                                <label class="form-label text-danger">{{$message}}</label>
+                                @else
+                                <label class="form-label">কমিটি নির্বাচন করুন (সাধারণ সদস্যদের জন্য)</label>
+                                @enderror
+                                <select name="gm_id" class="form-select">
+                                    <option value="">কমিটি নির্বাচন করুন</option>
+                                    @foreach($committeeNames as $committeeName)
+                                        <option value="{{ $committeeName->id }}">{{ $committeeName->committee_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @else
+                            <input name="gm_id" value="{{Auth::user()->branch}}" type="hidden">
+                        @endif
 
                         <div class="col-md-12">
                             <label class="form-label d-block mb-2">সদস্যের ক্যাটাগরি</label>
-                            @foreach($tags as $tag)
+                            @php
+                                $filteredTags = !in_array(Auth::user()->account_type, ['superadmin', 'cashier'])
+                                    ? $tags->where('id', '!=', 1)
+                                    : $tags;
+                            @endphp
+                            @foreach($filteredTags as $tag)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="person_tag[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}">
                                     <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->person_type_name }}</label>

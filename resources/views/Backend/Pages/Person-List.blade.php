@@ -319,12 +319,12 @@
 
                                                             @if($person->personType && $person->personType->count() > 0)
                                                                 @php
-        // Person এর সব টাইপ আইডিগুলোকে একটি array তে নিচ্ছি
-        $selectedTypes = $person->personType->pluck('id')->toArray();
+                                                                    // Person এর সব টাইপ আইডিগুলোকে একটি array তে নিচ্ছি
+                                                                    $selectedTypes = $person->personType->pluck('id')->toArray();
                                                                 @endphp
                                                             @else
                                                                 @php
-        $selectedTypes = [];
+                                                                    $selectedTypes = [];
                                                                 @endphp
                                                             @endif
 
