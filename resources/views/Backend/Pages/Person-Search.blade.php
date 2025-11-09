@@ -19,7 +19,7 @@
                                 <label class="form-label fw-medium">নাম</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="fa fa-user text-success"></i></span>
-                                    <input type="text" name="name" class="form-control" placeholder="নাম লিখুন">
+                                    <input type="text" name="name" class="form-control" value="{{ old('name', request('name')) }}" placeholder="নাম লিখুন">
                                 </div>
                             </div>
 
@@ -27,7 +27,7 @@
                                 <label class="form-label fw-medium">পিতা/স্বামীর নাম</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="fa fa-user-friends text-success"></i></span>
-                                    <input type="text" name="father_husband_name" class="form-control" placeholder="পিতা/স্বামীর নাম লিখুন">
+                                    <input type="text" name="father_husband_name" class="form-control" value="{{ old('father_husband_name', request('father_husband_name')) }}" placeholder="পিতা/স্বামীর নাম লিখুন">
                                 </div>
                             </div>
 
@@ -35,7 +35,7 @@
                                 <label class="form-label fw-medium">মাতার নাম</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="fa fa-female text-success"></i></span>
-                                    <input type="text" name="mother_name" class="form-control" placeholder="মাতার নাম লিখুন">
+                                    <input type="text" name="mother_name" class="form-control" value="{{ old('mother_name', request('mother_name')) }}" placeholder="মাতার নাম লিখুন">
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@
                                     <div class="me-1" style="flex: 1 1 auto; min-width: 0;">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-calendar text-success"></i></span>
-                                            <input type="date" name="date_of_birth_from" class="form-control" placeholder="শুরুর তারিখ">
+                                            <input type="date" name="date_of_birth_from" class="form-control" value="{{ old('date_of_birth_from', request('date_of_birth_from')) }}" placeholder="শুরুর তারিখ">
                                         </div>
                                     </div>
 
@@ -60,7 +60,7 @@
                                     <div class="ms-1" style="flex: 1 1 auto; min-width: 0;">
                                         <div class="input-group">
                                             <span class="input-group-text"><i class="fa fa-calendar text-success"></i></span>
-                                            <input type="date" name="date_of_birth_to" class="form-control" placeholder="শেষ তারিখ">
+                                            <input type="date" name="date_of_birth_to" class="form-control" value="{{ old('date_of_birth_to', request('date_of_birth_to')) }}" placeholder="শেষ তারিখ">
                                         </div>
                                     </div>
 
@@ -71,9 +71,9 @@
                                 <label class="form-label fw-medium">লিঙ্গ</label>
                                 <select name="gender" class="form-select">
                                     <option value="">নির্বাচন করুন</option>
-                                    <option value="male">পুরুষ</option>
-                                    <option value="female">মহিলা</option>
-                                    <option value="other">অন্যান্য</option>
+                                    <option value="male" {{ old('gender', request('gender')) == 'male' ? 'selected' : '' }}>পুরুষ</option>
+                                    <option value="female" {{ old('gender', request('gender')) == 'female' ? 'selected' : '' }}>মহিলা</option>
+                                    <option value="other" {{ old('gender', request('gender')) == 'other' ? 'selected' : '' }}>অন্যান্য</option>
                                 </select>
                             </div>
 
@@ -81,10 +81,10 @@
                                 <label class="form-label fw-medium">গোত্র</label>
                                 <select name="caste" class="form-select">
                                     <option value="">নির্বাচন করুন</option>
-                                    <option value="single">অবিবাহিত</option>
-                                    <option value="married">বিবাহিত</option>
-                                    <option value="widowed">বিধবা</option>
-                                    <option value="divorced">তালাকপ্রাপ্ত</option>
+                                    <option value="single" {{ old('caste', request('caste')) == 'single' ? 'selected' : '' }}>অবিবাহিত</option>
+                                    <option value="married" {{ old('caste', request('caste')) == 'married' ? 'selected' : '' }}>বিবাহিত</option>
+                                    <option value="widowed" {{ old('caste', request('caste')) == 'widowed' ? 'selected' : '' }}>বিধবা</option>
+                                    <option value="divorced" {{ old('caste', request('caste')) == 'divorced' ? 'selected' : '' }}>তালাকপ্রাপ্ত</option>
                                 </select>
                             </div>
 
@@ -92,10 +92,10 @@
                                 <label class="form-label fw-medium">বৈবাহিক অবস্থা</label>
                                 <select name="marital_status" class="form-select">
                                     <option value="">নির্বাচন করুন</option>
-                                    <option value="single">অবিবাহিত</option>
-                                    <option value="married">বিবাহিত</option>
-                                    <option value="widowed">বিধবা</option>
-                                    <option value="divorced">তালাকপ্রাপ্ত</option>
+                                    <option value="single" {{ old('marital_status', request('marital_status')) == 'single' ? 'selected' : '' }}>অবিবাহিত</option>
+                                    <option value="married" {{ old('marital_status', request('marital_status')) == 'married' ? 'selected' : '' }}>বিবাহিত</option>
+                                    <option value="widowed" {{ old('marital_status', request('marital_status')) == 'widowed' ? 'selected' : '' }}>বিধবা</option>
+                                    <option value="divorced" {{ old('marital_status', request('marital_status')) == 'divorced' ? 'selected' : '' }}>তালাকপ্রাপ্ত</option>
                                 </select>
                             </div>
 
@@ -103,38 +103,60 @@
                                 <label class="form-label fw-medium">মোবাইল নম্বর</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="fa fa-phone text-success"></i></span>
-                                    <input type="text" name="mobile_number" class="form-control" placeholder="মোবাইল লিখুন">
+                                    <input type="text" name="mobile_number" class="form-control" value="{{ old('mobile_number', request('mobile_number')) }}" placeholder="মোবাইল লিখুন">
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">গ্রাম</label>
-                                <input type="text" name="village" class="form-control" placeholder="গ্রামের নাম লিখুন">
+                                <input type="text" name="village" class="form-control" value="{{ old('village', request('village')) }}" placeholder="গ্রামের নাম লিখুন">
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">পোস্ট অফিস</label>
-                                <input type="text" name="post_office" class="form-control" placeholder="পোস্ট অফিস লিখুন">
+                                <input type="text" name="post_office" class="form-control" value="{{ old('post_office', request('post_office')) }}" placeholder="পোস্ট অফিস লিখুন">
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">থানা</label>
-                                <input type="text" name="thana" class="form-control" placeholder="থানার নাম লিখুন">
+                                <input type="text" name="thana" class="form-control" value="{{ old('thana', request('thana')) }}" placeholder="থানার নাম লিখুন">
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">জেলা</label>
-                                <input type="text" name="district" class="form-control" placeholder="জেলার নাম লিখুন">
+                                <input type="text" name="district" class="form-control" value="{{ old('district', request('district')) }}" placeholder="জেলার নাম লিখুন">
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">পেশা</label>
-                                <input type="text" name="profession" class="form-control" placeholder="পেশা লিখুন">
+                                <input type="text" name="profession" class="form-control" value="{{ old('profession', request('profession')) }}" placeholder="পেশা লিখুন">
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label fw-medium">রক্তের গ্রুপ</label>
-                                <input type="text" name="blood_group" class="form-control" placeholder="রক্তের গ্রুপ লিখুন">
+                                <select name="blood_group" class="form-select">
+                                    <option value="">রক্তের গ্রুপ নির্বাচন করুন</option>
+                                    <option value="A+" {{ old('blood_group', request('blood_group')) == 'A+' ? 'selected' : '' }}>A+</option>
+                                    <option value="A-" {{ old('blood_group', request('blood_group')) == 'A-' ? 'selected' : '' }}>A-</option>
+                                    <option value="B+" {{ old('blood_group', request('blood_group')) == 'B+' ? 'selected' : '' }}>B+</option>
+                                    <option value="B-" {{ old('blood_group', request('blood_group')) == 'B-' ? 'selected' : '' }}>B-</option>
+                                    <option value="O+" {{ old('blood_group', request('blood_group')) == 'O+' ? 'selected' : '' }}>O+</option>
+                                    <option value="O-" {{ old('blood_group', request('blood_group')) == 'O-' ? 'selected' : '' }}>O-</option>
+                                    <option value="AB+" {{ old('blood_group', request('blood_group')) == 'AB+' ? 'selected' : '' }}>AB+</option>
+                                    <option value="AB-" {{ old('blood_group', request('blood_group')) == 'AB-' ? 'selected' : '' }}>AB-</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-medium">সদস্যের ক্যাটাগরি</label>
+                                <select name="tag" class="form-select">
+                                    <option value="">সদস্যের ক্যাটাগরি নির্বাচন করুন</option>
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag->id }}" 
+                                            {{ old('tag', request('tag')) == $tag->id ? 'selected' : '' }}>
+                                            {{ $tag->person_type_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="col-12 d-grid mt-3">
@@ -204,10 +226,16 @@
                                                     data-bs-target="#modalViewMember{{ $person->id }}">
                                                 <i class="fas fa-eye me-1"></i> দেখুন
                                             </button>
+                                            @php
+                                                $hasRestrictedType = $person->personType->pluck('id')->contains(1);
+                                            @endphp
+
+                                            @if(($hasRestrictedType && Auth::user()->account_type == 'superadmin') ||(!$hasRestrictedType))
                                             <a type="button" class="btn btn-sm btn-outline-success" 
                                                 href="{{route('person.edit.view',$person->id)}}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+                                            @endif
                                         </td>
                                     </tr>
 
