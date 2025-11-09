@@ -217,13 +217,13 @@
                                     @error('committee_year_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                    <input name="committee_year_id" value="{{$committeeYearName}}" type="hidden">
+                                    <input name="committee_year_id" value="{{$committeeYearName->id}}" type="hidden">
                                 @endif
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">কার্যক্রমের নাম</label>
-                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
+                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="কার্যক্রম এর নাম দিন" required>
                                 @error('title')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

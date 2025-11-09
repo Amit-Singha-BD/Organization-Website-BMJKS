@@ -9,8 +9,8 @@
             <div class="col-12 col-md-8 col-lg-5">
                 <form action="{{ route('finance.sheet') }}" method="GET">
                     <div class="input-group">
-                        <input type="date" name="date" class="form-control">
-                        <input type="text" name="title" class="form-control" placeholder="হিসাবের ধরন দিয়ে সার্চ করুন…">
+                        <input type="date" name="date" value="{{ old('date', request('date')) }}" class="form-control">
+                        <input type="text" name="title" class="form-control" value="{{ old('title', request('title')) }}"  placeholder="হিসাবের ধরন দিয়ে সার্চ করুন…">
                         <button class="btn btn-outline-success" type="submit" name="submit">
                             <i class="fa-solid fa-magnifying-glass"></i> অনুসন্ধান
                         </button>
@@ -184,7 +184,7 @@
                                         হিসাবের ধরন
                                     @enderror
                                 </label>
-                                <input type="text" name="title" class="form-control" required>
+                                <input type="text" name="title" class="form-control" placeholder="কোন খাতে খরচ হয়েছে" required>
                             </div>
 
                             <!-- ইমেজ আপলোড (Optional) -->
