@@ -17,6 +17,7 @@ class PersonFactory extends Factory
         $maritalStatuses = ['Single', 'Married', 'Divorced', 'Widowed'];
         $donator = ['no','yes'];
         $relation_type = ['পিতা', 'স্বামী'];
+        $member_aproved = ['yes','no'];
 
         return [
             'name'                => $this->faker->name(),
@@ -35,7 +36,8 @@ class PersonFactory extends Factory
             'district'            => $this->faker->state(),
             'profession'          => $this->faker->jobTitle(),
             'blood_group'         => $this->faker->randomElement($bloodGroups),
-            'donator'             => $this->faker->randomElement($donator)
+            'donator'             => $this->faker->randomElement($donator),
+            'member_aproved'      => $this->faker->randomElement($member_aproved)
         ];
     }
 }

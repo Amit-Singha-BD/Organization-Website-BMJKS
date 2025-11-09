@@ -18,8 +18,9 @@ class DashboardController extends Controller {
         $title = 'Dashboard';
 
         $tags = PersonType::where('status', 'active')
-            ->with(['people' => function ($query) {
-                $query->where('member_aproved', 'yes');
+            ->with(['people' => function ($query) {$query->where('member_aproved', 'yes')
+                ->when(!in_array(Auth::user()->branch, ['99', '100']), 
+                function ($query) {$query->where('gm_id', Auth::user()->branch);});
             }])
             ->get();
 

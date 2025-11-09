@@ -205,29 +205,46 @@
                     <div class="modal-body">
                         <div class="row g-3">
                             <div>
+                                @if(Auth::user()->account_type=='superadmin' || Auth::user()->account_type=='cashier')
                                 <label for="status">কমিটি লিস্ট</label>
                                 <select name="committee_year_id" id="status" class="form-control">
                                     <option value="">কমিটি সিলেক্ট করুন</option>
-                                    @foreach($committeeYears as $committeeYear)
-                                        <option value="{{ $committeeYear->id }}">{{ $committeeYear->committee_name }}</option>
-                                    @endforeach
+                                        @foreach($committeeYears as $committeeYear)
+                                            <option value="{{ $committeeYear->id }}">{{ $committeeYear->committee_name }}</option>
+                                        @endforeach
                                 </select>
+                                @else
+                                    @error('committee_year_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    <input name="committee_year_id" value="{{$committeeYearName}}" type="hidden">
+                                @endif
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">কার্যক্রমের নাম</label>
-                                <input type="text" name="title" class="form-control" required>
+                                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
+                                @error('title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-
 
                             <div class="col-12">
                                 <label class="form-label">বিবরণ</label>
-                                <textarea class="form-control" name="description" rows="3" required></textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3" required>{{ old('description') }}</textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="col-6">
                                 <label class="form-label">তারিখ</label>
-                                <input type="date" name="activities_date" class="form-control" required>
+                                <input type="date" name="activities_date" class="form-control @error('activities_date') is-invalid @enderror" value="{{ old('activities_date') }}" required>
+                                @error('activities_date')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
