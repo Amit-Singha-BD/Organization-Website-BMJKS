@@ -20,6 +20,11 @@ class FinanceController extends Controller
             return $query->where('title', 'like', "%{$title}%");})
             ->latest('date')->paginate(10);
 
+        $finances->appends([
+            'date' => $date,
+            'title' => $title,
+        ]);
+
         return view('Backend.Pages.Finance', compact('finances'));
     }
 
