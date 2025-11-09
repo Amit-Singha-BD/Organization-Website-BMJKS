@@ -35,6 +35,7 @@
         </div>
 
         <!-- সদস্য -->
+        @if(Auth::user()->account_type!='cashier')
         <div class="col-sm-6 col-lg-3">
             <div class="card stat-card shadow-sm">
                 <div class="card-body">
@@ -48,6 +49,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <!-- আজকের ভিজিট -->
         <div class="col-sm-6 col-lg-3">
@@ -66,7 +68,7 @@
     </div>
     <!-- স্ট্যাট কার্ডস শেষ -->
 
-
+    @if(Auth::user()->account_type!='cashier')
     <div class="row g-3 mt-1">
         <div class="col-lg-12">
             <div class="card table-card shadow-sm">
@@ -122,6 +124,7 @@
             </div>
         </div>
     </div>
+    @endif
 
 
     {{-- পূর্বে তৈরি ট্যাগগুলোর তালিকা --}}
@@ -267,12 +270,13 @@
 
                         </tbody>
                     </table>
-
+                    @if(Auth::user()->account_type=='superadmin')
                     <div class="bg-white text-center m-4">
                         <a href="{{ route('notice.index') }}" class="btn btn-success btn-sm px-4">
                         সব নোটিশ
                         </a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

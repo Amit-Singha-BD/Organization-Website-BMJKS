@@ -91,6 +91,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout.submit');
     //person route
     Route::resource('person', PersonController::class);
+    Route::get('specific-category-person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
+    Route::get('search-person', [PersonController::class, 'personSearch'])->name('person.search');
+    Route::post('search-result', [PersonController::class, 'searchResult'])->name('search.result');
     Route::get('person_edit_view/{id}',[ExtraController::class, 'personEditView'])->name('person.edit.view');
 
 
@@ -159,12 +162,9 @@ Route::middleware(['auth'])->group(function () {
 
         // Person Route Start -->
         
-        Route::get('specific-category-person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
-        Route::get('search-person', [PersonController::class, 'personSearch'])->name('person.search');
-        Route::post('search-result', [PersonController::class, 'searchResult'])->name('search.result');
-        Route::get('lifetime-member-padding-list', [PersonController::class, 'lifetimeMemberPaddingList'])->name('lifetime.member.padding.list');
+ 
+
         Route::get('general-member-padding-list', [PersonController::class, 'generalMemberPaddingList'])->name('general.member.padding.list');
-        Route::post('lifetime-member-approve/{id}', [PersonController::class, 'lifetimeMemberApprove'])->name('lifetime.member.approve');
         Route::post('general-member-approve/{id}', [PersonController::class, 'generalMemberApprove'])->name('general.member.approve');
         
         // Person Route End <--
@@ -204,6 +204,11 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/finance/sheet/update/{id}', [FinanceController::class, 'sheetUpdate'])->name('finance.sheet.update');
         Route::delete('/finance/sheet/destroy/{id}', [FinanceController::class, 'sheetDestroy'])->name('finance.sheet.destroy');
         // Finance Routes End <--
+
+        //পারসন রাউট
+        Route::post('lifetime-member-approve/{id}', [PersonController::class, 'lifetimeMemberApprove'])->name('lifetime.member.approve');
+        Route::get('lifetime-member-padding-list', [PersonController::class, 'lifetimeMemberPaddingList'])->name('lifetime.member.padding.list');
+        //পারসন রাউট শেষ    
     });
 
 });
