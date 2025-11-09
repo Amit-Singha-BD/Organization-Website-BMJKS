@@ -26,6 +26,12 @@ class NoticeController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+
+        $notice_data->appends([
+            'title' => $search,
+            'from_date' => $from,
+            'to_date' => $to,
+        ]);
         
         // এই মাসের মোট নোটিশ
         $currentMonth = Carbon::now()->month;
