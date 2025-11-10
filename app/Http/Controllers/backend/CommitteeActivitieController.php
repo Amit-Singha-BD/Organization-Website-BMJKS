@@ -33,14 +33,15 @@ class CommitteeActivitieController extends Controller
         ->whereIn('committee_year_id',$committeefilter)
         ->latest()->paginate(10);
 
+        $activities_data->appends([
+            'title' => $title,
+            'date'  => $date,
+        ]);
+
         $committeeYearName = CommitteeYear::when(Auth::user()->account_type != 'superadmin', function($query) {
             $query->where('committee_id', Auth::user()->branch)
                 ->where('status', 'active');
-        })
-        ->first();
-
-
-
+        })->first();
 
         return view('Backend.Pages.CommitteeActivities',compact('activities_data', 'committeeYears','committeeYearName'));
     }

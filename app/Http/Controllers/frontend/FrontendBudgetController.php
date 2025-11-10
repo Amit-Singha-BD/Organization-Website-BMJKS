@@ -35,7 +35,8 @@ class FrontendBudgetController extends Controller {
             'search.max'      => 'সার্চ ইনপুট ১০০ অক্ষরের বেশি হতে পারবে না।',
         ]);
 
-        $budgets = Finance::where('title', 'like', "%{$request->search}%")->orderBy('date', 'desc')->paginate(10);
+        $budgets = Finance::where('title', 'like', "%{$request->search}%")->orderBy('date', 'desc')->paginate(2);
+        $budgets->appends(['search' => $request->search]);
 
         return view('frontend.pages.budget', compact('budgets'));
     }
