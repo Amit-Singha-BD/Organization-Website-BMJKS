@@ -130,7 +130,7 @@
                             @php
                                 $selectedTypes = $person->personType ? $person->personType->pluck('id')->toArray() : [];
                             @endphp
-                            @foreach($tags as $tag)
+                            @foreach($tags->where('id','!=','1') as $tag)
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="person_tag[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}" {{ in_array($tag->id, $selectedTypes) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->person_type_name }}</label>

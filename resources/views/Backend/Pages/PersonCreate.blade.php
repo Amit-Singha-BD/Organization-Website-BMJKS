@@ -168,15 +168,16 @@
                             @enderror
                             <select name="blood_group" class="form-select">
                                 <option value="">রক্তের গ্রুপ নির্বাচন করুন</option>
-                                <option>A+</option>
-                                <option>A-</option>
-                                <option>B+</option>
-                                <option>B-</option>
-                                <option>O+</option>
-                                <option>O-</option>
-                                <option>AB+</option>
-                                <option>AB-</option>
+                                <option value="A+" {{ old('blood_group', request('blood_group')) == 'A+' ? 'selected' : '' }}>A+</option>
+                                <option value="A-" {{ old('blood_group', request('blood_group')) == 'A-' ? 'selected' : '' }}>A-</option>
+                                <option value="B+" {{ old('blood_group', request('blood_group')) == 'B+' ? 'selected' : '' }}>B+</option>
+                                <option value="B-" {{ old('blood_group', request('blood_group')) == 'B-' ? 'selected' : '' }}>B-</option>
+                                <option value="O+" {{ old('blood_group', request('blood_group')) == 'O+' ? 'selected' : '' }}>O+</option>
+                                <option value="O-" {{ old('blood_group', request('blood_group')) == 'O-' ? 'selected' : '' }}>O-</option>
+                                <option value="AB+" {{ old('blood_group', request('blood_group')) == 'AB+' ? 'selected' : '' }}>AB+</option>
+                                <option value="AB-" {{ old('blood_group', request('blood_group')) == 'AB-' ? 'selected' : '' }}>AB-</option>
                             </select>
+
                         </div>
 
 

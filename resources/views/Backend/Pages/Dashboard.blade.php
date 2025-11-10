@@ -107,7 +107,7 @@
                                         <strong>{{ $committee->committee_name }}</strong>
                                     </div>
                                 </td>
-                                <td data-label="সদস্য সংখ্যা">@bn($committee->persons_count)</td>
+                                <td data-label="সদস্য সংখ্যা">@bn($committee->committee_members_count)</td>
                                 <td data-label="অবস্থা"><span class="badge type">সক্রিয়</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
