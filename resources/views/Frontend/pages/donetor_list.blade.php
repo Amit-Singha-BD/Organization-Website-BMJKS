@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <p class="mb-1"><strong>গ্রাম:</strong> {{ $person->village ?? 'তথ্য পাওয়া যায়নি' }}</p>
-                        <p class="mb-2"><strong>মোট সহায়তা:</strong> <span class="text-success fw-bold">৳ @bn(number_format($person->totalDonation, 2))</span></p>
+                        <p class="mb-2"><strong>মোট সহায়তা:</strong> <span class="text-success fw-bold">৳ @bn($person->donations_sum_donate_amount)</span></p>
                         <div class="d-flex justify-content-between">
                             <button class="btn btn-sm btn-secondary w-50 me-2" data-bs-toggle="modal" data-bs-target="#eventView{{ $person->id }}">
                                 <i class="fas fa-list me-1"></i> সহায়তা
@@ -131,7 +131,7 @@
                                 width="120" height="120" >
                         <h4 class="mt-3 mb-1 text-dark">{{ $person->name }}</h4>
                         <p class="text-muted mb-0">{{ $person->profession ?? 'তথ্য পাওয়া যায়নি' }}</p>
-                        <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ @bn(number_format($person->totalDonation, 2))</p>
+                        <p class="text-success fw-bold mb-0">মোট ডোনেশন: ৳ @bn($person->donations_sum_donate_amount)</p>
                     </div>
                     <hr>
                     @forelse($person->donations as $donation)
