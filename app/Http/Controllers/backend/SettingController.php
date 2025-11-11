@@ -6,6 +6,11 @@ use App\Http\Requests\BrandingValidate;
 use App\Http\Requests\FooterLinkValidate;
 use App\Http\Requests\SEOValidate;
 use App\Http\Requests\SlideDataValidate;
+use App\Http\Requests\SlideDataValidate2;
+use App\Http\Requests\SlideDataValidate3;
+use App\Http\Requests\SlideDataValidate4;
+use App\Http\Requests\SlideDataValidate5;
+use App\Http\Requests\SlideDataValidate6;
 use App\Http\Requests\SocialMediaValidate;
 use App\Http\Requests\AddressValidate;
 use Illuminate\Http\Request;
@@ -117,7 +122,7 @@ class SettingController extends Controller
         return redirect()->back()->with("success", "স্লাইড তথ্য সফলভাবে আপডেট হয়েছে।");
     }
 
-    public function slideTwoUpdate(SlideDataValidate $request){
+    public function slideTwoUpdate(SlideDataValidate2 $request){
 
         $validateData = $request->validated();
 
@@ -126,11 +131,11 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-       if ($request->hasFile('slide_image')) {
+       if ($request->hasFile('slide_image_2')) {
             if ($settings->slide_image_2_path && file_exists(public_path($settings->slide_image_2_path))) {
                 unlink(public_path($settings->slide_image_2_path));
             }
-            $image = $request->file('slide_image');
+            $image = $request->file('slide_image_2');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('slide');
             if (!file_exists($destinationPath)) {
@@ -143,15 +148,15 @@ class SettingController extends Controller
         }
 
         $settings->update([
-            "slide_title_2"       => $validateData['slide_title'],
-            "slide_description_2" => $validateData['slide_description'],
+            "slide_title_2"       => $validateData['slide_title_2'],
+            "slide_description_2" => $validateData['slide_description_2'],
             "slide_image_2_path"  => $imagePath,
         ]);
 
         return redirect()->back()->with("success", "স্লাইড তথ্য সফলভাবে আপডেট হয়েছে।");
     }
 
-    public function slideThreeUpdate(SlideDataValidate $request){
+    public function slideThreeUpdate(SlideDataValidate3 $request){
 
         $validateData = $request->validated();
 
@@ -160,11 +165,11 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-       if ($request->hasFile('slide_image')) {
+       if ($request->hasFile('slide_image_3')) {
             if ($settings->slide_image_3_path && file_exists(public_path($settings->slide_image_3_path))) {
                 unlink(public_path($settings->slide_image_3_path));
             }
-            $image = $request->file('slide_image');
+            $image = $request->file('slide_image_3');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('slide');
             if (!file_exists($destinationPath)) {
@@ -178,15 +183,15 @@ class SettingController extends Controller
 
 
         $settings->update([
-            "slide_title_3"       => $validateData['slide_title'],
-            "slide_description_3" => $validateData['slide_description'],
+            "slide_title_3"       => $validateData['slide_title_3'],
+            "slide_description_3" => $validateData['slide_description_3'],
             "slide_image_3_path"  => $imagePath,
         ]);
 
         return redirect()->back()->with("success", "স্লাইড তথ্য সফলভাবে আপডেট হয়েছে।");
     }
 
-    public function slideFourUpdate(SlideDataValidate $request){
+    public function slideFourUpdate(SlideDataValidate4 $request){
 
         $validateData = $request->validated();
 
@@ -195,11 +200,11 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-       if ($request->hasFile('slide_image')) {
+       if ($request->hasFile('slide_image_4')) {
             if ($settings->slide_image_4_path && file_exists(public_path($settings->slide_image_4_path))) {
                 unlink(public_path($settings->slide_image_4_path));
             }
-            $image = $request->file('slide_image');
+            $image = $request->file('slide_image_4');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('slide');
             if (!file_exists($destinationPath)) {
@@ -212,15 +217,15 @@ class SettingController extends Controller
         }
 
         $settings->update([
-            "slide_title_4"       => $validateData['slide_title'],
-            "slide_description_4" => $validateData['slide_description'],
+            "slide_title_4"       => $validateData['slide_title_4'],
+            "slide_description_4" => $validateData['slide_description_4'],
             "slide_image_4_path"  => $imagePath,
         ]);
 
         return redirect()->back()->with("success", "স্লাইড তথ্য সফলভাবে আপডেট হয়েছে।");
     }
 
-    public function slideFiveUpdate(SlideDataValidate $request){
+    public function slideFiveUpdate(SlideDataValidate5 $request){
 
         $validateData = $request->validated();
 
@@ -229,11 +234,11 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-       if ($request->hasFile('slide_image')) {
+       if ($request->hasFile('slide_image_5')) {
             if ($settings->slide_image_5_path && file_exists(public_path($settings->slide_image_5_path))) {
                 unlink(public_path($settings->slide_image_5_path));
             }
-            $image = $request->file('slide_image');
+            $image = $request->file('slide_image_5');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('slide');
             if (!file_exists($destinationPath)) {
@@ -246,15 +251,15 @@ class SettingController extends Controller
         }
 
         $settings->update([
-            "slide_title_5"       => $validateData['slide_title'],
-            "slide_description_5" => $validateData['slide_description'],
+            "slide_title_5"       => $validateData['slide_title_5'],
+            "slide_description_5" => $validateData['slide_description_5'],
             "slide_image_5_path"  => $imagePath,
         ]);
 
         return redirect()->back()->with("success", "স্লাইড তথ্য সফলভাবে আপডেট হয়েছে।");
     }
 
-    public function slideSixUpdate(SlideDataValidate $request){
+    public function slideSixUpdate(SlideDataValidate6 $request){
 
         $validateData = $request->validated();
 
@@ -263,11 +268,11 @@ class SettingController extends Controller
             return redirect()->back()->with("error", "সাইট সেটিংস পাওয়া যায়নি।");
         }
 
-       if ($request->hasFile('slide_image')) {
+       if ($request->hasFile('slide_image_6')) {
             if ($settings->slide_image_6_path && file_exists(public_path($settings->slide_image_6_path))) {
                 unlink(public_path($settings->slide_image_6_path));
             }
-            $image = $request->file('slide_image');
+            $image = $request->file('slide_image_6');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('slide');
             if (!file_exists($destinationPath)) {
@@ -280,8 +285,8 @@ class SettingController extends Controller
         }
 
         $settings->update([
-            "slide_title_6"       => $validateData['slide_title'],
-            "slide_description_6" => $validateData['slide_description'],
+            "slide_title_6"       => $validateData['slide_title_6'],
+            "slide_description_6" => $validateData['slide_description_6'],
             "slide_image_6_path"  => $imagePath,
         ]);
 
