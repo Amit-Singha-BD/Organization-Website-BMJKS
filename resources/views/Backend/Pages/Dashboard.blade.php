@@ -58,7 +58,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <small class="text-dark">ওয়েবসাইট ভিজিট</small>
-                            <h4 class="mb-0">{{$view_count}}</h4>
+                            <h4 class="mb-0">@bn($view_count)</h4>
                         </div>
                         <div class="display-6 social-color"><i class="fa-solid fa-chart-line"></i></div>
                     </div>

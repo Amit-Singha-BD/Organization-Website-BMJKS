@@ -32,7 +32,7 @@
 					</div>
 
 					<div class="carousel-caption">
-						<h2>{{ $title ?? 'Slide Title' }}</h2>
+						<h5>{{ $title ?? 'Slide Title' }}</h5>
 						<p>{{ $description ?? 'Slide Description' }}</p>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 		<div class="container" >
 		<!-- শিরোনাম -->
 		<div class="text-center mb-4">
-			<h3 class="display-5 fw-bold mb-3 text-dark" >সাম্প্রতিক নোটিশ</h3>
+			<h3 class=" fw-bold mb-3 text-dark" >সাম্প্রতিক নোটিশ</h3>
 			<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
 		</div>
 
@@ -195,7 +195,7 @@
 	<section class="service-section">
 		<div class="container">
 			<div class="text-center">
-				<h3 class="display-5 fw-bold text-dark">সেবা সমূহ</h3>
+				<h3 class=" fw-bold text-dark">সেবা সমূহ</h3>
 				<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
 			</div>
 
@@ -213,8 +213,8 @@
 									<div class="service-icon">
 										<i class="{{ $service->icon }} fa-2x text-white"></i>
 									</div>
-									<h5 class="card-title fw-bold">{{ Str::limit($service->title, 20, '...') }}</h5>
-									<p class="card-text text-muted mt-3">{{ Str::limit($service->description, 40, '...') }}</p>
+									<h5 class=" fw-bold">{{ Str::limit($service->title, 20, '...') }}</h5>
+									<p class="card-text text-muted mt-1">{{ Str::limit($service->description, 40, '...') }}</p>
 									<button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#serviceModal{{$service->id}}" title="view">
 										বিস্তারিত
 									</button>
@@ -259,7 +259,7 @@
 			<div class="row g-5">
 				<div class="col-lg-12">
 					<div class="text-center mb-4">
-						<h3 class="display-5 fw-bold mb-3 text-dark">সাম্প্রতিক কার্যক্রম সমূহ</h3>
+						<h3 class=" fw-bold mb-3 text-dark">সাম্প্রতিক কার্যক্রম সমূহ</h3>
 						<div class="border-bottom border-3 mx-auto" style="width: 80px; background-color:#1A9B9F;"></div>
 					</div>
 
