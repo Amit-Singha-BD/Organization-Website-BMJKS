@@ -21,7 +21,7 @@
             <!-- Create Button -->
             <div class="col-12 col-md-4 col-lg-2 ms-md-auto text-md-end">
                 <button class="btn btn-success w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#createFinanceModal">
-                    <i class="fa-solid fa-plus me-1"></i> নতুন হিসাবপত্র
+                    <i class="fa-solid fa-plus me-1"></i> নতুন বাজেট
                 </button>
             </div>
 
@@ -30,7 +30,7 @@
 
     <div class="card table-card shadow-sm my-3">
         <div class="card-header text-white text-center">
-            <i class="fas fa-file-invoice-dollar"></i> আর্থিক হিসাবপত্রের তালিকা
+            <i class="fas fa-file-invoice-dollar"></i> বাজেট তালিকা
         </div>
         <div class="card-body">
             <div class="table-responsive">

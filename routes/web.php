@@ -23,6 +23,7 @@ use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\FinanceController;
+use App\Http\Controllers\backend\MonthlyContributionController;
 use App\Http\Controllers\backend\ServiceController;
 use App\Http\Controllers\backend\AccountController;
 use App\Http\Controllers\backend\NoticeController;
@@ -203,6 +204,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/finance/sheet/download/{fileName}', [FinanceController::class, 'sheetDownload'])->name('finance.sheet.download');
         Route::put('/finance/sheet/update/{id}', [FinanceController::class, 'sheetUpdate'])->name('finance.sheet.update');
         Route::delete('/finance/sheet/destroy/{id}', [FinanceController::class, 'sheetDestroy'])->name('finance.sheet.destroy');
+
+
+        Route::get('/monthly-contribution-view', [MonthlyContributionController::class, 'monthlyContribution'])->name('monthly.contribution.view');
         // Finance Routes End <--
 
         //পারসন রাউট
