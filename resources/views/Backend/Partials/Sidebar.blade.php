@@ -96,10 +96,6 @@
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                     <span class="sidebar-text">মাসিক চাঁদা</span>
                 </a>
-                <a class="sidebar-sublink" href="#">
-                    <i class="fa-solid fa-calculator"></i>
-                    <span class="sidebar-text">হিসাব রিপোর্ট</span>
-                </a>
             </div>
         </div>
 
