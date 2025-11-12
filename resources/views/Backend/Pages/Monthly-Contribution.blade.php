@@ -35,7 +35,7 @@
                             @endif
                             <td data-label="বকেয়া চাঁদার পরিমাণ">৳ ২০০ (9)</td>
                             <td data-label="চাঁদার তালিকা">
-                                <a href="#" class="btn btn-outline-success" title="View">
+                                <a href="{{ route('monthly.contribution.list') }}" class="btn btn-outline-success" title="View">
                                     <i class="fa-solid fa-hand-point-right"></i> বিস্তারিত দেখুন
                                 </a>
                             </td>
