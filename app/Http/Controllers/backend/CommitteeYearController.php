@@ -10,7 +10,8 @@ use App\Http\Requests\CommitteeYearValidation;
 
 class CommitteeYearController extends Controller {
     public function committeeYearCreate(CommitteeYearValidation $request){
-        $validateData = $request->validated();    
+        $validateData = $request->validated();   
+
         $committeeData = new CommitteeYear();
         $committeeData->committee_id = $validateData['committee_id'];
         $committeeData->committee_name = $validateData['committee_year_name'];
@@ -20,6 +21,17 @@ class CommitteeYearController extends Controller {
             CommitteeYear::where('committee_id', $committeeData->committee_id)
                          ->where('id', '!=', $committeeData->id)
                          ->update(['status' => 'deactive']);
+
+            $previousId = CommitteeYear::where('id', '<', $committeeData->id)
+                            ->where('committee_id', $committeeData->committee_id)
+                            ->where('id', '!=', $committeeData->id)
+                            ->latest('id')
+                            ->first();
+
+            if($previousId){
+                $previousId->committee_end_date = $validateData['start_date'];
+                $previousId->save();
+            }
 
             return redirect()->back()
                              ->with('success','কমিটি সফলভাবে তৈরি হয়েছে');
