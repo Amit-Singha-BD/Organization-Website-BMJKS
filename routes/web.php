@@ -207,7 +207,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('/monthly-contribution-view', [MonthlyContributionController::class, 'monthlyContribution'])->name('monthly.contribution.view');
-        Route::get('/monthly-contribution-list', [MonthlyContributionController::class, 'monthlyContributionList'])->name('monthly.contribution.list');
+        Route::get('/monthly-contribution-list/{committeeId}', [MonthlyContributionController::class, 'monthlyContributionList'])->name('monthly.contribution.list');
         // Finance Routes End <--
 
         //পারসন রাউট
