@@ -12,7 +12,7 @@ use App\Models\PersonType;
 use App\Models\PersonTag;
 use App\Models\President;
 use App\Models\Finance;
-
+use App\Models\ChadaSetting;
 class DatabaseSeeder extends Seeder
 {
     public function run(): void{
@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CommitteeYearSeeder::class,
             CommitteeMemberSeeder::class,
             FinanceSeeder::class,
+            ChadaSettingSeeder::class,
         ]);
         PersonTag::factory()->count(50)->create();
     }
