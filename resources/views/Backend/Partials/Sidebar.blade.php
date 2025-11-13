@@ -80,7 +80,7 @@
         <a class="sidebar-link {{ Route::is('users.manage') ? 'active' : '' }}" href="{{ route('users.manage') }}"><i class="fas fa-user-circle"></i><span class="sidebar-text">অ্যাকাউন্ট ম্যানেজমেন্ট</span></a>
         <a class="sidebar-link {{ Route::is('committeeActivities.index') ? 'active' : '' }}" href="{{ route('committeeActivities.index') }}"><i class="fas fa-calendar-check"></i><span class="sidebar-text">কমিটির কার্যক্রম</span></a>
 
-        <div class="sidebar-dropdown {{ Route::is('finance.sheet') || Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') ? 'open' : '' }}">
+        <div class="sidebar-dropdown {{ Route::is('finance.sheet') || Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') || Route::is('chada.settings.view') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-sack-dollar"></i>
                 <span class="sidebar-text">আর্থিক ব্যবস্থাপনা</span>
@@ -96,6 +96,10 @@
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                     <span class="sidebar-text">মাসিক চাঁদা</span>
                 </a>
+                 <a class="sidebar-sublink {{ Route::is('chada.settings.view') ? 'active' : '' }}" href="{{ route('chada.settings.view') }}">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="sidebar-text">মাসিক চাঁদা সেটিংস</span>
+                </a>
             </div>
         </div>
 
@@ -109,7 +113,7 @@
             <div class="sidebar-submenu">
 
                 <a class="sidebar-sublink {{ request()->routeIs('donation.create') ? 'active' : '' }}" href="{{ route('donation.create') }}">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <i class="fa-solid fa-money-bill-wave"></i>
                     <span class="sidebar-text">ডোনেশন তৈরি</span>
                 </a>
 

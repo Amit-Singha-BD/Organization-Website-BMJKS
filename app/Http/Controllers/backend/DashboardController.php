@@ -12,6 +12,7 @@ use App\Models\CommitteeMember;
 use App\Models\ViewCount;
 use App\Models\ChadaName;
 use App\Models\ChadaCollection;
+use App\Models\ChadaSetting;
 
 class DashboardController extends Controller {
 
@@ -53,18 +54,19 @@ class DashboardController extends Controller {
                     'date' => date('Y-m-d'),
                 ]);
 
+                $chada_amount = ChadaSetting::first();
 
                 ChadaCollection::create([
                     'chada_names_id' => $chada_data->id,
                     'committee_id' => 1,
-                    'amount' => 2100,
+                    'amount' => $chada_amount->central_chada_amount,
                 ]);
 
                 for ($committee_id = 2; $committee_id <= 13; $committee_id++) {
                     ChadaCollection::create([
                         'chada_names_id' => $chada_data->id,
                         'committee_id' => $committee_id,
-                        'amount' => 250,
+                        'amount' => $chada_amount->branch_chada_amount,
                     ]);
                 }
             });
