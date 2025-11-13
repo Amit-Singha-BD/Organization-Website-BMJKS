@@ -80,7 +80,7 @@
         <a class="sidebar-link {{ Route::is('users.manage') ? 'active' : '' }}" href="{{ route('users.manage') }}"><i class="fas fa-user-circle"></i><span class="sidebar-text">অ্যাকাউন্ট ম্যানেজমেন্ট</span></a>
         <a class="sidebar-link {{ Route::is('committeeActivities.index') ? 'active' : '' }}" href="{{ route('committeeActivities.index') }}"><i class="fas fa-calendar-check"></i><span class="sidebar-text">কমিটির কার্যক্রম</span></a>
 
-        <div class="sidebar-dropdown {{ Route::is('finance.sheet') || Route::is('monthly.contribution.view') ? 'open' : '' }}">
+        <div class="sidebar-dropdown {{ Route::is('finance.sheet') || Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-sack-dollar"></i>
                 <span class="sidebar-text">আর্থিক ব্যবস্থাপনা</span>
@@ -92,7 +92,7 @@
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                     <span class="sidebar-text">বাজেট প্রকাশ</span>
                 </a>
-                <a class="sidebar-sublink {{ Route::is('monthly.contribution.view') ? 'active' : '' }}" href="{{ route('monthly.contribution.view') }}">
+                <a class="sidebar-sublink {{ Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') ? 'active' : '' }}" href="{{ route('monthly.contribution.view') }}">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                     <span class="sidebar-text">মাসিক চাঁদা</span>
                 </a>
