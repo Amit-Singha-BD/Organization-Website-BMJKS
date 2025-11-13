@@ -24,22 +24,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center">
-                            <td data-label="ক্রমিক">১</td>
-                            <td data-label="কমিটির নাম">রফিকুল ইসলাম</td>
-                            <td data-label="মোট চাঁদার পরিমাণ">৳ ৫০০ (9)</td>
-                            @if(Auth::user()->account_type == 'admin')
-                                <td data-label="পরিশোধিত">৳ ৩০০ (9)</td>
-                            @else
-                                <td data-label="আদায়কৃত চাঁদা">৳ ৩০০ (9)</td>
-                            @endif
-                            <td data-label="বকেয়া চাঁদার পরিমাণ">৳ ২০০ (9)</td>
-                            <td data-label="চাঁদার তালিকা">
-                                <a href="{{ route('monthly.contribution.list') }}" class="btn btn-outline-success" title="View">
-                                    <i class="fa-solid fa-hand-point-right"></i> বিস্তারিত দেখুন
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($contributions as $contribution)
+                            <tr class="text-center">
+                                <td data-label="ক্রমিক">@bn($loop->iteration)</td>
+                                <td data-label="কমিটির নাম">{{ $contribution->committee->committee_name ?? 'N/A' }}</td>
+                                <td data-label="মোট চাঁদার পরিমাণ">
+                                    ৳ @bn($contribution->total_paid_amount + $contribution->total_not_paid_amount)
+                                </td>
+
+                                @if(Auth::user()->account_type == 'admin')
+                                    <td data-label="পরিশোধিত">
+                                        ৳ @bn($contribution->total_paid_amount)
+                                        <span class="badge bg-success rounded-circle">@bn($contribution->total_paid_count)টি</span>
+                                    </td>
+                                @else
+                                    <td data-label="আদায়কৃত চাঁদা">
+                                        ৳ @bn($contribution->total_paid_amount)
+                                        <span class="badge bg-success rounded-circle">@bn($contribution->total_paid_count)টি</span>
+                                    </td>
+                                @endif
+
+                                <td data-label="বকেয়া চাঁদার পরিমাণ">
+                                    ৳ @bn($contribution->total_not_paid_amount)
+                                    <span class="badge bg-warning rounded-circle">@bn($contribution->total_not_paid_count)টি</span>
+                                </td>
+                                <td data-label="চাঁদার তালিকা">
+                                    <a href="{{ route('monthly.contribution.list', $contribution->committee_id) }}" class="btn btn-outline-success"
+                                        title="View">
+                                        <i class="fa-solid fa-hand-point-right"></i> বিস্তারিত দেখুন
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
