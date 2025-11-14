@@ -212,6 +212,11 @@
             </div>
         </div>
 
+        <a class="sidebar-sublink {{ Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') ? 'active' : '' }}" href="{{ route('monthly.contribution.view') }}">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <span class="sidebar-text">মাসিক চাঁদা</span>
+        </a>
+
         <a class="sidebar-link {{ Route::is('committeeActivities.index') ? 'active' : '' }}" href="{{ route('committeeActivities.index') }}"><i class="fas fa-calendar-check"></i><span class="sidebar-text">কমিটির কার্যক্রম</span></a>
             @if(in_array(Auth::user()->branch, ['1','100']))    <a class="sidebar-link {{ Route::is('contact.unread') || Route::is('contact.read') ? 'active' : '' }}" href="{{ route('contact.unread') }}"><i class="fas fa-comments"></i><span class="sidebar-text">যোগাযোগ তথ্য</span></a>@endif
     </nav>
@@ -220,8 +225,30 @@
     <nav class="admin-nav">
         <a class="sidebar-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}"><i class="fa-solid fa-gauge"></i><span class="sidebar-text">ড্যাশবোর্ড</span></a>
 
-        <a class="sidebar-link {{ Route::is('finance.sheet') ? 'active' : '' }}" href="{{ route('finance.sheet') }}"><i class="fas fa-file-invoice-dollar"></i><span class="sidebar-text">আর্থিক হিসাবপত্র</span></a>
-         <div
+        <div class="sidebar-dropdown {{ Route::is('finance.sheet') || Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') || Route::is('chada.settings.view') ? 'open' : '' }}">
+            <a href="#" class="sidebar-link sidebar-dropdown-toggle">
+                <i class="fa-solid fa-sack-dollar"></i>
+                <span class="sidebar-text">আর্থিক ব্যবস্থাপনা</span>
+                <i class="fa-solid fa-chevron-down ms-auto"></i>
+            </a>
+
+            <div class="sidebar-submenu">
+                <a class="sidebar-sublink {{ Route::is('finance.sheet') ? 'active' : '' }}" href="{{ route('finance.sheet') }}">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span class="sidebar-text">বাজেট প্রকাশ</span>
+                </a>
+                <a class="sidebar-sublink {{ Route::is('monthly.contribution.view') || Route::is('monthly.contribution.list') ? 'active' : '' }}" href="{{ route('monthly.contribution.view') }}">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <span class="sidebar-text">মাসিক চাঁদা</span>
+                </a>
+                 <a class="sidebar-sublink {{ Route::is('chada.settings.view') ? 'active' : '' }}" href="{{ route('chada.settings.view') }}">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="sidebar-text">মাসিক চাঁদা সেটিংস</span>
+                </a>
+            </div>
+        </div>
+        
+        <div
             class="sidebar-dropdown {{Route::is('donation.create') || Route::is('donator.list') || Route::is('donation.event') || Route::is('donation.event.create') || Route::is('recent.donation') ? 'open' : '' }}">
             <a href="#" class="sidebar-link sidebar-dropdown-toggle">
                 <i class="fa-solid fa-hand-holding-dollar"></i>

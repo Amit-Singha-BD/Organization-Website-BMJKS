@@ -18,7 +18,7 @@
                             @else
                             <label class="form-label">নাম</label>
                             @enderror
-                            <input name="name" class="form-control" placeholder="পূর্ণ নাম লিখুন" required>
+                            <input name="name" class="form-control" placeholder="পূর্ণ নাম লিখুন" value="{{ old('name') }}" required>
                         </div>
 
                         <div class="col-md-6">
@@ -32,7 +32,7 @@
                                     <label for="husbandOption" class="relation-label">স্বামী</label>
                                 </div>
                             </div>
-                            <input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" placeholder="পিতার নাম লিখুন">
+                            <input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" value="{{ old('father_husband_name') }}" placeholder="পিতার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -41,7 +41,7 @@
                             @else
                             <label class="form-label">মাতার নাম</label>
                             @enderror
-                            <input name="mother_name" class="form-control" placeholder="মাতার নাম লিখুন">
+                            <input name="mother_name" class="form-control" value="{{ old('mother_name') }}" placeholder="মাতার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -60,7 +60,7 @@
                             @else
                             <label class="form-label">জন্ম তারিখ</label>
                             @enderror
-                            <input type="date" name="date_of_birth" class="form-control">
+                            <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}"  class="form-control">
                         </div>
 
                         <div class="col-md-6">
@@ -112,7 +112,7 @@
                             @else
                             <label class="form-label">মোবাইল নম্বর</label>
                             @enderror
-                            <input name="mobile_number" class="form-control" placeholder="১১-সংখ্যার মোবাইল নম্বর লিখুন (যেমনঃ 01XXXXXXXXX)">
+                            <input name="mobile_number" class="form-control" value="{{ old('mobile_number') }}" placeholder="১১-সংখ্যার মোবাইল নম্বর লিখুন (যেমনঃ 01XXXXXXXXX)">
                         </div>
 
                         <div class="col-md-6">
@@ -121,7 +121,7 @@
                             @else
                             <label class="form-label">গ্রাম</label>
                             @enderror
-                            <input name="village" class="form-control" placeholder="গ্রামের নাম লিখুন">
+                            <input name="village" class="form-control" value="{{ old('village') }}" placeholder="গ্রামের নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -130,7 +130,7 @@
                             @else
                             <label class="form-label">পোস্ট অফিস</label>
                             @enderror
-                            <input name="post_office" class="form-control" placeholder="পোস্ট অফিসের নাম লিখুন">
+                            <input name="post_office" class="form-control" value="{{ old('post_office') }}" placeholder="পোস্ট অফিসের নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -139,7 +139,7 @@
                             @else
                             <label class="form-label">থানা</label>
                             @enderror
-                            <input name="thana" class="form-control" placeholder="থানার নাম লিখুন">
+                            <input name="thana" class="form-control" value="{{ old('thana') }}" placeholder="থানার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -148,7 +148,7 @@
                             @else
                             <label class="form-label">জেলা</label>
                             @enderror
-                            <input name="district" class="form-control" placeholder="জেলার নাম লিখুন">
+                            <input name="district" class="form-control" value="{{ old('district') }}" placeholder="জেলার নাম লিখুন">
                         </div>
 
                         <div class="col-md-6">
@@ -157,7 +157,7 @@
                             @else
                             <label class="form-label">পেশা</label>
                             @enderror
-                            <input name="profession" class="form-control" placeholder="আপনার পেশা লিখুন (যেমনঃ শিক্ষক, কৃষক)">
+                            <input name="profession" class="form-control" value="{{ old('profession') }}" placeholder="আপনার পেশা লিখুন (যেমনঃ শিক্ষক, কৃষক)">
                         </div>
 
                         <div class="col-md-6">

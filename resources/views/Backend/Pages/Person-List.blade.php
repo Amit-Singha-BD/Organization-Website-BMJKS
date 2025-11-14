@@ -51,7 +51,11 @@
                                             </button>
 
                                             <!-- Edit Button -->
-                                             @if(($person->personType->contains('id', 1) and Auth::user()->account_type == 'superadmin') || $person->personType->contains('id', 2))
+                                            @php
+                                                $hasRestrictedType = $person->personType->pluck('id')->contains(1);
+                                            @endphp
+
+                                            @if(($hasRestrictedType && Auth::user()->account_type == 'superadmin') ||(!$hasRestrictedType))
                                             <button type="button" class="action-btn-success" title="সম্পাদনা করুন"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#modalEditMember{{ $person->id }}"
