@@ -30,6 +30,42 @@ class MonthlyContributionController extends Controller {
         return view('Backend.Pages.Monthly-Contribution-List', compact('contributionList'));
     }
 
+    public function contributionApprove($approveId){
+        $updated = ChadaCollection::where('id', $approveId)->update([
+            'payment_status' => 'paid'
+        ]);
+
+        if ($updated) {
+            return redirect()->back()->with('success', 'চাঁদাটি সফলভাবে অনুমোদন করা হয়েছে!');
+        } else {
+            return redirect()->back()->with('error', 'চাঁদাটি অনুমোদন করা যায়নি!');
+        }
+    }
+
+    public function contributionReject($rejectId){
+        $updated = ChadaCollection::where('id', $rejectId)->update([
+            'payment_status' => 'not_paid'
+        ]);
+
+        if ($updated) {
+            return redirect()->back()->with('success', 'চাঁদাটি সফলভাবে বাতিল করা হয়েছে!');
+        } else {
+            return redirect()->back()->with('error', 'চাঁদাটি বাতিল করা যায়নি!');
+        }
+    }
+
+    public function contributionRequest($requestId){
+        $updated = ChadaCollection::where('id', $requestId)->update([
+            'payment_status' => 'pending'
+        ]);
+
+        if ($updated) {
+            return redirect()->back()->with('success', 'আপনার চাঁদার অনুরোধটি সফলভাবে পাঠানো হয়েছে!');
+        } else {
+            return redirect()->back()->with('error', 'আপনার চাঁদার অনুরোধটি পাঠানো যায়নি!');
+        }
+    }
+
     public function chadaSettingsView(){
         $chadaSetting = ChadaSetting::get();
         return view('Backend.Pages.Chada-settings',compact('chadaSetting'));
