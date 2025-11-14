@@ -97,72 +97,84 @@
 									</div>
 								</div>
 							</div>
+
+							<!-- Approve Modal -->
+							<div class="modal fade" id="approveModal{{ $contribution->id }}" tabindex="-1" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header bg-success text-white">
+											<h6 class="modal-title">চাঁদা অনুমোদন</h6>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form action="{{ route('contribution.approve', $contribution->id) }}" method="POST">
+											@csrf
+											@method('PATCH')
+
+											<div class="modal-body text-center">
+												<p>আপনি কি নিশ্চিত <strong>{{ $contribution->chadaName->chada_name }}</strong> এর চাঁদাটি অনুমোদন করতে চান?</p>
+											</div>
+
+											<div class="modal-footer justify-content-center">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">না</button>
+												<button type="submit" class="btn btn-success">হ্যাঁ, অনুমোদন করুন</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<!-- Reject Modal -->
+							<div class="modal fade" id="rejectModal{{ $contribution->id }}" tabindex="-1" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header bg-danger text-white">
+											<h6 class="modal-title">চাঁদা বাতিল</h6>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form action="{{ route('contribution.reject', $contribution->id) }}" method="POST">
+											@csrf
+											@method('PATCH')
+
+											<div class="modal-body text-center">
+												<p>আপনি কি নিশ্চিত <strong>{{ $contribution->chadaName->chada_name }}</strong> এর চাঁদাটি বাতিল করতে চান?</p>
+											</div>
+											<div class="modal-footer justify-content-center">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">না</button>
+												<button type="submit" class="btn btn-danger">হ্যাঁ, বাতিল করুন</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<!-- Request Modal -->
+							<div class="modal fade" id="requestModal" tabindex="-1" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header bg-warning text-dark">
+											<h6 class="modal-title">চাঁদার অনুরোধ</h6>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<form action="{{ route('contribution.request', $contribution->id) }}" method="POST">
+											@csrf
+											@method('PATCH')
+
+											<div class="modal-body text-center">
+												<p>আপনি কি নিশ্চিত <strong>{{ $contribution->chadaName->chada_name }}</strong> এর চাঁদা দেওয়ার পর অনুরোধটি পাঠাতে চাচ্ছেন?</p>
+											</div>
+											<div class="modal-footer justify-content-center">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+												<button type="submit" class="btn btn-warning text-dark">অনুরোধ করুন</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
 						@endforeach
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
-
-	
-
-	<!-- Approve Modal -->
-	<div class="modal fade" id="approveModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header bg-success text-white">
-					<h6 class="modal-title">চাঁদা অনুমোদন</h6>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-				<div class="modal-body text-center">
-					<p>আপনি কি নিশ্চিত এই চাঁদাটি অনুমোদন করতে চান?</p>
-				</div>
-				<div class="modal-footer justify-content-center">
-					<button class="btn btn-secondary" data-bs-dismiss="modal">না</button>
-					<button class="btn btn-success">হ্যাঁ, অনুমোদন করুন</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Reject Modal -->
-	<div class="modal fade" id="rejectModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header bg-danger text-white">
-					<h6 class="modal-title">চাঁদা বাতিল</h6>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-				<div class="modal-body text-center">
-					<p>আপনি কি নিশ্চিত এই চাঁদাটি বাতিল করতে চান?</p>
-				</div>
-				<div class="modal-footer justify-content-center">
-					<button class="btn btn-secondary" data-bs-dismiss="modal">না</button>
-					<button class="btn btn-danger">হ্যাঁ, বাতিল করুন</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Request Modal -->
-	<div class="modal fade" id="requestModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header bg-warning text-dark">
-					<h6 class="modal-title">চাঁদার অনুরোধ</h6>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-				<div class="modal-body text-center">
-					<p>আপনি কি নিশ্চিত যে এই চাঁদা দেওয়ার পর অনুরোধটি পাঠাতে চাচ্ছেন?</p>
-				</div>
-				<div class="modal-footer justify-content-center">
-					<button class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-					<button class="btn btn-warning text-dark">অনুরোধ করুন</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 
 @endsection
