@@ -96,6 +96,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('search-person', [PersonController::class, 'personSearch'])->name('person.search');
     Route::post('search-result', [PersonController::class, 'searchResult'])->name('search.result');
     Route::get('person_edit_view/{id}',[ExtraController::class, 'personEditView'])->name('person.edit.view');
+    Route::get('/monthly-contribution-view', [MonthlyContributionController::class, 'monthlyContribution'])->name('monthly.contribution.view');
+    Route::get('/monthly-contribution-list/{committeeId}', [MonthlyContributionController::class, 'monthlyContributionList'])->name('monthly.contribution.list');
+    Route::patch('/monthly-contribution-request/{requestId}', [MonthlyContributionController::class, 'contributionRequest'])->name('contribution.request');
 
 
     //this is superadmin route---------------
@@ -206,11 +209,9 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/finance/sheet/destroy/{id}', [FinanceController::class, 'sheetDestroy'])->name('finance.sheet.destroy');
 
 
-        Route::get('/monthly-contribution-view', [MonthlyContributionController::class, 'monthlyContribution'])->name('monthly.contribution.view');
-        Route::get('/monthly-contribution-list/{committeeId}', [MonthlyContributionController::class, 'monthlyContributionList'])->name('monthly.contribution.list');
+        
         Route::patch('/monthly-contribution-approve/{approveId}', [MonthlyContributionController::class, 'contributionApprove'])->name('contribution.approve');
         Route::patch('/monthly-contribution-reject/{rejectId}', [MonthlyContributionController::class, 'contributionReject'])->name('contribution.reject');
-        Route::patch('/monthly-contribution-request/{requestId}', [MonthlyContributionController::class, 'contributionRequest'])->name('contribution.request');
         Route::get('/chada-settings-view', [MonthlyContributionController::class, 'chadaSettingsView'])->name('chada.settings.view');
         Route::post('/chada-settings-store', [MonthlyContributionController::class, 'chadaSettingsStore'])->name('chada.settings.store');
         // Finance Routes End <--

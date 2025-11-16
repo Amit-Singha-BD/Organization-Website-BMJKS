@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\ChadaCollection;
 use App\Models\ChadaSetting;
 use Illuminate\Http\Request;
@@ -16,6 +17,10 @@ class MonthlyContributionController extends Controller {
                             COUNT(CASE WHEN payment_status = "paid" THEN 1 END) as total_paid_count,
                             COUNT(CASE WHEN payment_status IN ("not_paid","pending") THEN 1 END) as total_not_paid_count')
                        ->groupBy('committee_id')
+                       ->when(!in_array(Auth::user()->account_type, ['superadmin', 'cashier']), 
+                            function ($query) {
+                            $query->where('committee_id', Auth::user()->branch);
+                            })
                        ->get();
 
         return view('Backend.Pages.Monthly-Contribution', compact('contributions'));
