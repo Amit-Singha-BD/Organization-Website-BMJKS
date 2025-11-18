@@ -52,7 +52,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#news">সংবাদ</a>
+                    <a class="nav-link" href="#news">সাম্প্রতিক কার্যক্রম</a>
                 </li>
         
                 <li class="nav-item">

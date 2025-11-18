@@ -273,7 +273,7 @@
 
 								<div class="col-md-6">
 									<div class="card border-0 shadow-sm h-100 news-card">
-										<div class="card-body p-4">
+										<div class="p-4">
 											<div class="d-flex align-items-start">
 												<div class="news-date me-3 text-center">
 													<div class="bg-primary text-white rounded-top p-2">

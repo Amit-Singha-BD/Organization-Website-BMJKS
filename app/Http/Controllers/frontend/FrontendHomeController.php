@@ -13,7 +13,7 @@ use App\Models\CommitteeYear;
 class FrontendHomeController extends Controller{
 
     public function home_view(){
-        $response = Http::get('https://mcqbankbd.com/blog/wp-json/wp/v2/posts?per_page=4&_fields=id,date,title,excerpt,link');
+        $response = Http::get('http://localhost/wp/wp-json/wp/v2/posts?per_page=4&_fields=id,date,title,excerpt,link');
         $posts = $response->json();
         $services = Service::all();
         $notices = Notice::latest()->take(3)->get();
