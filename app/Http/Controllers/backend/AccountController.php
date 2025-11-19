@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\CommitteeName;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller {
     public function users(){
@@ -67,6 +68,10 @@ class AccountController extends Controller {
         if(!$account){
             return redirect()->back()
                              ->with("error", "অ্যাকাউন্ট খুঁজে পাওয়া যায়নি।");
+        }
+
+        if(Auth::user()->id == $account->id ){
+            return redirect()->back()->with("error", "অ্যাকাউন্টটি ডিলিট করা যাবে না");
         }
 
         $account->delete();

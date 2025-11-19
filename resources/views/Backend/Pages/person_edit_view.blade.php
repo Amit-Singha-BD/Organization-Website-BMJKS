@@ -10,6 +10,7 @@
             <form action="{{route('person.update', $person->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
                 <div class="card-body">
                     <div class="row g-3">
                         <!-- নাম -->
@@ -18,10 +19,23 @@
                             <input name="name" class="form-control" value="{{ old('name', $person->name) }}" required>
                         </div>
 
-                        <!-- পিতার/স্বামীর নাম -->
+                       <!-- পিতার/স্বামীর নাম -->
                         <div class="col-md-6">
-                            <label class="form-label @error('father_husband_name') text-danger @enderror">পিতার নাম / স্বামী</label>
-                            <input name="father_husband_name" class="form-control" value="{{ old('father_husband_name', $person->father_husband_name) }}">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center">
+                                    <input class="relation-checkbox" type="radio" name="relation_type" id="fatherOption" value="পিতা"
+                                        {{ ($person->relation_type ?? '') == 'পিতা' ? 'checked' : '' }}>
+                                    <label for="fatherOption" class="relation-label">পিতা</label>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    <input class="relation-checkbox" type="radio" name="relation_type" id="husbandOption" value="স্বামী"
+                                        {{ ($person->relation_type ?? '') == 'স্বামী' ? 'checked' : '' }}>
+                                    <label for="husbandOption" class="relation-label">স্বামী</label>
+                                </div>
+                            </div>
+
+                            <input type="text" name="father_husband_name" class="form-control mt-2" id="relationName" placeholder="{{ ($person->relation_type ?? '') == 'স্বামী' ? 'স্বামীর নাম লিখুন' : 'পিতার নাম লিখুন' }}" value="{{ $person->father_husband_name ?? '' }}">
                         </div>
 
                         <!-- মাতার নাম -->
