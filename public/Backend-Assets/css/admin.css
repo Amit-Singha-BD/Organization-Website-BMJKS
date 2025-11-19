@@ -714,6 +714,27 @@ body.sidebar-collapsed .admin-brand span {
     color: var(--bg-white);
 }
 
+.type-deactive {
+    border: 1px solid var(--accent-orange);
+    background-color: var(--accent-orange);
+    color: var(--bg-white);
+}
+
+.deactive-button {
+    background-color: inherit;
+    border: 1px solid var(--accent-orange);
+    color: var(--accent-orange);
+    transition: ease-in-out 0.3s;
+}
+
+.deactive-button:hover,
+.deactive-button.active {
+    background-color: var(--accent-orange);
+    border: 1px solid var(--accent-orange);
+    color: var(--bg-white);
+    transition: ease-in-out 0.1s;
+}
+
 .form-control,
 .form-select {
     border: 1px solid var(--primary-green);

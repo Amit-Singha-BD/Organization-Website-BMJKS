@@ -79,7 +79,7 @@
                         সক্রিয়
                     </a>
 
-                    <a class="btn btn-outline-success {{ Route::is('deactive.committee.list') ? 'active' : '' }}" href="{{ route('deactive.committee.list') }}">
+                    <a class="btn deactive-button {{ Route::is('deactive.committee.list') ? 'active' : '' }}" href="{{ route('deactive.committee.list') }}">
                         নিষ্ক্রিয়
                     </a>
                 </div>
@@ -115,7 +115,7 @@
                                     </div>
                                 </td>
                                 <td data-label="সদস্য সংখ্যা">@bn($committee->committee_members_count)</td>
-                                <td data-label="অবস্থা"><span class="badge type">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
+                                <td data-label="অবস্থা"><span class="{{ $committee->status == 'active' ? 'type' : 'type-deactive' }} badge">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
                                 <td data-label="অ্যাকশন">
                                     <div class="btn-group">
                                         <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">
