@@ -94,7 +94,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('person', PersonController::class);
     Route::get('specific-category-person/{personType}', [PersonController::class, 'index'])->name('specific.category.person');
     Route::get('search-person', [PersonController::class, 'personSearch'])->name('person.search');
-    Route::post('search-result', [PersonController::class, 'searchResult'])->name('search.result');
+    Route::any('search-result', [PersonController::class, 'searchResult'])->name('search.result');
     Route::get('person_edit_view/{id}',[ExtraController::class, 'personEditView'])->name('person.edit.view');
     Route::get('/monthly-contribution-view', [MonthlyContributionController::class, 'monthlyContribution'])->name('monthly.contribution.view');
     Route::get('/monthly-contribution-list/{committeeId}', [MonthlyContributionController::class, 'monthlyContributionList'])->name('monthly.contribution.list');

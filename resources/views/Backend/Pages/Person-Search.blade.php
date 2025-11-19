@@ -187,7 +187,7 @@
                         <h5 class="card-title mb-0 fw-semibold">
                             <i class="fas fa-list me-2"></i> সার্চকৃত ব্যক্তির তালিকা
                         </h5>
-                        <p class="mb-0">মোট {{ $persons->total() }} জন পাওয়া গেছে</p>
+                        <p class="mb-0">মোট @bn($persons->total()) জন পাওয়া গেছে</p>
                     </div>
 
 
@@ -207,8 +207,8 @@
                                 <tbody>
                                     @forelse($persons as $person)
                                     <tr>
-                                        <td class="text-center fw-medium">{{ $loop->iteration + ($persons->currentPage()-1)*$persons->perPage() }}</td>
-                                        <td>
+                                        <td data-label="ক্রমিক" class="text-center fw-medium">@bn( $loop->iteration + ($persons->currentPage()-1)*$persons->perPage() )</td>
+                                        <td data-label="নাম">
                                             <div class="d-flex align-items-center">
                                                 <img src="{{ $person->photo ? asset($person->photo) : asset('Frontend-Assets/images/profile_img.png') }}"
                                                     class="rounded-circle me-2 object-fit-cover"
@@ -216,26 +216,29 @@
                                                 <span class="fw-semibold">{{ $person->name }}</span>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td data-label="ফোন">
                                             <span class="badge bg-info text-dark">{{ $person->mobile_number ?? 'N/A' }}</span>
                                         </td>
-                                        <td>{{ $person->village }}</td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-sm btn-outline-success" 
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#modalViewMember{{ $person->id }}">
-                                                <i class="fas fa-eye me-1"></i> দেখুন
-                                            </button>
-                                            @php
-                                                $hasRestrictedType = $person->personType->pluck('id')->contains(1);
-                                            @endphp
+                                        <td data-label="গ্রাম">{{ $person->village }}</td>
+                                        <td data-label="একশন" class="text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <button type="button" class="action-btn-info me-1" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#modalViewMember{{ $person->id }}">
+                                                    <i class="fas fa-eye "></i>
+                                                </button>
+                                                @php
+                                                    $hasRestrictedType = $person->personType->pluck('id')->contains(1);
+                                                @endphp
 
-                                            @if(($hasRestrictedType && Auth::user()->account_type == 'superadmin') ||(!$hasRestrictedType))
-                                            <a type="button" class="btn btn-sm btn-outline-success" 
-                                                href="{{route('person.edit.view',$person->id)}}">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            @endif
+                                                @if(($hasRestrictedType && Auth::user()->account_type == 'superadmin') ||(!$hasRestrictedType))
+                                                <a type="button" class="action-btn-warning" 
+                                                    href="{{route('person.edit.view',$person->id)}}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                @endif
+                                            </div>
+
                                         </td>
                                     </tr>
 
@@ -328,8 +331,8 @@
                      <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                মোট {{ $persons->total() }} টি রেকর্ডের মধ্যে 
-                                {{ $persons->firstItem() }} - {{ $persons->lastItem() }} দেখানো হচ্ছে
+                                মোট @bn( $persons->total() ) টি রেকর্ডের মধ্যে 
+                                @bn( $persons->firstItem() ) - @bn( $persons->lastItem() ) দেখানো হচ্ছে
                             </div>
                             <div>
                                 {{ $persons->links() }}
