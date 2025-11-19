@@ -46,7 +46,7 @@
 
                                 <td data-label="বকেয়া চাঁদার পরিমাণ">
                                     ৳ @bn($contribution->total_not_paid_amount)
-                                    <span class="badge bg-warning rounded-circle">@bn($contribution->total_not_paid_count)টি</span>
+                                    <span class="badge rounded-circle" style="background-color: #ff6b35;">@bn($contribution->total_not_paid_count)টি</span>
                                 </td>
                                 <td data-label="চাঁদার তালিকা">
                                     <a href="{{ route('monthly.contribution.list', $contribution->committee_id) }}" class="btn btn-outline-success"
