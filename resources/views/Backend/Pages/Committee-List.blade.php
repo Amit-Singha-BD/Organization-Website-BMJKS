@@ -12,7 +12,7 @@
                                 মোট সক্রিয় কমিটি
                             </small>
                             <h4 class="mb-0">
-                          
+
                                     @bn($totalActiveCommittees)
 
                             </h4>
@@ -99,6 +99,7 @@
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr class="text-center">
+                                <th>ক্রমিক</th>
                                 <th>কমিটি নাম</th>
                                 <th>সদস্য সংখ্যা</th>
                                 <th>অবস্থা</th>
@@ -107,23 +108,24 @@
                         </thead>
                         <tbody>
                             @foreach($committees as $committee)
-                            <tr class="text-center">
-                                <td data-label="শাখা নাম">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i class="fa-solid fa-sitemap text-primary"></i>
-                                        <strong>{{ $committee->committee_name }}</strong>
-                                    </div>
-                                </td>
-                                <td data-label="সদস্য সংখ্যা">@bn($committee->committee_members_count)</td>
-                                <td data-label="অবস্থা"><span class="{{ $committee->status == 'active' ? 'type' : 'type-deactive' }} badge">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
-                                <td data-label="অ্যাকশন">
-                                    <div class="btn-group">
-                                        <a href="{{ route('active.committee',$committee->id) }}" class="btn btn-outline-success" title="View">
-                                            <i class="fa-solid fa-hand-point-right"></i> দেখুন
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr class="text-center">
+                                    <td data-label="ক্রমিক">@bn($loop->iteration)</td>
+                                    <td data-label="শাখা নাম">
+                                        <div class="d-flex align-items-center justify-content-center gap-2">
+                                            <i class="fa-solid fa-sitemap text-primary"></i>
+                                            <strong>{{ $committee->committee_name }}</strong>
+                                        </div>
+                                    </td>
+                                    <td data-label="সদস্য সংখ্যা">@bn($committee->committee_members_count)</td>
+                                    <td data-label="অবস্থা"><span class="{{ $committee->status == 'active' ? 'type' : 'type-deactive' }} badge">{{ $committee->status == 'active' ? 'সক্রিয়' : 'নিষ্ক্রিয়' }}</span></td>
+                                    <td data-label="অ্যাকশন">
+                                        <div class="btn-group">
+                                            <a href="{{ route('active.committee', $committee->id) }}" class="btn btn-outline-success" title="View">
+                                                <i class="fa-solid fa-hand-point-right"></i> দেখুন
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

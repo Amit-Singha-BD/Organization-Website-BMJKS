@@ -12,18 +12,25 @@ class CommitteeMemberCreateValidate extends FormRequest {
     }
 
     public function rules(): array {
+
+        $roleRules = [
+            'required',
+            'integer',
+            'in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16',
+        ];
+
+        if ($this->role != 16) {
+            $roleRules[] = Rule::unique('committee_members')
+                ->where(function ($query) {
+                    return $query->where('CommitteeYear_id', $this->CommitteeYear_id);
+                });
+        }
+
         return [
             'CommitteeYear_id' => 'required|integer',
             'name'  => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'role'  => [
-                'required',
-                'integer',
-                'in:1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16',
-                Rule::unique('committee_members')->where(function ($query) {
-                    return $query->where('CommitteeYear_id', $this->CommitteeYear_id);
-                }),
-            ],
+            'role'  => $roleRules,
             'address'  => 'required|string|max:500',
             'mobile'   => 'required|regex:/^01[0-9]{9}$/',
             'email'    => 'required|email|max:255',

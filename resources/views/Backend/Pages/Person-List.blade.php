@@ -6,11 +6,8 @@
         <div class="row mb-4">
             <div class="col-md-8">
                 <h2 class="text-success">
-                    {{ Route::is('lifetime.member.padding.list')
-    ? "আবেদনকৃত আজীবন সদস্য তালিকা"
-    : (Route::is('general.member.padding.list')
-        ? "আবেদনকৃত সাধারণ সদস্য তালিকা"
-        : "ব্যক্তির তথ্য তালিকা") }}
+                    {{ Route::is('lifetime.member.padding.list') ? "আবেদনকৃত আজীবন সদস্য তালিকা" : 
+                      (Route::is('general.member.padding.list') ? "আবেদনকৃত সাধারণ সদস্য তালিকা" : "ব্যক্তির তথ্য তালিকা") }}
                 </h2>
             </div>
         </div>
@@ -98,14 +95,10 @@
                                         <h5 class="modal-title" id="approveMemberLabel">সদস্য অনুমোদন</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="
-                                            {{ Route::is('lifetime.member.padding.list')
-        ? route('lifetime.member.approve', $person->id)
-        : (Route::is('general.member.padding.list')
-            ? route('general.member.approve', $person->id)
-            : '') 
-                                        }}
-                                        " method="POST">
+                                    <form action="{{ 
+                                                    Route::is('lifetime.member.padding.list') ? route('lifetime.member.approve', $person->id) : 
+                                                    (Route::is('general.member.padding.list') ? route('general.member.approve', $person->id) : '') 
+                                                    }}" method="POST">
                                         @csrf
                                         <div class="modal-body">
                                         <p>আপনি কি নিশ্চিত যে <strong>{{ $person->name }}</strong> কে সদস্য হিসেবে অনুমোদন দিতে চান?</p>
@@ -257,8 +250,12 @@
 
                                                         <!-- জাত -->
                                                         <div class="col-md-6">
-                                                            <label class="form-label">জাত</label>
-                                                            <input type="text" name="caste" class="form-control" value="{{ $person->caste }}">
+                                                            <label class="form-label">গোত্র</label>
+                                                            <select name="caste" class="form-select">
+                                                                <option value="আঙগ্রিশ্য" {{ $person->caste == 'আঙগ্রিশ্য' ? 'selected' : '' }}>আঙগ্রিশ্য</option>
+                                                                <option value="মদুকল্য" {{ $person->caste == 'মদুকল্য' ? 'selected' : '' }}>মদুকল্য</option>
+                                                                <option value="বিয়াগ্র" {{ $person->caste == 'বিয়াগ্র' ? 'selected' : '' }}>বিয়াগ্র</option>
+                                                            </select>
                                                         </div>
 
                                                         <!-- বৈবাহিক অবস্থা -->
@@ -286,7 +283,16 @@
                                                         <!-- ব্লাড গ্রুপ -->
                                                         <div class="col-md-6">
                                                             <label class="form-label">রক্তের গ্রুপ</label>
-                                                            <input type="text" name="blood_group" class="form-control" value="{{ $person->blood_group }}">
+                                                            <select name="blood_group" class="form-select">
+                                                                <option value="A+" {{ $person->blood_group == 'A+' ? 'selected' : '' }}>A+</option>
+                                                                <option value="A-" {{ $person->blood_group == 'A-' ? 'selected' : '' }}>A-</option>
+                                                                <option value="B+" {{ $person->blood_group == 'B+' ? 'selected' : '' }}>B+</option>
+                                                                <option value="B-" {{ $person->blood_group == 'B-' ? 'selected' : '' }}>B-</option>
+                                                                <option value="O+" {{ $person->blood_group == 'O+' ? 'selected' : '' }}>O+</option>
+                                                                <option value="O-" {{ $person->blood_group == 'O-' ? 'selected' : '' }}>O-</option>
+                                                                <option value="AB+" {{ $person->blood_group == 'AB+' ? 'selected' : '' }}>AB+</option>
+                                                                <option value="AB-" {{ $person->blood_group == 'AB-' ? 'selected' : '' }}>AB-</option>
+                                                            </select>
                                                         </div>
 
                                                         <!-- গ্রাম -->
