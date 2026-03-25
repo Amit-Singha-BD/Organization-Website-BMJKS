@@ -1,12 +1,13 @@
 # Organization Website – BMJKS
+## Project Overview
 
 This is a voluntary project developed for the Bangladesh Manipuri Youth Welfare Association (BMJKS) to serve the Manipuri community in Bangladesh.  
 The website consists of a public front-end website, CMS (Admin Panel), and a WordPress-based blog system to showcase organizational activities, notices, members, services, and donations.
 
 The website was created voluntarily, without any charge, by a team of three members. Two of us developed this project after learning Laravel, to gain real-world experience in full-stack web development.
 
-## Project Overview
-### Frontend Website
+## Application Overview
+### Front-End (Public Website)
 #### Home Page
   - Automatic image carousel
   - 3 recent notices
@@ -40,7 +41,7 @@ The website was created voluntarily, without any charge, by a team of three memb
   - BMJKS Database & Advanced 16-field search
   - Contact Page with query/proposal submission
 
-### Backend / Admin Panel (CMS)
+### Backend (Admin Panel)
 Role-Based Access Control (RBAC)
 
 #### Super Admin
@@ -143,12 +144,9 @@ From this project, we learned and practiced:
   - Real-world development workflow
   - Division of responsibilities (Project Manager, Frontend/Backend, WordPress Integration)
 
-## Project Impact
+## Learning Objectives
 This website now serves as:
 - A platform to showcase BMJKS activities
 - A membership management system with role-based access
 - A communication channel between members and the organization
 - A voluntary learning experience for the developers
-
-## License
-This project is voluntary and for community use only. Not intended for commercial purposes.
